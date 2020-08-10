@@ -20,7 +20,7 @@ public class PlayerController : CharacterPawn
 
         controls.Player.PlaceItem.performed += ctx =>
         {
-            Manager.houseManager.PlaceItem(transform.position, Manager.debugItem);
+            Manager.PlaceItem(transform.position, Manager.debugItem);
         };
     }
 

@@ -4,12 +4,5 @@ using UnityEngine;
 
 public class HouseManager : MonoBehaviour
 {
-    public GridController[] controllers;
-
-    public GridController currentController;
-
-    public void PlaceItem (Vector3 position, Item item)
-    {
-        currentController.grid.PlaceItemFromPosition(position, item);
-    }
+    public GridController[] gridControllers;
 }

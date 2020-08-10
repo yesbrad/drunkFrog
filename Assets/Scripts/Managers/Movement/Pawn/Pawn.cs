@@ -8,6 +8,8 @@ public class Pawn : MonoBehaviour
 
     Vector3 currentDirecrtion;
 
+    public Vector3 Position { get { return transform.position; } }
+
     public virtual void MoveDirection(Vector3 _direction)
     {
         currentDirecrtion = _direction;

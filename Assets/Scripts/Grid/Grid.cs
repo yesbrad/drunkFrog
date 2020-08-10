@@ -9,7 +9,7 @@ public class Grid
     public float cellSize;
     public Vector3 origin;
 
-    private Item[,] gridArray;
+    internal Item[,] gridArray;
 
     public Grid (int height, int width, float cellSize, Vector3 origin)
     {
@@ -25,25 +25,25 @@ public class Grid
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
                 //Debug.Log(y + " : " + x);
-                //Debug.DrawLine(GetWorldPositionFromGrid(x, y + 1), GetWorldPositionFromGrid(x, y), Color.red, 100f);
-                //Debug.DrawLine(GetWorldPositionFromGrid(x + 1, y), GetWorldPositionFromGrid(x, y), Color.red, 100f);
+                Debug.DrawLine(GetWorldPositionFromGrid(x, y + 1), GetWorldPositionFromGrid(x, y), Color.red, 100f);
+                Debug.DrawLine(GetWorldPositionFromGrid(x + 1, y), GetWorldPositionFromGrid(x, y), Color.red, 100f);
             }
         }
 
-        //Debug.DrawLine(GetWorldPositionFromGrid(width, height), GetWorldPositionFromGrid(width, 0), Color.red, 100f);
-        //Debug.DrawLine(GetWorldPositionFromGrid(width, height), GetWorldPositionFromGrid(0, height), Color.red, 100f);
+        Debug.DrawLine(GetWorldPositionFromGrid(width, height), GetWorldPositionFromGrid(width, 0), Color.red, 100f);
+        Debug.DrawLine(GetWorldPositionFromGrid(width, height), GetWorldPositionFromGrid(0, height), Color.red, 100f);
     }
 
     public Vector3 GetWorldPositionFromGrid (int x, int y)
     {
-        return new Vector3(x, 0, y) * cellSize + origin;
+        return new Vector3(x, origin.y, y) * cellSize + origin;
     }
 
     public Vector3 GetWorldGridCenterPositionFromWorld(Vector3 position)
     {
         Vector2Int gr = GetGridPositionFromWorld(position);
         Vector3 worldPos = GetWorldPositionFromGrid(gr.x, gr.y);
-        return new Vector3(worldPos.x + (constants.GridCellSize / 2), 0 , worldPos.z + (constants.GridCellSize / 2));
+        return new Vector3(worldPos.x + (constants.GridCellSize / 2), origin.y , worldPos.z + (constants.GridCellSize / 2));
     }
 
     public Vector2Int GetGridPositionFromWorld (Vector3 _worldPosition)
@@ -54,8 +54,12 @@ public class Grid
     public void PlaceItemFromPosition (Vector3 position, Item item)
     {
         Vector2Int gridPosition = GetGridPositionFromWorld(position);
-        item.Init(GetWorldGridCenterPositionFromWorld(position));
-        SetValue(gridPosition.x, gridPosition.y, item);
+        
+        if (gridPosition.x >= 0 && gridPosition.y >= 0 && gridPosition.x < width && gridPosition.y < height)
+        {
+            item.Init(GetWorldGridCenterPositionFromWorld(position));
+            gridArray[gridPosition.x, gridPosition.y] = item;
+        }
     }
 
     private void SetValue(int x, int y, Item value)
