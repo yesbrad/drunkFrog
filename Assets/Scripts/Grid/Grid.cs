@@ -16,6 +16,7 @@ public class Grid
         this.height = height;
         this.width = width;
         this.cellSize = cellSize;
+        this.origin = origin;
 
         gridArray = new int[width, height];
 
@@ -35,12 +36,12 @@ public class Grid
 
     public Vector3 GetWorldPositionFromGrid (int x, int y)
     {
-        return new Vector3(x, 0, y) * cellSize;
+        return new Vector3(x, 0, y) * cellSize + origin;
     }
 
     public Vector2 GetGridPositionFromWorld (Vector3 _worldPosition)
     {
-        return new Vector2(Mathf.FloorToInt(_worldPosition.x / cellSize), Mathf.FloorToInt(_worldPosition.z / cellSize));
+        return new Vector2(Mathf.FloorToInt((_worldPosition - origin ).x / cellSize), Mathf.FloorToInt((_worldPosition - origin).z / cellSize));
     }
 
     public void SetValue(int x, int y, int value)
