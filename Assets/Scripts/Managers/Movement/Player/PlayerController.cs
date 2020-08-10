@@ -22,6 +22,11 @@ public class PlayerController : CharacterPawn
         {
             Manager.PlaceItem(transform.position, Manager.debugItem);
         };
+
+        controls.Player.SwapItem.performed += ctx =>
+        {
+            Manager.InventoryManager.ShiftItems();
+        };
     }
 
 	private void Update () 

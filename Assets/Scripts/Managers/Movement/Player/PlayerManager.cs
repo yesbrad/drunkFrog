@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(InventoryManager))]
 public class PlayerManager : MonoBehaviour
 {
     public HouseManager houseManager;
@@ -9,18 +10,22 @@ public class PlayerManager : MonoBehaviour
 
     public GridController currentGrid;
 
+    public InventoryManager InventoryManager { get { return inventoryManager; } }
+
     private Pawn pawn;
+    private InventoryManager inventoryManager;
 
     private void Awake()
     {
         pawn = GetComponentInChildren<Pawn>();
+        inventoryManager = GetComponent<InventoryManager>();
     }
 
     public void PlaceItem(Vector3 position, Item item)
     {
         if (currentGrid)
         {
-            currentGrid.grid.PlaceItemFromPosition(position, item);
+            currentGrid.grid.PlaceItemFromPosition(position, inventoryManager.CurrentItem);
         }
     }
 

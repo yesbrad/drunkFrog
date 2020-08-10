@@ -33,6 +33,14 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SwapItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""e0cd72a8-500b-476c-8521-8f502a046066"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -167,6 +175,28 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""action"": ""PlaceItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0e1c501-594b-422a-a6fe-b8dffb3d3f9a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""SwapItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15844557-a907-403a-90dc-8effd8335e10"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""SwapItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -210,6 +240,7 @@ public class @NewControls : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_PlaceItem = m_Player.FindAction("PlaceItem", throwIfNotFound: true);
+        m_Player_SwapItem = m_Player.FindAction("SwapItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -261,12 +292,14 @@ public class @NewControls : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_PlaceItem;
+    private readonly InputAction m_Player_SwapItem;
     public struct PlayerActions
     {
         private @NewControls m_Wrapper;
         public PlayerActions(@NewControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @PlaceItem => m_Wrapper.m_Player_PlaceItem;
+        public InputAction @SwapItem => m_Wrapper.m_Player_SwapItem;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -282,6 +315,9 @@ public class @NewControls : IInputActionCollection, IDisposable
                 @PlaceItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceItem;
                 @PlaceItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceItem;
                 @PlaceItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceItem;
+                @SwapItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwapItem;
+                @SwapItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwapItem;
+                @SwapItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwapItem;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -292,6 +328,9 @@ public class @NewControls : IInputActionCollection, IDisposable
                 @PlaceItem.started += instance.OnPlaceItem;
                 @PlaceItem.performed += instance.OnPlaceItem;
                 @PlaceItem.canceled += instance.OnPlaceItem;
+                @SwapItem.started += instance.OnSwapItem;
+                @SwapItem.performed += instance.OnSwapItem;
+                @SwapItem.canceled += instance.OnSwapItem;
             }
         }
     }
@@ -318,5 +357,6 @@ public class @NewControls : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnPlaceItem(InputAction.CallbackContext context);
+        void OnSwapItem(InputAction.CallbackContext context);
     }
 }

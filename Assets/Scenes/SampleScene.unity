@@ -9203,6 +9203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1314806316}
   - component: {fileID: 1314806317}
+  - component: {fileID: 1314806318}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -9241,6 +9242,23 @@ MonoBehaviour:
   houseManager: {fileID: 1642236555}
   debugItem: {fileID: 11400000, guid: 34b6a34e6d6b8a9458a35e9fdf904e2e, type: 2}
   currentGrid: {fileID: 0}
+--- !u!114 &1314806318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314806315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c07345c932d5149a942c1f46e2546c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentItems:
+  - {fileID: 11400000, guid: 6a6628e5df41dd74f9d6676f369fcea9, type: 2}
+  - {fileID: 11400000, guid: 34b6a34e6d6b8a9458a35e9fdf904e2e, type: 2}
+  - {fileID: 11400000, guid: c37ff2fbc60aae44d99f9ad697b7c419, type: 2}
+  - {fileID: 11400000, guid: 5fbd897dd0251e841985c6cbcc9ba8c6, type: 2}
 --- !u!43 &1519733904
 Mesh:
   m_ObjectHideFlags: 0
