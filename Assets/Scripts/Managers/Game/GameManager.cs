@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
+        Grid grid = new Grid(100, 150, 2f);
     }
 
     // Update is called once per frame
