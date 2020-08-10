@@ -9,7 +9,7 @@ public class Grid
     public float cellSize;
     public Vector3 origin;
 
-    private int[,] gridArray;
+    private Item[,] gridArray;
 
     public Grid (int height, int width, float cellSize, Vector3 origin)
     {
@@ -18,7 +18,7 @@ public class Grid
         this.cellSize = cellSize;
         this.origin = origin;
 
-        gridArray = new int[width, height];
+        gridArray = new Item[width, height];
 
         for (int x = 0; x < gridArray.GetLength(0); x++)
         {
@@ -39,12 +39,26 @@ public class Grid
         return new Vector3(x, 0, y) * cellSize + origin;
     }
 
-    public Vector2 GetGridPositionFromWorld (Vector3 _worldPosition)
+    public Vector3 GetWorldGridCenterPositionFromWorld(Vector3 position)
     {
-        return new Vector2(Mathf.FloorToInt((_worldPosition - origin ).x / cellSize), Mathf.FloorToInt((_worldPosition - origin).z / cellSize));
+        Vector2Int gr = GetGridPositionFromWorld(position);
+        Vector3 worldPos = GetWorldPositionFromGrid(gr.x, gr.y);
+        return new Vector3(worldPos.x + (HouseManager.c_gridCellSize / 2), 0 , worldPos.z + (HouseManager.c_gridCellSize / 2));
     }
 
-    public void SetValue(int x, int y, int value)
+    public Vector2Int GetGridPositionFromWorld (Vector3 _worldPosition)
+    {
+        return new Vector2Int(Mathf.FloorToInt((_worldPosition - origin ).x / cellSize), Mathf.FloorToInt((_worldPosition - origin).z / cellSize));
+    }
+
+    public void PlaceItemFromPosition (Vector3 position, Item item)
+    {
+        Vector2Int gridPosition = GetGridPositionFromWorld(position);
+        item.Init(GetWorldGridCenterPositionFromWorld(position));
+        SetValue(gridPosition.x, gridPosition.y, item);
+    }
+
+    private void SetValue(int x, int y, Item value)
     {
         if(x >= 0 && y >= 0 && x < width && y < height)
         {
@@ -56,7 +70,7 @@ public class Grid
         }
     }
 
-    public int GetValue(int x, int y, int value)
+    private Item GetValue(int x, int y)
     {
         if (x >= 0 && y >= 0 && x < width && y < height)
         {
@@ -64,6 +78,6 @@ public class Grid
         }
 
         Debug.LogWarning("Value out of bounds");
-        return 0;
+        return null;
     }
 }

@@ -10,6 +10,6 @@ public class GridController : MonoBehaviour
 
     void Start()
     {
-        grid = new Grid(gridSize, gridSize, GridManager.c_gridCellSize, gridOrigin.position);
+        grid = new Grid(gridSize, gridSize, HouseManager.c_gridCellSize, gridOrigin.position);
     }
 }

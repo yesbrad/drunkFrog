@@ -7,11 +7,21 @@ public class PlayerController : CharacterPawn
 {
     public NewControls controls;
 
+    public PlayerManager Manager { get { return manager; } }
+
+    private PlayerManager manager;
     private Vector3 inputDirection;
 
     private void Awake()
     {
         controls = new NewControls();
+
+        manager = GetComponentInParent<PlayerManager>();
+
+        controls.Player.PlaceItem.performed += ctx =>
+        {
+            Manager.houseManager.PlaceItem(transform.position, Manager.debugItem);
+        };
     }
 
 	private void Update () 
