@@ -8,7 +8,6 @@ public class CharacterPawn : Pawn
     private Vector3 movePosition;
     private CharacterController controller;
 
-    // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -16,8 +15,7 @@ public class CharacterPawn : Pawn
 
     public override void MoveDirection(Vector3 _direction)
     {
-        movePosition += _direction * speed * Time.deltaTime;
-        Debug.Log(movePosition);
+        movePosition = _direction * speed * Time.deltaTime;
         controller.SimpleMove(movePosition);
     }
 }

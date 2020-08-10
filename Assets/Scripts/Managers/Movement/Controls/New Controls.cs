@@ -25,29 +25,13 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""9d55310e-67c8-452f-a857-e767f7c557e2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""New action1"",
-                    ""type"": ""Button"",
-                    ""id"": ""e03b4132-aac8-4f06-a60d-33314a8a7c66"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Vertical"",
-                    ""id"": ""0330926c-b9a7-48b5-b277-a150f5c44e37"",
-                    ""path"": ""1DAxis"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""9695cf70-2338-49b4-8787-4e8c93be1555"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -56,19 +40,8 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""0764f5bf-7304-4410-9183-85e69ca94245"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""76991aa6-3268-443b-8978-f92643d9d8c6"",
+                    ""name"": ""up"",
+                    ""id"": ""362a7008-5236-4b62-a910-55304cf3d392"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -78,19 +51,19 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Horizontal"",
-                    ""id"": ""2376c4ee-463a-4653-b26b-37a25e352ecb"",
-                    ""path"": ""1DAxis"",
+                    ""name"": ""down"",
+                    ""id"": ""be206a6b-65f0-4296-a9f8-7769409a06c0"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyBoard"",
                     ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""202d9dd6-1a4b-4b34-8b5a-f18bc768418e"",
+                    ""name"": ""left"",
+                    ""id"": ""b3a4c265-6da4-45a6-8aae-e486106609fe"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -100,8 +73,8 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""c52cc4e4-1372-4c87-a3e1-48d03f54f9a5"",
+                    ""name"": ""right"",
+                    ""id"": ""1dcbd8e0-6c3d-4d71-bdea-2b922a7f836b"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -111,9 +84,9 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Vertical"",
-                    ""id"": ""ce006e91-c0f9-4543-8ae0-65660c8647d5"",
-                    ""path"": ""ButtonWithOneModifier"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""e5da5de6-c0e8-4688-b685-b1a7615b7777"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -122,9 +95,9 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Modifier"",
-                    ""id"": ""b8da2906-580b-4248-8af0-bc6cebfed49a"",
-                    ""path"": ""<Gamepad>/leftStick/y"",
+                    ""name"": ""up"",
+                    ""id"": ""8358c204-db8c-4737-9cf9-ecc2988a168c"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
@@ -133,9 +106,9 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Button"",
-                    ""id"": ""fcfd6d19-a622-453f-902c-4603a832b684"",
-                    ""path"": ""<Gamepad>/leftStick/y"",
+                    ""name"": ""down"",
+                    ""id"": ""41d58821-45ce-4109-a5b3-60c3935a0676"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
@@ -144,31 +117,9 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""0d6e1126-6aa0-4e71-a226-78077d964faa"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""b9bd1612-c71a-4867-8bcc-41a35081b316"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""b78a66b8-078d-4ee6-b6ac-f71e6e5be56b"",
-                    ""path"": ""<Gamepad>/dpad/x"",
+                    ""name"": ""left"",
+                    ""id"": ""c727e35d-cd32-4c8d-9429-abbcf1acd816"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
@@ -177,37 +128,15 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""652d378b-9bad-48d3-ac13-c4362329e9c5"",
-                    ""path"": ""<Gamepad>/dpad/x"",
+                    ""name"": ""right"",
+                    ""id"": ""6e12e35e-afa1-41af-b651-fa273820c8a2"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f794054a-bb4f-4892-8043-c74594235ee5"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c4f59d7c-b816-45f4-b94a-2c2f32d22c1b"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""New action1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -250,8 +179,6 @@ public class @NewControls : IInputActionCollection, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Newaction = m_Player.FindAction("New action", throwIfNotFound: true);
-        m_Player_Newaction1 = m_Player.FindAction("New action1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -302,15 +229,11 @@ public class @NewControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Newaction;
-    private readonly InputAction m_Player_Newaction1;
     public struct PlayerActions
     {
         private @NewControls m_Wrapper;
         public PlayerActions(@NewControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Newaction => m_Wrapper.m_Player_Newaction;
-        public InputAction @Newaction1 => m_Wrapper.m_Player_Newaction1;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -323,12 +246,6 @@ public class @NewControls : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Newaction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction;
-                @Newaction1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction1;
-                @Newaction1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction1;
-                @Newaction1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction1;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -336,12 +253,6 @@ public class @NewControls : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
-                @Newaction1.started += instance.OnNewaction1;
-                @Newaction1.performed += instance.OnNewaction1;
-                @Newaction1.canceled += instance.OnNewaction1;
             }
         }
     }
@@ -367,7 +278,5 @@ public class @NewControls : IInputActionCollection, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnNewaction(InputAction.CallbackContext context);
-        void OnNewaction1(InputAction.CallbackContext context);
     }
 }

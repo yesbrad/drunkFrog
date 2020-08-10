@@ -7,17 +7,24 @@ public class PlayerController : CharacterPawn
 {
     public NewControls controls;
 
+    private Vector3 inputDirection;
+
     private void Awake()
     {
         controls = new NewControls();
+    }
 
-        controls.Player.Move.performed += ctx =>
-        {
-            float ye = ctx.ReadValue<float>();
-            Debug.Log(ye);
-            MoveDirection(new Vector3(ye,0,0));
-      
-        };
+	private void Update () 
+	{
+        UpdateInput();
+	}
+
+    private void UpdateInput ()
+    {
+        Vector2 input = controls.Player.Move.ReadValue<Vector2>();
+        inputDirection.x = input.x;
+        inputDirection.z = input.y;
+        MoveDirection(inputDirection);
     }
 
     private void OnEnable()
