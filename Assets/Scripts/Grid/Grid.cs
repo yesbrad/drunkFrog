@@ -24,14 +24,14 @@ public class Grid
         {
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
-                Debug.Log(y + " : " + x);
-                Debug.DrawLine(GetWorldPositionFromGrid(x, y + 1), GetWorldPositionFromGrid(x, y), Color.red, 100f);
-                Debug.DrawLine(GetWorldPositionFromGrid(x + 1, y), GetWorldPositionFromGrid(x, y), Color.red, 100f);
+                //Debug.Log(y + " : " + x);
+                //Debug.DrawLine(GetWorldPositionFromGrid(x, y + 1), GetWorldPositionFromGrid(x, y), Color.red, 100f);
+                //Debug.DrawLine(GetWorldPositionFromGrid(x + 1, y), GetWorldPositionFromGrid(x, y), Color.red, 100f);
             }
         }
 
-        Debug.DrawLine(GetWorldPositionFromGrid(width, height), GetWorldPositionFromGrid(width, 0), Color.red, 100f);
-        Debug.DrawLine(GetWorldPositionFromGrid(width, height), GetWorldPositionFromGrid(0, height), Color.red, 100f);
+        //Debug.DrawLine(GetWorldPositionFromGrid(width, height), GetWorldPositionFromGrid(width, 0), Color.red, 100f);
+        //Debug.DrawLine(GetWorldPositionFromGrid(width, height), GetWorldPositionFromGrid(0, height), Color.red, 100f);
     }
 
     public Vector3 GetWorldPositionFromGrid (int x, int y)
@@ -43,7 +43,7 @@ public class Grid
     {
         Vector2Int gr = GetGridPositionFromWorld(position);
         Vector3 worldPos = GetWorldPositionFromGrid(gr.x, gr.y);
-        return new Vector3(worldPos.x + (HouseManager.c_gridCellSize / 2), 0 , worldPos.z + (HouseManager.c_gridCellSize / 2));
+        return new Vector3(worldPos.x + (constants.GridCellSize / 2), 0 , worldPos.z + (constants.GridCellSize / 2));
     }
 
     public Vector2Int GetGridPositionFromWorld (Vector3 _worldPosition)
