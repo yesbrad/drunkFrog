@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class HouseManager : MonoBehaviour
 {
+    [System.Serializable]
+    public struct FloorSettings
+    {
+        public GameObject floorPrefab;
+        public Transform floorDetectionSocket;
+        public LayerMask cameraLayer;
+    }
+
     public GridController[] gridControllers;
+    public FloorSettings[] floorSettings;
 
     public List<PlayerController> housePlayers = new List<PlayerController>();
 

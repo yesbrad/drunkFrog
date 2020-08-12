@@ -6,9 +6,10 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public HouseManager houseManager;
+    public Camera playerCamera;
     public Item debugItem;
 
-    public GridController currentGrid;
+    private GridController currentGrid;
 
     public InventoryManager InventoryManager { get { return inventoryManager; } }
 
@@ -43,13 +44,42 @@ public class PlayerManager : MonoBehaviour
     {
         if (!houseManager) return;
 
+        for (int i = 0; i < houseManager.floorSettings.Length; i++)
+        {
+            if (houseManager.floorSettings[i].floorDetectionSocket.position.y > pawn.Position.y)
+            {
+                // OFF
+                LayerCullingHide(playerCamera, houseManager.floorSettings[i].cameraLayer.value);
+
+            }
+            else
+            {
+                // ON
+                LayerCullingShow(playerCamera, houseManager.floorSettings[i].cameraLayer.value);
+            }
+        }
+
+        CheckForNewGrid();
+    }
+    public void LayerCullingShow(Camera cam, int layerMask)
+    {
+        cam.cullingMask |= layerMask;
+    }
+
+    public void LayerCullingHide(Camera cam, int layerMask)
+    {
+        cam.cullingMask &= ~layerMask;
+    }
+
+    private void CheckForNewGrid()
+    {
         float minDis = Mathf.Infinity;
 
         // Check for current floor
         for (int i = 0; i < houseManager.gridControllers.Length; i++)
         {
             float dis = Vector3.Distance(new Vector3(pawn.Position.x, houseManager.gridControllers[i].gridOrigin.position.y, pawn.Position.z), pawn.Position + Vector3.down);
-            if(dis < minDis)
+            if (dis < minDis)
             {
                 currentGrid = houseManager.gridControllers[i];
                 minDis = dis;

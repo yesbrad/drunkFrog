@@ -27,9 +27,7 @@ public class PlayerController : CharacterPawn
 
     public void OnMove (InputAction.CallbackContext context)
     {
-        Debug.Log(context);
         Vector2 input = context.ReadValue<Vector2>();
-        Debug.Log(input);
         inputDirection.x = input.x;
         inputDirection.z = input.y;
     }
