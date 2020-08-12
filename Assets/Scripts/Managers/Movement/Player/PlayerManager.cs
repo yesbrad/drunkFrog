@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentGrid)
         {
-            currentGrid.grid.PlaceItemFromPosition(position, inventoryManager.CurrentItem);
+            currentGrid.PlaceItemFromPosition(position, inventoryManager.CurrentItem, this);
         }
     }
 

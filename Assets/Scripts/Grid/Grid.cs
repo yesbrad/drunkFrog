@@ -51,20 +51,9 @@ public class Grid
         return new Vector2Int(Mathf.FloorToInt((_worldPosition - origin ).x / cellSize), Mathf.FloorToInt((_worldPosition - origin).z / cellSize));
     }
 
-    public void PlaceItemFromPosition (Vector3 position, Item item)
+    public void SetValue(int x, int y, Item value)
     {
-        Vector2Int gridPosition = GetGridPositionFromWorld(position);
-        
-        if (gridPosition.x >= 0 && gridPosition.y >= 0 && gridPosition.x < width && gridPosition.y < height)
-        {
-            item.Init(GetWorldGridCenterPositionFromWorld(position));
-            gridArray[gridPosition.x, gridPosition.y] = item;
-        }
-    }
-
-    private void SetValue(int x, int y, Item value)
-    {
-        if(x >= 0 && y >= 0 && x < width && y < height)
+        if(IsInBounds(x,y))
         {
             gridArray[x, y] = value;
         } 
@@ -74,9 +63,14 @@ public class Grid
         }
     }
 
+    public bool IsInBounds (int x, int y)
+    {
+        return (x >= 0 && y >= 0 && x < width && y < height);
+    }
+
     private Item GetValue(int x, int y)
     {
-        if (x >= 0 && y >= 0 && x < width && y < height)
+        if (IsInBounds(x, y))
         {
             return gridArray[x, y];
         }

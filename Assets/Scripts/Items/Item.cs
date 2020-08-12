@@ -11,8 +11,12 @@ public class Item : ScriptableObject
 
     private ItemController controller;
 
-    public void Init (Vector3 position)
+    private PlayerManager owner;
+
+    public void Init (Vector3 position, PlayerManager playerManager)
     {
         controller = Instantiate(itemPrefab, position, Quaternion.identity).GetComponent<ItemController>();
+        controller.Init(this, playerManager);
+        owner = playerManager;
     }
 }
