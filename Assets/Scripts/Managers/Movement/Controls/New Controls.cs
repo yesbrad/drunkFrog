@@ -101,7 +101,7 @@ public class @NewControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""2D Vector"",
-                    ""id"": ""e5da5de6-c0e8-4688-b685-b1a7615b7777"",
+                    ""id"": ""41cec0c1-83cd-445a-92ea-92f61ac196a4"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -112,7 +112,7 @@ public class @NewControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""8358c204-db8c-4737-9cf9-ecc2988a168c"",
+                    ""id"": ""103396f7-437b-44c5-ad63-cb23cd7624d2"",
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -123,7 +123,7 @@ public class @NewControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""41d58821-45ce-4109-a5b3-60c3935a0676"",
+                    ""id"": ""8a7540fd-cd26-459c-aa7a-910771a12daf"",
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -134,7 +134,7 @@ public class @NewControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""c727e35d-cd32-4c8d-9429-abbcf1acd816"",
+                    ""id"": ""eee731eb-e9bb-41b8-96bf-4849bcb7c534"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -145,7 +145,7 @@ public class @NewControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""6e12e35e-afa1-41af-b651-fa273820c8a2"",
+                    ""id"": ""4e472b27-3552-4312-9a5b-3e32b32467b7"",
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -208,12 +208,7 @@ public class @NewControls : IInputActionCollection, IDisposable
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                },
-                {
-                    ""devicePath"": ""<Mouse>"",
-                    ""isOptional"": false,
+                    ""isOptional"": true,
                     ""isOR"": false
                 }
             ]
@@ -225,11 +220,6 @@ public class @NewControls : IInputActionCollection, IDisposable
                 {
                     ""devicePath"": ""<Gamepad>"",
                     ""isOptional"": true,
-                    ""isOR"": false
-                },
-                {
-                    ""devicePath"": ""<DualShockGamepad>"",
-                    ""isOptional"": false,
                     ""isOR"": false
                 }
             ]

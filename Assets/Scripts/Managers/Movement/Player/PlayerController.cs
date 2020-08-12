@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : CharacterPawn
 {
-    public NewControls controls;
-
     public PlayerManager Manager { get { return manager; } }
 
     private PlayerManager manager;
@@ -14,19 +12,7 @@ public class PlayerController : CharacterPawn
 
     private void Awake()
     {
-        controls = new NewControls();
-
         manager = GetComponentInParent<PlayerManager>();
-
-        controls.Player.PlaceItem.performed += ctx =>
-        {
-            Manager.PlaceItem(transform.position, Manager.debugItem);
-        };
-
-        controls.Player.SwapItem.performed += ctx =>
-        {
-            Manager.InventoryManager.ShiftItems();
-        };
     }
 
 	private void Update () 
@@ -36,14 +22,25 @@ public class PlayerController : CharacterPawn
 
     private void UpdateInput ()
     {
-        Vector2 input = controls.Player.Move.ReadValue<Vector2>();
-        inputDirection.x = input.x;
-        inputDirection.z = input.y;
         MoveDirection(inputDirection);
     }
 
-    private void OnEnable()
+    public void OnMove (InputAction.CallbackContext context)
     {
-        controls.Enable();
+        Debug.Log(context);
+        Vector2 input = context.ReadValue<Vector2>();
+        Debug.Log(input);
+        inputDirection.x = input.x;
+        inputDirection.z = input.y;
+    }
+
+    public void OnPlaceItem (InputAction.CallbackContext context)
+    {
+        Manager.PlaceItem(transform.position, Manager.debugItem);
+    }
+
+    public void OnSwapItem(InputAction.CallbackContext context)
+    {
+        Manager.InventoryManager.ShiftItems();
     }
 }

@@ -5,4 +5,11 @@ using UnityEngine;
 public class HouseManager : MonoBehaviour
 {
     public GridController[] gridControllers;
+
+    public List<PlayerController> housePlayers = new List<PlayerController>();
+
+    public void Init ()
+    {
+
+    }
 }

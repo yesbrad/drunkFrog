@@ -21,6 +21,16 @@ public class PlayerManager : MonoBehaviour
         inventoryManager = GetComponent<InventoryManager>();
     }
 
+    public void Init(HouseManager initialHouse)
+    {
+        SetHouse(initialHouse);
+    }
+
+    public void SetHouse (HouseManager house)
+    {
+        houseManager = house;
+    }
+
     public void PlaceItem(Vector3 position, Item item)
     {
         if (currentGrid)
@@ -31,6 +41,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        if (!houseManager) return;
+
         float minDis = Mathf.Infinity;
 
         // Check for current floor
