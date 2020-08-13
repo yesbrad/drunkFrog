@@ -6,7 +6,7 @@ public class ItemController : MonoBehaviour
 {
     private Item item;
 
-    private PlayerManager owner;
+    private CharacterManager owner;
     private HouseManager currentHouse;
 
     public System.Action onTaskFinished;
@@ -14,7 +14,7 @@ public class ItemController : MonoBehaviour
     private bool occupied;
 
 
-    public void Init (Item newItem, PlayerManager manager)
+    public void Init (Item newItem, CharacterManager manager)
     {
         item = newItem;
         owner = manager;
@@ -45,6 +45,6 @@ public class ItemController : MonoBehaviour
 
     public virtual void Use(Pawn pawn)
     {
-        Debug.Log("YES FUCK ME");
+        
     }
 }

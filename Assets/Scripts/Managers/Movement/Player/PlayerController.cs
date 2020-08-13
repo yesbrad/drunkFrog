@@ -48,7 +48,7 @@ public class PlayerController : CharacterPawn
     {
         if (context.performed)
         {
-            Manager.PlaceItem(GetSelectionLocation(), Manager.debugItem);
+            Manager.PlaceInventoryItem(GetSelectionLocation());
         }
     }
 

@@ -15,7 +15,7 @@ public class GridController : MonoBehaviour
         grid = new Grid(gridSizeX, gridSizeY, constants.GridCellSize, gridOrigin.position);
     }
 
-    public void PlaceOrUseItem(Vector3 position, Item item, PlayerManager player)
+    public void PlaceOrUseItem(Vector3 position, Item item, CharacterManager player)
     {
         Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
 
@@ -23,7 +23,7 @@ public class GridController : MonoBehaviour
         {
             if (grid.GetValue(gridPosition.x, gridPosition.y) != null)
             {
-                grid.GetValue(gridPosition.x, gridPosition.y).Use(player.pawn);
+                grid.GetValue(gridPosition.x, gridPosition.y).Use(player.Pawn);
             }
             else
             {
