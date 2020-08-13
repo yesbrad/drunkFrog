@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Houses
+{
+    Alpha,
+    Beta,
+    Charile,
+    Daddy,
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -14,8 +22,10 @@ public class GameManager : MonoBehaviour
     [Header("Static Prefabs")]
     public GameObject gridLine;
     public GameObject playerManagerPrefab;
+    public GameObject AIManagerPrefab;
 
     private List<PlayerManager> players = new List<PlayerManager>();
+    private List<AIManager> ai = new List<AIManager>();
 
     void Start()
     {
@@ -32,9 +42,25 @@ public class GameManager : MonoBehaviour
     public void SpawnPlayer (int index)
     {
         PlayerManager player = Instantiate(playerManagerPrefab).GetComponent<PlayerManager>();
-        houseManagers[index].Init();
+        houseManagers[index].Init(player);
         player.Init(houseManagers[index]);
         players.Add(player);
+    }
+
+    /// <summary>
+    /// Spawn AI into your selection of House
+    /// </summary>
+    /// <param name="manager">House to spawn in</param>
+    public void SpawnAI(HouseManager manager)
+    {
+        AIManager newAI = Instantiate(AIManagerPrefab).GetComponent<AIManager>();
+        newAI.Init(manager);
+        ai.Add(newAI);
+    }
+
+    public void SpawnAI(Houses house)
+    {
+        SpawnAI(houseManagers[(int)house]);
     }
 
     private void Validate()

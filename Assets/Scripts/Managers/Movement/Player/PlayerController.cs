@@ -59,4 +59,12 @@ public class PlayerController : CharacterPawn
             Manager.InventoryManager.ShiftItems();
         }
     }
+
+    public void OnDebugSpawn(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameManager.instance.SpawnAI(Manager.HouseManager);
+        }
+    }
 }

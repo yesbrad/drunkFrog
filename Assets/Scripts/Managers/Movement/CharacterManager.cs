@@ -21,7 +21,13 @@ public class CharacterManager : MonoBehaviour
 
     public void SetHouse(HouseManager house)
     {
+        if(HouseManager && HouseManager.guests.Contains(this))
+        {
+            HouseManager.guests.Remove(this);
+        }
+        
         HouseManager = house;
+        HouseManager.guests.Add(this);
     }
 
     public void SetGrid(GridController grid)

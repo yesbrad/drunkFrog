@@ -15,13 +15,15 @@ public class HouseManager : MonoBehaviour
     public GridController[] gridControllers;
     public FloorSettings[] floorSettings;
 
-    public List<PlayerController> housePlayers = new List<PlayerController>();
+    public List<CharacterManager> guests = new List<CharacterManager>();
+
+    public PlayerManager houseOwner;
 
     public int HP;
 
-    public void Init ()
+    public void Init (PlayerManager owner)
     {
-
+        houseOwner = owner;
     }
 
     public void AddHP (int amount)

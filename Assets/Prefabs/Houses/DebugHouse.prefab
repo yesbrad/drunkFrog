@@ -2221,7 +2221,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3445680937968443642
 Transform:
@@ -7574,7 +7574,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3445680938432727041
 Transform:
@@ -8364,7 +8364,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3445680938523260343
 Transform:
@@ -10200,25 +10200,9 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_IsSelectable: 1
-  m_SelectedFaces: 3200000036000000
-  m_SelectedEdges:
-  - a: 200
-    b: 201
-  - a: 202
-    b: 200
-  - a: 201
-    b: 203
-  - a: 203
-    b: 202
-  - a: 216
-    b: 217
-  - a: 218
-    b: 216
-  - a: 217
-    b: 219
-  - a: 219
-    b: 218
-  m_SelectedVertices: c8000000c9000000ca000000cb000000d8000000d9000000da000000db000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!64 &3445680938523260336
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10251,7 +10235,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3445680938524758123
 Transform:
@@ -19970,7 +19954,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3445680939362492410
 Transform:
@@ -20048,6 +20032,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 512
   housePlayers: []
+  HP: 0
 --- !u!1 &3445680939531105196
 GameObject:
   m_ObjectHideFlags: 0
