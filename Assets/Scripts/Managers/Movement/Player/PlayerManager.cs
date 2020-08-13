@@ -5,21 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(InventoryManager))]
 public class PlayerManager : MonoBehaviour
 {
-    public HouseManager houseManager;
     public Camera playerCamera;
     public Item debugItem;
 
     private GridController currentGrid;
 
-    public InventoryManager InventoryManager { get { return inventoryManager; } }
+    public InventoryManager InventoryManager { get; private set; }
+    public HouseManager HouseManager { get; private set; }
 
-    private Pawn pawn;
-    private InventoryManager inventoryManager;
+    internal Pawn pawn;
 
     private void Awake()
     {
         pawn = GetComponentInChildren<Pawn>();
-        inventoryManager = GetComponent<InventoryManager>();
+        InventoryManager = GetComponent<InventoryManager>();
     }
 
     public void Init(HouseManager initialHouse)
@@ -29,33 +28,38 @@ public class PlayerManager : MonoBehaviour
 
     public void SetHouse (HouseManager house)
     {
-        houseManager = house;
+        HouseManager = house;
     }
 
     public void PlaceItem(Vector3 position, Item item)
     {
         if (currentGrid)
         {
-            currentGrid.PlaceItemFromPosition(position, inventoryManager.CurrentItem, this);
+            currentGrid.PlaceOrUseItem(position, InventoryManager.CurrentItem, this);
         }
+    }
+
+    public Vector3 GetGridPosition(Vector3 lookPosition)
+    {
+        return currentGrid.grid.GetWorldGridCenterPositionFromWorld(lookPosition);
     }
 
     private void Update()
     {
-        if (!houseManager) return;
+        if (!HouseManager) return;
 
-        for (int i = 0; i < houseManager.floorSettings.Length; i++)
+        for (int i = 0; i < HouseManager.floorSettings.Length; i++)
         {
-            if (houseManager.floorSettings[i].floorDetectionSocket.position.y > pawn.Position.y)
+            if (HouseManager.floorSettings[i].floorDetectionSocket.position.y > pawn.Position.y)
             {
                 // OFF
-                LayerCullingHide(playerCamera, houseManager.floorSettings[i].cameraLayer.value);
+                LayerCullingHide(playerCamera, HouseManager.floorSettings[i].cameraLayer.value);
 
             }
             else
             {
                 // ON
-                LayerCullingShow(playerCamera, houseManager.floorSettings[i].cameraLayer.value);
+                LayerCullingShow(playerCamera, HouseManager.floorSettings[i].cameraLayer.value);
             }
         }
 
@@ -76,12 +80,12 @@ public class PlayerManager : MonoBehaviour
         float minDis = Mathf.Infinity;
 
         // Check for current floor
-        for (int i = 0; i < houseManager.gridControllers.Length; i++)
+        for (int i = 0; i < HouseManager.gridControllers.Length; i++)
         {
-            float dis = Vector3.Distance(new Vector3(pawn.Position.x, houseManager.gridControllers[i].gridOrigin.position.y, pawn.Position.z), pawn.Position + Vector3.down);
+            float dis = Vector3.Distance(new Vector3(pawn.Position.x, HouseManager.gridControllers[i].gridOrigin.position.y, pawn.Position.z), pawn.Position + Vector3.down);
             if (dis < minDis)
             {
-                currentGrid = houseManager.gridControllers[i];
+                currentGrid = HouseManager.gridControllers[i];
                 minDis = dis;
             }
         }

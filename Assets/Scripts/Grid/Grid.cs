@@ -24,7 +24,6 @@ public class Grid
         {
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
-                //Debug.Log(y + " : " + x);
                 Debug.DrawLine(GetWorldPositionFromGrid(x, y + 1), GetWorldPositionFromGrid(x, y), Color.red, 100f);
                 Debug.DrawLine(GetWorldPositionFromGrid(x + 1, y), GetWorldPositionFromGrid(x, y), Color.red, 100f);
             }
@@ -68,7 +67,7 @@ public class Grid
         return (x >= 0 && y >= 0 && x < width && y < height);
     }
 
-    private Item GetValue(int x, int y)
+    public Item GetValue(int x, int y)
     {
         if (IsInBounds(x, y))
         {

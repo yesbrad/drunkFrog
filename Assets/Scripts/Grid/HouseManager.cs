@@ -17,8 +17,15 @@ public class HouseManager : MonoBehaviour
 
     public List<PlayerController> housePlayers = new List<PlayerController>();
 
+    public int HP;
+
     public void Init ()
     {
 
+    }
+
+    public void AddHP (int amount)
+    {
+        HP += amount;
     }
 }

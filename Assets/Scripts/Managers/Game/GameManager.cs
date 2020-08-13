@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
 
     private List<PlayerManager> players = new List<PlayerManager>();
 
-    // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
