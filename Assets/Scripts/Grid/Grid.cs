@@ -50,6 +50,22 @@ public class Grid
         return new Vector2Int(Mathf.FloorToInt((_worldPosition - origin ).x / cellSize), Mathf.FloorToInt((_worldPosition - origin).z / cellSize));
     }
 
+    public Item GetRandomItem ()
+    {
+        for (int x = 0; x < gridArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < gridArray.GetLength(1); y++)
+            {
+                if(GetValue(x,y) != null)
+                {
+                    return GetValue(x, y);
+                }
+            }
+        }
+
+        return null;
+    }
+
     public void SetValue(int x, int y, Item value)
     {
         if(IsInBounds(x,y))

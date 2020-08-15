@@ -32,12 +32,16 @@ public class ItemController : MonoBehaviour
         Debug.Log("Interacting!");
 
         owner.HouseManager.AddHP(item.basePlacePoints);
+
+        EndTask();
     }
 
     public void EndTask ()
     {
         if(onTaskFinished != null)
             onTaskFinished();
+
+        Debug.Log("End Task");
 
         occupied = false;
         onTaskFinished = null;

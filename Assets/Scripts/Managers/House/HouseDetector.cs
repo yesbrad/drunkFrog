@@ -17,7 +17,7 @@ public class HouseDetector : MonoBehaviour
         {
             if (manager != null)
             {
-                other.GetComponentInParent<PlayerManager>().SetHouse(manager);
+                other.GetComponentInParent<CharacterManager>().SetHouse(manager);
             }
             else
             {

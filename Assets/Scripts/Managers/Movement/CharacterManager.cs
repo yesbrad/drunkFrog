@@ -62,8 +62,7 @@ public class CharacterManager : MonoBehaviour
     {
         if (HasActiveGrid())
         {
-            CurrentGrid.PlaceOrUseItem(position, item, this);
-            Debug.Log("Plaving item: " + item.name);
+            HouseManager.PlaceOrUseItem(CurrentGrid, position, item, this);
         }
     }
 

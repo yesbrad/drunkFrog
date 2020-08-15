@@ -15,22 +15,50 @@ public class GridController : MonoBehaviour
         grid = new Grid(gridSizeX, gridSizeY, constants.GridCellSize, gridOrigin.position);
     }
 
-    public void PlaceOrUseItem(Vector3 position, Item item, CharacterManager player)
+    public Item PlaceItem(Vector3 position, Item item, CharacterManager player)
+    {
+        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+
+        if (grid.IsInBounds(gridPosition.x, gridPosition.y))
+        {
+            if (grid.GetValue(gridPosition.x, gridPosition.y) == null)
+            {
+                item.Init(grid.GetWorldGridCenterPositionFromWorld(position), player);
+                grid.SetValue(gridPosition.x, gridPosition.y, item);
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    public void UseItem(Vector3 position, CharacterManager player)
     {
         Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
 
         if (grid.IsInBounds(gridPosition.x, gridPosition.y))
         {
             if (grid.GetValue(gridPosition.x, gridPosition.y) != null)
-            {
                 grid.GetValue(gridPosition.x, gridPosition.y).Use(player.Pawn);
-            }
-            else
-            {
-                item.Init(grid.GetWorldGridCenterPositionFromWorld(position), player);
-                grid.SetValue(gridPosition.x, gridPosition.y ,item);
-            }
         }
+    }
+
+    public Item GetItem(Vector3 position)
+    {
+        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+
+        if (grid.IsInBounds(gridPosition.x, gridPosition.y))
+        {
+            Item item = grid.GetValue(gridPosition.x, gridPosition.y);
+            return item ? item : null;
+        }
+
+        return null;
+    }
+
+    public Item GetRandomItem ()
+    {
+        return grid.GetRandomItem();
     }
 
     private void OnDrawGizmos()

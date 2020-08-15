@@ -125,7 +125,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1082141238011694666}
-        m_MethodName: OnDebugSpawn
+        m_MethodName: OnSwapItem
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

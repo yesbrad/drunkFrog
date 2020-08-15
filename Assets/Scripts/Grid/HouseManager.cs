@@ -19,6 +19,8 @@ public class HouseManager : MonoBehaviour
 
     public PlayerManager houseOwner;
 
+    public List<Item> houseItems = new List<Item>();
+
     public int HP;
 
     public void Init (PlayerManager owner)
@@ -29,5 +31,40 @@ public class HouseManager : MonoBehaviour
     public void AddHP (int amount)
     {
         HP += amount;
+    }
+
+    public Item GetRandomItem ()
+    {
+        if (houseItems.Count <= 0)
+            return null;
+
+        Item newItem = houseItems[Random.Range(0, houseItems.Count - 1)];
+        
+        Debug.Log($"House Items: {newItem.UUID}");
+
+        return newItem;
+    }
+
+    public void PlaceOrUseItem (GridController controller, Vector3 position, Item item, CharacterManager player)
+    {
+        Item placedItem = PlaceItem(controller, position, item, player);
+
+        if (placedItem != null)
+        {
+            UseItem(controller, position, player);
+        }
+    }
+
+    public Item PlaceItem (GridController controller, Vector3 position, Item item, CharacterManager player)
+    {
+        Item newItem = controller.PlaceItem(position, item, player);
+        Debug.Log($"Initiated Item Placed: {newItem.UUID}. Inititated Item Controller: {newItem.controller.gameObject.name}");
+        houseItems.Add(newItem);
+        return newItem;
+    }
+
+    public void UseItem(GridController controller, Vector3 position, CharacterManager player)
+    {
+        controller.UseItem(position, player);
     }
 }

@@ -6,8 +6,38 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class AIController : Pawn
 {
+    public class Job
+    {
+        public NavMeshAgent navAgent;
+
+        public bool inTransit;
+        public System.Action OnReachDestination;
+
+        public Job (NavMeshAgent jobAgent, Vector3 destination, System.Action desinationReached)
+        {
+            navAgent = jobAgent;
+            inTransit = true;
+            OnReachDestination = desinationReached;
+            navAgent.destination = destination;
+        }
+
+        public void CheckDestination ()
+        {
+            if (navAgent.remainingDistance <= navAgent.stoppingDistance && inTransit)
+            {
+                
+                OnReachDestination.Invoke();
+                OnReachDestination = null;
+
+                inTransit = false;
+            }
+        }
+    }
+
     private NavMeshAgent agent;
     public AIManager Manager { get; private set; }
+
+    public Job currentJob;
 
     private void Awake()
     {
@@ -17,24 +47,19 @@ public class AIController : Pawn
 
     private void Start()
     {
-        Debug.Log(Manager.HouseManager);
     }
 
     private void Update()
     {
-        if(Manager.HouseManager.houseOwner != null)
+        if(currentJob != null)
         {
-            SetDestination(Manager.HouseManager.houseOwner.Pawn.Position);
-        }
-        else
-        {
-            SetDestination(GameManager.instance.houseManagers[0].houseOwner.Pawn.Position); // Theres always one player
+            currentJob.CheckDestination();
         }
     }
 
-    public void SetDestination (Vector3 destination)
+    public void SetDestination (Vector3 destination, System.Action desinationReached)
     {
-        agent.destination = destination;
+        currentJob = new Job(agent, destination, desinationReached);
     }
 
 }
