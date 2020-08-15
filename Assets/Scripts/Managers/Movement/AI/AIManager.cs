@@ -55,6 +55,9 @@ public class AIManager : CharacterManager
         // Dierent Function for getting a certin type of task
         newTask = GetRandomObjectTask();
         currentTask = newTask;
+
+        //Debug.Log($"NEW TASK POS: {currentTask.item.Position} : NEW Tasnk: {currentTask.item.UUID}");
+
         return currentTask;
     }
 

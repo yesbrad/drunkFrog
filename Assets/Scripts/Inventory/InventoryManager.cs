@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public List<Item> currentItems = new List<Item>();
+    private List<Item> currentItems = new List<Item>();
 
     public Item CurrentItem { get { return currentItem; } }
 
@@ -14,6 +14,8 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
+        currentItems.Add(GameManager.instance.items[0]);
+        currentItems.Add(GameManager.instance.items[1]);
         currentItem = currentItems[0];
     }
 

@@ -23,9 +23,11 @@ public class GridController : MonoBehaviour
         {
             if (grid.GetValue(gridPosition.x, gridPosition.y) == null)
             {
-                item.Init(grid.GetWorldGridCenterPositionFromWorld(position), player);
-                grid.SetValue(gridPosition.x, gridPosition.y, item);
-                return item;
+                ItemController cont = Instantiate(item.itemPrefab, grid.GetWorldGridCenterPositionFromWorld(position), Quaternion.identity).GetComponent<ItemController>();
+                Item instanedItem = item.Init(cont, player);
+                Debug.Log("Make sure were admetting once");
+                grid.SetValue(gridPosition.x, gridPosition.y, instanedItem);
+                return instanedItem;
             }
         }
 
@@ -39,7 +41,7 @@ public class GridController : MonoBehaviour
         if (grid.IsInBounds(gridPosition.x, gridPosition.y))
         {
             if (grid.GetValue(gridPosition.x, gridPosition.y) != null)
-                grid.GetValue(gridPosition.x, gridPosition.y).Use(player.Pawn);
+                grid.GetValue(gridPosition.x, gridPosition.y).Interact(player.Pawn);
         }
     }
 
@@ -50,7 +52,7 @@ public class GridController : MonoBehaviour
         if (grid.IsInBounds(gridPosition.x, gridPosition.y))
         {
             Item item = grid.GetValue(gridPosition.x, gridPosition.y);
-            return item ? item : null;
+            return item != null ? item : null;
         }
 
         return null;

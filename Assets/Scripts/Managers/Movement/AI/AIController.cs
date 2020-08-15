@@ -12,20 +12,28 @@ public class AIController : Pawn
 
         public bool inTransit;
         public System.Action OnReachDestination;
+        public Vector3 jobDestination;
 
         public Job (NavMeshAgent jobAgent, Vector3 destination, System.Action desinationReached)
         {
             navAgent = jobAgent;
-            inTransit = true;
             OnReachDestination = desinationReached;
-            navAgent.destination = destination;
+            jobDestination = destination;
+        }
+
+        public void Init ()
+        {
+            inTransit = true;
+            navAgent.destination = jobDestination;
+            //Debug.Log($"JobDestination: {jobDestination} || current destination: {navAgent.destination}");
         }
 
         public void CheckDestination ()
         {
+
+
             if (navAgent.remainingDistance <= navAgent.stoppingDistance && inTransit)
             {
-                
                 OnReachDestination.Invoke();
                 OnReachDestination = null;
 
@@ -59,7 +67,9 @@ public class AIController : Pawn
 
     public void SetDestination (Vector3 destination, System.Action desinationReached)
     {
+        Debug.Log("SetDestination@@@");
         currentJob = new Job(agent, destination, desinationReached);
+        currentJob.Init();
     }
 
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditorInternal.VersionControl;
 using UnityEngine;
 
 public class HouseManager : MonoBehaviour
@@ -19,7 +21,7 @@ public class HouseManager : MonoBehaviour
 
     public PlayerManager houseOwner;
 
-    public List<Item> houseItems = new List<Item>();
+    public List<Item> houseInventory = new List<Item>();
 
     public int HP;
 
@@ -35,12 +37,14 @@ public class HouseManager : MonoBehaviour
 
     public Item GetRandomItem ()
     {
-        if (houseItems.Count <= 0)
+        if (houseInventory.Count <= 0)
             return null;
 
-        Item newItem = houseItems[Random.Range(0, houseItems.Count - 1)];
+        int newIndex = Random.Range(0, houseInventory.Count);
+
+        Item newItem = houseInventory[newIndex];
         
-        Debug.Log($"House Items: {newItem.UUID}");
+        Debug.Log($"House Items: {newItem.UUID} : House Item Count {houseInventory.Count} : House Random Index: {newIndex}");
 
         return newItem;
     }
@@ -59,12 +63,17 @@ public class HouseManager : MonoBehaviour
     {
         Item newItem = controller.PlaceItem(position, item, player);
         Debug.Log($"Initiated Item Placed: {newItem.UUID}. Inititated Item Controller: {newItem.controller.gameObject.name}");
-        houseItems.Add(newItem);
+        AddToInventory(newItem);
         return newItem;
     }
 
     public void UseItem(GridController controller, Vector3 position, CharacterManager player)
     {
         controller.UseItem(position, player);
+    }
+
+    public void AddToInventory (Item item)
+    {
+        houseInventory.Add(item);
     }
 }
