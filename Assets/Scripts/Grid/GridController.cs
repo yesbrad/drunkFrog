@@ -15,22 +15,52 @@ public class GridController : MonoBehaviour
         grid = new Grid(gridSizeX, gridSizeY, constants.GridCellSize, gridOrigin.position);
     }
 
-    public void PlaceOrUseItem(Vector3 position, Item item, CharacterManager player)
+    public Item PlaceItem(Vector3 position, Item item, CharacterManager player)
+    {
+        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+
+        if (grid.IsInBounds(gridPosition.x, gridPosition.y))
+        {
+            if (grid.GetValue(gridPosition.x, gridPosition.y) == null)
+            {
+                ItemController cont = Instantiate(item.itemPrefab, grid.GetWorldGridCenterPositionFromWorld(position), Quaternion.identity).GetComponent<ItemController>();
+                Item instanedItem = item.Init(cont, player);
+                Debug.Log("Make sure were admetting once");
+                grid.SetValue(gridPosition.x, gridPosition.y, instanedItem);
+                return instanedItem;
+            }
+        }
+
+        return null;
+    }
+
+    public void UseItem(Vector3 position, CharacterManager player)
     {
         Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
 
         if (grid.IsInBounds(gridPosition.x, gridPosition.y))
         {
             if (grid.GetValue(gridPosition.x, gridPosition.y) != null)
-            {
-                grid.GetValue(gridPosition.x, gridPosition.y).Use(player.Pawn);
-            }
-            else
-            {
-                item.Init(grid.GetWorldGridCenterPositionFromWorld(position), player);
-                grid.SetValue(gridPosition.x, gridPosition.y ,item);
-            }
+                grid.GetValue(gridPosition.x, gridPosition.y).Interact(player.Pawn);
         }
+    }
+
+    public Item GetItem(Vector3 position)
+    {
+        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+
+        if (grid.IsInBounds(gridPosition.x, gridPosition.y))
+        {
+            Item item = grid.GetValue(gridPosition.x, gridPosition.y);
+            return item != null ? item : null;
+        }
+
+        return null;
+    }
+
+    public Item GetRandomItem ()
+    {
+        return grid.GetRandomItem();
     }
 
     private void OnDrawGizmos()

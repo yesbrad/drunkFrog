@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     private List<PlayerManager> players = new List<PlayerManager>();
     private List<AIManager> ai = new List<AIManager>();
 
+    public Item[] items;
+
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
             SpawnPlayer(i);
         }
     }
+
 
     public void SpawnPlayer (int index)
     {

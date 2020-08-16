@@ -11,6 +11,8 @@ public class PlayerController : CharacterPawn
     public Transform playerRotateContainer;
     private Vector3 inputDirection;
 
+    private bool debugTime;
+
     private void Awake()
     {
         Manager = GetComponentInParent<PlayerManager>();
@@ -20,7 +22,8 @@ public class PlayerController : CharacterPawn
 	private void Update () 
 	{
         UpdateInput();
-	}
+        gridSelector.position = Vector3.Lerp(gridSelector.position, GetSelectionLocation(), Time.deltaTime * 20);
+    }
 
     private void UpdateInput ()
     {
@@ -36,7 +39,6 @@ public class PlayerController : CharacterPawn
         if(input != Vector2.zero)
             playerRotateContainer.localRotation = Quaternion.LookRotation(new Vector3(input.x, 0, input.y), Vector3.up);
 
-        gridSelector.position = GetSelectionLocation();
     }
 
     private Vector3 GetSelectionLocation ()
@@ -65,6 +67,15 @@ public class PlayerController : CharacterPawn
         if (context.performed)
         {
             GameManager.instance.SpawnAI(Manager.HouseManager);
+        }
+    }
+
+    public void OnDebugTime(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            debugTime = !debugTime;
+            Time.timeScale = debugTime ? 6 : 1;
         }
     }
 }
