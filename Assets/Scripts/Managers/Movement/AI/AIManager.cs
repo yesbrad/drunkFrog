@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class AITask
 {
     public Item item;
+    public bool isComplete;
 
     private Pawn currentPawn;
 
-    private System.Action onFinished;
+    [SerializeField] private System.Action onFinished;
 
     private AIController controller;
 
@@ -22,17 +24,21 @@ public class AITask
         onFinished = onFinish;
         controller = iController;
         controller.SetDestination(item.Position, OnDestinationReached);
+        isComplete = false;
     }
 
     public void OnDestinationReached ()
     {
-        item.controller.Interact(currentPawn, () => OnFinish());
+        //item.controller.Interact(currentPawn, () => OnFinish());
+        OnFinish();
     }
 
     public void OnFinish ()
     {
-        Debug.Log($"Finished Using Item Invokein OnFinish: {item.UUID}");
+        //Debug.Log($"Finished Using Item Invokein OnFinish: {item.UUID}", item.controller.gameObject);
+        isComplete = true;
         onFinished.Invoke();
+        onFinished = null;
     }
 }
 
@@ -70,4 +76,5 @@ public class AIManager : CharacterManager
     {
         task.OnStart(Pawn, controller, () => StartTask(GenerateNewTask()));
     }
+
 }

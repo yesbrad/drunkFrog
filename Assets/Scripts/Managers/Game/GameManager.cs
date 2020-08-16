@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     public void SpawnPlayer (int index)
     {
         PlayerManager player = Instantiate(playerManagerPrefab).GetComponent<PlayerManager>();

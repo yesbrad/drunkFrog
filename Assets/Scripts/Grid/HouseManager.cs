@@ -44,7 +44,7 @@ public class HouseManager : MonoBehaviour
 
         Item newItem = houseInventory[newIndex];
         
-        Debug.Log($"House Items: {newItem.UUID} : House Item Count {houseInventory.Count} : House Random Index: {newIndex}");
+        //Debug.Log($"House Items: {newItem.UUID} : House Item Count {houseInventory.Count} : House Random Index: {newIndex}");
 
         return newItem;
     }

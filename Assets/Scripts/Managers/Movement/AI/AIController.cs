@@ -6,6 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class AIController : Pawn
 {
+    [System.Serializable]
     public class Job
     {
         public NavMeshAgent navAgent;
@@ -30,14 +31,18 @@ public class AIController : Pawn
 
         public void CheckDestination ()
         {
-
-
-            if (navAgent.remainingDistance <= navAgent.stoppingDistance && inTransit)
+            if (!navAgent.pathPending && inTransit)
             {
-                OnReachDestination.Invoke();
-                OnReachDestination = null;
-
-                inTransit = false;
+                if (navAgent.remainingDistance <= navAgent.stoppingDistance)
+                {
+                    if (!navAgent.hasPath || navAgent.velocity.sqrMagnitude == 0f)
+                    {
+                        inTransit = false;
+                        OnReachDestination.Invoke();
+                        OnReachDestination = null;
+                        Debug.Log("Made It to dest");
+                    }
+                }
             }
         }
     }
@@ -53,10 +58,6 @@ public class AIController : Pawn
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Start()
-    {
-    }
-
     private void Update()
     {
         if(currentJob != null)
@@ -67,7 +68,6 @@ public class AIController : Pawn
 
     public void SetDestination (Vector3 destination, System.Action desinationReached)
     {
-        Debug.Log("SetDestination@@@");
         currentJob = new Job(agent, destination, desinationReached);
         currentJob.Init();
     }

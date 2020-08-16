@@ -11,6 +11,8 @@ public class PlayerController : CharacterPawn
     public Transform playerRotateContainer;
     private Vector3 inputDirection;
 
+    private bool debugTime;
+
     private void Awake()
     {
         Manager = GetComponentInParent<PlayerManager>();
@@ -65,6 +67,15 @@ public class PlayerController : CharacterPawn
         if (context.performed)
         {
             GameManager.instance.SpawnAI(Manager.HouseManager);
+        }
+    }
+
+    public void OnDebugTime(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            debugTime = !debugTime;
+            Time.timeScale = debugTime ? 6 : 1;
         }
     }
 }

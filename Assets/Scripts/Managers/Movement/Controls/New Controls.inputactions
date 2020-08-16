@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "DebugTime",
+                    "type": "Button",
+                    "id": "340baf6e-575b-489c-a86e-d2748aa2f22d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -322,6 +330,28 @@
                     "processors": "",
                     "groups": "GamePad",
                     "action": "DebugSpawnAI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "310e3dc6-5c24-418f-9e4e-9008908564a6",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "DebugTime",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f412cb7-f42c-431a-b77e-23c3bd28b044",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "DebugTime",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

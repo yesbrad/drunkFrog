@@ -22,7 +22,7 @@ public class ItemController : MonoBehaviour
 
     public virtual void Interact(Pawn pawn, System.Action onFinishInteraction = null)
     {
-        if (occupied) return; // Early Out if in use.
+        //if (occupied) return; // Early Out if in use.
 
         occupied = true;
         onTaskFinished = onFinishInteraction;

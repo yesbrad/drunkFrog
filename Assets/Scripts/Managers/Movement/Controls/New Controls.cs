@@ -49,6 +49,14 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""DebugTime"",
+                    ""type"": ""Button"",
+                    ""id"": ""340baf6e-575b-489c-a86e-d2748aa2f22d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -337,6 +345,28 @@ public class @NewControls : IInputActionCollection, IDisposable
                     ""action"": ""DebugSpawnAI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""310e3dc6-5c24-418f-9e4e-9008908564a6"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""DebugTime"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f412cb7-f42c-431a-b77e-23c3bd28b044"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""DebugTime"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -372,6 +402,7 @@ public class @NewControls : IInputActionCollection, IDisposable
         m_Player_PlaceItem = m_Player.FindAction("PlaceItem", throwIfNotFound: true);
         m_Player_SwapItem = m_Player.FindAction("SwapItem", throwIfNotFound: true);
         m_Player_DebugSpawnAI = m_Player.FindAction("DebugSpawnAI", throwIfNotFound: true);
+        m_Player_DebugTime = m_Player.FindAction("DebugTime", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -425,6 +456,7 @@ public class @NewControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_PlaceItem;
     private readonly InputAction m_Player_SwapItem;
     private readonly InputAction m_Player_DebugSpawnAI;
+    private readonly InputAction m_Player_DebugTime;
     public struct PlayerActions
     {
         private @NewControls m_Wrapper;
@@ -433,6 +465,7 @@ public class @NewControls : IInputActionCollection, IDisposable
         public InputAction @PlaceItem => m_Wrapper.m_Player_PlaceItem;
         public InputAction @SwapItem => m_Wrapper.m_Player_SwapItem;
         public InputAction @DebugSpawnAI => m_Wrapper.m_Player_DebugSpawnAI;
+        public InputAction @DebugTime => m_Wrapper.m_Player_DebugTime;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -454,6 +487,9 @@ public class @NewControls : IInputActionCollection, IDisposable
                 @DebugSpawnAI.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDebugSpawnAI;
                 @DebugSpawnAI.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDebugSpawnAI;
                 @DebugSpawnAI.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDebugSpawnAI;
+                @DebugTime.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDebugTime;
+                @DebugTime.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDebugTime;
+                @DebugTime.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDebugTime;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -470,6 +506,9 @@ public class @NewControls : IInputActionCollection, IDisposable
                 @DebugSpawnAI.started += instance.OnDebugSpawnAI;
                 @DebugSpawnAI.performed += instance.OnDebugSpawnAI;
                 @DebugSpawnAI.canceled += instance.OnDebugSpawnAI;
+                @DebugTime.started += instance.OnDebugTime;
+                @DebugTime.performed += instance.OnDebugTime;
+                @DebugTime.canceled += instance.OnDebugTime;
             }
         }
     }
@@ -498,5 +537,6 @@ public class @NewControls : IInputActionCollection, IDisposable
         void OnPlaceItem(InputAction.CallbackContext context);
         void OnSwapItem(InputAction.CallbackContext context);
         void OnDebugSpawnAI(InputAction.CallbackContext context);
+        void OnDebugTime(InputAction.CallbackContext context);
     }
 }
