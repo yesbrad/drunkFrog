@@ -64,9 +64,9 @@ public class PlayerController : CharacterPawn
 
     public void OnDebugSpawn(InputAction.CallbackContext context)
     {
+            GameManager.instance.SpawnAI(Manager.HouseManager);
         if (context.performed)
         {
-            GameManager.instance.SpawnAI(Manager.HouseManager);
         }
     }
 

@@ -10,7 +10,7 @@ public class Item
 
     public GameObject itemPrefab;
 
-    public ItemController controller;
+    internal ItemController controller;
     public Vector3 Position { get { return controller.transform.position; } }
 
     private CharacterManager owner;

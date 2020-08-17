@@ -6,6 +6,9 @@ using System;
 public class StaticItemController : ItemController
 {
     public int placePoints;
+    public float waitTime = 1;
+
+    float currentTime;
 
     public override void Init(Item newItem, CharacterManager manager)
     {
@@ -16,14 +19,21 @@ public class StaticItemController : ItemController
     {
         base.Interact(pawn, taskFinishCallback);
         owner.HouseManager.AddHP(placePoints);
-        StartCoroutine(WaitEnd());
+        currentTime = waitTime;
     }
 
-    public IEnumerator WaitEnd ()
+    private void Update()
     {
-        yield return new WaitForSeconds(1);
-        EndTask();
-        yield return null;
+        if (occupied)
+        {
+            currentTime -= Time.deltaTime;
+
+            if (currentTime < 0)
+            {
+                Debug.Log("YEEET");
+                EndTask();
+            }
+        }
     }
 
     public override void EndTask()

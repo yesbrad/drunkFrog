@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class AITask
 {
-    public Item item;
+    public Interactable item;
     public bool isComplete;
 
     private Pawn currentPawn;
@@ -14,7 +14,7 @@ public class AITask
 
     private AIController controller;
 
-    public AITask (Item newItem) {
+    public AITask (Interactable newItem) {
         item = newItem;
     }
 
@@ -23,14 +23,14 @@ public class AITask
         currentPawn = pawn;
         onFinished = onFinish;
         controller = iController;
-        controller.SetDestination(item.Position, OnDestinationReached);
+        controller.SetDestination(item.transform.position, OnDestinationReached, item);
         isComplete = false;
     }
 
     public void OnDestinationReached ()
     {
-        //item.controller.Interact(currentPawn, () => OnFinish());
-        OnFinish();
+        item.Interact(currentPawn, () => OnFinish());
+        //OnFinish();
     }
 
     public void OnFinish ()
@@ -69,7 +69,7 @@ public class AIManager : CharacterManager
 
     private AITask GetRandomObjectTask ()
     {
-        return new AITask(HouseManager.GetRandomItem());
+        return new AITask(HouseManager.GetRandomItem().controller);
     }
 
     public void StartTask(AITask task)

@@ -14,12 +14,14 @@ public class AIController : Pawn
         public bool inTransit;
         public System.Action OnReachDestination;
         public Vector3 jobDestination;
+        public Interactable parentInteractable;
 
-        public Job (NavMeshAgent jobAgent, Vector3 destination, System.Action desinationReached)
+        public Job (NavMeshAgent jobAgent, Vector3 destination, System.Action desinationReached, Interactable interactable)
         {
             navAgent = jobAgent;
             OnReachDestination = desinationReached;
             jobDestination = destination;
+            parentInteractable = interactable;
         }
 
         public void Init ()
@@ -44,6 +46,15 @@ public class AIController : Pawn
                     }
                 }
             }
+
+            /*/ Cancel the Job if the parent is Being Taken;
+            if (parentInteractable.occupied)
+            {
+                inTransit = false;
+                OnReachDestination.Invoke();
+                OnReachDestination = null;
+            }
+            */
         }
     }
 
@@ -66,9 +77,9 @@ public class AIController : Pawn
         }
     }
 
-    public void SetDestination (Vector3 destination, System.Action desinationReached)
+    public void SetDestination (Vector3 destination, System.Action desinationReached, Interactable interactable)
     {
-        currentJob = new Job(agent, destination, desinationReached);
+        currentJob = new Job(agent, destination, desinationReached, interactable);
         currentJob.Init();
     }
 
