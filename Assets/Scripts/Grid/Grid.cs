@@ -1,6 +1,4 @@
-﻿
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Grid
 {
@@ -64,6 +62,11 @@ public class Grid
         }
 
         return null;
+    }
+
+    public Vector3 GetRandomPosition ()
+    {
+        return GetWorldPositionFromGrid(Random.Range(2, gridArray.GetLength(0) - 3), Random.Range(2, gridArray.GetLength(1) - 3));
     }
 
     public void SetValue(int x, int y, Item value)

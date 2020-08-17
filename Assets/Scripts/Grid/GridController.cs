@@ -63,6 +63,11 @@ public class GridController : MonoBehaviour
         return grid.GetRandomItem();
     }
 
+    public Vector3 GetRandomPosition ()
+    {
+        return grid.GetRandomPosition();
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

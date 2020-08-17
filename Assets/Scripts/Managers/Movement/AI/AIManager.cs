@@ -14,8 +14,16 @@ public class AITask
 
     private AIController controller;
 
+    public Vector3 destination;
+
     public AITask (Interactable newItem) {
         item = newItem;
+        destination = item.transform.position;
+    }
+
+    public AITask(Vector3 positon)
+    {
+        destination = positon;
     }
 
     public virtual void OnStart(Pawn pawn, AIController iController, System.Action onFinish)
@@ -23,14 +31,19 @@ public class AITask
         currentPawn = pawn;
         onFinished = onFinish;
         controller = iController;
-        controller.SetDestination(item.transform.position, OnDestinationReached, item);
+        controller.SetDestination(destination, OnDestinationReached, item);
         isComplete = false;
     }
 
     public void OnDestinationReached ()
     {
-        item.Interact(currentPawn, () => OnFinish());
-        //OnFinish();
+        if (item)
+        {
+            item.Interact(currentPawn, () => OnFinish());
+        } else
+        {
+            OnFinish();
+        }
     }
 
     public void OnFinish ()
@@ -57,14 +70,18 @@ public class AIManager : CharacterManager
 
     public AITask GenerateNewTask ()
     {
-        AITask newTask = null;
-        // Dierent Function for getting a certin type of task
-        newTask = GetRandomObjectTask();
-        currentTask = newTask;
-
-        //Debug.Log($"NEW TASK POS: {currentTask.item.Position} : NEW Tasnk: {currentTask.item.UUID}");
-
+        currentTask = SelectTask();
         return currentTask;
+    }
+
+    public AITask SelectTask ()
+    {
+        if (CurrentGrid != null)
+        {
+            return GetRandomPositionTask();
+        }
+
+        return GetCentrePointTask();
     }
 
     private AITask GetRandomObjectTask ()
@@ -72,9 +89,22 @@ public class AIManager : CharacterManager
         return new AITask(HouseManager.GetRandomItem().controller);
     }
 
+    private AITask GetRandomPositionTask ()
+    {
+        return new AITask(CurrentGrid.GetRandomPosition());
+    }
+    private AITask GetCentrePointTask()
+    {
+        return new AITask(HouseManager.GetCenterPoint());
+    }
     public void StartTask(AITask task)
     {
         task.OnStart(Pawn, controller, () => StartTask(GenerateNewTask()));
     }
 
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(currentTask.destination, Vector3.one);
+    }
 }

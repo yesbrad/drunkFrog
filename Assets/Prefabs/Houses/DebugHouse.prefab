@@ -20014,6 +20014,7 @@ Transform:
   - {fileID: 3445680938863370154}
   - {fileID: 1451440168060617986}
   - {fileID: 1162994692770344192}
+  - {fileID: 7563539165777260291}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20039,8 +20040,10 @@ MonoBehaviour:
     cameraLayer:
       serializedVersion: 2
       m_Bits: 512
+  houseCenter: {fileID: 7563539165777260291}
   guests: []
   houseOwner: {fileID: 0}
+  houseInventory: []
   HP: 0
 --- !u!1 &3445680939531105196
 GameObject:
@@ -25673,3 +25676,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &4318456908810163286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7563539165777260291}
+  m_Layer: 0
+  m_Name: Center Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7563539165777260291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4318456908810163286}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -59.76, y: 0, z: 18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3445680939387294654}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -16,6 +16,7 @@ public class HouseManager : MonoBehaviour
 
     public GridController[] gridControllers;
     public FloorSettings[] floorSettings;
+    public Transform houseCenter;
 
     public List<CharacterManager> guests = new List<CharacterManager>();
 
@@ -75,5 +76,16 @@ public class HouseManager : MonoBehaviour
     public void AddToInventory (Item item)
     {
         houseInventory.Add(item);
+    }
+
+    public Vector3 GetCenterPoint()
+    {
+        if(houseCenter != null)
+        {
+            return houseCenter.position;
+        }
+
+        Debug.LogError("House is missing center point varible!", gameObject);
+        return Vector3.zero;
     }
 }
