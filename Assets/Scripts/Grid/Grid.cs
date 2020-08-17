@@ -33,7 +33,7 @@ public class Grid
 
     public Vector3 GetWorldPositionFromGrid (int x, int y)
     {
-        return new Vector3(x, origin.y, y) * cellSize + origin;
+        return new Vector3(x, 0, y) * cellSize + origin;
     }
 
     public Vector3 GetWorldGridCenterPositionFromWorld(Vector3 position)
