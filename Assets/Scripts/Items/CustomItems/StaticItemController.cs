@@ -7,6 +7,7 @@ public class StaticItemController : ItemController
 {
     public int placePoints;
     public float waitTime = 1;
+    public MeshRenderer renderer;
 
     float currentTime;
 
@@ -20,6 +21,11 @@ public class StaticItemController : ItemController
         base.Interact(pawn, taskFinishCallback);
         owner.HouseManager.AddHP(placePoints);
         currentTime = waitTime;
+
+        if (renderer)
+        {
+            renderer.material.SetColor("_Color", UnityEngine.Random.ColorHSV());
+        }
     }
 
     private void Update()

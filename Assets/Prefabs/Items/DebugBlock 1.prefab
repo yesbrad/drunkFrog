@@ -124,3 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placePoints: 0
+  waitTime: 1
+  renderer: {fileID: 9004771042270653994}

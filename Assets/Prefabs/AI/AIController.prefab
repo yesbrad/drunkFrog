@@ -280,9 +280,11 @@ GameObject:
   - component: {fileID: 3981308692224817527}
   - component: {fileID: -3391490939774970474}
   - component: {fileID: -4812462848551818687}
+  - component: {fileID: 3070777055067479695}
+  - component: {fileID: 3807980347980885088}
   m_Layer: 0
   m_Name: AIController
-  m_TagString: Untagged
+  m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -322,6 +324,7 @@ MonoBehaviour:
     navAgent: {fileID: 0}
     inTransit: 0
     jobDestination: {x: 0, y: 0, z: 0}
+    parentInteractable: {fileID: 0}
 --- !u!195 &-4812462848551818687
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -344,6 +347,54 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &3070777055067479695
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3981308692224817526}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3807980347980885088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3981308692224817526}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.01, z: 0}
+  m_Center: {x: 0, y: -0.88, z: 0}
+--- !u!95 &4618794508051049970
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6331453034214343702}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df34ca1b304d91f4192abd97f7b18a56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7333339348746702250
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,6 +944,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 76af24aa8faf31f4d9691da70b0a64ee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2136981335c5c3c45b4730fb75cfe405, type: 3}
+--- !u!1 &6331453034214343702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2136981335c5c3c45b4730fb75cfe405,
+    type: 3}
+  m_PrefabInstance: {fileID: 6565332556196575559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6671526845690289836 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2136981335c5c3c45b4730fb75cfe405,

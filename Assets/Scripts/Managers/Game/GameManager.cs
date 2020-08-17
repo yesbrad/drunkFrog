@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject gridLine;
     public GameObject playerManagerPrefab;
     public GameObject AIManagerPrefab;
+    public GameObject basicGroup;
 
     private List<PlayerManager> players = new List<PlayerManager>();
     private List<AIManager> ai = new List<AIManager>();

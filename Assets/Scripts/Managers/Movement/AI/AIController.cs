@@ -42,7 +42,6 @@ public class AIController : Pawn
                         inTransit = false;
                         OnReachDestination.Invoke();
                         OnReachDestination = null;
-                        Debug.Log("Made It to dest");
                     }
                 }
             }

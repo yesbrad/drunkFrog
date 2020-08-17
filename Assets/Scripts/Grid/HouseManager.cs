@@ -54,7 +54,7 @@ public class HouseManager : MonoBehaviour
     {
         Item placedItem = PlaceItem(controller, position, item, player);
 
-        if (placedItem != null)
+        if (placedItem == null)
         {
             UseItem(controller, position, player);
         }
