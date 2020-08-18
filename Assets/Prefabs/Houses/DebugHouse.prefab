@@ -4048,37 +4048,37 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -4248,37 +4248,37 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -4423,92 +4423,92 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -4623,102 +4623,102 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -4823,102 +4823,102 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -5023,92 +5023,92 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -5213,102 +5213,102 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -5413,102 +5413,102 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -5623,92 +5623,92 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -5848,67 +5848,67 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -6048,67 +6048,67 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -18663,7 +18663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3445680938923819296}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -44, y: 6, z: 6}
+  m_LocalPosition: {x: -46, y: 6, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3445680938650475975}
@@ -18683,22 +18683,187 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920c7889c218a314cb8d9b67dfcf9633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSizeX: 10
-  gridSizeY: 18
+  gridSizeX: 14
+  gridSizeY: 20
   gridOrigin: {fileID: 3445680938650475975}
   lineContainer: {fileID: 3445680939233977969}
   grid:
-    height: 10
-    width: 18
+    height: 14
+    width: 20
     cellSize: 2
     origin: {fileID: 3445680938923819297}
     initilized: 1
     gridArray:
     - item:
+        name: asd
+        id: sda
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 0
+    - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
@@ -18729,10 +18894,40 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
       occupied: 0
     - item:
         name: 
@@ -18764,11 +18959,46 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
@@ -18839,11 +19069,36 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
@@ -18914,11 +19169,36 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
@@ -18989,11 +19269,36 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
@@ -19068,7 +19373,32 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
@@ -19139,6 +19469,36 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
@@ -19229,6 +19589,16 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
@@ -19323,6 +19693,41 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
       occupied: 0
     - item:
         name: 
@@ -19384,6 +19789,11 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
@@ -19413,6 +19823,11 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
       occupied: 0
     - item:
         name: 
@@ -19474,6 +19889,11 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
@@ -19499,10 +19919,85 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
       occupied: 0
     - item:
         name: 
@@ -19594,6 +20089,11 @@ MonoBehaviour:
         id: 
         itemPrefab: {fileID: 0}
       occupied: 0
+    - item:
+        name: 
+        id: 
+        itemPrefab: {fileID: 0}
+      occupied: 1
 --- !u!1 &3445680938933451084
 GameObject:
   m_ObjectHideFlags: 0
@@ -28746,27 +29246,27 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -28806,57 +29306,57 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -28896,32 +29396,32 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -29186,7 +29686,7 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -29276,7 +29776,7 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -29356,17 +29856,17 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -29556,27 +30056,27 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
@@ -29646,27 +30146,27 @@ MonoBehaviour:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 
         itemPrefab: {fileID: 0}
-      occupied: 0
+      occupied: 1
     - item:
         name: 
         id: 

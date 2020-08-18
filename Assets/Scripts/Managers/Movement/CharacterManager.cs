@@ -49,7 +49,7 @@ public class CharacterManager : MonoBehaviour
         // Check for current floor
         for (int i = 0; i < HouseManager.gridControllers.Length; i++)
         {
-            float dis = Vector3.Distance(new Vector3(Pawn.Position.x, HouseManager.gridControllers[i].gridOrigin.position.y, Pawn.Position.z), Pawn.Position + Vector3.down);
+            float dis = Vector3.Distance(new Vector3(Pawn.Position.x, HouseManager.gridControllers[i].transform.position.y, Pawn.Position.z), Pawn.Position + Vector3.down);
             if (dis < minDis)
             {
                 CurrentGrid = HouseManager.gridControllers[i];

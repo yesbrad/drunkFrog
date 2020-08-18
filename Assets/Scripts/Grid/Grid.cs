@@ -21,7 +21,7 @@ public class Grid
     public float cellSize;
     public Transform origin;
     public bool initilized;
-
+    
     [SerializeField] GridSlot[] gridArray;
 
     public GridSlot[] GridArray { get { return gridArray; } }
