@@ -82,9 +82,6 @@ public class GameManager : MonoBehaviour
     /// <param name="rawPP">Raw PP</param>
     public string CalculatePP (int rawPP)
     {
-        Debug.Log(rawPP);
-        print(designBible.ppScale);
-        print((float)rawPP / (float)designBible.ppScale);
         return $"{Mathf.Floor(((float)rawPP / (float)designBible.ppScale) * 100)}%";
     }
 }

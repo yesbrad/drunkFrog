@@ -13881,6 +13881,41 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 851728311}
+    - target: {fileID: 3445680937993592418, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680937993592428, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.gridArray.Array.size
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680937993592428, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.height
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680937993592428, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.width
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680937993592428, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.cellSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680937993592428, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.origin.x
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680937993592428, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.initilized
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3445680938054542408, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
         type: 3}
       propertyPath: m_Mesh
@@ -13901,6 +13936,21 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 45635688}
+    - target: {fileID: 3445680938407104082, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0000013113021
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680938407104082, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680938407104082, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3445680938407104083, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
         type: 3}
       propertyPath: m_Mesh
@@ -14096,6 +14146,46 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 838194143}
+    - target: {fileID: 3445680939567127596, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.gridArray.Array.size
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680939567127596, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.height
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680939567127596, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.width
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680939567127596, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.cellSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680939567127596, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.origin.x
+      value: -44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680939567127596, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.origin.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680939567127596, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.origin.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445680939567127596, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
+        type: 3}
+      propertyPath: grid.initilized
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3445680939603355857, guid: b26e1e0255eb7a8439c9ca2fb86a2804,
         type: 3}
       propertyPath: m_Mesh
