@@ -24,16 +24,25 @@ public class HouseManager : MonoBehaviour
 
     public List<Item> houseInventory = new List<Item>();
 
-    public int HP;
+    public int PP;
 
     public void Init (PlayerManager owner)
     {
         houseOwner = owner;
+        PP = 1;
+        RefreshUI();
     }
 
     public void AddHP (int amount)
     {
-        HP += amount;
+        PP += amount;
+        RefreshUI();
+    }
+
+    public void RefreshUI ()
+    {
+        Debug.Log(GameManager.instance.CalculatePP(PP));
+        houseOwner.PlayerUI.SetPP(GameManager.instance.CalculatePP(PP));
     }
 
     public Item GetRandomItem ()

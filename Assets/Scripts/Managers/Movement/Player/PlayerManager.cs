@@ -7,8 +7,11 @@ public class PlayerManager : CharacterManager
 {
     public Camera playerCamera;
     public Item debugItem;
+    [SerializeField] PlayerUI playerUI;
 
     public InventoryManager InventoryManager { get; private set; }
+
+    public PlayerUI PlayerUI { get { return playerUI; } }
 
     public override void Awake()
     {

@@ -12,11 +12,15 @@ public class InventoryManager : MonoBehaviour
 
     private int selectionIndex = 0;
 
+    private PlayerManager manager;
+
     private void Awake()
     {
         currentItems.Add(GameManager.instance.items[0]);
         currentItems.Add(GameManager.instance.items[1]);
         currentItem = currentItems[0];
+        manager = GetComponent<PlayerManager>();
+        RefreshUI();
     }
 
     public void ShiftItems ()
@@ -29,10 +33,12 @@ public class InventoryManager : MonoBehaviour
         }
 
         currentItem = currentItems[selectionIndex];
+        RefreshUI();
     }
 
-    private void OnGUI()
+    public void RefreshUI()
     {
-        GUILayout.Label(currentItem.name);
+        manager.PlayerUI.SetCurrentItem(currentItem.name);
+
     }
 }

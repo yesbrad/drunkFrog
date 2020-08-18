@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     public HouseManager[] houseManagers;
 
+    [Header("BIBLE")]
+    public DesignBible designBible;
+
     [Header("DEBUG")]
     [SerializeField] int debugPlayerAmount;
 
@@ -70,5 +73,18 @@ public class GameManager : MonoBehaviour
     private void Validate()
     {
         if (houseManagers.Length <= 0) Debug.LogError("Game Manager Missing HouseManagers");
+        if (designBible == null) Debug.LogError("Game Manager Missing DESIGN BIBLE");
+    }
+
+    /// <summary>
+    /// Calculate a modified percentage based off raw pp
+    /// </summary>
+    /// <param name="rawPP">Raw PP</param>
+    public string CalculatePP (int rawPP)
+    {
+        Debug.Log(rawPP);
+        print(designBible.ppScale);
+        print((float)rawPP / (float)designBible.ppScale);
+        return $"{Mathf.Floor(((float)rawPP / (float)designBible.ppScale) * 100)}%";
     }
 }

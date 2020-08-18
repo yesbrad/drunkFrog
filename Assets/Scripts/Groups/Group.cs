@@ -45,7 +45,6 @@ public class Group : Interactable
             {
                 characters[0].Pawn.GetComponentInParent<AIManager>().StartAndGenerateTask();
                 characters.RemoveAt(0);
-                Debug.Log("Bootong");
                 currentBootTime = shrinkageTime;
             }
         }

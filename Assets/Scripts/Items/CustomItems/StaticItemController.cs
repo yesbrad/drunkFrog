@@ -14,6 +14,7 @@ public class StaticItemController : ItemController
     public override void Init(Item newItem, CharacterManager manager)
     {
         base.Init(newItem, manager);
+        owner.HouseManager.AddHP(placePoints);
     }
 
     public override void Interact(Pawn pawn, Action taskFinishCallback)
@@ -36,7 +37,6 @@ public class StaticItemController : ItemController
 
             if (currentTime < 0)
             {
-                Debug.Log("YEEET");
                 EndTask();
             }
         }
