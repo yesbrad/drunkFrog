@@ -9,6 +9,8 @@ public class GridControllerEditor : Editor
     GridController cont;
     public bool isEditing;
 
+    bool isConfirm;
+
     private void Awake()
     {
         cont = (GridController)target;
@@ -32,6 +34,29 @@ public class GridControllerEditor : Editor
             {
                 isEditing = !isEditing;
             }
+
+            if (isConfirm)
+            {
+
+                GUILayout.BeginHorizontal();
+                if (GUILayout.Button("Do the dam Repaint (DESTRUCTIVE)"))
+                {
+                    cont.InitGrid();
+                    isConfirm = false;
+                }
+                if (GUILayout.Button("Go Back"))
+                {
+                    isConfirm = false;
+                }
+                GUILayout.EndHorizontal();
+            }
+            else
+            {
+                if (GUILayout.Button("Repaint (DESTRUCTIVE)"))
+                {
+                    isConfirm = true;
+                }
+            }
         }
 
         if (GUI.changed)
@@ -53,7 +78,7 @@ public class GridControllerEditor : Editor
     public void OnSceneGUI(SceneView sceneView)
     {
         Handles.color = Color.red;
-        Handles.DrawLine(Vector3.zero, Vector3.up * 200);
+        //Handles.DrawLine(Vector3.zero, Vector3.up * 200);
         
         for (int x = 0; x < cont.gridSizeY; x++)
         {
@@ -75,6 +100,7 @@ public class GridControllerEditor : Editor
             }
         }
 
+        Handles.color = Color.red;
         Debug.DrawLine(cont.grid.GetWorldPositionFromGrid(cont.grid.width, cont.grid.height), cont.grid.GetWorldPositionFromGrid(cont.grid.width, 0));
         Debug.DrawLine(cont.grid.GetWorldPositionFromGrid(cont.grid.width, cont.grid.height), cont.grid.GetWorldPositionFromGrid(0, cont.grid.height));
     }

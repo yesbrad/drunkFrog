@@ -21,12 +21,8 @@ public class GridController : MonoBehaviour
 
         if (grid.IsInBounds(gridPosition.x, gridPosition.y))
         {
-            Debug.Log($"About To die: {gridPosition.x} : {gridPosition.y}");
-
             if (grid.GetValue(gridPosition.x, gridPosition.y) == null)
             {
-                Debug.Log("After GetValue");
-
                 ItemController cont = Instantiate(item.itemPrefab, grid.GetWorldGridCenterPositionFromWorld(position), Quaternion.identity).GetComponent<ItemController>();
                 Item instanedItem = item.Init(cont, player);
                 grid.SetValue(gridPosition.x, gridPosition.y, instanedItem);

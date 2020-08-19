@@ -40,9 +40,9 @@ public class HouseManager : MonoBehaviour
     }
 
     public void RefreshUI ()
-    {
-        Debug.Log(GameManager.instance.CalculatePP(PP));
-        houseOwner.PlayerUI.SetPP(GameManager.instance.CalculatePP(PP));
+    {   
+        if(houseOwner != null)
+            houseOwner.PlayerUI.SetPP(GameManager.instance.CalculatePP(PP));
     }
 
     public Item GetRandomItem ()
