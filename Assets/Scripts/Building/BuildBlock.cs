@@ -49,7 +49,7 @@ public class BuildBlock : MonoBehaviour
             buildItem = null;
             buildItem = Instantiate(newItem, position, Quaternion.Euler(-90,angle,0));
             buildItem.transform.parent = parent;
-
+            
             id = index;
         }
 
@@ -91,6 +91,8 @@ public class BuildBlock : MonoBehaviour
 
     public BuildSlot stairSlot = new BuildSlot();
 
+    private int currentRotation = 0;
+
     private void OnValidate()
     {
         if(buildKit == null)
@@ -101,13 +103,13 @@ public class BuildBlock : MonoBehaviour
 
         if (stairSlot.CheckForUpdate(stairs))
         {
-            stairSlot.Update(stairs, buildKit.stairs[ClampIndex(stairs - 1)], GetCenterPosition(), 0, transform);
+            stairSlot.Update(stairs, buildKit.stairs[ClampIndex(stairs - 1)], GetCenterPosition(), currentRotation + 0, transform);
         }
 
         // Clamp Floors
         if (floorSlot.CheckForUpdate(floors))
         {
-            floorSlot.Update(floors, buildKit.floors[ClampIndex(floors - 1)], GetCenterPosition(), 0, transform);
+            floorSlot.Update(floors, buildKit.floors[ClampIndex(floors - 1)], GetCenterPosition(), currentRotation + 0, transform);
         }
 
         CheckWalls();
@@ -116,38 +118,50 @@ public class BuildBlock : MonoBehaviour
 
     public void Repaint()
     {
-        stairSlot.Update(stairs, buildKit.stairs[ClampIndex(stairs - 1)], GetCenterPosition(), 0, transform);
-        floorSlot.Update(floors, buildKit.floors[ClampIndex(floors - 1)], GetCenterPosition(), 0, transform);
-        foundation1Slot.Update(foundation1, buildKit.foundations[ClampIndex(foundation1 - 1)], GetCenterPosition(), 0, transform);
-        foundation2Slot.Update(foundation2, buildKit.foundations[ClampIndex(foundation2 - 1)], GetCenterPosition(), 90, transform);
-        foundation3Slot.Update(foundation3, buildKit.foundations[ClampIndex(foundation3 - 1)], GetCenterPosition(), 180, transform);
-        foundation4Slot.Update(foundation4, buildKit.foundations[ClampIndex(foundation4 - 1)], GetCenterPosition(), -90, transform);
-        wall1Slot.Update(Wall1, buildKit.walls[ClampIndex(Wall1 - 1)], GetCenterPosition(), 0, transform);
-        wall2Slot.Update(Wall2, buildKit.walls[ClampIndex(Wall2 - 1)], GetCenterPosition(), 90, transform);
-        wall3Slot.Update(Wall3, buildKit.walls[ClampIndex(Wall3 - 1)], GetCenterPosition(), 180, transform);
-        wall4Slot.Update(Wall4, buildKit.walls[ClampIndex(Wall4 - 1)], GetCenterPosition(), -90, transform);
+        stairSlot.Update(stairs, buildKit.stairs[ClampIndex(stairs - 1)], GetCenterPosition(), currentRotation + 0, transform);
+        floorSlot.Update(floors, buildKit.floors[ClampIndex(floors - 1)], GetCenterPosition(), currentRotation + 0, transform);
+        foundation1Slot.Update(foundation1, buildKit.foundations[ClampIndex(foundation1 - 1)], GetCenterPosition(), currentRotation + 0, transform);
+        foundation2Slot.Update(foundation2, buildKit.foundations[ClampIndex(foundation2 - 1)], GetCenterPosition(), currentRotation + 90, transform);
+        foundation3Slot.Update(foundation3, buildKit.foundations[ClampIndex(foundation3 - 1)], GetCenterPosition(), currentRotation + 180, transform);
+        foundation4Slot.Update(foundation4, buildKit.foundations[ClampIndex(foundation4 - 1)], GetCenterPosition(), currentRotation + -90, transform);
+        wall1Slot.Update(Wall1, buildKit.walls[ClampIndex(Wall1 - 1)], GetCenterPosition(), currentRotation + 0, transform);
+        wall2Slot.Update(Wall2, buildKit.walls[ClampIndex(Wall2 - 1)], GetCenterPosition(), currentRotation + 90, transform);
+        wall3Slot.Update(Wall3, buildKit.walls[ClampIndex(Wall3 - 1)], GetCenterPosition(), currentRotation + 180, transform);
+        wall4Slot.Update(Wall4, buildKit.walls[ClampIndex(Wall4 - 1)], GetCenterPosition(), currentRotation + -90, transform);
+    }
+
+    public void Rotate()
+    {
+        currentRotation += 90;
+
+        if(currentRotation == 360)
+        {
+            currentRotation = 0;
+        }
+
+        Repaint();
     }
 
     public void CheckFoundations ()
     {
         if (foundation1Slot.CheckForUpdate(foundation1))
         {
-            foundation1Slot.Update(foundation1, buildKit.foundations[ClampIndex(foundation1 - 1)], GetCenterPosition(), 0, transform);
+            foundation1Slot.Update(foundation1, buildKit.foundations[ClampIndex(foundation1 - 1)], GetCenterPosition(), currentRotation + 0, transform);
         }
 
         if (foundation2Slot.CheckForUpdate(foundation2))
         {
-            foundation2Slot.Update(foundation2, buildKit.foundations[ClampIndex(foundation2 - 1)], GetCenterPosition(), 90, transform);
+            foundation2Slot.Update(foundation2, buildKit.foundations[ClampIndex(foundation2 - 1)], GetCenterPosition(), currentRotation + 90, transform);
         }
 
         if (foundation3Slot.CheckForUpdate(foundation3))
         {
-            foundation3Slot.Update(foundation3, buildKit.foundations[ClampIndex(foundation3 - 1)], GetCenterPosition(), 180, transform);
+            foundation3Slot.Update(foundation3, buildKit.foundations[ClampIndex(foundation3 - 1)], GetCenterPosition(), currentRotation + 180, transform);
         }
 
         if (foundation4Slot.CheckForUpdate(foundation4))
         {
-            foundation4Slot.Update(foundation4, buildKit.foundations[ClampIndex(foundation4 - 1)], GetCenterPosition(), -90, transform);
+            foundation4Slot.Update(foundation4, buildKit.foundations[ClampIndex(foundation4 - 1)], GetCenterPosition(), currentRotation + 270, transform);
         }
 
     }
@@ -157,22 +171,22 @@ public class BuildBlock : MonoBehaviour
         // Walls Floors
         if (wall1Slot.CheckForUpdate(Wall1))
         {
-            wall1Slot.Update(Wall1, buildKit.walls[ClampIndex(Wall1 - 1)], GetCenterPosition(), 0, transform);
+            wall1Slot.Update(Wall1, buildKit.walls[ClampIndex(Wall1 - 1)], GetCenterPosition(), currentRotation + 0, transform);
         }
 
         if (wall2Slot.CheckForUpdate(Wall2))
         {
-            wall2Slot.Update(Wall2, buildKit.walls[ClampIndex(Wall2 - 1)], GetCenterPosition(), 90, transform);
+            wall2Slot.Update(Wall2, buildKit.walls[ClampIndex(Wall2 - 1)], GetCenterPosition(), currentRotation + 90, transform);
         }
 
         if (wall3Slot.CheckForUpdate(Wall3))
         {
-            wall3Slot.Update(Wall3, buildKit.walls[ClampIndex(Wall3 - 1)], GetCenterPosition(), 180, transform);
+            wall3Slot.Update(Wall3, buildKit.walls[ClampIndex(Wall3 - 1)], GetCenterPosition(), currentRotation + 180, transform);
         }
 
         if (wall4Slot.CheckForUpdate(Wall4))
         {
-            wall4Slot.Update(Wall4, buildKit.walls[ClampIndex(Wall4 - 1)], GetCenterPosition(), -90, transform);
+            wall4Slot.Update(Wall4, buildKit.walls[ClampIndex(Wall4 - 1)], GetCenterPosition(), currentRotation + 270, transform);
         }
     }
 

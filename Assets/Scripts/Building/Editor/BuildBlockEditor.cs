@@ -82,6 +82,11 @@ public class BuildBlockEditor : Editor
        
         GUILayout.Space(10);
 
+        if (GUILayout.Button("Rotate"))
+        {
+            block.Rotate();
+        }
+
         if (GUILayout.Button("Repaint"))
         {
             block.Repaint();

@@ -22,6 +22,17 @@ public class BuilderEditor : EditorWindow
     {
         GUILayout.Label("House Builder", EditorStyles.boldLabel);
 
+        if (GUILayout.Button("Rotate"))
+        {
+            GameObject[] o = Selection.gameObjects;
+
+            for (int i = 0; i < o.Length; i++)
+            {
+                BuildBlock block = o[i].GetComponent<BuildBlock>();
+                block.Rotate();
+            }
+        }
+
         if (GUILayout.Button("Repaint"))
         {
             GameObject[] o =  Selection.gameObjects;
