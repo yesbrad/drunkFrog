@@ -36,6 +36,8 @@ public class PlayerController : CharacterPawn
         inputDirection.x = input.x;
         inputDirection.z = input.y;
 
+        SetVelocity(input.sqrMagnitude);
+
         if(input != Vector2.zero)
             playerRotateContainer.localRotation = Quaternion.LookRotation(new Vector3(input.x, 0, input.y), Vector3.up);
 

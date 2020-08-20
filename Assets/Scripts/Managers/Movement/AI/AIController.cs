@@ -74,6 +74,8 @@ public class AIController : Pawn
         {
             currentJob.CheckDestination();
         }
+
+        SetVelocity(agent.velocity.sqrMagnitude);
     }
 
     public void SetDestination (Vector3 destination, System.Action desinationReached, Interactable interactable)
