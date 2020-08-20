@@ -6,4 +6,5 @@ using UnityEngine;
 public class DesignBible : ScriptableObject
 {
     public int ppScale = 200;
+    public Color[] pencilColors;
 }

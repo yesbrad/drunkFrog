@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.5
   animator: {fileID: 6035985466347464391}
+  pencilRenderer: {fileID: 8091442556689517895}
   currentJob:
     navAgent: {fileID: 0}
     inTransit: 0
@@ -238,6 +239,12 @@ GameObject:
 --- !u!4 &5179997698003727155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d0df3af007ef4fc4e8f2b7e15c9041af,
+    type: 3}
+  m_PrefabInstance: {fileID: 4641439951314425048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8091442556689517895 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5754719435255309921, guid: d0df3af007ef4fc4e8f2b7e15c9041af,
     type: 3}
   m_PrefabInstance: {fileID: 4641439951314425048}
   m_PrefabAsset: {fileID: 0}

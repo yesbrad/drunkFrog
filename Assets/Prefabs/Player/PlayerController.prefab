@@ -354,6 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 500
   animator: {fileID: 7221524221588195405}
+  pencilRenderer: {fileID: 1001945520453056050}
   gridSelector: {fileID: 1695505579842937418}
   playerRotateContainer: {fileID: 5476768899410687180}
 --- !u!1 &7333339348746702250
@@ -707,6 +708,12 @@ GameObject:
 --- !u!4 &4201357559422683206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d0df3af007ef4fc4e8f2b7e15c9041af,
+    type: 3}
+  m_PrefabInstance: {fileID: 4450824227695095725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &1001945520453056050 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5754719435255309921, guid: d0df3af007ef4fc4e8f2b7e15c9041af,
     type: 3}
   m_PrefabInstance: {fileID: 4450824227695095725}
   m_PrefabAsset: {fileID: 0}

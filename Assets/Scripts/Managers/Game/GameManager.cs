@@ -18,6 +18,13 @@ public class GameManager : MonoBehaviour
 
     [Header("BIBLE")]
     public DesignBible designBible;
+    public DesignBible DesignBible
+    {
+        get
+        {
+            return designBible;
+        }
+    }
 
     [Header("DEBUG")]
     [SerializeField] int debugPlayerAmount;

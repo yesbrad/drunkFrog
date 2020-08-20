@@ -13,8 +13,9 @@ public class PlayerController : CharacterPawn
 
     private bool debugTime;
 
-    private void Awake()
+    public override void Init()
     {
+        base.Init();
         Manager = GetComponentInParent<PlayerManager>();
         gridSelector.parent = Manager.transform;
     }

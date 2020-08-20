@@ -49,7 +49,8 @@ public class BuildBlock : MonoBehaviour
             buildItem = null;
             buildItem = Instantiate(newItem, position, Quaternion.Euler(-90,angle,0));
             buildItem.transform.parent = parent;
-            
+            buildItem.isStatic = true;
+
             id = index;
         }
 

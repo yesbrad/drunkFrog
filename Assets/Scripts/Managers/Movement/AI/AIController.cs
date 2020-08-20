@@ -62,8 +62,9 @@ public class AIController : Pawn
 
     public Job currentJob;
 
-    private void Awake()
+    public override void Init()
     {
+        base.Init();
         Manager = GetComponentInParent<AIManager>();
         agent = GetComponent<NavMeshAgent>();
     }

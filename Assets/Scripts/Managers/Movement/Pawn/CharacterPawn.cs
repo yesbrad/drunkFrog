@@ -8,8 +8,9 @@ public class CharacterPawn : Pawn
     private Vector3 movePosition;
     private CharacterController controller;
 
-    void Start()
+    public override void Init()
     {
+        base.Init();
         controller = GetComponent<CharacterController>();
     }
 
