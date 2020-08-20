@@ -13,3 +13,12 @@ MonoBehaviour:
   m_Name: DesignBible
   m_EditorClassIdentifier: 
   ppScale: 500
+  pencilColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.9011407, a: 1}
+  - {r: 0.35598993, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.7006569, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.5424833, a: 1}
+  - {r: 0.30713272, g: 1, b: 0, a: 1}
+  - {r: 0.98101246, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.4332019, b: 0, a: 1}
