@@ -59,21 +59,35 @@ public class HouseManager : MonoBehaviour
         return newItem;
     }
 
-    public void PlaceOrUseItem (GridController controller, Vector3 position, Item item, CharacterManager player)
+    public void PlaceOrPickupItem (GridController controller, Vector3 position, Item item, CharacterManager player)
     {
-        Item placedItem = PlaceItem(controller, position, item, player);
-
-        if (placedItem == null)
+        if(controller.IsInBounds(position))
         {
-            //UseItem(controller, position, player);
+            Item placedItem = PlaceItem(controller, position, item, player);
+
+            if(placedItem == null)
+            {
+                Item removedItem = controller.RemoveItem(position);
+                RemoveFromInventory(removedItem);
+            }
+        }
+        else
+        {
+            Debug.Log("Out of Bounds");
         }
     }
 
+    /// <summary>
+    /// Places a New Item on a grid, Returns the placed item
+    /// </summary>
     public Item PlaceItem (GridController controller, Vector3 position, Item item, CharacterManager player)
     {
         Item newItem = controller.PlaceItem(position, item, player);
-        Debug.Log($"Initiated Item Placed: {newItem.UUID}. Inititated Item Controller: {newItem.controller.gameObject.name}");
-        AddToInventory(newItem);
+        //Debug.Log($"Initiated Item Placed: {newItem.UUID}. Inititated Item Controller: {newItem.controller.gameObject.name}");
+
+        if(newItem != null)
+            AddToInventory(newItem);
+        
         return newItem;
     }
 
@@ -85,6 +99,11 @@ public class HouseManager : MonoBehaviour
     public void AddToInventory (Item item)
     {
         houseInventory.Add(item);
+    }
+
+    public void RemoveFromInventory(Item item)
+    {
+        houseInventory.Remove(item);
     }
 
     public Vector3 GetCenterPoint()

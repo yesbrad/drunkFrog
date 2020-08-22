@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
 
+public enum GridSlotState
+{
+    Open,
+    Occupied,
+    Blocked,
+}
+
 [System.Serializable]
 public class GridSlot
 {
     public Item item;
-    public bool occupied;
+    public GridSlotState gridState;
 
-    public GridSlot (Item newItem, bool occ)
+    public GridSlot (Item newItem, GridSlotState occ)
     {
         item = newItem;
-        occupied = occ;
+        gridState = occ;
     }
 }
 
@@ -41,17 +48,10 @@ public class Grid
         {
             for (int y = 0; y < height; y++)
             {
-                gridArray[y*width+x] = new GridSlot(null, false);
-                //Debug.DrawLine(GetWorldPositionFromGrid(x, y + 1), GetWorldPositionFromGrid(x, y), Color.red, 100f);
-                //Debug.DrawLine(GetWorldPositionFromGrid(x + 1, y), GetWorldPositionFromGrid(x, y), Color.red, 100f);
+                gridArray[y*width+x] = new GridSlot(null, GridSlotState.Open);
             }
         }
-
-        //Debug.DrawLine(GetWorldPositionFromGrid(width, height), GetWorldPositionFromGrid(width, 0), Color.red, 100f);
-        //Debug.DrawLine(GetWorldPositionFromGrid(width, height), GetWorldPositionFromGrid(0, height), Color.red, 100f);
     }
-
-    //public void GetGr
 
     public Vector3 GetWorldPositionFromGrid (int x, int y)
     {
@@ -96,7 +96,7 @@ public class Grid
     {
         return y * width + x;
     }
-    public void SetValue(int x, int y, Item value)
+    public void SetValue(int x, int y, Item value, GridSlotState gridSlotState = GridSlotState.Occupied)
     {
         if (gridArray == null)
         {
@@ -107,7 +107,8 @@ public class Grid
         if (IsInBounds(x,y))
         {
             gridArray[GetGridOneDIndex(x, y)].item = value;
-            gridArray[GetGridOneDIndex(x, y)].occupied = true;
+            gridArray[GetGridOneDIndex(x, y)].item.isPlaced = true;
+            gridArray[GetGridOneDIndex(x, y)].gridState = gridSlotState;
         }
         else
         {
@@ -115,9 +116,35 @@ public class Grid
         }
     }
 
+    /// <summary>
+    /// Removes Item off the grid, Returns the Removed item
+    /// </summary>
+    public Item DeleteValue(int x, int y)
+    {
+        if (gridArray == null)
+        {
+            Debug.Log("WE REALLT BROKEN");
+            return null;
+        }
+
+        if (IsInBounds(x, y))
+        {
+            gridArray[GetGridOneDIndex(x, y)].item.OnPickup();
+            gridArray[GetGridOneDIndex(x, y)].item.isPlaced = false;
+            gridArray[GetGridOneDIndex(x, y)].gridState = GridSlotState.Open;
+            return gridArray[GetGridOneDIndex(x, y)].item;
+        }
+        else
+        {
+            Debug.LogWarning("Value out of bounds");
+        }
+
+        return null;
+    }
+
     public bool IsInBounds (int x, int y)
     {
-        return (x >= 0 && y >= 0 && x < width && y < height);
+        return (x >= 0 && y >= 0 && x < width && y < height) && gridArray[GetGridOneDIndex(x, y)].gridState != GridSlotState.Blocked;
     }
 
     public Item GetValue(int x, int y)
@@ -134,7 +161,7 @@ public class Grid
             //Debug.Log($"Occipied: {gridArray[x, y].occupied}");
             //Debug.Log($"Item: {gridArray[x, y].item}");
 
-            if (gridArray[GetGridOneDIndex(x, y)].occupied && gridArray[GetGridOneDIndex(x, y)].item != null)
+            if (gridArray[GetGridOneDIndex(x, y)].gridState == GridSlotState.Occupied && gridArray[GetGridOneDIndex(x, y)].item != null)
             {
                 //Debug.Log($"GET VAL: {x} : {y}");
                 // Debug.Log($"Grid Array: {gridArray[x,y

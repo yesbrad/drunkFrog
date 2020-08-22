@@ -13,8 +13,12 @@ public class AIController : Pawn
 
         public bool inTransit;
         public System.Action OnReachDestination;
-        public Vector3 jobDestination;
         public Interactable parentInteractable;
+        public bool hasInteractable;
+        
+        public Vector3 jobDestination;
+        public Transform jobDestinationTransform;
+        public bool useTransform;
 
         public Job (NavMeshAgent jobAgent, Vector3 destination, System.Action desinationReached, Interactable interactable)
         {
@@ -24,10 +28,19 @@ public class AIController : Pawn
             parentInteractable = interactable;
         }
 
+        public Job(NavMeshAgent jobAgent, Transform destination, System.Action desinationReached, Interactable interactable)
+        {
+            navAgent = jobAgent;
+            OnReachDestination = desinationReached;
+            jobDestinationTransform = destination;
+            parentInteractable = interactable;
+            useTransform = true;
+        }
+
         public void Init ()
         {
             inTransit = true;
-            navAgent.destination = jobDestination;
+            navAgent.destination = useTransform ? jobDestinationTransform.position : jobDestination;
             //Debug.Log($"JobDestination: {jobDestination} || current destination: {navAgent.destination}");
         }
 
@@ -43,6 +56,16 @@ public class AIController : Pawn
                         OnReachDestination.Invoke();
                         OnReachDestination = null;
                     }
+                }
+            }
+
+            if (useTransform)
+            {
+                if(jobDestinationTransform == null)
+                {
+                    inTransit = false;
+                    OnReachDestination.Invoke();
+                    OnReachDestination = null;
                 }
             }
 

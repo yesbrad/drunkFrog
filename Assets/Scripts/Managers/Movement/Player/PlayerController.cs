@@ -53,7 +53,7 @@ public class PlayerController : CharacterPawn
     {
         if (context.performed)
         {
-            Manager.PlaceInventoryItem(GetSelectionLocation());
+            Manager.PlaceCurrentItem(GetSelectionLocation());
         }
     }
 

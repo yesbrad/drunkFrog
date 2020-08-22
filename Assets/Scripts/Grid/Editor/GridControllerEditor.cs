@@ -78,7 +78,6 @@ public class GridControllerEditor : Editor
     public void OnSceneGUI(SceneView sceneView)
     {
         Handles.color = Color.red;
-        //Handles.DrawLine(Vector3.zero, Vector3.up * 200);
         
         for (int x = 0; x < cont.gridSizeY; x++)
         {
@@ -90,10 +89,11 @@ public class GridControllerEditor : Editor
                 if (isEditing)
                 {
                     Vector3 pos = cont.grid.GetWorldGridCenterPositionFromWorld(cont.grid.GetWorldPositionFromGrid(x, y));
+                    GridSlot gridSlot = cont.grid.GridArray[cont.grid.GetGridOneDIndex(x, y)];
 
-                    if (Handles.Button(pos, Quaternion.identity, cont.grid.GridArray[cont.grid.GetGridOneDIndex(x,y)].occupied ? 1F : 0.2f, 1, Handles.CubeHandleCap))
+                    if (Handles.Button(pos, Quaternion.identity, gridSlot.gridState == GridSlotState.Blocked ? 1F : 0.2f, 1, Handles.CubeHandleCap))
                     {
-                        cont.grid.GridArray[cont.grid.GetGridOneDIndex(x, y)].occupied = !cont.grid.GridArray[cont.grid.GetGridOneDIndex(x, y)].occupied;
+                        gridSlot.gridState = gridSlot.gridState == GridSlotState.Blocked ? GridSlotState.Open : GridSlotState.Blocked;
                         EditorUtility.SetDirty(cont);
                     }
                 }

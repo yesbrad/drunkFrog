@@ -14,6 +14,9 @@ public class Item
     public Vector3 Position { get { return controller.transform.position; } }
 
     private CharacterManager owner;
+
+    internal bool isPlaced;
+
     public string UUID { get; private set; }
     /*
     public void Init (ItemController newController, CharacterManager playerManager)
@@ -26,14 +29,14 @@ public class Item
     */
 
     // This is a terrible way of making an instance but, it for the protoype.
-    public Item Init(ItemController newController, CharacterManager playerManager)
+    public Item Init(ItemController newController, CharacterManager playerManager, bool boxed = false)
     {
         Item newItem = new Item();
         newItem.name = name;
         newItem.id = id;
         newItem.itemPrefab = itemPrefab;
         newItem.controller = newController;
-        newItem.controller.Init(newItem, playerManager);
+        newItem.controller.Init(newItem, playerManager, boxed);
         newItem.owner = playerManager;
         newItem.UUID = $"{newController.transform.position}:{id}:{Random.Range(0f, 1f)}";
         return newItem;
@@ -42,5 +45,10 @@ public class Item
     public virtual void Interact (Pawn pawn, System.Action onFinishInteraction = null)
     {
         controller.Interact(pawn, onFinishInteraction);
+    }
+
+    public void OnPickup()
+    {
+        controller.OnPickup();
     }
 }

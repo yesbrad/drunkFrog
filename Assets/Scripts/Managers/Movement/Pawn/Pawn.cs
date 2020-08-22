@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Pawn : MonoBehaviour
 {
+    public enum PawnState
+    {
+        Free,
+        Talking,
+        Dancing
+    }
+
     public float speed;
     public Animator animator;
     Vector3 currentDirecrtion;
@@ -34,5 +41,12 @@ public class Pawn : MonoBehaviour
             animator.SetFloat("velocity", val);
         else
             Debug.LogError("Missing Animator on Pawn", gameObject);
+    }
+
+    public void SetState(PawnState state)
+    {
+        animator.SetBool("isFree", state == PawnState.Free);
+        animator.SetBool("isTalking", state == PawnState.Talking);
+        animator.SetBool("isDancing", state == PawnState.Dancing);
     }
 }

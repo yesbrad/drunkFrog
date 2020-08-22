@@ -7,46 +7,99 @@ public class Group : Interactable
     [System.Serializable]
     public class GroupCharacter
     {
-        public Pawn Pawn;
+        public AIManager aiManager;
         public System.Action onGroupLeave;
 
-        public GroupCharacter (Pawn newPawn, System.Action onLeaveGroup)
+        public GroupCharacter (AIManager manager, System.Action onLeaveGroup)
         {
-            Pawn = newPawn;
+            aiManager = manager;
             onGroupLeave = onLeaveGroup;
+            aiManager.Pawn.SetState(Pawn.PawnState.Talking);
         }
     }
 
     public List<GroupCharacter> characters = new List<GroupCharacter>();
 
     public float shrinkageTime = 5;
+    [Range(2, 20)]
+    public int groupLimit = 5;
+
+    [Range(10, 100)]
+    [Tooltip("Seconds")]
+    public int maxTime = 60;
 
     private float currentBootTime;
+
+    public float iceBreakTime = 5;
+    private float currentIceBreakTime;
+    bool isIceBroken;
+    float maxTimeTimer;
 
     private void Awake()
     {
         currentBootTime = shrinkageTime;
+        currentBootTime = iceBreakTime;
+        maxTimeTimer = maxTime;
     }
 
     public override void Interact(Pawn pawn, System.Action onFinishInteraction)
     {
         //base.Interact(pawn, onFinishInteraction);
-        characters.Add(new GroupCharacter(pawn, onFinishInteraction));
+        if(characters.Count > groupLimit)
+        {
+            onFinishInteraction();
+            return;
+        }
+
+        characters.Add(new GroupCharacter(pawn.GetComponentInParent<AIManager>(), onFinishInteraction));
     }
 
     private void Update()
     {
-        // Will Never let a Group Die at the moment
-        if(characters.Count > 2)
+        maxTimeTimer -= Time.deltaTime;
+
+        if(maxTimeTimer < 0)
+        {
+            BootAllAI();
+        }
+
+        currentIceBreakTime -= Time.deltaTime;
+
+        if(!isIceBroken && currentIceBreakTime < 0)
+        {
+            isIceBroken = true;
+        }
+
+
+        if(isIceBroken)
         {
             currentBootTime -= Time.deltaTime;
 
             if(currentBootTime < 0)
             {
-                characters[0].Pawn.GetComponentInParent<AIManager>().StartAndGenerateTask();
-                characters.RemoveAt(0);
+                BootAI(characters[0].aiManager);
                 currentBootTime = shrinkageTime;
             }
+        }
+    }
+
+    public void BootAllAI()
+    {
+        for (int i = 0; i < characters.Count; i++)
+        {
+            BootAI(characters[i].aiManager, 0);
+        }
+    }
+
+    public void BootAI (AIManager manager, int index = 0)
+    {
+        manager.StartAndGenerateTask();
+        manager.Pawn.SetState(Pawn.PawnState.Free);
+        characters.RemoveAt(index);
+
+        if (characters.Count <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -54,5 +107,11 @@ public class Group : Interactable
     public override void EndTask()
     {
         base.EndTask();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 3);
     }
 }

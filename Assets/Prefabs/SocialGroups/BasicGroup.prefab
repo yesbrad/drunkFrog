@@ -45,7 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91ffe0f2cac9ba4f9c9e0cd51b1b9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shrinkageTime: 5
+  characters: []
+  shrinkageTime: 3
+  groupLimit: 5
+  iceBreakTime: 4
 --- !u!65 &-7729112158575841356
 BoxCollider:
   m_ObjectHideFlags: 0

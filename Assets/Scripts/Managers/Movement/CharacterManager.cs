@@ -62,7 +62,7 @@ public class CharacterManager : MonoBehaviour
     {
         if (HasActiveGrid())
         {
-            HouseManager.PlaceOrUseItem(CurrentGrid, position, item, this);
+            HouseManager.PlaceOrPickupItem(CurrentGrid, position, item, this);
         }
     }
 

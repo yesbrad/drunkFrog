@@ -24,7 +24,7 @@ public class PlayerManager : CharacterManager
         base.Init(initialHouse);
     }
 
-    public void PlaceInventoryItem(Vector3 position)
+    public void PlaceCurrentItem(Vector3 position)
     {
         PlaceOrUseItem(position, InventoryManager.CurrentItem);
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class AITask
 {
-    public Interactable item;
+    public Interactable interactable;
     public bool isComplete;
 
     private Pawn currentPawn;
@@ -18,9 +18,11 @@ public class AITask
 
     public bool isInGroup;
 
+    public float time;
+
     public AITask (Interactable newItem, bool isGroup = false) {
-        item = newItem;
-        destination = item.transform.position;
+        interactable = newItem;
+        destination = interactable.transform.position;
         isInGroup = isGroup;
     }
 
@@ -34,16 +36,18 @@ public class AITask
         currentPawn = pawn;
         onFinished = onFinish;
         controller = iController;
-        controller.SetDestination(destination, OnDestinationReached, item);
+        controller.SetDestination(destination, OnDestinationReached, interactable);
         isComplete = false;
+        time = Time.time;
     }
 
     public void OnDestinationReached ()
     {
-        if (item)
+        if (interactable)
         {
-            item.Interact(currentPawn, () => OnFinish());
-        } else
+            interactable.Interact(currentPawn, () => OnFinish());
+        } 
+        else
         {
             OnFinish();
         }
@@ -53,7 +57,8 @@ public class AITask
     {
         //Debug.Log($"Finished Using Item Invokein OnFinish: {item.UUID}", item.controller.gameObject);
         isComplete = true;
-        onFinished.Invoke();
+        if(onFinished != null)
+            onFinished.Invoke();
         onFinished = null;
     }
 }
@@ -68,13 +73,28 @@ public class AIManager : CharacterManager
 
     private int tasksCompleted;
 
+    float resetTaskTimer;
+    const int resetTime = 4;
+
     public bool HasCompletedFirstTask { get { return tasksCompleted > 1; } }
 
     public override void Init(HouseManager initialHouse)
     {
         base.Init(initialHouse);
         controller = GetComponentInChildren<AIController>();
+        resetTaskTimer = resetTime;
         StartAndGenerateTask();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (currentTask.time + 60 < Time.time)
+        {
+            //print("" + Time.time);
+            StartAndGenerateTask();
+        }
     }
 
     public void StartAndGenerateTask()
@@ -96,7 +116,7 @@ public class AIManager : CharacterManager
 
     public AITask SelectTask ()
     {
-        if (Random.Range(0f, 1f) > 0.6 && HasCompletedFirstTask)
+        if (Random.Range(0f, 1f) < GameManager.instance.DesignBible.chanceOfSocialising && HasCompletedFirstTask)
         {
             AITask possibleTask = FindGroup();
 
@@ -106,25 +126,19 @@ public class AIManager : CharacterManager
             }
             else
             {
-               // Debug.Log("Could Not Find Group");
-
-                if (Random.Range(0f, 1f) > 0.7)
+                if (Random.Range(0f, 1f) < GameManager.instance.DesignBible.chanceOfStartingConvesation)
                 {
-
-                    Debug.Log("ATTEMPONIG a GROUP!", gameObject);
-
                     AITask possibleTaskCreate = CreateBasicGroup();
 
                     if (possibleTaskCreate != null)
                     {
-                        Debug.Log("Were creating a GROUP!", gameObject);
                         return possibleTaskCreate;
                     }
                 }
             }
         }
 
-        if (Random.Range(0f,1f) > 0.7 && HasCompletedFirstTask) //Just for Debug for now!
+        if (Random.Range(0f,1f) < GameManager.instance.DesignBible.chanceOfUsingRandomItem && HasCompletedFirstTask) //Just for Debug for now!
         {
             AITask possibleTask = GetRandomObjectTask();
 
@@ -194,10 +208,12 @@ public class AIManager : CharacterManager
     {
         return new AITask(CurrentGrid.GetRandomPosition());
     }
+
     private AITask GetCentrePointTask()
     {
         return new AITask(HouseManager.GetCenterPoint());
     }
+
     public void StartTask(AITask task)
     {
         tasksCompleted++;
