@@ -4,41 +4,54 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    private List<Item> currentItems = new List<Item>();
-
     public Item CurrentItem { get { return currentItem; } }
 
-    private Item currentItem;
+    public Item currentItem;
 
-    private int selectionIndex = 0;
+    public int selectionIndex = 0;
 
     private PlayerManager manager;
+    
+    private int itemAmount;
 
     private void Awake()
     {
-        currentItems.Add(GameManager.instance.items[0]);
-        currentItems.Add(GameManager.instance.items[1]);
-        currentItem = currentItems[0];
+        currentItem = GameManager.instance.items[0];
+        itemAmount = 5;
         manager = GetComponent<PlayerManager>();
         RefreshUI();
     }
 
-    public void ShiftItems ()
+    public bool GiveItem (Item item, int amount = 1)
     {
-        selectionIndex++;
-
-        if(selectionIndex > currentItems.Count - 1)
+        if (HasItem() && amount > 0 && item.id != currentItem.id)
         {
-            selectionIndex = 0;
+            return false;
         }
 
-        currentItem = currentItems[selectionIndex];
+        currentItem = item;
+        itemAmount += amount;
         RefreshUI();
+        return true;
+    }
+
+    public void ConsumeItem()
+    {
+        itemAmount--;
+
+        if (itemAmount < 0)
+            itemAmount = 0;
+
+        RefreshUI();
+    }
+
+    public bool HasItem()
+    {
+        return itemAmount > 0;
     }
 
     public void RefreshUI()
     {
-        manager.PlayerUI.SetCurrentItem(currentItem.name);
-
+        manager.PlayerUI.SetCurrentItem(itemAmount > 0 ? currentItem.name + " x" + itemAmount : "");
     }
 }

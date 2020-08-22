@@ -59,36 +59,44 @@ public class HouseManager : MonoBehaviour
         return newItem;
     }
 
-    public void PlaceOrPickupItem (GridController controller, Vector3 position, Item item, CharacterManager player)
+    public bool OnPlaceItem (GridController controller, Vector3 position, Item item, CharacterManager player)
     {
         if(controller.IsInBounds(position))
         {
-            Item placedItem = PlaceItem(controller, position, item, player);
+            Item newItem = controller.PlaceItem(position, item, player);
 
-            if(placedItem == null)
+            if (newItem != null)
+            {
+                AddToInventory(newItem);
+                return true;
+            }
+
+        }
+        else
+        {
+            Debug.Log("Out of Bounds");
+        }
+
+        return false;
+    }
+
+    public Item OnPickupItem(GridController controller, Vector3 position, Item item, CharacterManager player)
+    {
+        if (controller.IsInBounds(position))
+        {
+            if (controller.HasItem(position))
             {
                 Item removedItem = controller.RemoveItem(position);
                 RemoveFromInventory(removedItem);
+                return removedItem;
             }
         }
         else
         {
             Debug.Log("Out of Bounds");
         }
-    }
 
-    /// <summary>
-    /// Places a New Item on a grid, Returns the placed item
-    /// </summary>
-    public Item PlaceItem (GridController controller, Vector3 position, Item item, CharacterManager player)
-    {
-        Item newItem = controller.PlaceItem(position, item, player);
-        //Debug.Log($"Initiated Item Placed: {newItem.UUID}. Inititated Item Controller: {newItem.controller.gameObject.name}");
-
-        if(newItem != null)
-            AddToInventory(newItem);
-        
-        return newItem;
+        return null;
     }
 
     public void UseItem(GridController controller, Vector3 position, CharacterManager player)

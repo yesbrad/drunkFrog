@@ -9,24 +9,11 @@ public class PlayerManager : CharacterManager
     public Item debugItem;
     [SerializeField] PlayerUI playerUI;
 
-    public InventoryManager InventoryManager { get; private set; }
-
     public PlayerUI PlayerUI { get { return playerUI; } }
-
-    public override void Awake()
-    {
-        base.Awake();
-        InventoryManager = GetComponent<InventoryManager>();
-    }
 
     public override void Init(HouseManager initialHouse)
     {
         base.Init(initialHouse);
-    }
-
-    public void PlaceCurrentItem(Vector3 position)
-    {
-        PlaceOrUseItem(position, InventoryManager.CurrentItem);
     }
 
     public override void Update()

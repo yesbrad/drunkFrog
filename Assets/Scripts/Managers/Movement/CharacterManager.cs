@@ -6,12 +6,14 @@ public class CharacterManager : MonoBehaviour
 {
     public HouseManager HouseManager { get; private set; }
     public GridController CurrentGrid { get; private set; }
+    public InventoryManager InventoryManager { get; private set; }
 
     public Pawn Pawn { get; private set; }
 
     public virtual void Awake()
     {
         Pawn = GetComponentInChildren<Pawn>();
+        InventoryManager = GetComponent<InventoryManager>();
     }
 
     public virtual void Init(HouseManager initialHouse)
@@ -58,11 +60,25 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-    public virtual void PlaceOrUseItem(Vector3 position, Item item)
+    public void PlaceOrPickupCurrentItem(Vector3 position)
     {
-        if (HasActiveGrid())
+        if(InventoryManager != null && HasActiveGrid())
         {
-            HouseManager.PlaceOrPickupItem(CurrentGrid, position, item, this);
+            if (InventoryManager.HasItem())
+            {
+                if (HouseManager.OnPlaceItem(CurrentGrid, position, InventoryManager.CurrentItem, this))
+                { 
+                    InventoryManager.ConsumeItem();
+                    return;
+                }
+            }
+
+            Item possiblePickup =  HouseManager.OnPickupItem(CurrentGrid, position, InventoryManager.CurrentItem, this);
+                
+            if(possiblePickup != null)
+            {
+                InventoryManager.GiveItem(possiblePickup);
+            }
         }
     }
 
