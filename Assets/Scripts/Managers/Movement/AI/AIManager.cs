@@ -124,6 +124,8 @@ public class AIManager : CharacterManager
             {
                 return possibleTask;
             }
+
+            /* Start is own social group
             else
             {
                 if (Random.Range(0f, 1f) < GameManager.instance.DesignBible.chanceOfStartingConvesation)
@@ -136,6 +138,7 @@ public class AIManager : CharacterManager
                     }
                 }
             }
+            */
         }
 
         if (Random.Range(0f,1f) < GameManager.instance.DesignBible.chanceOfUsingRandomItem && HasCompletedFirstTask) //Just for Debug for now!

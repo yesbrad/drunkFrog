@@ -56,31 +56,16 @@ public class Group : Interactable
 
     private void Update()
     {
-        maxTimeTimer -= Time.deltaTime;
+        currentBootTime -= Time.deltaTime;
 
-        if(maxTimeTimer < 0)
+        if(currentBootTime < 0)
         {
-            BootAllAI();
-        }
-
-        currentIceBreakTime -= Time.deltaTime;
-
-        if(!isIceBroken && currentIceBreakTime < 0)
-        {
-            isIceBroken = true;
-        }
-
-
-        if(isIceBroken)
-        {
-            currentBootTime -= Time.deltaTime;
-
-            if(currentBootTime < 0)
-            {
+            if(characters.Count > 0)
                 BootAI(characters[0].aiManager);
-                currentBootTime = shrinkageTime;
-            }
+
+            currentBootTime = shrinkageTime;
         }
+
     }
 
     public void BootAllAI()
@@ -96,11 +81,6 @@ public class Group : Interactable
         manager.StartAndGenerateTask();
         manager.Pawn.SetState(Pawn.PawnState.Free);
         characters.RemoveAt(index);
-
-        if (characters.Count <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
     //Doesnt Really Finish
