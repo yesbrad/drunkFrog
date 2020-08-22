@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1650618605793033153}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2724, y: 1.2724, z: 1.2724}
   m_Children:
   - {fileID: 5179997698003727155}
   m_Father: {fileID: 3981308692224817527}
@@ -84,8 +84,11 @@ MonoBehaviour:
   currentJob:
     navAgent: {fileID: 0}
     inTransit: 0
-    jobDestination: {x: 0, y: 0, z: 0}
     parentInteractable: {fileID: 0}
+    hasInteractable: 0
+    jobDestination: {x: 0, y: 0, z: 0}
+    jobDestinationTransform: {fileID: 0}
+    useTransform: 0
 --- !u!195 &-4812462848551818687
 NavMeshAgent:
   m_ObjectHideFlags: 0
