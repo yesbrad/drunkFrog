@@ -8,6 +8,10 @@ public class CharacterManager : MonoBehaviour
     public GridController CurrentGrid { get; private set; }
     public InventoryManager InventoryManager { get; private set; }
 
+	public Transform RotationContainer { get; private set; }
+
+	public Transform playerDirectionContainer;
+
     public Pawn Pawn { get; private set; }
 
     public virtual void Awake()
@@ -36,6 +40,10 @@ public class CharacterManager : MonoBehaviour
     {
         CurrentGrid = grid;
     }
+
+	public void SetRotationContainer (Transform rotationTransform){
+		RotationContainer = rotationTransform;
+	}
 
     public virtual void Update()
     {
@@ -66,15 +74,15 @@ public class CharacterManager : MonoBehaviour
         {
             if (InventoryManager.HasItem())
             {
-                if (HouseManager.OnPlaceItem(CurrentGrid, position, InventoryManager.CurrentItem, this))
-                { 
+                if (CurrentGrid.PlaceItem(position, InventoryManager.CurrentItem, this))
+                {
                     InventoryManager.ConsumeItem();
                     return;
                 }
             }
 
-            Item possiblePickup =  HouseManager.OnPickupItem(CurrentGrid, position, InventoryManager.CurrentItem, this);
-                
+            string possiblePickup = CurrentGrid.RemoveItem(position);
+            
             if(possiblePickup != null)
             {
                 InventoryManager.GiveItem(possiblePickup);
@@ -82,7 +90,7 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-    public Vector3 GetGridPosition(Vector3 lookPosition)
+    public Vector3 GetGridCenterPosition(Vector3 lookPosition)
     {
         return CurrentGrid.grid.GetWorldGridCenterPositionFromWorld(lookPosition);
     }

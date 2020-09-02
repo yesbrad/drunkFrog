@@ -22,15 +22,23 @@ public class InventoryManager : MonoBehaviour
         RefreshUI();
     }
 
-    public bool GiveItem (Item item, int amount = 1)
+    public bool GiveItem (string itemID)
     {
-        if (HasItem() && amount > 0 && item.id != currentItem.id)
+        if (itemID != currentItem.id)
         {
+            Debug.Log($"This is Deifferent Name: {itemID} CurrentItem: {currentItem.id}");
             return false;
         }
 
-        currentItem = item;
-        itemAmount += amount;
+        for (int i = 0; i < GameManager.instance.items.Length; i++)
+        {
+            if (itemID == GameManager.instance.items[i].id)
+            {
+                currentItem = GameManager.instance.items[i];
+            }
+        }
+
+        itemAmount++;
         RefreshUI();
         return true;
     }

@@ -59,61 +59,6 @@ public class HouseManager : MonoBehaviour
         return newItem;
     }
 
-    public bool OnPlaceItem (GridController controller, Vector3 position, Item item, CharacterManager player)
-    {
-        if(controller.IsInBounds(position))
-        {
-            Item newItem = controller.PlaceItem(position, item, player);
-
-            if (newItem != null)
-            {
-                AddToInventory(newItem);
-                return true;
-            }
-
-        }
-        else
-        {
-            Debug.Log("Out of Bounds");
-        }
-
-        return false;
-    }
-
-    public Item OnPickupItem(GridController controller, Vector3 position, Item item, CharacterManager player)
-    {
-        if (controller.IsInBounds(position))
-        {
-            if (controller.HasItem(position))
-            {
-                Item removedItem = controller.RemoveItem(position);
-                RemoveFromInventory(removedItem);
-                return removedItem;
-            }
-        }
-        else
-        {
-            Debug.Log("Out of Bounds");
-        }
-
-        return null;
-    }
-
-    public void UseItem(GridController controller, Vector3 position, CharacterManager player)
-    {
-        controller.UseItem(position, player);
-    }
-
-    public void AddToInventory (Item item)
-    {
-        houseInventory.Add(item);
-    }
-
-    public void RemoveFromInventory(Item item)
-    {
-        houseInventory.Remove(item);
-    }
-
     public Vector3 GetCenterPoint()
     {
         if(houseCenter != null)

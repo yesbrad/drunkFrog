@@ -7,6 +7,7 @@ public class Item
 {
     public string name;
     public string id;
+    public int size = 1;
 
     public GameObject itemPrefab;
 
@@ -16,6 +17,8 @@ public class Item
     private CharacterManager owner;
 
     internal bool isPlaced;
+
+    public bool Initialized { get; private set; }
 
     public string UUID { get; private set; }
     /*
@@ -38,8 +41,20 @@ public class Item
         newItem.controller = newController;
         newItem.controller.Init(newItem, playerManager, boxed);
         newItem.owner = playerManager;
+        newItem.size = size;
         newItem.UUID = $"{newController.transform.position}:{id}:{Random.Range(0f, 1f)}";
+        newItem.Initialized = true;
         return newItem;
+    }
+
+    public void Reset()
+    {
+        name = "";
+        id = "";
+        UUID = "";
+        controller = null;
+        itemPrefab = null;
+        Initialized = false;
     }
 
     public virtual void Interact (Pawn pawn, System.Action onFinishInteraction = null)
@@ -49,6 +64,6 @@ public class Item
 
     public void OnPickup()
     {
-        controller.OnPickup();
+        controller?.OnPickup();
     }
 }

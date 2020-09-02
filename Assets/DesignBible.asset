@@ -22,6 +22,6 @@ MonoBehaviour:
   - {r: 0.30713272, g: 1, b: 0, a: 1}
   - {r: 0.98101246, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.4332019, b: 0, a: 1}
-  chanceOfSocialising: 0.402
+  chanceOfSocialising: 0.579
   chanceOfStartingConvesation: 0.469
   chanceOfUsingRandomItem: 0.681
