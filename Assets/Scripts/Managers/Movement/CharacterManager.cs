@@ -55,11 +55,8 @@ public class CharacterManager : MonoBehaviour
 
     private void CheckForNewGrid()
     {
-        float minDis = Mathf.Infinity;
-
         GridController controller = null;
 
-        // Check for current floor
         for (int i = 0; i < HouseManager.gridControllers.Length; i++)
         {
             if (HouseManager.gridControllers[i].IsInBorderBounds(Pawn.Position))
@@ -69,7 +66,6 @@ public class CharacterManager : MonoBehaviour
                 if(distaneBetweenFloorHeightAndPawn < 0.2f)
                 {
                     controller = HouseManager.gridControllers[i];
-
                 }
             }
         }

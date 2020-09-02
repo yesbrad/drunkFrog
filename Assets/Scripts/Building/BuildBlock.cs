@@ -24,15 +24,20 @@ public class BuildBlock : MonoBehaviour
 
         public void Update(int index, GameObject newItem, Vector3 position, float angle, Transform parent)
         {
+            if (Application.isPlaying)
+                return;
+
             if(index == 0)
             {
                 previousBuildItem = buildItem;
 
+#if UNITY_EDITOR
                 UnityEditor.EditorApplication.delayCall += () =>
                 {
                     print("DELTING");
                     DestroyImmediate(previousBuildItem);
                 };
+#endif
 
                 buildItem = null;
                 id = index;
@@ -40,11 +45,13 @@ public class BuildBlock : MonoBehaviour
             }
 
             previousBuildItem = buildItem;
+#if UNITY_EDITOR
 
             UnityEditor.EditorApplication.delayCall += () =>
             {
                 DestroyImmediate(previousBuildItem);
             };
+#endif
 
             buildItem = null;
             buildItem = Instantiate(newItem, position, Quaternion.Euler(-90,angle,0));

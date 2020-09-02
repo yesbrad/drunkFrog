@@ -1,6 +1,4 @@
-﻿using Boo.Lang;
-using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public enum GridSlotState
@@ -212,6 +210,7 @@ public class Grid
         }
 
         List<Vector2Int> newSpace = new List<Vector2Int>();
+
 
 		if(direction == null || PencilPartyUtils.RoundAnglesToNearest90(direction).y == 0)
 		{
