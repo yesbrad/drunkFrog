@@ -63,25 +63,50 @@ public class BuilderPalletteEditor : EditorWindow
             }
         }
 
-        if (GUILayout.Button("Rotate"))
+        if(Selection.gameObjects.Length > 0)
         {
-            GameObject[] o = Selection.gameObjects;
-
-            for (int i = 0; i < o.Length; i++)
+            if (GUILayout.Button("Rotate Selected"))
             {
-                BuildBlock block = o[i].GetComponent<BuildBlock>();
-                block.Rotate();
+                GameObject[] o = Selection.gameObjects;
+
+                for (int i = 0; i < o.Length; i++)
+                {
+                    BuildBlock block = o[i].GetComponent<BuildBlock>();
+                    block.Rotate();
+                }
+            }
+
+            if (GUILayout.Button("Repaint Selected"))
+            {
+                GameObject[] o =  Selection.gameObjects;
+
+                for (int i = 0; i < o.Length; i++)
+                {
+                    BuildBlock block = o[i].GetComponent<BuildBlock>();
+                    block.Repaint();    
+                }
             }
         }
 
-        if (GUILayout.Button("Repaint"))
+
+        if (GUILayout.Button("Repaint All"))
         {
-            GameObject[] o =  Selection.gameObjects;
+            BuildBlock[] o = FindObjectsOfType<BuildBlock>();
 
             for (int i = 0; i < o.Length; i++)
             {
-                BuildBlock block = o[i].GetComponent<BuildBlock>();
-                block.Repaint();    
+                o[i].Repaint();
+            }
+        }
+
+
+        if (GUILayout.Button("ReLayer All"))
+        {
+            BuildLevelUtility[] o = FindObjectsOfType<BuildLevelUtility>();
+
+            for (int i = 0; i < o.Length; i++)
+            {
+                o[i].UpdateBlockLayer();
             }
         }
 

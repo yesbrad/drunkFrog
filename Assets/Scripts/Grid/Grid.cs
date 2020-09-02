@@ -179,6 +179,11 @@ public class Grid
         return (x >= 0 && y >= 0 && x < width && y < height) && gridArray[GetGridOneDIndex(x, y)].gridState != GridSlotState.Blocked;
     }
 
+    public bool IsInBorderBounds(int x, int y)
+    {
+        return (x >= 0 && y >= 0 && x < width && y < height);
+    }
+
     public bool CanPlaceItemWithSize(int x, int y, int size, Transform direction)
     {
         if (IsInBounds(x, y) == false)

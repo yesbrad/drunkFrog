@@ -25,4 +25,19 @@ public class HouseDetector : MonoBehaviour
             }
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawCube(Vector3.zero, Vector3.one);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(transform.position + Vector3.up * 50, Vector3.one);
+
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using UnityEngine;
@@ -23,7 +24,8 @@ public class PlayerController : CharacterPawn
         base.Init();
         Manager = GetComponentInParent<PlayerManager>();
         gridSelector.parent = Manager.transform;
-		Manager.SetRotationContainer(playerRotateContainer);
+        gridSelectorSingle.parent = Manager.transform;
+        Manager.SetRotationContainer(playerRotateContainer);
 	}
 
 	private void Update () 
@@ -51,24 +53,43 @@ public class PlayerController : CharacterPawn
         if(input != Vector2.zero)
             playerRotateContainer.localRotation = Quaternion.LookRotation(new Vector3(input.x, 0, input.y), Vector3.up);
 
-        Vector2Int pos = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
+        UpdateSelectorColors();
+    }
 
-        gridSelector.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.grid.CanPlaceItemWithSize(pos.x, pos.y, Manager.InventoryManager.currentItem.size, playerRotateContainer)
-            ? Color.blue
-            : Color.red);
+    private void UpdateSelectorColors()
+    {
+        if(Manager.CurrentGrid != null)
+        {
+            gridSelector.gameObject.SetActive(true);
+            gridSelectorSingle.gameObject.SetActive(true);
+
+            Vector2Int pos = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
+
+            gridSelector.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.grid.CanPlaceItemWithSize(pos.x, pos.y, Manager.InventoryManager.currentItem.size, playerRotateContainer)
+                ? Color.blue
+                : Color.red);
 
 
-        gridSelectorSingle.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.HasItem(GetSelectionLocation())
-            ? Color.green
-            : Color.white);
+            gridSelectorSingle.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.HasItem(GetSelectionLocation())
+                ? Color.green
+                : Color.white);
 
-        gridSelectorSingle.GetComponentInChildren<MeshRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.HasItem(GetSelectionLocation())
-            ? Color.green
-            : Color.white);
+            gridSelectorSingle.GetComponentInChildren<MeshRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.HasItem(GetSelectionLocation())
+                ? Color.green
+                : Color.white);
+        }
+        else
+        {
+            gridSelector.gameObject.SetActive(false);
+            gridSelectorSingle.gameObject.SetActive(false);
+        }
     }
 
     private Vector3 GetSelectionLocation ()
     {
+        if (Manager.CurrentGrid == null)
+            return Vector3.zero;
+
         return Manager.CurrentGrid.grid.GetWorldPositionFromWorld(transform.position + playerRotateContainer.forward * constants.GridCellSize);
     }
 

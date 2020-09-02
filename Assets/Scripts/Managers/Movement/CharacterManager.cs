@@ -10,6 +10,7 @@ public class CharacterManager : MonoBehaviour
 
 	public Transform RotationContainer { get; private set; }
 
+    [HideInInspector]
 	public Transform playerDirectionContainer;
 
     public Pawn Pawn { get; private set; }
@@ -56,16 +57,24 @@ public class CharacterManager : MonoBehaviour
     {
         float minDis = Mathf.Infinity;
 
+        GridController controller = null;
+
         // Check for current floor
         for (int i = 0; i < HouseManager.gridControllers.Length; i++)
         {
-            float dis = Vector3.Distance(new Vector3(Pawn.Position.x, HouseManager.gridControllers[i].transform.position.y, Pawn.Position.z), Pawn.Position + Vector3.down);
-            if (dis < minDis)
+            if (HouseManager.gridControllers[i].IsInBorderBounds(Pawn.Position))
             {
-                CurrentGrid = HouseManager.gridControllers[i];
-                minDis = dis;
+                float distaneBetweenFloorHeightAndPawn = Vector3.Distance(new Vector3(Pawn.Position.x, HouseManager.gridControllers[i].transform.position.y, Pawn.Position.z), Pawn.Position + Vector3.down);
+
+                if(distaneBetweenFloorHeightAndPawn < 0.2f)
+                {
+                    controller = HouseManager.gridControllers[i];
+
+                }
             }
         }
+
+        CurrentGrid = controller;
     }
 
     public void PlaceOrPickupCurrentItem(Vector3 position)

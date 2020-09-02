@@ -6,8 +6,8 @@ public class GridController : MonoBehaviour
 {
     public int gridSizeX;
     public int gridSizeY;
-    public Transform gridOrigin;
-    public Transform lineContainer;
+    
+    [HideInInspector]
     [SerializeField] public Grid grid;
 
     public void InitGrid()
@@ -96,6 +96,12 @@ public class GridController : MonoBehaviour
         return grid.IsInBounds(gridPosition.x, gridPosition.y);
     }
 
+    public bool IsInBorderBounds(Vector3 position)
+    {
+        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+        return grid.IsInBorderBounds(gridPosition.x, gridPosition.y);
+    }
+
     public Item GetRandomItem ()
     {
         return grid.GetRandomItem();
@@ -104,5 +110,11 @@ public class GridController : MonoBehaviour
     public Vector3 GetRandomPosition ()
     {
         return grid.GetRandomPosition();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 1);
     }
 }
