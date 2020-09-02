@@ -12,54 +12,44 @@ public class InventoryManager : MonoBehaviour
 
     private PlayerManager manager;
     
-    private int itemAmount;
-
-    private void Awake()
+    private void Start()
     {
-        currentItem = GameManager.instance.items[0];
-        itemAmount = 5;
         manager = GetComponent<PlayerManager>();
+        ItemController cont = Instantiate(GameManager.instance.items[0].itemPrefab, Vector3.zero, Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(manager.RotationContainer))).GetComponent<ItemController>();
+
+        Debug.Log($"YEmanager: {manager == null}");
+        currentItem = GameManager.instance.items[0].Init(cont, manager, true);
         RefreshUI();
     }
 
-    public bool GiveItem (string itemID)
+    // TO give the old item back
+
+    public bool GiveItem (Item item)
     {
-        if (itemID != currentItem.id)
+        if (currentItem != null)
         {
-            Debug.Log($"This is Deifferent Name: {itemID} CurrentItem: {currentItem.id}");
             return false;
         }
 
-        for (int i = 0; i < GameManager.instance.items.Length; i++)
-        {
-            if (itemID == GameManager.instance.items[i].id)
-            {
-                currentItem = GameManager.instance.items[i];
-            }
-        }
+        currentItem = item;
 
-        itemAmount++;
         RefreshUI();
         return true;
     }
 
     public void ConsumeItem()
     {
-        itemAmount--;
-
-        if (itemAmount < 0)
-            itemAmount = 0;
-
+        currentItem = null;
         RefreshUI();
     }
 
     public bool HasItem()
     {
-        return itemAmount > 0;
+        return currentItem != null;
     }
 
     public void RefreshUI()
     {
-        manager.PlayerUI.SetCurrentItem(itemAmount > 0 ? currentItem.name + " x" + itemAmount : "");
+        manager.PlayerUI.SetCurrentItem(currentItem != null ? currentItem.name : "");
     }
 }

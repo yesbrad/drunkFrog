@@ -10,7 +10,9 @@ public class ItemController : Interactable
     private GameObject boxContainer;
     private bool isBoxed;
 
-    public virtual void Init (Item newItem, CharacterManager manager, bool boxed)
+    private float rotation;
+
+    public virtual void Init (Item newItem, CharacterManager manager, bool inInventory, bool boxed)
     {
         item = newItem;
         owner = manager;
@@ -22,12 +24,25 @@ public class ItemController : Interactable
                 artContainer.SetActive(false);
 
             //Spawn Box
-        } 
+        }
+
+        if (inInventory)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void OnPickup()
     {
-        Destroy(gameObject);
+        Debug.Log("OnPicku[p", gameObject);
+        gameObject.SetActive(false);
+    }
+
+    public void OnPlace(Vector3 position, Quaternion rot)
+    {
+        transform.position = position;
+        transform.rotation = rot;
+        gameObject.SetActive(true);
     }
 
     public override void Interact(Pawn pawn, System.Action onFinishInteraction = null)

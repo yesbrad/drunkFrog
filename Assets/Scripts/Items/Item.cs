@@ -32,14 +32,14 @@ public class Item
     */
 
     // This is a terrible way of making an instance but, it for the protoype.
-    public Item Init(ItemController newController, CharacterManager playerManager, bool boxed = false)
+    public Item Init(ItemController newController, CharacterManager playerManager, bool inInventory = false, bool boxed = false)
     {
         Item newItem = new Item();
         newItem.name = name;
         newItem.id = id;
         newItem.itemPrefab = itemPrefab;
         newItem.controller = newController;
-        newItem.controller.Init(newItem, playerManager, boxed);
+        newItem.controller.Init(newItem, playerManager, inInventory, boxed);
         newItem.owner = playerManager;
         newItem.size = size;
         newItem.UUID = $"{newController.transform.position}:{id}:{Random.Range(0f, 1f)}";
@@ -64,6 +64,11 @@ public class Item
 
     public void OnPickup()
     {
-        controller?.OnPickup();
+        controller.OnPickup();
+    }
+
+    public void OnPlace(Vector3 position, Quaternion rotation)
+    {
+        controller.OnPlace(position, rotation);
     }
 }

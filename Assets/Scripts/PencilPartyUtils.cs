@@ -1,4 +1,8 @@
 ﻿using UnityEngine;
+using System;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class PencilPartyUtils
 {
@@ -26,4 +30,27 @@ public class PencilPartyUtils
 
 		return newAngle;
 	}
+
+    public static T Clone<T>(T source)
+    {
+        if (!typeof(T).IsSerializable)
+        {
+            throw new System.Exception("The type must be serializable.");
+        }
+
+        // Don't serialize a null object, simply return the default for that object
+        if (UnityEngine.Object.ReferenceEquals(source, null))
+        {
+            return default(T);
+        }
+
+        IFormatter formatter = new BinaryFormatter();
+        Stream stream = new MemoryStream();
+        using (stream)
+        {
+            formatter.Serialize(stream, source);
+            stream.Seek(0, SeekOrigin.Begin);
+            return (T)formatter.Deserialize(stream);
+        }
+    }
 }

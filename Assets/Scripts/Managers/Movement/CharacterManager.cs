@@ -86,7 +86,7 @@ public class CharacterManager : MonoBehaviour
                 }
             }
 
-            string possiblePickup = CurrentGrid.RemoveItem(position);
+            Item possiblePickup = CurrentGrid.RemoveItem(position, this);
             
             if(possiblePickup != null)
             {

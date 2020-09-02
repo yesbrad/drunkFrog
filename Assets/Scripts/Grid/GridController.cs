@@ -7,7 +7,6 @@ public class GridController : MonoBehaviour
     public int gridSizeX;
     public int gridSizeY;
     
-    [HideInInspector]
     [SerializeField] public Grid grid;
 
     public void InitGrid()
@@ -36,9 +35,10 @@ public class GridController : MonoBehaviour
 
 		if(grid.CanPlaceItemWithSize(gridPosition.x, gridPosition.y, item.size, player.RotationContainer))
 		{
-            ItemController cont = Instantiate(item.itemPrefab, grid.GetWorldPositionFromWorld(position), Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(player.RotationContainer))).GetComponent<ItemController>();
-			Item instanedItem = item.Init(cont, player, boxed);
-			grid.SetValue(gridPosition.x, gridPosition.y, instanedItem, GridSlotState.Occupied, instanedItem.size, player.RotationContainer);
+            //ItemController cont = Instantiate(item.itemPrefab, grid.GetWorldPositionFromWorld(position), Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(player.RotationContainer))).GetComponent<ItemController>();
+            //Item instanedItem = item.Init(cont, player, boxed);
+            item.OnPlace(grid.GetWorldPositionFromWorld(position), Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(player.RotationContainer)));
+			grid.SetValue(gridPosition.x, gridPosition.y, item, GridSlotState.Occupied, item.size, player.RotationContainer);
 			return true;
 		}
 		else
@@ -52,13 +52,13 @@ public class GridController : MonoBehaviour
     /// <summary>
     /// Removes Item off the grid, Returns the Removed item
     /// </summary>
-    public string RemoveItem(Vector3 position)
+    public Item RemoveItem(Vector3 position, CharacterManager manager)
     {
         Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
 
         if (HasItem(position))
         {      
-            return grid.DeleteValue(gridPosition.x, gridPosition.y); ;
+            return grid.DeleteValue(gridPosition.x, gridPosition.y, manager); ;
         }
 
         return null;

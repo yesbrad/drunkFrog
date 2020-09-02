@@ -137,7 +137,7 @@ public class Grid
     /// <summary>
     /// Removes Item off the grid, Returns the Removed item
     /// </summary>
-    public string DeleteValue(int x, int y)
+    public Item DeleteValue(int x, int y, CharacterManager manager)
     {
         if (gridArray == null)
         {
@@ -150,18 +150,19 @@ public class Grid
 
             if(gridArray[GetGridOneDIndex(x, y)].gridState == GridSlotState.Occupied)
             {
-                string cacheItemID = gridArray[GetGridOneDIndex(x, y)].item.id;
+                Item oldItem = new Item();
+                ItemController cont = gridArray[GetGridOneDIndex(x, y)].item.controller;
+                oldItem = gridArray[GetGridOneDIndex(x, y)].item.Init(cont, manager, true);
 
                 for (int i = 0; i < gridArray.Length; i++)
                 {
                     if (gridArray[GetGridOneDIndex(x, y)].item.UUID == gridArray[i].item.UUID)
                     {
-                        gridArray[i].item.OnPickup();
                         gridArray[i].ResetSlot();
                     }
                 }
 
-                return cacheItemID;
+                return oldItem;
             }
         }
         else
