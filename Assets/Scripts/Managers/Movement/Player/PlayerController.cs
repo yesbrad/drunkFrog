@@ -9,6 +9,8 @@ public class PlayerController : CharacterPawn
     public PlayerManager Manager { get; private set; }
 
     public Transform gridSelector;
+    public Transform gridSelectorSingle;
+
     public Transform playerRotateContainer;
     private Vector3 inputDirection;
 
@@ -30,6 +32,7 @@ public class PlayerController : CharacterPawn
         gridSelector.position = Vector3.Lerp(gridSelector.position, GetSelectionLocation(), Time.deltaTime * 20);
 		gridSelector.eulerAngles = PencilPartyUtils.RoundAnglesToNearest90(playerRotateContainer);
 		gridSelector.localScale = Vector3.Lerp(gridSelector.localScale, new Vector3(Manager.InventoryManager.currentItem.size, 1, Manager.InventoryManager.currentItem.size) * constants.GridCellSize, Time.deltaTime * 10);
+        gridSelectorSingle.position = Vector3.Lerp(gridSelector.position, GetSelectionLocation(), Time.deltaTime * 20);
     }
 
     private void UpdateInput ()
@@ -48,6 +51,20 @@ public class PlayerController : CharacterPawn
         if(input != Vector2.zero)
             playerRotateContainer.localRotation = Quaternion.LookRotation(new Vector3(input.x, 0, input.y), Vector3.up);
 
+        Vector2Int pos = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
+
+        gridSelector.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.grid.CanPlaceItemWithSize(pos.x, pos.y, Manager.InventoryManager.currentItem.size, playerRotateContainer)
+            ? Color.blue
+            : Color.red);
+
+
+        gridSelectorSingle.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.HasItem(GetSelectionLocation())
+            ? Color.green
+            : Color.white);
+
+        gridSelectorSingle.GetComponentInChildren<MeshRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.HasItem(GetSelectionLocation())
+            ? Color.green
+            : Color.white);
     }
 
     private Vector3 GetSelectionLocation ()
@@ -57,6 +74,8 @@ public class PlayerController : CharacterPawn
 
     private void OnDrawGizmos()
     {
+        return;
+
         Gizmos.DrawCube((transform.position + playerRotateContainer.forward * constants.GridCellSize), Vector3.one);
         Gizmos.DrawCube(GetSelectionLocation(), Vector3.one);
 
