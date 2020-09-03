@@ -11,9 +11,9 @@ public class StaticItemController : ItemController
 
     float currentTime;
 
-    public override void Init(Item newItem, CharacterManager manager, bool inInventory, bool boxed)
+    public override void Init(Item newItem, CharacterManager manager, bool boxed)
     {
-        base.Init(newItem, manager, inInventory, boxed);
+        base.Init(newItem, manager, boxed);
         owner.HouseManager.AddHP(placePoints);
     }
 

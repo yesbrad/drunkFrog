@@ -12,7 +12,7 @@ public class ItemController : Interactable
 
     private float rotation;
 
-    public virtual void Init (Item newItem, CharacterManager manager, bool inInventory, bool boxed)
+    public virtual void Init (Item newItem, CharacterManager manager, bool boxed)
     {
         item = newItem;
         owner = manager;
@@ -26,10 +26,7 @@ public class ItemController : Interactable
             //Spawn Box
         }
 
-        if (inInventory)
-        {
-            gameObject.SetActive(false);
-        }
+        gameObject.SetActive(false);    
     }
 
     public void OnPickup()
@@ -38,11 +35,13 @@ public class ItemController : Interactable
         gameObject.SetActive(false);
     }
 
+
+    // On Place must be call to position the item controller
     public void OnPlace(Vector3 position, Quaternion rot)
     {
         transform.position = position;
         
-        if(item.size != 1)
+        if(item.Data.size != 1)
             transform.rotation = rot;
 
         // Use this so the player can customize rotaions

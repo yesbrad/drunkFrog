@@ -33,12 +33,12 @@ public class GridController : MonoBehaviour
     {
         Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
 
-		if(grid.CanPlaceItemWithSize(gridPosition.x, gridPosition.y, item.size, player.RotationContainer))
+		if(grid.CanPlaceItemWithSize(gridPosition.x, gridPosition.y, item.Data.size, player.RotationContainer))
 		{
             //ItemController cont = Instantiate(item.itemPrefab, grid.GetWorldPositionFromWorld(position), Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(player.RotationContainer))).GetComponent<ItemController>();
             //Item instanedItem = item.Init(cont, player, boxed);
             item.OnPlace(grid.GetWorldPositionFromWorld(position), Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(player.RotationContainer)));
-			grid.SetValue(gridPosition.x, gridPosition.y, item, GridSlotState.Occupied, item.size, player.RotationContainer);
+			grid.SetValue(gridPosition.x, gridPosition.y, item, GridSlotState.Occupied, item.Data.size, player.RotationContainer);
 			return true;
 		}
 		else

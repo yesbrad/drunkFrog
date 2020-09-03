@@ -18,6 +18,6 @@ public class PlayerUI : MonoBehaviour
 
     public void SetCurrentItem (string name)
     {
-        currentItemText.SetText($"Item: {name}");
+        currentItemText.SetText($"{name}");
     }
 }

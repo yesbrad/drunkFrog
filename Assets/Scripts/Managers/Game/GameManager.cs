@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     private List<PlayerManager> players = new List<PlayerManager>();
     private List<AIManager> ai = new List<AIManager>();
 
-    public Item[] items;
+    public ItemData[] items;
 
     void Start()
     {

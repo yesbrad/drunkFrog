@@ -33,23 +33,23 @@ public class PlayerController : CharacterPawn
 
         Vector3 curAngle;
 
-        if (Manager.CurrentGrid != null && Manager.InventoryManager.currentItem != null)
+        if (Manager.CurrentGrid != null && Manager.InventoryManager.CurrentItem != null)
         {
             gridSelector.gameObject.SetActive(true);
 
             Vector2Int a = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
-            Vector2Int[] space = Manager.CurrentGrid.grid.GetGridSpace(a.x, a.y, Manager.InventoryManager.currentItem != null ? Manager.InventoryManager.currentItem.size : 1, gridSelector);
+            Vector2Int[] space = Manager.CurrentGrid.grid.GetGridSpace(a.x, a.y, Manager.InventoryManager.CurrentItem != null ? Manager.InventoryManager.CurrentItem.Data.size : 1, gridSelector);
 
-            curAngle = Manager.InventoryManager.currentItem.size == 1 ? Vector3.zero : PencilPartyUtils.RoundAnglesToNearest90(playerRotateContainer);
+            curAngle = Manager.InventoryManager.CurrentItem.Data.size == 1 ? Vector3.zero : PencilPartyUtils.RoundAnglesToNearest90(playerRotateContainer);
 
             gridSelector.position = Vector3.Lerp(gridSelector.position, GetSelectionLocation(), Time.deltaTime * 20);
             gridSelector.eulerAngles = curAngle;
-            gridSelector.localScale = Vector3.Lerp(gridSelector.localScale, new Vector3(Manager.InventoryManager.currentItem.size, 1, Manager.InventoryManager.currentItem.size) * constants.GridCellSize, Time.deltaTime * 10);
+            gridSelector.localScale = Vector3.Lerp(gridSelector.localScale, new Vector3(Manager.InventoryManager.CurrentItem.Data.size, 1, Manager.InventoryManager.CurrentItem.Data.size) * constants.GridCellSize, Time.deltaTime * 10);
 
             if (Manager.CurrentGrid.HasItem(GetSelectionLocation()))
             {
                 Item item = Manager.CurrentGrid.GetItem(GetSelectionLocation());
-                hoverSize = item.size;
+                hoverSize = item.Data.size;
             }
             else
             {
@@ -96,9 +96,9 @@ public class PlayerController : CharacterPawn
 
             Vector2Int pos = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
 
-            if(Manager.InventoryManager.currentItem != null)
+            if(Manager.InventoryManager.CurrentItem != null)
             {
-                gridSelector.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.grid.CanPlaceItemWithSize(pos.x, pos.y, Manager.InventoryManager.currentItem.size, playerRotateContainer)
+                gridSelector.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.grid.CanPlaceItemWithSize(pos.x, pos.y, Manager.InventoryManager.CurrentItem.Data.size, playerRotateContainer)
                     ? Color.blue
                     : Color.red);
             }
@@ -135,11 +135,11 @@ public class PlayerController : CharacterPawn
         Gizmos.DrawCube(GetSelectionLocation(), Vector3.one);
 
         //return;
-        if (Manager.CurrentGrid != null && Manager.InventoryManager.currentItem != null)
+        if (Manager.CurrentGrid != null && Manager.InventoryManager.CurrentItem != null)
         {
             Vector2Int a = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
 
-            Vector2Int[] space = Manager.CurrentGrid.grid.GetGridSpace(a.x,a.y, Manager.InventoryManager.currentItem.size, playerRotateContainer);
+            Vector2Int[] space = Manager.CurrentGrid.grid.GetGridSpace(a.x,a.y, Manager.InventoryManager.CurrentItem.Data.size, playerRotateContainer);
 
             Gizmos.color = Color.red;
 

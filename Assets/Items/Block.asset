@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0c870ac17409ce4199a2ee801ddac2b, type: 3}
-  m_Name: DEBUG 1
+  m_Script: {fileID: 11500000, guid: 08c29428ab1683b419d7aa26bc6f25c3, type: 3}
+  m_Name: Block
   m_EditorClassIdentifier: 
-  name: DebugBlockGrid
-  id: debugVloclGrid
+  name: Block Data
+  id: bd
+  size: 1
   itemPrefab: {fileID: 1718937532128273951, guid: 791d4ff4e57556d4fb231d3c8d43af8e,
     type: 3}

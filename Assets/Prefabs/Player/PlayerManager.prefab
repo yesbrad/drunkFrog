@@ -51,10 +51,7 @@ MonoBehaviour:
   playerDirectionContainer: {fileID: 0}
   playerCamera: {fileID: 5957952065561736625}
   debugItem:
-    name: 
-    id: 
-    size: 1
-    itemPrefab: {fileID: 0}
+    itemData: {fileID: 0}
   playerUI: {fileID: 7001358505136729341}
 --- !u!114 &1082141236455709116
 MonoBehaviour:
@@ -68,11 +65,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c07345c932d5149a942c1f46e2546c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugStartItem: {fileID: 11400000, guid: 76d1cdcce14ecad4997e6de23dbeb5ed, type: 2}
   currentItem:
-    name: 
-    id: 
-    size: 1
-    itemPrefab: {fileID: 0}
+    itemData: {fileID: 0}
   selectionIndex: 0
 --- !u!114 &7845452019637311001
 MonoBehaviour:

@@ -150,9 +150,9 @@ public class Grid
 
             if(gridArray[GetGridOneDIndex(x, y)].gridState == GridSlotState.Occupied)
             {
-                Item oldItem = new Item();
-                ItemController cont = gridArray[GetGridOneDIndex(x, y)].item.controller;
-                oldItem = gridArray[GetGridOneDIndex(x, y)].item.Init(cont, manager, true);
+                Item oldItem = gridArray[GetGridOneDIndex(x, y)].item;
+                ItemController itemController = oldItem.controller;
+                Item clonedItem = ItemFactory.CloneItem(oldItem.Data, itemController, manager, oldItem.extraData);
 
                 for (int i = 0; i < gridArray.Length; i++)
                 {
@@ -162,7 +162,7 @@ public class Grid
                     }
                 }
 
-                return oldItem;
+                return clonedItem;
             }
         }
         else

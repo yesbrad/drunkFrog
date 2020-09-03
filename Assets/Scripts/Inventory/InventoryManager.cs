@@ -4,29 +4,24 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    public ItemData debugStartItem;
+
     public Item CurrentItem { get { return currentItem; } }
 
-    public Item currentItem;
-
-    public int selectionIndex = 0;
+    private Item currentItem;
 
     private PlayerManager manager;
     
     private void Start()
     {
         manager = GetComponent<PlayerManager>();
-        ItemController cont = Instantiate(GameManager.instance.items[1].itemPrefab, Vector3.zero, Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(manager.RotationContainer))).GetComponent<ItemController>();
-
-        Debug.Log($"YEmanager: {manager == null}");
-        currentItem = GameManager.instance.items[1].Init(cont, manager, true);
+        currentItem = ItemFactory.CreateItem(debugStartItem, manager);
         RefreshUI();
     }
 
-    // TO give the old item back
-
     public bool GiveItem (Item item)
     {
-        if (currentItem != null)
+        if (CurrentItem != null)
         {
             return false;
         }
@@ -45,11 +40,11 @@ public class InventoryManager : MonoBehaviour
 
     public bool HasItem()
     {
-        return currentItem != null;
+        return CurrentItem != null;
     }
 
     public void RefreshUI()
     {
-        manager.PlayerUI.SetCurrentItem(currentItem != null ? currentItem.name : "");
+        manager.PlayerUI.SetCurrentItem(CurrentItem != null ? CurrentItem.Data.name : "");
     }
 }
