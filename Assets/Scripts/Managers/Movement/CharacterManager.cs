@@ -55,22 +55,7 @@ public class CharacterManager : MonoBehaviour
 
     private void CheckForNewGrid()
     {
-        GridController controller = null;
-
-        for (int i = 0; i < HouseManager.gridControllers.Length; i++)
-        {
-            if (HouseManager.gridControllers[i].IsInBorderBounds(Pawn.Position))
-            {
-                float distaneBetweenFloorHeightAndPawn = Vector3.Distance(new Vector3(Pawn.Position.x, HouseManager.gridControllers[i].transform.position.y, Pawn.Position.z), Pawn.Position + Vector3.down);
-
-                if(distaneBetweenFloorHeightAndPawn < 0.2f)
-                {
-                    controller = HouseManager.gridControllers[i];
-                }
-            }
-        }
-
-        CurrentGrid = controller;
+        CurrentGrid = HouseManager.GetGrid(Pawn.Position);
     }
 
     public void PlaceOrPickupCurrentItem(Vector3 position)

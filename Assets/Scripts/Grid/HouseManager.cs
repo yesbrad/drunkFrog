@@ -67,4 +67,24 @@ public class HouseManager : MonoBehaviour
         Debug.LogError("House is missing center point varible!", gameObject);
         return Vector3.zero;
     }
+
+    public GridController GetGrid(Vector3 position)
+    {
+        GridController controller = null;
+
+        for (int i = 0; i < gridControllers.Length; i++)
+        {
+            if (gridControllers[i].IsInBorderBounds(position))
+            {
+                float distaneBetweenFloorHeightAndPawn = Vector3.Distance(new Vector3(position.x, gridControllers[i].transform.position.y, position.z), position + Vector3.down);
+
+                if (distaneBetweenFloorHeightAndPawn < 0.2f)
+                {
+                    controller = gridControllers[i];
+                }
+            }
+        }
+
+        return controller;
+    }
 }
