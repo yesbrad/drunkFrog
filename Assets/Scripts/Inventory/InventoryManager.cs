@@ -15,10 +15,10 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         manager = GetComponent<PlayerManager>();
-        ItemController cont = Instantiate(GameManager.instance.items[0].itemPrefab, Vector3.zero, Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(manager.RotationContainer))).GetComponent<ItemController>();
+        ItemController cont = Instantiate(GameManager.instance.items[1].itemPrefab, Vector3.zero, Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(manager.RotationContainer))).GetComponent<ItemController>();
 
         Debug.Log($"YEmanager: {manager == null}");
-        currentItem = GameManager.instance.items[0].Init(cont, manager, true);
+        currentItem = GameManager.instance.items[1].Init(cont, manager, true);
         RefreshUI();
     }
 

@@ -565,6 +565,7 @@ MonoBehaviour:
   speed: 500
   animator: {fileID: 7221524221588195405}
   pencilRenderer: {fileID: 1001945520453056050}
+  playerDetectionDistance: 2
   gridSelector: {fileID: 1695505579842937418}
   gridSelectorSingle: {fileID: 3670183310405840068}
   playerRotateContainer: {fileID: 5476768899410687180}
@@ -865,8 +866,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6869689539292201819}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.049, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.063, y: 0.049000025, z: -0.08}
+  m_LocalScale: {x: 1.1389955, y: 1.1389955, z: 1.1389955}
   m_Children: []
   m_Father: {fileID: 3670183310405840068}
   m_RootOrder: 2
@@ -918,7 +919,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.057011027
+    widthMultiplier: 0.1142134
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1028,8 +1029,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8727810830754986747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.049000025, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.5, y: 1.079, z: 0.5}
+  m_LocalScale: {x: 1.6047164, y: 1.6047164, z: 1.6047164}
   m_Children:
   - {fileID: 4921337731173352556}
   m_Father: {fileID: 3670183310405840068}

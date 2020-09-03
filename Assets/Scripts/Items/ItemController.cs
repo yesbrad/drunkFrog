@@ -41,7 +41,13 @@ public class ItemController : Interactable
     public void OnPlace(Vector3 position, Quaternion rot)
     {
         transform.position = position;
-        transform.rotation = rot;
+        
+        if(item.size != 1)
+            transform.rotation = rot;
+
+        // Use this so the player can customize rotaions
+        artContainer.transform.rotation = Quaternion.identity;
+
         gameObject.SetActive(true);
     }
 

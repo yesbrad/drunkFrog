@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : CharacterPawn
 {
     public PlayerManager Manager { get; private set; }
+    public float playerDetectionDistance = 2;
 
     public Transform gridSelector;
     public Transform gridSelectorSingle;
@@ -14,6 +15,8 @@ public class PlayerController : CharacterPawn
     private bool debugTime;
 
     public Vector3 oldPos;
+
+    int hoverSize;
 
     public override void Init()
     {
@@ -27,13 +30,42 @@ public class PlayerController : CharacterPawn
 	private void Update () 
 	{
         UpdateInput();
-        gridSelector.position = Vector3.Lerp(gridSelector.position, GetSelectionLocation(), Time.deltaTime * 20);
-		gridSelector.eulerAngles = PencilPartyUtils.RoundAnglesToNearest90(playerRotateContainer);
 
-		if(Manager.InventoryManager.currentItem != null)
+        Vector3 curAngle;
+
+        if (Manager.CurrentGrid != null && Manager.InventoryManager.currentItem != null)
+        {
+            gridSelector.gameObject.SetActive(true);
+
+            Vector2Int a = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
+            Vector2Int[] space = Manager.CurrentGrid.grid.GetGridSpace(a.x, a.y, Manager.InventoryManager.currentItem != null ? Manager.InventoryManager.currentItem.size : 1, gridSelector);
+
+            curAngle = Manager.InventoryManager.currentItem.size == 1 ? Vector3.zero : PencilPartyUtils.RoundAnglesToNearest90(playerRotateContainer);
+
+            gridSelector.position = Vector3.Lerp(gridSelector.position, GetSelectionLocation(), Time.deltaTime * 20);
+            gridSelector.eulerAngles = curAngle;
             gridSelector.localScale = Vector3.Lerp(gridSelector.localScale, new Vector3(Manager.InventoryManager.currentItem.size, 1, Manager.InventoryManager.currentItem.size) * constants.GridCellSize, Time.deltaTime * 10);
-        
-        gridSelectorSingle.position = Vector3.Lerp(gridSelector.position, GetSelectionLocation(), Time.deltaTime * 20);
+
+            if (Manager.CurrentGrid.HasItem(GetSelectionLocation()))
+            {
+                Item item = Manager.CurrentGrid.GetItem(GetSelectionLocation());
+                hoverSize = item.size;
+            }
+            else
+            {
+                hoverSize = 1;
+            }
+
+        }
+        else
+        {
+            gridSelector.gameObject.SetActive(false);
+            curAngle = Vector3.zero;
+        }
+
+        gridSelectorSingle.localScale = Vector3.Lerp(gridSelectorSingle.localScale, new Vector3(hoverSize, 1, hoverSize) * constants.GridCellSize, Time.deltaTime * 10);
+        gridSelectorSingle.position = Vector3.Lerp(gridSelectorSingle.position, GetSelectionLocation(), Time.deltaTime * 20);
+        gridSelectorSingle.eulerAngles = curAngle ;
 
         UpdateSelectorColors();
     }
@@ -60,7 +92,6 @@ public class PlayerController : CharacterPawn
     {
         if(Manager.CurrentGrid != null)
         {
-            gridSelector.gameObject.SetActive(Manager.InventoryManager.currentItem != null);
             gridSelectorSingle.gameObject.SetActive(true);
 
             Vector2Int pos = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
@@ -83,7 +114,6 @@ public class PlayerController : CharacterPawn
         }
         else
         {
-            gridSelector.gameObject.SetActive(Manager.InventoryManager.currentItem != null);
             gridSelectorSingle.gameObject.SetActive(false);
         }
     }
@@ -93,27 +123,33 @@ public class PlayerController : CharacterPawn
         if (Manager.CurrentGrid == null)
             return Vector3.zero;
 
-        return Manager.CurrentGrid.grid.GetWorldPositionFromWorld(transform.position + playerRotateContainer.forward * constants.GridCellSize);
+        return Manager.CurrentGrid.grid.GetWorldPositionFromWorld(transform.position + playerRotateContainer.forward * playerDetectionDistance);
     }
 
-    /*
+    
     private void OnDrawGizmos()
     {
-        Gizmos.DrawCube((transform.position + playerRotateContainer.forward * constants.GridCellSize), Vector3.one);
+
+
+        Gizmos.DrawCube(transform.position + playerRotateContainer.forward * playerDetectionDistance, Vector3.one);
         Gizmos.DrawCube(GetSelectionLocation(), Vector3.one);
 
-        Vector2Int a = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
-
-        Vector2Int[] space = Manager.CurrentGrid.grid.GetGridSpace(a.x,a.y, Manager.InventoryManager.currentItem.size, gridSelector);
-
-        Gizmos.color = Color.red;
-
-        for (int i = 0; i < space.Length; i++)
+        //return;
+        if (Manager.CurrentGrid != null && Manager.InventoryManager.currentItem != null)
         {
-            Gizmos.DrawCube(Manager.CurrentGrid.grid.GetWorldGridCenterPositionFromWorld(Manager.CurrentGrid.grid.GetWorldPositionFromGrid(space[i].x, space[i].y)), Vector3.one);
+            Vector2Int a = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
+
+            Vector2Int[] space = Manager.CurrentGrid.grid.GetGridSpace(a.x,a.y, Manager.InventoryManager.currentItem.size, playerRotateContainer);
+
+            Gizmos.color = Color.red;
+
+            for (int i = 0; i < space.Length; i++)
+            {
+                Gizmos.DrawCube(Manager.CurrentGrid.grid.GetWorldGridCenterPositionFromWorld(Manager.CurrentGrid.grid.GetWorldPositionFromGrid(space[i].x, space[i].y)), Vector3.one);
+            }
         }
     }
-    */
+    
 
     public void OnPlaceItem (InputAction.CallbackContext context)
     {
