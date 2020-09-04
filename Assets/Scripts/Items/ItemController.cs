@@ -12,23 +12,12 @@ public class ItemController : Interactable
 
     private float rotation;
 
-    public virtual void Init (Item newItem, CharacterManager manager, bool boxed)
+    public virtual void Init (Item newItem, CharacterManager manager)
     {
         item = newItem;
         owner = manager;
-        isBoxed = boxed;
-
-        if (isBoxed)
-        {
-            if (artContainer)
-                artContainer.SetActive(false);
-
-            //Spawn Box
-        }
-
         gameObject.SetActive(false);    
     }
-
     public void OnPickup()
     {
         Debug.Log("OnPicku[p", gameObject);

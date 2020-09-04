@@ -30,7 +30,7 @@ public class HouseDetector : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.matrix = transform.localToWorldMatrix;
-        Gizmos.DrawCube(Vector3.zero, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
     }
 
     private void OnDrawGizmos()

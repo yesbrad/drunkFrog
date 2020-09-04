@@ -7,6 +7,8 @@ public class ItemSceneSpawner : MonoBehaviour
 {
 	public ItemData itemData;
 	public bool spawnOnStart = true;
+	public bool showGizmos = true;
+	public bool Spawned { get; private set; }
 	private void Awake()
 	{
 		if(spawnOnStart)
@@ -32,10 +34,12 @@ public class ItemSceneSpawner : MonoBehaviour
 
 		Item item = ItemFactory.CreateItem(itemData, null);
 		grid.PlaceItem(transform.position, item, null);
+
+		Spawned = true;
 	}
 	private void OnDrawGizmos()
 	{
-		if (itemData)
+		if (itemData != null && showGizmos)
 		{
 			Gizmos.color = itemData.debugColor;
 			Gizmos.DrawWireCube(transform.position + (Vector3.one * (itemData.size * constants.GridCellSize) / 2), Vector3.one * (itemData.size * constants.GridCellSize));
