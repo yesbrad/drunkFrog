@@ -29,16 +29,14 @@ public class GridController : MonoBehaviour
     /// <summary>
     /// Place Item on Grid. Returns the new Item is it is successfuly placed.
     /// </summary>
-    public bool PlaceItem(Vector3 position, Item item, CharacterManager player, bool boxed = false)
+    public bool PlaceItem(Vector3 position, Item item, Transform rotationTransform)
     {
         Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
 
-		if(grid.CanPlaceItemWithSize(gridPosition.x, gridPosition.y, item.Data.size, player.RotationContainer))
+		if(grid.CanPlaceItemWithSize(gridPosition.x, gridPosition.y, item.Data.size, rotationTransform))
 		{
-            //ItemController cont = Instantiate(item.itemPrefab, grid.GetWorldPositionFromWorld(position), Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(player.RotationContainer))).GetComponent<ItemController>();
-            //Item instanedItem = item.Init(cont, player, boxed);
-            item.OnPlace(grid.GetWorldPositionFromWorld(position), Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(player.RotationContainer)));
-			grid.SetValue(gridPosition.x, gridPosition.y, item, GridSlotState.Occupied, item.Data.size, player.RotationContainer);
+            item.OnPlace(grid.GetWorldPositionFromWorld(position), rotationTransform != null ? Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(rotationTransform)) : Quaternion.identity);
+			grid.SetValue(gridPosition.x, gridPosition.y, item, GridSlotState.Occupied, item.Data.size, rotationTransform);
 			return true;
 		}
 		else
@@ -52,13 +50,13 @@ public class GridController : MonoBehaviour
     /// <summary>
     /// Removes Item off the grid, Returns the Removed item
     /// </summary>
-    public Item RemoveItem(Vector3 position, CharacterManager manager)
+    public Item DeleteItem(Vector3 position, CharacterManager manager, bool hardDelete = false)
     {
         Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
 
         if (HasItem(position))
         {      
-            return grid.DeleteValue(gridPosition.x, gridPosition.y, manager); ;
+            return grid.DeleteValue(gridPosition.x, gridPosition.y, manager, hardDelete); ;
         }
 
         return null;

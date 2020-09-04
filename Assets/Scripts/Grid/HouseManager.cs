@@ -76,11 +76,12 @@ public class HouseManager : MonoBehaviour
         {
             if (gridControllers[i].IsInBorderBounds(position))
             {
-                float distaneBetweenFloorHeightAndPawn = Vector3.Distance(new Vector3(position.x, gridControllers[i].transform.position.y, position.z), position + Vector3.down);
+                float distaneBetweenFloorHeightAndPawn = Vector3.Distance(new Vector3(position.x, gridControllers[i].transform.position.y, position.z), position);
 
-                if (distaneBetweenFloorHeightAndPawn < 0.2f)
+                if (distaneBetweenFloorHeightAndPawn < 0.5f)
                 {
                     controller = gridControllers[i];
+                    return controller;
                 }
             }
         }

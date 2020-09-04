@@ -55,6 +55,14 @@ public class ItemController : Interactable
         base.Interact(pawn, onFinishInteraction);
     }
 
+    public void Delete()
+    {
+        if (Application.isPlaying)
+            Destroy(gameObject);
+        else
+            DestroyImmediate(gameObject);
+    }
+
 
 
     public override void EndTask()

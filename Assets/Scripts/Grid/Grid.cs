@@ -23,6 +23,7 @@ public class GridSlot
     public void ResetSlot ()
     {
         gridState = GridSlotState.Open;
+        Debug.Log("Resetting Slot!");
         item.Reset();
     }
 }
@@ -123,6 +124,7 @@ public class Grid
 
 			for (int i = 0; i < gridSpace.Length; i++)
 			{
+                Debug.Log("Setting Slot");
 				gridArray[GetGridOneDIndex(gridSpace[i].x, gridSpace[i].y)].item = value;
 				gridArray[GetGridOneDIndex(gridSpace[i].x, gridSpace[i].y)].item.isPlaced = true;
 				gridArray[GetGridOneDIndex(gridSpace[i].x, gridSpace[i].y)].gridState = gridSlotState;
@@ -137,7 +139,7 @@ public class Grid
     /// <summary>
     /// Removes Item off the grid, Returns the Removed item
     /// </summary>
-    public Item DeleteValue(int x, int y, CharacterManager manager)
+    public Item DeleteValue(int x, int y, CharacterManager manager, bool hardDelete = false)
     {
         if (gridArray == null)
         {
@@ -152,7 +154,9 @@ public class Grid
             {
                 Item oldItem = gridArray[GetGridOneDIndex(x, y)].item;
                 ItemController itemController = oldItem.controller;
-                Item clonedItem = ItemFactory.CloneItem(oldItem.Data, itemController, manager, oldItem.extraData);
+                Item possibleClonedItem = ItemFactory.CloneItem(oldItem.Data, itemController, manager, oldItem.extraData);
+
+               // string oldUUID = ;
 
                 for (int i = 0; i < gridArray.Length; i++)
                 {
@@ -162,7 +166,7 @@ public class Grid
                     }
                 }
 
-                return clonedItem;
+                return possibleClonedItem;
             }
         }
         else

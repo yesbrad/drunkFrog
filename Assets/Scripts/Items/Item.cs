@@ -22,13 +22,13 @@ public class Item
 
     public Dictionary<string, int> extraData;
 
-    public Item(ItemData data, ItemController newController, CharacterManager playerManager, Dictionary<string, int> extraData = null, bool boxed = false)
+    public Item(ItemData data, ItemController newController, CharacterManager playerManager = null, Dictionary<string, int> extraData = null, bool boxed = false)
     {
         this.itemData = data;
         this.controller = newController;
         this.controller.Init(this, playerManager, boxed);
         this.owner = playerManager;
-        this.UUID = $"{newController.transform.position}:yeet:{Random.Range(0f, 1f)}";
+        this.UUID = $"{newController.transform.position}:{itemData.id}:{Random.Range(0f, 1f)}";
         this.Initialized = true;
         this.extraData = extraData;
     }

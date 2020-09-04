@@ -14,7 +14,8 @@ public class StaticItemController : ItemController
     public override void Init(Item newItem, CharacterManager manager, bool boxed)
     {
         base.Init(newItem, manager, boxed);
-        owner.HouseManager.AddHP(placePoints);
+
+        owner?.HouseManager.AddHP(placePoints);
     }
 
     public override void Interact(Pawn pawn, Action taskFinishCallback)

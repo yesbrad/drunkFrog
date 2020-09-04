@@ -64,18 +64,20 @@ public class CharacterManager : MonoBehaviour
         {
             if (InventoryManager.HasItem())
             {
-                if (CurrentGrid.PlaceItem(position, InventoryManager.CurrentItem, this))
+                if (CurrentGrid.PlaceItem(position, InventoryManager.CurrentItem, this.RotationContainer))
                 {
                     InventoryManager.ConsumeItem();
                     return;
                 }
             }
-
-            Item possiblePickup = CurrentGrid.RemoveItem(position, this);
-            
-            if(possiblePickup != null)
+            else
             {
-                InventoryManager.GiveItem(possiblePickup);
+                Item possiblePickup = CurrentGrid.DeleteItem(position, this);
+            
+                if(possiblePickup != null)
+                {
+                    InventoryManager.GiveItem(possiblePickup);
+                }
             }
         }
     }

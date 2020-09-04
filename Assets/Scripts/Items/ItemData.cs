@@ -10,6 +10,9 @@ public class ItemData : ScriptableObject
     public int size = 1;
     public GameObject itemPrefab;
 
+    [Header("Debug")]
+    public Color debugColor = Color.cyan;
+
     public ItemController SpawnController()
     {
         ItemController controller = Instantiate(itemPrefab).GetComponent<ItemController>();
