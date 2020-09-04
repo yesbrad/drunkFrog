@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Block Data
   id: bd
-  size: 1
+  size:
+    x: 1
+    y: 1
   itemPrefab: {fileID: 1718937532128273951, guid: 791d4ff4e57556d4fb231d3c8d43af8e,
     type: 3}
+  debugColor: {r: 1, g: 0.11596079, b: 0, a: 1}

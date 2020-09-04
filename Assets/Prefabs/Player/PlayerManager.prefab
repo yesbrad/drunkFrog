@@ -65,10 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c07345c932d5149a942c1f46e2546c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugStartItem: {fileID: 11400000, guid: 76d1cdcce14ecad4997e6de23dbeb5ed, type: 2}
-  currentItem:
-    itemData: {fileID: 0}
-  selectionIndex: 0
+  debugStartItem: {fileID: 11400000, guid: 4e8a033875e36744fb16e5257cf0f563, type: 2}
 --- !u!114 &7845452019637311001
 MonoBehaviour:
   m_ObjectHideFlags: 0

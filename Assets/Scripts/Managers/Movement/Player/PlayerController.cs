@@ -16,7 +16,7 @@ public class PlayerController : CharacterPawn
 
     public Vector3 oldPos;
 
-    int hoverSize;
+    ItemSize hoverSize = new ItemSize();
 
     public override void Init()
     {
@@ -38,22 +38,24 @@ public class PlayerController : CharacterPawn
             gridSelector.gameObject.SetActive(true);
 
             Vector2Int a = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
-            Vector2Int[] space = Manager.CurrentGrid.grid.GetGridSpace(a.x, a.y, Manager.InventoryManager.CurrentItem != null ? Manager.InventoryManager.CurrentItem.Data.size : 1, gridSelector);
+            Vector2Int[] space = Manager.CurrentGrid.grid.GetGridSpace(a.x, a.y, Manager.InventoryManager.CurrentItem.Data.size, gridSelector);
 
-            curAngle = Manager.InventoryManager.CurrentItem.Data.size == 1 ? Vector3.zero : PencilPartyUtils.RoundAnglesToNearest90(playerRotateContainer);
+            curAngle = Manager.InventoryManager.CurrentItem.Data.size.IsSingle() ? Vector3.zero : PencilPartyUtils.RoundAnglesToNearest90(playerRotateContainer);
 
             gridSelector.position = Vector3.Lerp(gridSelector.position, GetSelectionLocation(), Time.deltaTime * 20);
             gridSelector.eulerAngles = curAngle;
-            gridSelector.localScale = Vector3.Lerp(gridSelector.localScale, new Vector3(Manager.InventoryManager.CurrentItem.Data.size, 1, Manager.InventoryManager.CurrentItem.Data.size) * constants.GridCellSize, Time.deltaTime * 10);
+            gridSelector.localScale = Vector3.Lerp(gridSelector.localScale, new Vector3(Manager.InventoryManager.CurrentItem.Data.size.x, 1, Manager.InventoryManager.CurrentItem.Data.size.y) * constants.GridCellSize, Time.deltaTime * 10);
 
             if (Manager.CurrentGrid.HasItem(GetSelectionLocation()))
             {
                 Item item = Manager.CurrentGrid.GetItem(GetSelectionLocation());
-                hoverSize = item.Data.size;
+                hoverSize.x = item.Data.size.x;
+                hoverSize.y = item.Data.size.y;
             }
             else
             {
-                hoverSize = 1;
+                hoverSize.x = 1;
+                hoverSize.y = 1;
             }
 
         }
@@ -63,7 +65,7 @@ public class PlayerController : CharacterPawn
             curAngle = Vector3.zero;
         }
 
-        gridSelectorSingle.localScale = Vector3.Lerp(gridSelectorSingle.localScale, new Vector3(hoverSize, 1, hoverSize) * constants.GridCellSize, Time.deltaTime * 10);
+        gridSelectorSingle.localScale = Vector3.Lerp(gridSelectorSingle.localScale, new Vector3(hoverSize.x, 1, hoverSize.y) * constants.GridCellSize, Time.deltaTime * 10);
         gridSelectorSingle.position = Vector3.Lerp(gridSelectorSingle.position, GetSelectionLocation(), Time.deltaTime * 20);
         gridSelectorSingle.eulerAngles = curAngle ;
 
@@ -123,7 +125,7 @@ public class PlayerController : CharacterPawn
         if (Manager.CurrentGrid == null)
             return Vector3.zero;
 
-        return Manager.CurrentGrid.grid.GetWorldPositionFromWorld(transform.position + playerRotateContainer.forward * playerDetectionDistance);
+        return Manager.CurrentGrid.grid.GetWorldPositionFromWorld(transform.position + (playerRotateContainer.forward * playerDetectionDistance));
     }
 
     

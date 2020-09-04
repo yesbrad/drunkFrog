@@ -3,11 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item Data", menuName = "Item Data")]
+
+[System.Serializable]
+public class ItemSize
+{
+    [Range(1, 10)]
+    public int x;
+
+    [Range(1, 10)]
+    public int y;
+
+    public ItemSize ()
+    {
+        x = 1;
+        y = 1;
+    }
+
+    public bool IsSingle()
+    {
+        return x == 1 && y == 1;
+    }
+}
 public class ItemData : ScriptableObject
 {
     public string name;
     public string id;
-    public int size = 1;
+    public ItemSize size = new ItemSize();
     public GameObject itemPrefab;
 
     [Header("Debug")]

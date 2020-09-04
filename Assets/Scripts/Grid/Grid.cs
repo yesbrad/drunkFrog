@@ -110,7 +110,7 @@ public class Grid
         return y * width + x;
     }
 
-    public void SetValue(int x, int y, Item value, GridSlotState gridSlotState = GridSlotState.Occupied, int size = 1, Transform rotateTransform = null)
+    public void SetValue(int x, int y, Item value, ItemSize size, GridSlotState gridSlotState = GridSlotState.Occupied, Transform rotateTransform = null)
     {
         if (gridArray == null)
         {
@@ -187,7 +187,7 @@ public class Grid
         return (x >= 0 && y >= 0 && x < width && y < height);
     }
 
-    public bool CanPlaceItemWithSize(int x, int y, int size, Transform direction)
+    public bool CanPlaceItemWithSize(int x, int y, ItemSize size, Transform direction)
     {
         if (IsInBounds(x, y) == false)
             return false;
@@ -206,22 +206,21 @@ public class Grid
         return true;
     }
 
-    public Vector2Int[] GetGridSpace(int x, int y, int size, Transform direction)
+    public Vector2Int[] GetGridSpace(int x, int y, ItemSize size, Transform direction)
     {
         // No need to check for larger objects
-        if(size == 1)
+        if(size.IsSingle())
         {
             return new Vector2Int[] { new Vector2Int(x, y) };
         }
 
         List<Vector2Int> newSpace = new List<Vector2Int>();
 
-
 		if(direction == null || PencilPartyUtils.RoundAnglesToNearest90(direction).y == 0)
 		{
-			for (int xx = 0; xx < size; xx++)
+			for (int xx = 0; xx < size.x; xx++)
 			{
-				for (int yy = 0; yy < size; yy++)
+				for (int yy = 0; yy < size.y; yy++)
 				{
 					newSpace.Add(new Vector2Int(x + xx, y + yy));
 				}
@@ -229,9 +228,9 @@ public class Grid
 		}
 		else if(PencilPartyUtils.RoundAnglesToNearest90(direction).y == 90)
 		{
-			for (int xx = 0; xx < size; xx++)
+			for (int xx = 0; xx < size.y; xx++)
 			{
-				for (int yy = 0; yy < size; yy++)
+				for (int yy = 0; yy < size.x; yy++)
 				{
 					newSpace.Add(new Vector2Int(x + xx, y - yy - 1));
 				}
@@ -239,9 +238,9 @@ public class Grid
 		}
 		else if(PencilPartyUtils.RoundAnglesToNearest90(direction).y == 180)
 		{
-			for (int xx = 0; xx < size; xx++)
+			for (int xx = 0; xx < size.x; xx++)
 			{
-				for (int yy = 0; yy < size; yy++)
+				for (int yy = 0; yy < size.y; yy++)
 				{
 					newSpace.Add(new Vector2Int(x + -xx - 1, y + -yy - 1));
 				}
@@ -249,9 +248,9 @@ public class Grid
 		}
 		else 
 		{
-			for (int xx = 0; xx < size; xx++)
+			for (int xx = 0; xx < size.y; xx++)
 			{
-				for (int yy = 0; yy < size; yy++)
+				for (int yy = 0; yy < size.x; yy++)
 				{
 					newSpace.Add(new Vector2Int(x + -xx - 1, y + yy));
 				}

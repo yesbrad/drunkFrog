@@ -6,12 +6,6 @@ public class ItemController : Interactable
 {
     public Item item { get; private set; }
     public GameObject artContainer;
-
-    private GameObject boxContainer;
-    private bool isBoxed;
-
-    private float rotation;
-
     public virtual void Init (Item newItem, CharacterManager manager)
     {
         item = newItem;
@@ -20,21 +14,16 @@ public class ItemController : Interactable
     }
     public void OnPickup()
     {
-        Debug.Log("OnPicku[p", gameObject);
         gameObject.SetActive(false);
     }
-
 
     // On Place must be call to position the item controller
     public void OnPlace(Vector3 position, Quaternion rot)
     {
         transform.position = position;
         
-        if(item.Data.size != 1)
+        if(item.Data.size.IsSingle() == false)
             transform.rotation = rot;
-
-        // Use this so the player can customize rotaions
-        artContainer.transform.rotation = Quaternion.identity;
 
         gameObject.SetActive(true);
     }
@@ -51,8 +40,6 @@ public class ItemController : Interactable
         else
             DestroyImmediate(gameObject);
     }
-
-
 
     public override void EndTask()
     {
