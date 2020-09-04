@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c29428ab1683b419d7aa26bc6f25c3, type: 3}
   m_Name: Decks
   m_EditorClassIdentifier: 
-  name: BeerPongTable
-  id: BeerPongTable
+  name: Decks
+  id: Decks_2
   size:
     x: 1
     y: 3
-  itemPrefab: {fileID: 1718937532128273951, guid: ba32e9bba7904cf45b2973ccc734a1d8,
+  itemPrefab: {fileID: 1718937532128273951, guid: 33284d8ae986c6449989f4265c309838,
     type: 3}
-  debugColor: {r: 0, g: 1, b: 1, a: 1}
+  gridSlot: 1
+  debugColor: {r: 1, g: 0.6134583, b: 0, a: 1}

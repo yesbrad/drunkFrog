@@ -6,6 +6,7 @@ public enum GridSlotState
     Open,
     Occupied,
     Blocked,
+    Static,
 }
 
 [System.Serializable]
@@ -201,6 +202,9 @@ public class Grid
 
             if (gridArray[GetGridOneDIndex(gridSpace[i].x, gridSpace[i].y)].gridState == GridSlotState.Occupied)
 				return false;
+
+            if (gridArray[GetGridOneDIndex(gridSpace[i].x, gridSpace[i].y)].gridState == GridSlotState.Static)
+                return false;
         }
 
         return true;

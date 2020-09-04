@@ -30,6 +30,7 @@ public class ItemData : ScriptableObject
     public string id;
     public ItemSize size = new ItemSize();
     public GameObject itemPrefab;
+    public GridSlotState gridSlot = GridSlotState.Occupied;
 
     [Header("Debug")]
     public Color debugColor = Color.cyan;
