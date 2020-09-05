@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Group : Interactable
+public class Group : MonoBehaviour, IInteractable
 {
     [System.Serializable]
     public class GroupCharacter
@@ -28,29 +28,29 @@ public class Group : Interactable
     [Tooltip("Seconds")]
     public int maxTime = 60;
 
+    [SerializeField]
+    private Transform interactPosition;
+
+    public Transform InteractPosition { get { return interactPosition; } }
+
     private float currentBootTime;
 
-    public float iceBreakTime = 5;
-    private float currentIceBreakTime;
-    bool isIceBroken;
-    float maxTimeTimer;
+    public bool occupied { get; set; }
+
+    public System.Action onTaskFinished { get; set; }
 
     private void Awake()
     {
         currentBootTime = shrinkageTime;
-        currentBootTime = iceBreakTime;
-        maxTimeTimer = maxTime;
     }
 
-    public override void Interact(Pawn pawn, System.Action onFinishInteraction)
-    {
-        //base.Interact(pawn, onFinishInteraction);
+    public void Interact(Pawn pawn, System.Action onFinishInteraction)
+    { 
         if(characters.Count > groupLimit)
         {
             onFinishInteraction();
             return;
         }
-
         characters.Add(new GroupCharacter(pawn.GetComponentInParent<AIManager>(), onFinishInteraction));
     }
 
@@ -83,15 +83,11 @@ public class Group : Interactable
         characters.RemoveAt(index);
     }
 
-    //Doesnt Really Finish
-    public override void EndTask()
-    {
-        base.EndTask();
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 3);
     }
+
+    
 }

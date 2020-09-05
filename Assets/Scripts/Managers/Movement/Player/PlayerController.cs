@@ -169,6 +169,14 @@ public class PlayerController : CharacterPawn
         }
     }
 
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Manager.Interact(GetSelectionLocation());
+        }
+    }
+
     public void OnDebugSpawn(InputAction.CallbackContext context)
     {
         if (context.performed)

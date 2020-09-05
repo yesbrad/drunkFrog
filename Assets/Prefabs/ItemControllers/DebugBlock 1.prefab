@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artContainer: {fileID: 7406545262452041608}
+  interactPosition: {fileID: 4988009334960589730}
   placePoints: 2
   waitTime: 1
   renderer: {fileID: 9114694491202328375}

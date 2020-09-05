@@ -1,11 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemController : Interactable
+public class ItemController : MonoBehaviour, IInteractable
 {
     public Item item { get; private set; }
     public GameObject artContainer;
+
+    [SerializeField]
+    private Transform interactPosition;
+
+    public Transform InteractPosition { get { return interactPosition; } }
+    public CharacterManager owner { get; set; }
+    public bool occupied { get; set; }
+
+    public Action onTaskFinished { get; set; }
+
     public virtual void Init (Item newItem, CharacterManager manager)
     {
         item = newItem;
@@ -28,9 +39,17 @@ public class ItemController : Interactable
         gameObject.SetActive(true);
     }
 
-    public override void Interact(Pawn pawn, System.Action onFinishInteraction = null)
+
+    public virtual void Interact(Pawn pawn, System.Action onFinishInteraction = null)
     {
-        base.Interact(pawn, onFinishInteraction);
+        if (occupied)
+        {
+            onFinishInteraction?.Invoke();
+            return;
+        }
+
+        occupied = true;
+        onTaskFinished = onFinishInteraction;
     }
 
     public void Delete()
@@ -41,8 +60,15 @@ public class ItemController : Interactable
             DestroyImmediate(gameObject);
     }
 
-    public override void EndTask()
+    /// <summary>
+    /// Called when the item is finished being used
+    /// </summary>
+    public void EndTask()
     {
-        base.EndTask();
+        if (onTaskFinished != null)
+            onTaskFinished();
+
+        occupied = false;
+        onTaskFinished = null;
     }
 }

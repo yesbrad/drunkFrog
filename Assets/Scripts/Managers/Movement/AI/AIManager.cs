@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class AITask
 {
-    public Interactable interactable;
+    public IInteractable interactable;
     public bool isComplete;
 
     private Pawn currentPawn;
@@ -20,9 +20,9 @@ public class AITask
 
     public float time;
 
-    public AITask (Interactable newItem, bool isGroup = false) {
+    public AITask (IInteractable newItem, bool isGroup = false) {
         interactable = newItem;
-        destination = interactable.transform.position;
+        destination = interactable.InteractPosition.position;
         isInGroup = isGroup;
     }
 
@@ -43,7 +43,7 @@ public class AITask
 
     public void OnDestinationReached ()
     {
-        if (interactable)
+        if (interactable != null)
         {
             interactable.Interact(currentPawn, () => OnFinish());
         } 

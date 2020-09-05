@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c29428ab1683b419d7aa26bc6f25c3, type: 3}
-  m_Name: Block
+  m_Name: ShopTruck
   m_EditorClassIdentifier: 
-  name: Block Data
-  id: bd
+  name: Shop Truck
+  id: truck
   size:
     x: 1
     y: 1
   itemPrefab: {fileID: 1718937532128273951, guid: 791d4ff4e57556d4fb231d3c8d43af8e,
     type: 3}
-  debugColor: {r: 1, g: 0.11596079, b: 0, a: 1}
+  gridSlot: 3
+  debugColor: {r: 1, g: 0, b: 0.45962954, a: 1}

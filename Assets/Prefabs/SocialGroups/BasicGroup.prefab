@@ -48,7 +48,8 @@ MonoBehaviour:
   characters: []
   shrinkageTime: 3
   groupLimit: 5
-  iceBreakTime: 4
+  maxTime: 60
+  interactPosition: {fileID: 8386773573048055489}
 --- !u!65 &-7729112158575841356
 BoxCollider:
   m_ObjectHideFlags: 0

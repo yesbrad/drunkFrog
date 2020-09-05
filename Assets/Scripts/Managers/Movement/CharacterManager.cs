@@ -82,6 +82,14 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    public void Interact(Vector3 position)
+    {
+        if (HasActiveGrid())
+        {
+            CurrentGrid.InteractItem(position, this);
+        }
+    }
+
     public Vector3 GetGridCenterPosition(Vector3 lookPosition)
     {
         return CurrentGrid.grid.GetWorldGridCenterPositionFromWorld(lookPosition);

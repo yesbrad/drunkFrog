@@ -13,14 +13,14 @@ public class AIController : Pawn
 
         public bool inTransit;
         public System.Action OnReachDestination;
-        public Interactable parentInteractable;
+        public IInteractable parentInteractable;
         public bool hasInteractable;
         
         public Vector3 jobDestination;
         public Transform jobDestinationTransform;
         public bool useTransform;
 
-        public Job (NavMeshAgent jobAgent, Vector3 destination, System.Action desinationReached, Interactable interactable)
+        public Job (NavMeshAgent jobAgent, Vector3 destination, System.Action desinationReached, IInteractable interactable)
         {
             navAgent = jobAgent;
             OnReachDestination = desinationReached;
@@ -28,7 +28,7 @@ public class AIController : Pawn
             parentInteractable = interactable;
         }
 
-        public Job(NavMeshAgent jobAgent, Transform destination, System.Action desinationReached, Interactable interactable)
+        public Job(NavMeshAgent jobAgent, Transform destination, System.Action desinationReached, IInteractable interactable)
         {
             navAgent = jobAgent;
             OnReachDestination = desinationReached;
@@ -102,7 +102,7 @@ public class AIController : Pawn
         SetVelocity(agent.velocity.sqrMagnitude);
     }
 
-    public void SetDestination (Vector3 destination, System.Action desinationReached, Interactable interactable)
+    public void SetDestination (Vector3 destination, System.Action desinationReached, IInteractable interactable)
     {
         currentJob = new Job(agent, destination, desinationReached, interactable);
         currentJob.Init();

@@ -14,13 +14,13 @@ public class StaticItemController : ItemController
     public override void Init(Item newItem, CharacterManager manager)
     {
         base.Init(newItem, manager);
-        owner?.HouseManager.AddHP(placePoints);
+        owner?.HouseManager?.AddHP(placePoints);
     }
 
     public override void Interact(Pawn pawn, Action taskFinishCallback)
     {
         base.Interact(pawn, taskFinishCallback);
-        owner.HouseManager.AddHP(placePoints);
+        owner?.HouseManager?.AddHP(placePoints);
         currentTime = waitTime;
 
         if (renderer)
@@ -40,10 +40,5 @@ public class StaticItemController : ItemController
                 EndTask();
             }
         }
-    }
-
-    public override void EndTask()
-    {
-        base.EndTask();
     }
 }

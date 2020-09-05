@@ -66,7 +66,7 @@ public class GridController : MonoBehaviour
     /// <summary>
     /// Interact with an item of the grid
     /// </summary>
-    public void UseItem(Vector3 position, CharacterManager player)
+    public void InteractItem(Vector3 position, CharacterManager player)
     {
         Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
 

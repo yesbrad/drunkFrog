@@ -42,8 +42,15 @@ public class ItemSceneSpawner : MonoBehaviour
 		if (itemData != null && showGizmos)
 		{
 			Gizmos.color = itemData.debugColor;
-			Gizmos.DrawWireCube(transform.position + (Vector3.one * (itemData.size.x * constants.GridCellSize) / 2), Vector3.one * (itemData.size.y * constants.GridCellSize));
-			Gizmos.DrawCube(transform.position + (Vector3.one * (itemData.size.x * constants.GridCellSize) / 2), Vector3.one * 0.3f);
+			Gizmos.DrawLine(transform.position, transform.position + Vector3.right * (itemData.size.x * constants.GridCellSize));
+			Gizmos.DrawLine(transform.position, transform.position + Vector3.forward * (itemData.size.y * constants.GridCellSize));
+
+			Gizmos.DrawLine(transform.position + Vector3.right * (itemData.size.x * constants.GridCellSize), (Vector3.right * (itemData.size.x * constants.GridCellSize)) +
+				(Vector3.forward * (itemData.size.y * constants.GridCellSize)) + transform.position);
+			Gizmos.DrawLine(transform.position + Vector3.forward * (itemData.size.y * constants.GridCellSize), (Vector3.right * (itemData.size.x * constants.GridCellSize)) +
+				(Vector3.forward * (itemData.size.y * constants.GridCellSize)) + transform.position);
+
+			Gizmos.DrawSphere(transform.position, 0.3f);
 		}
 	}
 }
