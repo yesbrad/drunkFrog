@@ -17,9 +17,9 @@ public class StaticItemController : ItemController
         owner?.HouseManager?.AddHP(placePoints);
     }
 
-    public override void Interact(Pawn pawn, Action taskFinishCallback)
+    public override void Interact(CharacterManager manager, Action taskFinishCallback)
     {
-        base.Interact(pawn, taskFinishCallback);
+        base.Interact(manager, taskFinishCallback);
         owner?.HouseManager?.AddHP(placePoints);
         currentTime = waitTime;
 

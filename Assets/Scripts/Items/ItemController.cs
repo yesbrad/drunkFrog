@@ -40,7 +40,7 @@ public class ItemController : MonoBehaviour, IInteractable
     }
 
 
-    public virtual void Interact(Pawn pawn, System.Action onFinishInteraction = null)
+    public virtual void Interact(CharacterManager manager, System.Action onFinishInteraction = null)
     {
         if (occupied)
         {

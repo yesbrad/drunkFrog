@@ -44,14 +44,14 @@ public class Group : MonoBehaviour, IInteractable
         currentBootTime = shrinkageTime;
     }
 
-    public void Interact(Pawn pawn, System.Action onFinishInteraction)
+    public void Interact(CharacterManager manager, System.Action onFinishInteraction)
     { 
         if(characters.Count > groupLimit)
         {
             onFinishInteraction();
             return;
         }
-        characters.Add(new GroupCharacter(pawn.GetComponentInParent<AIManager>(), onFinishInteraction));
+        characters.Add(new GroupCharacter(manager.GetComponentInParent<AIManager>(), onFinishInteraction));
     }
 
     private void Update()

@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         manager = GetComponent<PlayerManager>();
-        currentItem = ItemFactory.CreateItem(debugStartItem, manager);
+        //currentItem = ItemFactory.CreateItem(debugStartItem, manager);
         RefreshUI();
     }
 

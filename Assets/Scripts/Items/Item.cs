@@ -41,9 +41,9 @@ public class Item
         Initialized = false;
     }
 
-    public virtual void Interact (Pawn pawn, System.Action onFinishInteraction = null)
+    public virtual void Interact (CharacterManager manager, System.Action onFinishInteraction = null)
     {
-        controller.Interact(pawn, onFinishInteraction);
+        controller.Interact(manager, onFinishInteraction);
     }
 
     public void OnPickup()

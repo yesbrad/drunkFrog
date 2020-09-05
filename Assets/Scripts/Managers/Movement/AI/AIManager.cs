@@ -8,7 +8,7 @@ public class AITask
     public IInteractable interactable;
     public bool isComplete;
 
-    private Pawn currentPawn;
+    private CharacterManager currentCharacter;
 
     [SerializeField] private System.Action onFinished;
 
@@ -31,9 +31,9 @@ public class AITask
         destination = positon;
     }
 
-    public virtual void OnStart(Pawn pawn, AIController iController, System.Action onFinish)
+    public virtual void OnStart(CharacterManager character, AIController iController, System.Action onFinish)
     {
-        currentPawn = pawn;
+        currentCharacter = character;
         onFinished = onFinish;
         controller = iController;
         controller.SetDestination(destination, OnDestinationReached, interactable);
@@ -45,7 +45,7 @@ public class AITask
     {
         if (interactable != null)
         {
-            interactable.Interact(currentPawn, () => OnFinish());
+            interactable.Interact(currentCharacter, () => OnFinish());
         } 
         else
         {
@@ -55,10 +55,11 @@ public class AITask
 
     public void OnFinish ()
     {
-        //Debug.Log($"Finished Using Item Invokein OnFinish: {item.UUID}", item.controller.gameObject);
         isComplete = true;
+
         if(onFinished != null)
             onFinished.Invoke();
+
         onFinished = null;
     }
 }
@@ -111,7 +112,7 @@ public class AIManager : CharacterManager
     public void OverrideCurrentTask(AITask newTask)
     {
         currentTask = newTask;
-        currentTask.OnStart(Pawn, controller, () => StartTask(GenerateNewTask()));
+        currentTask.OnStart(this, controller, () => StartTask(GenerateNewTask()));
     }
 
     public AITask SelectTask ()
@@ -220,7 +221,7 @@ public class AIManager : CharacterManager
     public void StartTask(AITask task)
     {
         tasksCompleted++;
-        task.OnStart(Pawn, controller, () => StartTask(GenerateNewTask()));
+        task.OnStart(this, controller, () => StartTask(GenerateNewTask()));
     }
 
     public void OnDrawGizmos()
