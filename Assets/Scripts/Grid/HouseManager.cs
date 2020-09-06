@@ -16,6 +16,8 @@ public class HouseManager : MonoBehaviour
     public FloorSettings[] floorSettings;
     public Transform houseCenter;
 
+    public Transform spawnPosition;
+
     public List<CharacterManager> guests = new List<CharacterManager>();
 
     public PlayerManager houseOwner;

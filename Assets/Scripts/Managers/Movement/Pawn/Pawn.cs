@@ -43,6 +43,11 @@ public class Pawn : MonoBehaviour
             Debug.LogError("Missing Animator on Pawn", gameObject);
     }
 
+    public void SetPosition (Vector3 position)
+    {
+        transform.position = position;
+    }
+
     public void SetState(PawnState state)
     {
         animator.SetBool("isFree", state == PawnState.Free);

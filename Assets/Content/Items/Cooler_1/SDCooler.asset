@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7c8ca0c4afe3c04388f176fc01a0978, type: 3}
-  m_Name: Cooler
+  m_Name: SDCooler
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 14c0741b39608ff4b9779aff969b7b27, type: 2}
   cost: 100

@@ -16,6 +16,7 @@ public class PlayerManager : CharacterManager
     {
         base.Init(initialHouse);
         Detection = GetComponent<PlayerDetection>();
+        Pawn.SetPosition(initialHouse.spawnPosition.position);
     }
 
     public override void Interact(Vector3 position)
