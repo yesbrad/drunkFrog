@@ -17,7 +17,7 @@ MonoBehaviour:
   size:
     x: 1
     y: 1
-  itemPrefab: {fileID: 919132149155446097, guid: d40252ff66aeeb14a83baff6162c7dab,
+  itemPrefab: {fileID: 1718937532128273951, guid: e8432abc3bc34a54f8a01f40229191a3,
     type: 3}
   gridSlot: 1
   debugColor: {r: 1, g: 0.11596079, b: 0, a: 1}

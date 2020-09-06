@@ -122,13 +122,13 @@ public class PlayerController : CharacterPawn
 
     private Vector3 GetSelectionLocation ()
     {
-        if (Manager.CurrentGrid == null)
+        if (Manager == null || Manager.CurrentGrid == null)
             return Vector3.zero;
 
         return Manager.CurrentGrid.grid.GetWorldPositionFromWorld(transform.position + (playerRotateContainer.forward * playerDetectionDistance));
     }
 
-    
+    /*
     private void OnDrawGizmos()
     {
 
@@ -137,7 +137,7 @@ public class PlayerController : CharacterPawn
         Gizmos.DrawCube(GetSelectionLocation(), Vector3.one);
 
         //return;
-        if (Manager.CurrentGrid != null && Manager.InventoryManager.CurrentItem != null)
+        if (Manager == null || Manager.CurrentGrid != null && Manager.InventoryManager.CurrentItem != null)
         {
             Vector2Int a = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
 
@@ -151,7 +151,7 @@ public class PlayerController : CharacterPawn
             }
         }
     }
-    
+    */
 
     public void OnPlaceItem (InputAction.CallbackContext context)
     {

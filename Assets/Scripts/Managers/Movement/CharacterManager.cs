@@ -82,7 +82,7 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-    public void Interact(Vector3 position)
+    public virtual void Interact(Vector3 position)
     {
         if (HasActiveGrid())
         {

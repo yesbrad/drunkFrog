@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1082141236455709116}
   - component: {fileID: 7845452019637311001}
   - component: {fileID: -5245681191287386649}
+  - component: {fileID: 1448146738305699682}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -200,16 +201,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8ab125dea81e54e884d07b07523f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugInventory:
-  - {fileID: 11400000, guid: 76d1cdcce14ecad4997e6de23dbeb5ed, type: 2}
-  - {fileID: 11400000, guid: 4e8a033875e36744fb16e5257cf0f563, type: 2}
-  - {fileID: 11400000, guid: 9007ea6c2279d7747acf267a53a1bfdb, type: 2}
-  - {fileID: 11400000, guid: 76d1cdcce14ecad4997e6de23dbeb5ed, type: 2}
-  - {fileID: 11400000, guid: 4e8a033875e36744fb16e5257cf0f563, type: 2}
-  - {fileID: 11400000, guid: 9007ea6c2279d7747acf267a53a1bfdb, type: 2}
-  - {fileID: 11400000, guid: 76d1cdcce14ecad4997e6de23dbeb5ed, type: 2}
-  - {fileID: 11400000, guid: 4e8a033875e36744fb16e5257cf0f563, type: 2}
-  - {fileID: 11400000, guid: 9007ea6c2279d7747acf267a53a1bfdb, type: 2}
+  debugInventory: []
+--- !u!114 &1448146738305699682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082141236455709113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 443b94b1f4f19914c9669db6d3da7895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationContainer: {fileID: 8378277342594122750}
+  detectDistance: 2
 --- !u!1 &2372969480976382356
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +786,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0454a1ba18e4dcfac5c86460a3880d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8378277342594122750 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5476768899410687180, guid: 2d0326e2a201bfc408c02beb31393dde,
+    type: 3}
+  m_PrefabInstance: {fileID: 4054641067855787826}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4996735750293577897
 PrefabInstance:
   m_ObjectHideFlags: 0

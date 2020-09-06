@@ -10,10 +10,18 @@ public class PlayerManager : CharacterManager
     [SerializeField] PlayerUI playerUI;
 
     public PlayerUI PlayerUI { get { return playerUI; } }
+    public PlayerDetection Detection { get; private set; }
 
     public override void Init(HouseManager initialHouse)
     {
         base.Init(initialHouse);
+        Detection = GetComponent<PlayerDetection>();
+    }
+
+    public override void Interact(Vector3 position)
+    {
+        base.Interact(position);
+        Detection.Detect(this);
     }
 
     public override void Update()
