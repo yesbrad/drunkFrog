@@ -71,4 +71,9 @@ public class ItemController : MonoBehaviour, IInteractable
         occupied = false;
         onTaskFinished = null;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireCube(Vector3.one * 10, Vector3.one * 20);
+    }
 }
