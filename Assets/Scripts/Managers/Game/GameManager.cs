@@ -67,9 +67,7 @@ public class GameManager : MonoBehaviour
     /// <param name="manager">House to spawn in</param>
     public void SpawnAI(HouseManager manager)
     {
-        AIManager newAI = Instantiate(AIManagerPrefab).GetComponent<AIManager>();
-        newAI.Init(manager);
-        ai.Add(newAI);
+        manager.Spawner.SpawnPencil();
     }
 
     public void SpawnAI(Houses house)

@@ -16,11 +16,14 @@ public class HouseManager : MonoBehaviour
     public FloorSettings[] floorSettings;
     public Transform houseCenter;
 
-    public Transform spawnPosition;
+    [SerializeField]
+    private Transform spawnPosition;
 
     public List<CharacterManager> guests = new List<CharacterManager>();
 
     public PlayerManager houseOwner;
+    public PencilSpawner Spawner { get; private set; }
+    public Vector3 SpawnPosition { get { return spawnPosition.position; } }
 
     public List<Item> houseInventory = new List<Item>();
 
@@ -31,6 +34,7 @@ public class HouseManager : MonoBehaviour
         houseOwner = owner;
         PP = 1;
         RefreshUI();
+        Spawner = GetComponent<PencilSpawner>();
     }
 
     public void AddHP (int amount)
