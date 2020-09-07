@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(InventoryManager))]
 public class PlayerManager : CharacterManager
@@ -12,11 +13,21 @@ public class PlayerManager : CharacterManager
     public PlayerUI PlayerUI { get { return playerUI; } }
     public PlayerDetection Detection { get; private set; }
 
+    public override void Awake()
+    {
+        base.Awake();
+        playerCamera.enabled = false;
+        GetComponent<PlayerInput>().DeactivateInput();
+    }
+
     public override void Init(HouseManager initialHouse)
     {
+        playerCamera.enabled = true;
         base.Init(initialHouse);
         Detection = GetComponent<PlayerDetection>();
-        Pawn.SetPosition(initialHouse.SpawnPosition);
+        transform.GetComponentInChildren<PlayerController>().Spawn(initialHouse.SpawnPosition);
+        Debug.Log($"Setting Position {Pawn.Position}");
+        GetComponent<PlayerInput>().ActivateInput();
     }
 
     public override void Interact(Vector3 position)

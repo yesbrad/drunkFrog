@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum Houses
 {
@@ -27,24 +29,47 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("DEBUG")]
+    [SerializeField] bool isDebug;
+    [Range(1,4)]
     [SerializeField] int debugPlayerAmount;
 
     [Header("Static Prefabs")]
     public GameObject gridLine;
-    public GameObject playerManagerPrefab;
     public GameObject AIManagerPrefab;
     public GameObject basicGroup;
 
-    private List<PlayerManager> players = new List<PlayerManager>();
-    private List<AIManager> ai = new List<AIManager>();
-
     public ItemData[] items;
+
+    public List<PlayerInput> players = new List<PlayerInput>();
 
     void Start()
     {
         Application.targetFrameRate = 60;
         instance = this;
         Validate();
+
+        GameUI.instance.RefreshUI(PanelIDs.Join);
+
+        if (isDebug)
+        {
+            StartDebugGame();
+        }
+    }
+
+    public void StartGame()
+    {
+        GameUI.instance.RefreshUI(PanelIDs.Game);
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].GetComponent<PlayerManager>().Init(houseManagers[i]);
+            houseManagers[i].Init(players[i].GetComponent<PlayerManager>());
+        }
+    }
+
+    public void StartDebugGame ()
+    {
+        GameUI.instance.RefreshUI(PanelIDs.Game);
 
         for (int i = 0; i < debugPlayerAmount; i++)
         {
@@ -55,10 +80,9 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer (int index)
     {
-        PlayerManager player = Instantiate(playerManagerPrefab).GetComponent<PlayerManager>();
+        PlayerManager player = Instantiate(PlayerInputManager.instance.playerPrefab).GetComponent<PlayerManager>();
         houseManagers[index].Init(player);
         player.Init(houseManagers[index]);
-        players.Add(player);
     }
 
     /// <summary>

@@ -15,6 +15,8 @@ public class CharacterManager : MonoBehaviour
 
     public Pawn Pawn { get; private set; }
 
+    public bool Initialized { get; private set; }
+
     public virtual void Awake()
     {
         Pawn = GetComponentInChildren<Pawn>();
@@ -23,6 +25,7 @@ public class CharacterManager : MonoBehaviour
 
     public virtual void Init(HouseManager initialHouse)
     {
+        Initialized = true;
         SetHouse(initialHouse);
     }
 

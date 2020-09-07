@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : CharacterPawn
@@ -18,10 +19,13 @@ public class PlayerController : CharacterPawn
 
     ItemSize hoverSize = new ItemSize();
 
+    internal bool Locked;
+
     public override void Init()
     {
         base.Init();
         Manager = GetComponentInParent<PlayerManager>();
+        Debug.Log(Manager, Manager.gameObject);
         gridSelector.parent = Manager.transform;
         gridSelectorSingle.parent = Manager.transform;
         Manager.SetRotationContainer(playerRotateContainer);
@@ -75,6 +79,17 @@ public class PlayerController : CharacterPawn
     private void UpdateInput ()
     {
         MoveDirection(inputDirection);
+    }
+
+    public void Spawn (Vector3 position)
+    {
+        StartCoroutine(DelayedSpawn(position));
+    }
+
+    IEnumerator DelayedSpawn (Vector3 position)
+    {
+        yield return new WaitForSeconds(0.1f);
+        transform.position = position;
     }
 
     public void OnMove (InputAction.CallbackContext context)
@@ -155,15 +170,16 @@ public class PlayerController : CharacterPawn
 
     public void OnPlaceItem (InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!Locked && context.performed)
         {
+            Debug.Log("PlacingItem" + gameObject.name + "  " + gameObject.transform.parent.name, gameObject);
             Manager.PlaceOrPickupCurrentItem(GetSelectionLocation());
         }
     }
 
     public void OnSwapItem(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!Locked && context.performed)
         {
             //Manager.InventoryManager.ShiftItems();
         }
@@ -171,7 +187,7 @@ public class PlayerController : CharacterPawn
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!Locked && context.performed)
         {
             Manager.Interact(GetSelectionLocation());
         }
@@ -179,7 +195,7 @@ public class PlayerController : CharacterPawn
 
     public void OnDebugSpawn(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!Locked && context.performed)
         {
             for (int i = 0; i < 10; i++)
             {
@@ -190,7 +206,7 @@ public class PlayerController : CharacterPawn
 
     public void OnDebugTime(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!Locked && context.performed)
         {
             debugTime = !debugTime;
             Time.timeScale = debugTime ? 6 : 1;

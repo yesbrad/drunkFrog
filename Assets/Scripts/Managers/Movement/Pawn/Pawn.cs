@@ -37,7 +37,7 @@ public class Pawn : MonoBehaviour
 
     public void SetVelocity(float val)
     {
-        if (animator)
+        if (animator != null)
             animator.SetFloat("velocity", val);
         else
             Debug.LogError("Missing Animator on Pawn", gameObject);
@@ -45,6 +45,7 @@ public class Pawn : MonoBehaviour
 
     public void SetPosition (Vector3 position)
     {
+        Debug.Log("Setting POsition Pawn" + position);
         transform.position = position;
     }
 

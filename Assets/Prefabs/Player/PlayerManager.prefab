@@ -184,7 +184,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7e5d34c0-9d7c-4d9b-be13-db7ae9c6acac
     m_ActionName: Player/Interact[/DualShock4GamepadHID/buttonSouth,/Keyboard/e]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -760,6 +760,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476768899410687180, guid: 2d0326e2a201bfc408c02beb31393dde,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476768899410687180, guid: 2d0326e2a201bfc408c02beb31393dde,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476768899410687180, guid: 2d0326e2a201bfc408c02beb31393dde,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8538590623653459414, guid: 2d0326e2a201bfc408c02beb31393dde,
         type: 3}

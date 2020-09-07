@@ -24,7 +24,6 @@ public class GridSlot
     public void ResetSlot ()
     {
         gridState = GridSlotState.Open;
-        Debug.Log("Resetting Slot!");
         item.Reset();
     }
 }
