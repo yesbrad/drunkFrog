@@ -19,6 +19,8 @@ public class HouseManager : MonoBehaviour
     [SerializeField]
     private Transform spawnPosition;
 
+    public int baseCash = 10000;
+
     public List<CharacterManager> guests = new List<CharacterManager>();
 
     public PlayerManager houseOwner;

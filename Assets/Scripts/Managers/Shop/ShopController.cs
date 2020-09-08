@@ -26,22 +26,23 @@ public class ShopController : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        Init();
-    }
-
-    private void Init()
-    {
         shop = new Shop(shopData);
     }
 
     public void Interact(CharacterManager manager, Action onFinishInteraction = null)
     {
         TruckInventroy inventroy = manager.GetComponent<TruckInventroy>();
+        PlayerManager playerManager = manager.GetComponent<PlayerManager>();
 
         if (inventroy)
         {
-            inventroy.AddItem(shop.GetItem());
-            cashParticle?.Play();
+            ItemData possibleData = shop.GetItem(playerManager);
+
+            if(possibleData != null)
+            {
+                inventroy.AddItem(possibleData);
+                cashParticle?.Play();
+            }
         }
     }
 }

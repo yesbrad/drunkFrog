@@ -7,6 +7,7 @@ public class PlayerUI : MonoBehaviour
     [Header("Player UI")]
     [SerializeField] TMPro.TextMeshProUGUI ppText;
     [SerializeField] TMPro.TextMeshProUGUI currentItemText;
+    [SerializeField] TMPro.TextMeshProUGUI currentCashText;
 
     [Header("Settings UI TODO")]
     [SerializeField] TMPro.TextMeshPro settingsText;
@@ -19,5 +20,10 @@ public class PlayerUI : MonoBehaviour
     public void SetCurrentItem (string name)
     {
         currentItemText.SetText($"{name}");
+    }
+
+    public void SetCash (int cash)
+    {
+        currentCashText.SetText($"Cash: ${cash}");
     }
 }

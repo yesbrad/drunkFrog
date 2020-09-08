@@ -12,6 +12,7 @@ public class PlayerManager : CharacterManager
 
     public PlayerUI PlayerUI { get { return playerUI; } }
     public PlayerDetection Detection { get; private set; }
+    public int Cash { get; private set; }
 
     public override void Awake()
     {
@@ -27,12 +28,19 @@ public class PlayerManager : CharacterManager
         Detection = GetComponent<PlayerDetection>();
         transform.GetComponentInChildren<PlayerController>().Spawn(initialHouse.SpawnPosition);
         GetComponent<PlayerInput>().ActivateInput();
+        AddCash(HouseManager.baseCash);
     }
 
     public override void Interact(Vector3 position)
     {
         base.Interact(position);
         Detection.Detect(this);
+    }
+
+    public void AddCash(int cash)
+    {
+        this.Cash += cash;
+        playerUI.SetCash(this.Cash);
     }
 
     public override void Update()
