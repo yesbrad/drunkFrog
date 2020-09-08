@@ -25,7 +25,6 @@ public class PlayerController : CharacterPawn
     {
         base.Init();
         Manager = GetComponentInParent<PlayerManager>();
-        Debug.Log(Manager, Manager.gameObject);
         gridSelector.parent = Manager.transform;
         gridSelectorSingle.parent = Manager.transform;
         Manager.SetRotationContainer(playerRotateContainer);
@@ -172,7 +171,6 @@ public class PlayerController : CharacterPawn
     {
         if (!Locked && context.performed)
         {
-            Debug.Log("PlacingItem" + gameObject.name + "  " + gameObject.transform.parent.name, gameObject);
             Manager.PlaceOrPickupCurrentItem(GetSelectionLocation());
         }
     }

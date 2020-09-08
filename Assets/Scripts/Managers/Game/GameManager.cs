@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
 
     public List<PlayerInput> players = new List<PlayerInput>();
 
+    public GameState State { get; private set; }
+
+    public static event Action<GameState> OnUpdateState;
+
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -49,6 +53,8 @@ public class GameManager : MonoBehaviour
         Validate();
 
         GameUI.instance.RefreshUI(PanelIDs.Join);
+
+        SetGameState(GameState.Menu);
 
         if (isDebug)
         {
@@ -65,6 +71,8 @@ public class GameManager : MonoBehaviour
             players[i].GetComponent<PlayerManager>().Init(houseManagers[i]);
             houseManagers[i].Init(players[i].GetComponent<PlayerManager>());
         }
+
+        SetGameState(GameState.Game);
     }
 
     public void StartDebugGame ()
@@ -75,8 +83,15 @@ public class GameManager : MonoBehaviour
         {
             SpawnPlayer(i);
         }
+
+        SetGameState(GameState.Game);
     }
 
+    public void SetGameState (GameState state)
+    {
+        State = state;
+        OnUpdateState?.Invoke(state);
+    }
 
     public void SpawnPlayer (int index)
     {

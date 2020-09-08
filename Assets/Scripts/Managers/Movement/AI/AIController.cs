@@ -41,7 +41,6 @@ public class AIController : Pawn
         {
             inTransit = true;
             navAgent.destination = useTransform ? jobDestinationTransform.position : jobDestination;
-            //Debug.Log($"JobDestination: {jobDestination} || current destination: {navAgent.destination}");
         }
 
         public void CheckDestination ()

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PencilSpawner : MonoBehaviour
+public class PencilSpawner : MonoBehaviour, IStateListener
 {
 	[SerializeField]
 	private Transform pencilSpawn;
@@ -28,10 +28,13 @@ public class PencilSpawner : MonoBehaviour
 
 	private HouseManager houseManager;
 
+	public bool Initilized { get; private set; }
+
 	private void Awake()
 	{
 		houseManager = GetComponent<HouseManager>();
 		currentRate = CalculateRefreshTime();
+		GameManager.OnUpdateState += (state) => OnGameStateUpdate(state);
 	}
 
 	private void Update()
@@ -62,12 +65,18 @@ public class PencilSpawner : MonoBehaviour
 
 	public void SpawnPencil()
 	{
-		if (amountSpawned > partyLimit)
+		if (!Initilized || amountSpawned > partyLimit)
 			return;
 
 		AIManager newAI = Instantiate(GameManager.instance.AIManagerPrefab, pencilSpawn.position, Quaternion.identity).GetComponent<AIManager>();
 		newAI.transform.parent = transform.transform;
 		newAI.Init(houseManager);
 		amountSpawned++;
+	}
+
+	public void OnGameStateUpdate(GameState gameState)
+	{
+		Initilized = gameState == GameState.Game;
+		Debug.Log(Initilized);
 	}
 }

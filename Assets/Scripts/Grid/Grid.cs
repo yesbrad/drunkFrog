@@ -124,7 +124,6 @@ public class Grid
 
 			for (int i = 0; i < gridSpace.Length; i++)
 			{
-                Debug.Log("Setting Slot");
 				gridArray[GetGridOneDIndex(gridSpace[i].x, gridSpace[i].y)].item = value;
 				gridArray[GetGridOneDIndex(gridSpace[i].x, gridSpace[i].y)].item.isPlaced = true;
 				gridArray[GetGridOneDIndex(gridSpace[i].x, gridSpace[i].y)].gridState = gridSlotState;

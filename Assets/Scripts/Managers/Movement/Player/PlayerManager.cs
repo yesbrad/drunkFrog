@@ -26,7 +26,6 @@ public class PlayerManager : CharacterManager
         base.Init(initialHouse);
         Detection = GetComponent<PlayerDetection>();
         transform.GetComponentInChildren<PlayerController>().Spawn(initialHouse.SpawnPosition);
-        Debug.Log($"Setting Position {Pawn.Position}");
         GetComponent<PlayerInput>().ActivateInput();
     }
 

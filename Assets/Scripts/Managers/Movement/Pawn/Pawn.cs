@@ -45,7 +45,6 @@ public class Pawn : MonoBehaviour
 
     public void SetPosition (Vector3 position)
     {
-        Debug.Log("Setting POsition Pawn" + position);
         transform.position = position;
     }
 
