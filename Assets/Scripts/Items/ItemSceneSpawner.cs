@@ -23,7 +23,7 @@ public class ItemSceneSpawner : MonoBehaviour
 		foreach (HouseManager manager in managers)
 		{
 			if(grid == null)
-				grid = manager.GetGrid(transform.position);
+				grid = manager.GetGrid(transform.position + GetPlacePosition());
 		}
 
 		if (grid == null)
@@ -33,7 +33,7 @@ public class ItemSceneSpawner : MonoBehaviour
 		}
 
 		Item item = ItemFactory.CreateItem(itemData, null);
-		grid.PlaceItem(transform.position, item, null);
+		grid.PlaceItem(transform.position + GetPlacePosition(), item, null);
 
 		Spawned = true;
 	}
@@ -42,15 +42,21 @@ public class ItemSceneSpawner : MonoBehaviour
 		if (itemData != null && showGizmos)
 		{
 			Gizmos.color = itemData.debugColor;
-			Gizmos.DrawLine(transform.position, transform.position + Vector3.right * (itemData.size.x * constants.GridCellSize));
-			Gizmos.DrawLine(transform.position, transform.position + Vector3.forward * (itemData.size.y * constants.GridCellSize));
+			Gizmos.DrawSphere(transform.position + GetPlacePosition(), 0.3f);
+			Gizmos.matrix = transform.localToWorldMatrix;
+			Gizmos.DrawLine(Vector3.zero, Vector3.right * (itemData.size.x * constants.GridCellSize));
+			Gizmos.DrawLine(Vector3.zero, Vector3.forward * (itemData.size.y * constants.GridCellSize));
 
-			Gizmos.DrawLine(transform.position + Vector3.right * (itemData.size.x * constants.GridCellSize), (Vector3.right * (itemData.size.x * constants.GridCellSize)) +
-				(Vector3.forward * (itemData.size.y * constants.GridCellSize)) + transform.position);
-			Gizmos.DrawLine(transform.position + Vector3.forward * (itemData.size.y * constants.GridCellSize), (Vector3.right * (itemData.size.x * constants.GridCellSize)) +
-				(Vector3.forward * (itemData.size.y * constants.GridCellSize)) + transform.position);
+			Gizmos.DrawLine(Vector3.right * (itemData.size.x * constants.GridCellSize), (Vector3.right * (itemData.size.x * constants.GridCellSize)) +
+				(Vector3.forward * (itemData.size.y * constants.GridCellSize)));
+			Gizmos.DrawLine(Vector3.forward * (itemData.size.y * constants.GridCellSize), (Vector3.right * (itemData.size.x * constants.GridCellSize)) +
+				(Vector3.forward * (itemData.size.y * constants.GridCellSize)));
 
-			Gizmos.DrawSphere(transform.position, 0.3f);
 		}
+	}
+
+	private Vector3 GetPlacePosition()
+	{
+		return transform.TransformVector(Vector3.zero + new Vector3(1, 0 , 1));
 	}
 }
