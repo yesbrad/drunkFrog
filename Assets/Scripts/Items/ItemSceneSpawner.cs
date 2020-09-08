@@ -33,7 +33,7 @@ public class ItemSceneSpawner : MonoBehaviour
 		}
 
 		Item item = ItemFactory.CreateItem(itemData, null);
-		grid.PlaceItem(transform.position + GetPlacePosition(), item, null);
+		grid.PlaceItem(transform.position + GetPlacePosition(), item, transform);
 
 		Spawned = true;
 	}

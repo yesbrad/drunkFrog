@@ -36,7 +36,7 @@ public class GridController : MonoBehaviour
 
 		if(grid.CanPlaceItemWithSize(gridPosition.x, gridPosition.y, item.Data.size, rotationTransform))
 		{
-            item.OnPlace(grid.GetWorldPositionFromWorld(position), rotationTransform != null ? Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(rotationTransform)) : Quaternion.identity);
+            item.OnPlace(grid.GetWorldGridCenterPositionFromWorld(position), rotationTransform != null ? Quaternion.Euler(PencilPartyUtils.RoundAnglesToNearest90(rotationTransform)) : Quaternion.identity);
 			grid.SetValue(gridPosition.x, gridPosition.y, item, item.Data.size, item.Data.gridSlot, rotationTransform);
 			return true;
 		}

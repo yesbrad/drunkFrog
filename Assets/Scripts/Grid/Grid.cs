@@ -234,7 +234,7 @@ public class Grid
 			{
 				for (int yy = 0; yy < size.x; yy++)
 				{
-					newSpace.Add(new Vector2Int(x + xx, y - yy - 1));
+					newSpace.Add(new Vector2Int(x + xx, y - yy));
 				}
 			}
 		}
@@ -244,7 +244,7 @@ public class Grid
 			{
 				for (int yy = 0; yy < size.y; yy++)
 				{
-					newSpace.Add(new Vector2Int(x + -xx - 1, y + -yy - 1));
+					newSpace.Add(new Vector2Int(x + -xx, y + -yy));
 				}
 			}
 		}
@@ -254,7 +254,7 @@ public class Grid
 			{
 				for (int yy = 0; yy < size.x; yy++)
 				{
-					newSpace.Add(new Vector2Int(x + -xx - 1, y + yy));
+					newSpace.Add(new Vector2Int(x + -xx, y + yy));
 				}
 			}
 		}

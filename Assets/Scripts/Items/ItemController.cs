@@ -75,5 +75,6 @@ public class ItemController : MonoBehaviour, IInteractable
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(Vector3.one * 10, Vector3.one * 20);
+        Gizmos.DrawWireCube(Vector3.zero, new Vector3(constants.GridCellSize,0,constants.GridCellSize));
     }
 }
