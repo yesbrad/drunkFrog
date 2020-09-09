@@ -58,9 +58,9 @@ public class Pawn : MonoBehaviour
         transform.position = position;
     }
 
-    public void SetRotation(Vector3 rotation)
+    public virtual void SetRotation(Vector3 rotation)
     {
-        transform.eulerAngles = rotation;
+        transform.rotation = Quaternion.Euler(rotation);
     }
 
     public void SetState(PawnState state)

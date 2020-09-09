@@ -120,6 +120,12 @@ public class PlayerController : Pawn
         controller.SimpleMove(movePosition);
     }
 
+    public override void SetRotation(Vector3 rotation)
+    {
+        base.SetRotation(rotation);
+        playerRotateContainer.rotation = Quaternion.Euler(rotation);
+    }
+
     private void UpdateSelectorColors()
     {
         if(Manager.CurrentGrid != null)
