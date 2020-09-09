@@ -6,12 +6,18 @@ using UnityEngine;
 [AddComponentMenu("Item Controller/Base Item")]
 public class ItemController : MonoBehaviour, IInteractable
 {
+    [Header("Gizmos")]
+    [SerializeField]
+    private bool showPrefabGizmos;
+
     [Header("Base Item")]
     [SerializeField]
     private Transform interactPosition;
 
     public Transform InteractPosition { get { return interactPosition; } }
-    public CharacterManager CharacterManager { get; set; }
+    public CharacterManager OwnerCharacterManager { get; private set; }
+    public CharacterManager LastUsedCharacter { get; private set; }
+
     public bool occupied { get; set; }
     public Item item { get; private set; }
     public Action onTaskFinished { get; set; }
@@ -19,7 +25,7 @@ public class ItemController : MonoBehaviour, IInteractable
     public virtual void Init (Item newItem, CharacterManager manager)
     {
         item = newItem;
-        CharacterManager = manager;
+        OwnerCharacterManager = manager;
         gameObject.SetActive(false);    
     }
 
@@ -33,6 +39,8 @@ public class ItemController : MonoBehaviour, IInteractable
         }
 
         occupied = true;
+
+        LastUsedCharacter = manager;
     }
 
     public virtual void EndInteract()
@@ -57,9 +65,33 @@ public class ItemController : MonoBehaviour, IInteractable
         gameObject.SetActive(true);
     }
 
-    private void OnDrawGizmosSelected()
+    [ContextMenu("Validate Controller")]
+    public virtual void Validate()
     {
-        Gizmos.DrawWireCube(Vector3.one * 10, Vector3.one * 20);
-        Gizmos.DrawWireCube(Vector3.zero, new Vector3(constants.GridCellSize,0,constants.GridCellSize));
+        if (GetComponents<ItemController>().Length > 1)
+        {
+            Debug.LogError("Item Controller has more than one item conroller on it");
+        }
+
+        if (interactPosition == null)
+        {
+            Debug.LogError("Item Controller is missing interact position!", gameObject);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(showPrefabGizmos)
+        {
+            Gizmos.color = Color.cyan;
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int x = 0; x < 10; x++)
+                {
+                    Gizmos.DrawWireCube(new Vector3(i * constants.GridCellSize, 0, x * constants.GridCellSize), new Vector3(constants.GridCellSize,0,constants.GridCellSize));
+                }
+            }
+        }
     }
 }

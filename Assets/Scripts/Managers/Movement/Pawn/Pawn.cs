@@ -11,12 +11,22 @@ public class Pawn : MonoBehaviour
         Dancing
     }
 
-    public float speed;
-    public Animator animator;
-    Vector3 currentDirecrtion;
-    public SkinnedMeshRenderer pencilRenderer;
-    public Vector3 Position { get { return transform.position; } }
+    [SerializeField]
+    protected float speed;
 
+    [SerializeField]
+    private Animator animator;
+
+    [SerializeField]
+    private SkinnedMeshRenderer pencilRenderer;
+  
+    private Vector3 currentDirecrtion;
+    
+    public Vector3 Position { get { return transform.position; } }
+    public Animator PawnAnimator { get { return animator; } }
+
+    public bool Occupied { get; private set; }
+    
     public void Awake()
     {
         Init(); 
@@ -48,10 +58,20 @@ public class Pawn : MonoBehaviour
         transform.position = position;
     }
 
+    public void SetRotation(Vector3 rotation)
+    {
+        transform.eulerAngles = rotation;
+    }
+
     public void SetState(PawnState state)
     {
         animator.SetBool("isFree", state == PawnState.Free);
         animator.SetBool("isTalking", state == PawnState.Talking);
         animator.SetBool("isDancing", state == PawnState.Dancing);
+    }
+
+    public void LockPawn (bool locked)
+    {
+        Occupied = locked;
     }
 }

@@ -22,7 +22,7 @@ public class TruckItemController : ItemController
 
 		if (manager.InventoryManager.HasItem() == false)
 		{
-			Item newItem = truckInventroy.GetItem(CharacterManager);
+			Item newItem = truckInventroy.GetItem(OwnerCharacterManager);
 			manager.InventoryManager.GiveItem(newItem);
 		}
 	}

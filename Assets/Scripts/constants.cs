@@ -5,4 +5,5 @@ using UnityEngine;
 public class constants : MonoBehaviour
 {
     public const float GridCellSize = 2f;
+    public const string timelinePlayerName = "PLAYER";
 }

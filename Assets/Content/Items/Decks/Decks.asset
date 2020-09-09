@@ -16,7 +16,7 @@ MonoBehaviour:
   id: Decks_2
   size:
     x: 1
-    y: 3
+    y: 2
   itemPrefab: {fileID: 1718937532128273951, guid: 33284d8ae986c6449989f4265c309838,
     type: 3}
   gridSlot: 1
