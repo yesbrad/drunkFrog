@@ -1,44 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 
+[AddComponentMenu("Item Controller/Static Item")]
 public class StaticItemController : ItemController
 {
-    public int placePoints;
-    public float waitTime = 1;
-    public MeshRenderer renderer;
+    [Header("Static Item")]
+    [SerializeField]
+    protected int placePoints = 1;
 
-    float currentTime;
-
-    public override void Init(Item newItem, CharacterManager manager)
+    public override void OnPlace(Vector3 position, Quaternion rot)
     {
-        base.Init(newItem, manager);
-        CharacterManager?.HouseManager?.AddHP(placePoints);
+        base.OnPlace(position, rot);
+        CharacterManager?.HouseManager?.AddPP(placePoints);
     }
-
-    public override void StartInteract(CharacterManager manager, Action taskFinishCallback)
+    public override void OnPickup()
     {
-        base.StartInteract(manager, taskFinishCallback);
-        CharacterManager?.HouseManager?.AddHP(placePoints);
-        currentTime = waitTime;
-
-        if (renderer)
-        {
-            renderer.material.SetColor("_Color", UnityEngine.Random.ColorHSV());
-        }
-    }
-
-    private void Update()
-    {
-        if (occupied)
-        {
-            currentTime -= Time.deltaTime;
-
-            if (currentTime < 0)
-            {
-                EndInteract();
-            }
-        }
+        base.OnPickup();
+        CharacterManager?.HouseManager?.RemovePP(placePoints);
     }
 }

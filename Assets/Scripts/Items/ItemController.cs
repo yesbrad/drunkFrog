@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("Item Controller/Base Item")]
 public class ItemController : MonoBehaviour, IInteractable
 {
-
-    [SerializeField]
-    private GameObject artContainer;
-
+    [Header("Base Item")]
     [SerializeField]
     private Transform interactPosition;
 
@@ -37,19 +35,19 @@ public class ItemController : MonoBehaviour, IInteractable
         occupied = true;
     }
 
-    public void EndInteract()
+    public virtual void EndInteract()
     {
         onTaskFinished?.Invoke();
         occupied = false;
         onTaskFinished = null;
     }
 
-    public void OnPickup()
+    public virtual void OnPickup()
     {
         gameObject.SetActive(false);
     }
 
-    public void OnPlace(Vector3 position, Quaternion rot)
+    public virtual void OnPlace(Vector3 position, Quaternion rot)
     {
         transform.position = position;
         

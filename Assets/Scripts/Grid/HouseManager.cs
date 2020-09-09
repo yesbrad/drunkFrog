@@ -39,9 +39,15 @@ public class HouseManager : MonoBehaviour
         Spawner = GetComponent<PencilSpawner>();
     }
 
-    public void AddHP (int amount)
+    public void AddPP (int amount)
     {
-        PP += amount;
+        PP += Mathf.Abs(amount);
+        RefreshUI();
+    }
+
+    public void RemovePP(int amount)
+    {
+        PP -= Mathf.Abs(amount);
         RefreshUI();
     }
 

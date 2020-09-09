@@ -77,6 +77,5 @@ public class PencilSpawner : MonoBehaviour, IStateListener
 	public void OnGameStateUpdate(GameState gameState)
 	{
 		Initilized = gameState == GameState.Game;
-		Debug.Log(Initilized);
 	}
 }
