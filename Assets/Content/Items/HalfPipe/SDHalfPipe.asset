@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7c8ca0c4afe3c04388f176fc01a0978, type: 3}
-  m_Name: SDBeerPongTable
+  m_Name: SDHalfPipe
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 76d1cdcce14ecad4997e6de23dbeb5ed, type: 2}
-  cost: 2040
-  amount: 10
+  item: {fileID: 11400000, guid: 46497effbb3a4624dba07b043cf39f1a, type: 2}
+  cost: 3000
+  amount: 5

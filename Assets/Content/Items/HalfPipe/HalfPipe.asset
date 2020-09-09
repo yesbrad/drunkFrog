@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c29428ab1683b419d7aa26bc6f25c3, type: 3}
-  m_Name: BeerPongTable
+  m_Name: HalfPipe
   m_EditorClassIdentifier: 
-  name: BeerPongTable
-  id: BeerPongTable
+  name: HalfPipe
+  id: HalfPipe
   size:
-    x: 1
-    y: 3
-  itemPrefab: {fileID: 1718937532128273951, guid: ba32e9bba7904cf45b2973ccc734a1d8,
+    x: 4
+    y: 10
+  itemPrefab: {fileID: 1718937532128273951, guid: b477e4df2978ccc48b74e02d558a116a,
     type: 3}
   gridSlot: 1
-  debugColor: {r: 0, g: 1, b: 1, a: 1}
+  debugColor: {r: 0.9336128, g: 0, b: 1, a: 1}
