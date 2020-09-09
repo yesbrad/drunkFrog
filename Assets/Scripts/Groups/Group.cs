@@ -44,7 +44,7 @@ public class Group : MonoBehaviour, IInteractable
         currentBootTime = shrinkageTime;
     }
 
-    public void Interact(CharacterManager manager, System.Action onFinishInteraction)
+    public void StartInteract(CharacterManager manager, System.Action onFinishInteraction)
     { 
         if(characters.Count > groupLimit)
         {

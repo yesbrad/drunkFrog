@@ -67,15 +67,6 @@ public class AIController : Pawn
                     OnReachDestination = null;
                 }
             }
-
-            /*/ Cancel the Job if the parent is Being Taken;
-            if (parentInteractable.occupied)
-            {
-                inTransit = false;
-                OnReachDestination.Invoke();
-                OnReachDestination = null;
-            }
-            */
         }
     }
 

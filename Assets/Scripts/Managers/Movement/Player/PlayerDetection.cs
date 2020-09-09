@@ -29,7 +29,7 @@ public class PlayerDetection : MonoBehaviour
 
 			if(shopController != null)
 			{
-				shopController.Interact(manager);
+				shopController.StartInteract(manager);
 			}
 		}
 	}

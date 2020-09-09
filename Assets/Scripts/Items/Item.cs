@@ -43,7 +43,7 @@ public class Item
 
     public virtual void Interact (CharacterManager manager, System.Action onFinishInteraction = null)
     {
-        controller.Interact(manager, onFinishInteraction);
+        controller.StartInteract(manager, onFinishInteraction);
     }
 
     public void OnPickup()

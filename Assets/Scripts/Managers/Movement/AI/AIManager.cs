@@ -45,7 +45,7 @@ public class AITask
     {
         if (interactable != null)
         {
-            interactable.Interact(currentCharacter, () => OnFinish());
+            interactable.StartInteract(currentCharacter, () => OnFinish());
         } 
         else
         {
@@ -68,14 +68,11 @@ public class AIManager : CharacterManager
 {
     public AITask currentTask;
 
+    [SerializeField]
+    private int confusedNewTaskTime = 60;
+
     private AIController controller;
-
-    private Transform debugGroupLocations;
-
     private int tasksCompleted;
-
-    float resetTaskTimer;
-    const int resetTime = 4;
 
     public bool HasCompletedFirstTask { get { return tasksCompleted > 1; } }
 
@@ -83,7 +80,6 @@ public class AIManager : CharacterManager
     {
         base.Init(initialHouse);
         controller = GetComponentInChildren<AIController>();
-        resetTaskTimer = resetTime;
         StartAndGenerateTask();
     }
 
@@ -91,9 +87,8 @@ public class AIManager : CharacterManager
     {
         base.Update();
 
-        if (currentTask.time + 60 < Time.time)
+        if (currentTask.time + confusedNewTaskTime < Time.time)
         {
-            //print("" + Time.time);
             StartAndGenerateTask();
         }
     }
@@ -125,24 +120,9 @@ public class AIManager : CharacterManager
             {
                 return possibleTask;
             }
-
-            /* Start is own social group
-            else
-            {
-                if (Random.Range(0f, 1f) < GameManager.instance.DesignBible.chanceOfStartingConvesation)
-                {
-                    AITask possibleTaskCreate = CreateBasicGroup();
-
-                    if (possibleTaskCreate != null)
-                    {
-                        return possibleTaskCreate;
-                    }
-                }
-            }
-            */
         }
 
-        if (Random.Range(0f,1f) < GameManager.instance.DesignBible.chanceOfUsingRandomItem && HasCompletedFirstTask) //Just for Debug for now!
+        if (Random.Range(0f,1f) < GameManager.instance.DesignBible.chanceOfUsingRandomItem && HasCompletedFirstTask)
         {
             AITask possibleTask = GetRandomObjectTask();
 
@@ -156,30 +136,6 @@ public class AIManager : CharacterManager
         }
 
         return GetCentrePointTask();
-    }
-
-    private AITask CreateBasicGroup()
-    {
-        RaycastHit[] col = Physics.SphereCastAll(controller.Position, 10, Vector3.up);
-
-        for (int i = 0; i < col.Length; i++)
-        {
-            if(col[i].collider.tag == "AI")
-            {
-                AIController ai = col[i].collider.gameObject.GetComponent<AIController>();
-
-                if (!ai.Manager.currentTask.isInGroup)
-                {
-                    Group group = Instantiate(GameManager.instance.basicGroup, ai.Position, Quaternion.identity).GetComponent<Group>();
-                    AITask groupTask = new AITask(group, true);
-                    ai.Manager.OverrideCurrentTask(groupTask);
-                    debugGroupLocations = (ai.Manager.controller.transform);
-                    return groupTask;
-                }
-            }
-        }
-
-        return null;
     }
 
     private AITask FindGroup()
@@ -222,15 +178,5 @@ public class AIManager : CharacterManager
     {
         tasksCompleted++;
         task.OnStart(this, controller, () => StartTask(GenerateNewTask()));
-    }
-
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(currentTask.destination, Vector3.one);
-
-        Gizmos.color = Color.cyan;
-        if(debugGroupLocations)
-            Gizmos.DrawWireCube(debugGroupLocations.position, Vector3.one * 2);
     }
 }

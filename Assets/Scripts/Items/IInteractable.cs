@@ -11,5 +11,5 @@ public interface IInteractable
     /// <summary>
     /// Entry point for Interactions
     /// </summary>
-    void Interact(CharacterManager manager, System.Action onFinishInteraction = null);
+    void StartInteract(CharacterManager manager, System.Action onFinishInteraction = null);
 }

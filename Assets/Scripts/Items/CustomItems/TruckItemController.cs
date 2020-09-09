@@ -12,9 +12,9 @@ public class TruckItemController : ItemController
 		base.Init(newItem, manager);
 	}
 
-	public override void Interact(CharacterManager manager, Action onFinishInteraction = null)
+	public override void StartInteract(CharacterManager manager, Action onFinishInteraction = null)
 	{
-		base.Interact(manager, onFinishInteraction);
+		base.StartInteract(manager, onFinishInteraction);
 
 		if(truckInventroy == null)
 			truckInventroy = manager.GetComponentInParent<TruckInventroy>();
@@ -22,7 +22,7 @@ public class TruckItemController : ItemController
 
 		if (manager.InventoryManager.HasItem() == false)
 		{
-			Item newItem = truckInventroy.GetItem(owner);
+			Item newItem = truckInventroy.GetItem(CharacterManager);
 			manager.InventoryManager.GiveItem(newItem);
 		}
 	}

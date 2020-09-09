@@ -29,7 +29,7 @@ public class ShopController : MonoBehaviour, IInteractable
         shop = new Shop(shopData);
     }
 
-    public void Interact(CharacterManager manager, Action onFinishInteraction = null)
+    public void StartInteract(CharacterManager manager, Action onFinishInteraction = null)
     {
         TruckInventroy inventroy = manager.GetComponent<TruckInventroy>();
         PlayerManager playerManager = manager.GetComponent<PlayerManager>();
