@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -15,7 +14,7 @@ public class TimelineItemController : StaticItemController
 	private PlayableDirector director;
 	private bool playing;
 
-	public override void Init(Item newItem, CharacterManager manager)
+	public override void Init(Item newItem, HouseManager manager)
 	{
 		base.Init(newItem, manager);
 		director = GetComponent<PlayableDirector>();
@@ -50,10 +49,8 @@ public class TimelineItemController : StaticItemController
 			if(director.time >= director.playableAsset.duration - 0.1f)
 			{
 				LastUsedCharacter.Pawn.LockPawn(false);
-				LastUsedCharacter.Pawn.SetRotation(Vector3.zero);
 				playing = false;
 				EndInteract();
-				Debug.Log("Timeline End");
 			}
 		}
 	}

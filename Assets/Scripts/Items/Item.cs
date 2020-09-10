@@ -11,7 +11,7 @@ public class Item
     internal ItemController controller;
     public Vector3 Position { get { return controller.transform.position; } }
 
-    protected CharacterManager owner;
+    protected HouseManager owner;
 
     internal bool isPlaced;
 
@@ -22,12 +22,12 @@ public class Item
 
     public Dictionary<string, int> extraData;
 
-    public Item(ItemData data, ItemController newController, CharacterManager playerManager = null, Dictionary<string, int> extraData = null)
+    public Item(ItemData data, ItemController newController, HouseManager houseManager = null, Dictionary<string, int> extraData = null)
     {
         this.itemData = data;
         this.controller = newController;
-        this.controller.Init(this, playerManager);
-        this.owner = playerManager;
+        this.controller.Init(this, houseManager);
+        this.owner = houseManager;
         this.UUID = $"{newController.transform.position}:{itemData.id}:{Random.Range(0f, 1f)}";
         this.Initialized = true;
         this.extraData = extraData;

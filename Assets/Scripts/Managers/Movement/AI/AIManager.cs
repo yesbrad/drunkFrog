@@ -1,6 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+public enum AIStatTypes
+{
+    Hunger,
+    Soberness,
+    Thirst,
+    Fun,
+}
+
 
 [System.Serializable]
 public class AITask
@@ -71,6 +81,9 @@ public class AIManager : CharacterManager
     [SerializeField]
     private int confusedNewTaskTime = 60;
 
+    [SerializeField]
+    private Text debugTaskText;
+
     private AIController controller;
     private int tasksCompleted;
 
@@ -89,7 +102,7 @@ public class AIManager : CharacterManager
 
         if (currentTask.time + confusedNewTaskTime < Time.time)
         {
-            StartAndGenerateTask();
+            //StartAndGenerateTask();
         }
     }
 
@@ -102,12 +115,6 @@ public class AIManager : CharacterManager
     {
         currentTask = SelectTask();
         return currentTask;
-    }
-
-    public void OverrideCurrentTask(AITask newTask)
-    {
-        currentTask = newTask;
-        currentTask.OnStart(this, controller, () => StartTask(GenerateNewTask()));
     }
 
     public AITask SelectTask ()
@@ -156,12 +163,19 @@ public class AIManager : CharacterManager
 
     private AITask GetRandomObjectTask ()
     {
-        Item possibleObject = HouseManager.GetRandomItem();
+        try
+        {
+            ItemController possibleObject = HouseManager.HouseInventory.FindRandomFunItem();
 
-        if (possibleObject != null)
-            return new AITask(possibleObject.controller);
+            if (possibleObject != null)
+                return new AITask(possibleObject);
 
-        return null;
+            return null;
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     private AITask GetRandomPositionTask ()
@@ -178,5 +192,10 @@ public class AIManager : CharacterManager
     {
         tasksCompleted++;
         task.OnStart(this, controller, () => StartTask(GenerateNewTask()));
+
+        if(debugTaskText != null)
+        {
+            debugTaskText.text = $"CurrentTask: {task.interactable?.Name}";
+        }
     }
 }

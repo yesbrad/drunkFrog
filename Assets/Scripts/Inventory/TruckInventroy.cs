@@ -21,7 +21,7 @@ public class TruckInventroy : MonoBehaviour
 		inventory.Enqueue(item);
 	}
 
-	public Item GetItem (CharacterManager manager = null)
+	public Item GetItem (HouseManager manager = null)
 	{
 		if(inventory.Count < 1)
 		{

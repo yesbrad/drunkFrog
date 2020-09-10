@@ -138,7 +138,7 @@ public class Grid
     /// <summary>
     /// Removes Item off the grid, Returns the Removed item
     /// </summary>
-    public Item DeleteValue(int x, int y, CharacterManager manager, bool hardDelete = false)
+    public Item DeleteValue(int x, int y, HouseManager manager, bool hardDelete = false)
     {
         if (gridArray == null)
         {

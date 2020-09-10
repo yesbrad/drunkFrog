@@ -51,7 +51,7 @@ public class GridController : MonoBehaviour
     /// <summary>
     /// Removes Item off the grid, Returns the Removed item
     /// </summary>
-    public Item DeleteItem(Vector3 position, CharacterManager manager, bool hardDelete = false)
+    public Item DeleteItem(Vector3 position, HouseManager manager, bool hardDelete = false)
     {
         Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
 

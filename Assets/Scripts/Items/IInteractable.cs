@@ -3,6 +3,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
+    string Name { get; }
     bool occupied { get; set; }
     System.Action onTaskFinished { get; set; }
 

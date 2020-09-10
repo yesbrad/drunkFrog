@@ -75,7 +75,7 @@ public class CharacterManager : MonoBehaviour
             }
             else
             {
-                Item possiblePickup = CurrentGrid.DeleteItem(position, this);
+                Item possiblePickup = CurrentGrid.DeleteItem(position, HouseManager);
             
                 if(possiblePickup != null)
                 {

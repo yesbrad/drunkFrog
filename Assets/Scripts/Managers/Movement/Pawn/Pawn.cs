@@ -60,7 +60,7 @@ public class Pawn : MonoBehaviour
 
     public virtual void SetRotation(Vector3 rotation)
     {
-        transform.rotation = Quaternion.Euler(rotation);
+        //transform.rotation = Quaternion.Euler(rotation);
     }
 
     public void SetState(PawnState state)

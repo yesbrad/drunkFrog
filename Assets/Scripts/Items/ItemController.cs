@@ -15,28 +15,31 @@ public class ItemController : MonoBehaviour, IInteractable
     private Transform interactPosition;
 
     public Transform InteractPosition { get { return interactPosition; } }
-    public CharacterManager OwnerCharacterManager { get; private set; }
+    public HouseManager Owner { get; private set; }
     public CharacterManager LastUsedCharacter { get; private set; }
 
     public bool occupied { get; set; }
     public Item item { get; private set; }
     public Action onTaskFinished { get; set; }
 
-    public virtual void Init (Item newItem, CharacterManager manager)
+    public string Name { get { return item.Data.name; } }
+
+    public virtual void Init (Item newItem, HouseManager manager)
     {
         item = newItem;
-        OwnerCharacterManager = manager;
+        Owner = manager;
         gameObject.SetActive(false);    
     }
 
     public virtual void StartInteract(CharacterManager manager, System.Action onFinishInteraction = null)
     {
-        onTaskFinished = onFinishInteraction;
-
         if (occupied)
         {
-            EndInteract();
+            onFinishInteraction?.Invoke();
+            return;
         }
+
+        onTaskFinished = onFinishInteraction;
 
         occupied = true;
 

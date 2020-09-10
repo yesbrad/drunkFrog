@@ -24,6 +24,8 @@ public class ShopController : MonoBehaviour, IInteractable
 
     private Shop shop;
 
+    public string Name { get { return shopData.item.name; } }
+
     private void Awake()
     {
         shop = new Shop(shopData);

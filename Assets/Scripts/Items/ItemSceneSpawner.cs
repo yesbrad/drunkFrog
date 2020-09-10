@@ -9,21 +9,27 @@ public class ItemSceneSpawner : MonoBehaviour
 	public bool spawnOnStart = true;
 	public bool showGizmos = true;
 	public bool Spawned { get; private set; }
-	private void Awake()
+	
+	private void Start()
 	{
 		if(spawnOnStart)
 			PlaceItem();
 	}
+
 	public void PlaceItem()
 	{
 		HouseManager[] managers = FindObjectsOfType<HouseManager>();
 
 		GridController grid = null;
+		HouseManager startHouse = null;
 
 		foreach (HouseManager manager in managers)
 		{
 			if(grid == null)
+			{
 				grid = manager.GetGrid(transform.position + GetPlacePosition());
+				startHouse = manager;
+			}
 		}
 
 		if (grid == null)
@@ -32,7 +38,7 @@ public class ItemSceneSpawner : MonoBehaviour
 			return;
 		}
 
-		Item item = ItemFactory.CreateItem(itemData, null);
+		Item item = ItemFactory.CreateItem(itemData, startHouse);
 		grid.PlaceItem(transform.position + GetPlacePosition(), item, transform);
 
 		Spawned = true;

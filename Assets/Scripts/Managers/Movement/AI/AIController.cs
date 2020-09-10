@@ -92,6 +92,12 @@ public class AIController : Pawn
         SetVelocity(agent.velocity.sqrMagnitude);
     }
 
+    public override void SetRotation(Vector3 rotation)
+    {
+        base.SetRotation(rotation);
+        transform.rotation = Quaternion.Euler(rotation);
+    }
+
     public void SetDestination (Vector3 destination, System.Action desinationReached, IInteractable interactable)
     {
         currentJob = new Job(agent, destination, desinationReached, interactable);

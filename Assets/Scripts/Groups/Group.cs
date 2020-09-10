@@ -39,6 +39,8 @@ public class Group : MonoBehaviour, IInteractable
 
     public System.Action onTaskFinished { get; set; }
 
+    public string Name { get { return "Group"; } }
+
     private void Awake()
     {
         currentBootTime = shrinkageTime;
