@@ -22,11 +22,14 @@ public class Item
 
     public Dictionary<string, int> extraData;
 
-    public Item(ItemData data, ItemController newController, HouseManager houseManager = null, Dictionary<string, int> extraData = null)
+    public Item(ItemData data, ItemController newController, bool cloned, HouseManager houseManager = null, Dictionary<string, int> extraData = null)
     {
         this.itemData = data;
         this.controller = newController;
-        this.controller.Init(this, houseManager);
+        
+        if(!cloned)
+            this.controller.Init(itemData, houseManager);
+        
         this.owner = houseManager;
         this.UUID = $"{newController.transform.position}:{itemData.id}:{Random.Range(0f, 1f)}";
         this.Initialized = true;
@@ -41,14 +44,9 @@ public class Item
         Initialized = false;
     }
 
-    public virtual void Interact (CharacterManager manager, System.Action onFinishInteraction = null)
+    public virtual void Interact (CharacterManager manager, System.Action onFinishInteraction)
     {
         controller.StartInteract(manager, onFinishInteraction);
-    }
-
-    public void OnPickup()
-    {
-        controller.OnPickup();
     }
 
     public void OnPlace(Vector3 position, Quaternion rotation)

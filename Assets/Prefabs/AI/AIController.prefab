@@ -136,8 +136,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3865354052335089060}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000065565104}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 0.03008, y: 0.03008, z: 0.03008}
+  m_LocalPosition: {x: 0, y: 0, z: -0.21}
+  m_LocalScale: {x: 0.00792217, y: 0.00792217, z: 0.00792217}
   m_Children:
   - {fileID: 2524700392829439264}
   m_Father: {fileID: 3981308692224817527}
@@ -145,7 +145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2, y: 6}
+  m_AnchoredPosition: {x: -0.3, y: 2.86}
   m_SizeDelta: {x: 126.936584, y: 71.39276}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5561815749592298592
@@ -264,7 +264,6 @@ MonoBehaviour:
     inTransit: 0
     hasInteractable: 0
     jobDestination: {x: 0, y: 0, z: 0}
-    jobDestinationTransform: {fileID: 0}
     useTransform: 0
 --- !u!195 &-4812462848551818687
 NavMeshAgent:

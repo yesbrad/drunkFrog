@@ -12,9 +12,8 @@ public class TimelineItemController : StaticItemController
 	private Transform characterPosition;
 
 	private PlayableDirector director;
-	private bool playing;
 
-	public override void Init(Item newItem, HouseManager manager)
+	public override void Init(ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
 	{
 		base.Init(newItem, manager);
 		director = GetComponent<PlayableDirector>();
@@ -38,18 +37,17 @@ public class TimelineItemController : StaticItemController
 			}
 		}
 
+		director.time = 0;
 		director.Play();
-		playing = true;
 	}
 
 	private void Update()
 	{
-		if (playing)
+		if (occupied)
 		{
-			if(director.time >= director.playableAsset.duration - 0.1f)
+			if(director.time >= director.playableAsset.duration - 0.2f)
 			{
 				LastUsedCharacter.Pawn.LockPawn(false);
-				playing = false;
 				EndInteract();
 			}
 		}

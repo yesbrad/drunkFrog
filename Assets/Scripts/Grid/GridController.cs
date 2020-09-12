@@ -72,7 +72,10 @@ public class GridController : MonoBehaviour
 
         if (HasItem(position))
         {
-            grid.GetValue(gridPosition.x, gridPosition.y).item.Interact(player);
+            if(!grid.GetValue(gridPosition.x, gridPosition.y).item.controller.occupied)
+            {
+                grid.GetValue(gridPosition.x, gridPosition.y).item.Interact(player, () => { });
+            }
         }
     }
 

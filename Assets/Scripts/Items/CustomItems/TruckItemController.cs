@@ -7,7 +7,7 @@ public class TruckItemController : ItemController
 {
 	private TruckInventroy truckInventroy;
 
-	public override void Init(Item newItem, HouseManager manager)
+	public override void Init(ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
 	{
 		base.Init(newItem, manager);
 	}
@@ -22,7 +22,7 @@ public class TruckItemController : ItemController
 
 		if (manager.InventoryManager.HasItem() == false)
 		{
-			Item newItem = truckInventroy.GetItem(Owner);
+			Item newItem = truckInventroy.GetItem(HouseOwner);
 			manager.InventoryManager.GiveItem(newItem);
 		}
 	}

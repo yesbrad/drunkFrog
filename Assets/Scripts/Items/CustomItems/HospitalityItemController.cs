@@ -1,12 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+
 [AddComponentMenu("Item Controller/Hospitality Item")]
 
 public class HospitalityItemController : TimelineItemController
 {
 	[Header("Hospitality Item")]
+	[SerializeField]
 	private AIStatTypes statType;
+
+	[SerializeField]
+	[Range(0 , 100)]
+	private int statInteractionBoost = 10;
+
+	[SerializeField]
+	private bool hasQuantity;
 
 	[SerializeField]
 	private int startQuantity = 50;
@@ -17,20 +27,21 @@ public class HospitalityItemController : TimelineItemController
 	private int quantity;
 	private bool outOfStock;
 
-	public override void Init(Item newItem, HouseManager manager)
+	public override void Init(ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
 	{
 		base.Init(newItem, manager);
 		quantity = startQuantity;
+		outOfStockContainer?.SetActive(false);
 	}
 
 	public override void AddToInventory()
 	{
-		Owner.HouseInventory.Add(statType, this, quantity);
+		HouseOwner.HouseInventory.Add(statType, this, quantity);
 	}
 
 	public override void RemoveFromInventory()
 	{
-		Owner.HouseInventory.Add(statType, this, quantity);
+		HouseOwner.HouseInventory.Add(statType, this, quantity);
 	}
 
 	public override void EndInteract()
@@ -40,9 +51,11 @@ public class HospitalityItemController : TimelineItemController
 		if(!outOfStock)
 		{
 			quantity--;
-			Owner.HouseInventory.Remove(statType, this, 1);
+			HouseOwner.HouseInventory.Remove(statType, this, 1);
 
-			if(quantity <= 0)
+			LastUsedCharacter.GetComponent<AIManager>()?.Stats.Add(statType, statInteractionBoost);
+
+			if (hasQuantity && quantity <= 0)
 			{
 				outOfStockContainer.SetActive(true);
 				outOfStock = true;

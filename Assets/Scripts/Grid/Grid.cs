@@ -153,9 +153,8 @@ public class Grid
             {
                 Item oldItem = gridArray[GetGridOneDIndex(x, y)].item;
                 ItemController itemController = oldItem.controller;
+                itemController.OnPickup();
                 Item possibleClonedItem = ItemFactory.CloneItem(oldItem.Data, itemController, manager, oldItem.extraData);
-
-               // string oldUUID = ;
 
                 for (int i = 0; i < gridArray.Length; i++)
                 {

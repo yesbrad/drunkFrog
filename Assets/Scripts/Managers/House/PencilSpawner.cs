@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class PencilSpawner : MonoBehaviour, IStateListener
 {
+	[Header("Pencil Spawner")]
+	[SerializeField]
+	private AIClass[] aiClasses;
+
 	[SerializeField]
 	private Transform pencilSpawn;
 
 	[SerializeField]
+	[Range(1, 10)]
 	private int groupSizeMin = 1;
 
 	[SerializeField]
+	[Range(1, 10)]
 	private int groupSizeMax = 5;
 
 	[SerializeField]
+	[Range(1, 10)]
 	private int groupRateMin = 1;
 
 	[SerializeField]
+	[Range(1, 10)]
 	private int groupRateMax = 10;
 
 	[SerializeField]
+	[Range(1, 300)]
 	private int partyLimit = 200;
 
 
@@ -70,8 +79,13 @@ public class PencilSpawner : MonoBehaviour, IStateListener
 
 		AIManager newAI = Instantiate(GameManager.instance.AIManagerPrefab, pencilSpawn.position, Quaternion.identity).GetComponent<AIManager>();
 		newAI.transform.parent = transform.transform;
-		newAI.Init(houseManager);
+		newAI.Init(houseManager, GetNewClass());
 		amountSpawned++;
+	}
+
+	public AIClass GetNewClass ()
+	{
+		return aiClasses[0];
 	}
 
 	public void OnGameStateUpdate(GameState gameState)

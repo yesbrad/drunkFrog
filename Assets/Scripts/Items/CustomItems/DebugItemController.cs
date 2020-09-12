@@ -16,7 +16,7 @@ public class DebugItemController : StaticItemController
     public override void StartInteract(CharacterManager manager, Action taskFinishCallback)
     {
         base.StartInteract(manager, taskFinishCallback);
-        Owner?.AddPP(placePoints);
+        HouseOwner?.AddPP(placePoints);
         currentTime = waitTime;
 
         if (meshRenderer)

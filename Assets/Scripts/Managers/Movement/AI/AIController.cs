@@ -13,60 +13,69 @@ public class AIController : Pawn
 
         public bool inTransit;
         public System.Action OnReachDestination;
-        public IInteractable parentInteractable;
         public bool hasInteractable;
         
         public Vector3 jobDestination;
-        public Transform jobDestinationTransform;
+        public IInteractable jobInteractable;
         public bool useTransform;
 
-        public Job (NavMeshAgent jobAgent, Vector3 destination, System.Action desinationReached, IInteractable interactable)
+        public Job (NavMeshAgent jobAgent, Vector3 destination, System.Action desinationReached)
         {
             navAgent = jobAgent;
             OnReachDestination = desinationReached;
             jobDestination = destination;
-            parentInteractable = interactable;
         }
 
-        public Job(NavMeshAgent jobAgent, Transform destination, System.Action desinationReached, IInteractable interactable)
+        public Job(NavMeshAgent jobAgent, IInteractable interactable, System.Action desinationReached)
         {
             navAgent = jobAgent;
             OnReachDestination = desinationReached;
-            jobDestinationTransform = destination;
-            parentInteractable = interactable;
+            jobInteractable = interactable;
             useTransform = true;
         }
 
         public void Init ()
         {
             inTransit = true;
-            navAgent.destination = useTransform ? jobDestinationTransform.position : jobDestination;
+            navAgent.destination = useTransform ? jobInteractable.InteractPosition.position : jobDestination;
         }
 
         public void CheckDestination ()
         {
+            // Finish the job when its reached its destination
             if (!navAgent.pathPending && inTransit)
             {
                 if (navAgent.remainingDistance <= navAgent.stoppingDistance)
                 {
                     if (!navAgent.hasPath || navAgent.velocity.sqrMagnitude == 0f)
                     {
-                        inTransit = false;
-                        OnReachDestination.Invoke();
-                        OnReachDestination = null;
+                        FinishJob();
                     }
                 }
             }
 
+            /*
+            // If the current interactable is currenly being used Finish the job
+            if(inTransit && jobInteractable != null && jobInteractable.occupied)
+            {
+                FinishJob();
+            }
+            */
+
             if (useTransform)
             {
-                if(jobDestinationTransform == null)
+                if(jobInteractable == null)
                 {
-                    inTransit = false;
-                    OnReachDestination.Invoke();
-                    OnReachDestination = null;
+                    FinishJob();
                 }
             }
+        }
+
+        public void FinishJob()
+        {
+            inTransit = false;
+            OnReachDestination.Invoke();
+            OnReachDestination = null;
         }
     }
 
@@ -98,10 +107,16 @@ public class AIController : Pawn
         transform.rotation = Quaternion.Euler(rotation);
     }
 
-    public void SetDestination (Vector3 destination, System.Action desinationReached, IInteractable interactable)
+    public void StartJob (Vector3 position, System.Action desinationReached)
     {
-        currentJob = new Job(agent, destination, desinationReached, interactable);
+        currentJob = new Job(agent, position, desinationReached);
         currentJob.Init();
     }
+    public void StartJob(IInteractable interactable, System.Action desinationReached )
+    {
+        currentJob = new Job(agent, interactable, desinationReached);
+        currentJob.Init();
+    }
+
 
 }

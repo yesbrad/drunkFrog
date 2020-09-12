@@ -15,56 +15,64 @@ public class ItemController : MonoBehaviour, IInteractable
     private Transform interactPosition;
 
     public Transform InteractPosition { get { return interactPosition; } }
-    public HouseManager Owner { get; private set; }
+    public HouseManager HouseOwner { get; private set; }
+    public CharacterManager CharacterOwner { get; private set; }
     public CharacterManager LastUsedCharacter { get; private set; }
 
+
     public bool occupied { get; set; }
-    public Item item { get; private set; }
+    public ItemData item { get; private set; }
     public Action onTaskFinished { get; set; }
 
-    public string Name { get { return item.Data.name; } }
+    public string Name { get { return item.name; } }
 
-    public virtual void Init (Item newItem, HouseManager manager)
+    public virtual void Init (ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
     {
         item = newItem;
-        Owner = manager;
+        HouseOwner = manager;
+        CharacterOwner = characterManager;
+
         gameObject.SetActive(false);    
     }
 
-    public virtual void StartInteract(CharacterManager manager, System.Action onFinishInteraction = null)
+    public virtual void StartInteract(CharacterManager manager, System.Action onFinishInteraction)
     {
         if (occupied)
         {
-            onFinishInteraction?.Invoke();
+            onFinishInteraction.Invoke();
             return;
         }
 
         onTaskFinished = onFinishInteraction;
-
         occupied = true;
-
         LastUsedCharacter = manager;
     }
 
     public virtual void EndInteract()
     {
-        onTaskFinished?.Invoke();
-        occupied = false;
+        onTaskFinished.Invoke();
         onTaskFinished = null;
+        occupied = false;
     }
 
     public virtual void OnPickup()
     {
+        Debug.Log("Pickup");
+
+
+        if (occupied)
+        {
+            Debug.Log("Ending Ineract Early");
+            EndInteract();
+        }
+
         gameObject.SetActive(false);
     }
 
     public virtual void OnPlace(Vector3 position, Quaternion rot)
     {
         transform.position = position;
-        
-        if(item.Data.size.IsSingle() == false)
-            transform.rotation = rot;
-
+        transform.rotation = rot;
         gameObject.SetActive(true);
     }
 
@@ -86,6 +94,10 @@ public class ItemController : MonoBehaviour, IInteractable
     {
         if(showPrefabGizmos)
         {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(Vector3.zero, Vector3.back * 8);
+            Gizmos.DrawWireSphere(Vector3.back * 8, 1);
+
             Gizmos.color = Color.cyan;
 
             for (int i = 0; i < 10; i++)

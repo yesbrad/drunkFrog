@@ -3,14 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum AIStatTypes
-{
-    Hunger,
-    Soberness,
-    Thirst,
-    Fun,
-}
-
 
 [System.Serializable]
 public class AITask
@@ -30,30 +22,37 @@ public class AITask
 
     public float time;
 
-    public AITask (IInteractable newItem, bool isGroup = false) {
+    public bool isPosition;
+
+    public AITask (IInteractable newItem) {
         interactable = newItem;
         destination = interactable.InteractPosition.position;
-        isInGroup = isGroup;
     }
 
     public AITask(Vector3 positon)
     {
         destination = positon;
+        isPosition = true;
     }
 
-    public virtual void OnStart(CharacterManager character, AIController iController, System.Action onFinish)
+    public void OnStart(CharacterManager character, AIController iController, System.Action onFinish)
     {
         currentCharacter = character;
         onFinished = onFinish;
         controller = iController;
-        controller.SetDestination(destination, OnDestinationReached, interactable);
+
+        if(isPosition)
+            controller.StartJob(destination, OnDestinationReached);
+        else
+            controller.StartJob(interactable, OnDestinationReached);
+
         isComplete = false;
         time = Time.time;
     }
 
     public void OnDestinationReached ()
     {
-        if (interactable != null)
+        if (interactable != null && !interactable.occupied)
         {
             interactable.StartInteract(currentCharacter, () => OnFinish());
         } 
@@ -79,9 +78,6 @@ public class AIManager : CharacterManager
     public AITask currentTask;
 
     [SerializeField]
-    private int confusedNewTaskTime = 60;
-
-    [SerializeField]
     private Text debugTaskText;
 
     private AIController controller;
@@ -89,10 +85,15 @@ public class AIManager : CharacterManager
 
     public bool HasCompletedFirstTask { get { return tasksCompleted > 1; } }
 
-    public override void Init(HouseManager initialHouse)
+    public AIStats Stats { get; private set; }
+    public AIClass AIClass { get; private set; }
+
+    public void Init(HouseManager initialHouse, AIClass aIClass)
     {
         base.Init(initialHouse);
         controller = GetComponentInChildren<AIController>();
+        Stats = new AIStats(aIClass);
+        AIClass = aIClass;
         StartAndGenerateTask();
     }
 
@@ -100,9 +101,12 @@ public class AIManager : CharacterManager
     {
         base.Update();
 
-        if (currentTask.time + confusedNewTaskTime < Time.time)
+        if (currentTask.time + GameManager.instance.designBible.maxAITaskTime < Time.time)
         {
-            //StartAndGenerateTask();
+            if(currentTask.interactable != null)
+                currentTask.interactable.occupied = false;
+            
+            StartAndGenerateTask();
         }
     }
 
@@ -119,7 +123,15 @@ public class AIManager : CharacterManager
 
     public AITask SelectTask ()
     {
-        if (Random.Range(0f, 1f) < GameManager.instance.DesignBible.chanceOfSocialising && HasCompletedFirstTask)
+        if (GetOdds() < AIClass.balanceSocializing && HasCompletedFirstTask)
+        {
+            AITask possibleTask = GetStatObjectTask(AIStatTypes.Hunger);
+
+            if (possibleTask != null)
+                return possibleTask;
+        }
+
+        if (GetOdds() < AIClass.balanceSocializing && HasCompletedFirstTask)
         {
             AITask possibleTask = FindGroup();
 
@@ -129,9 +141,9 @@ public class AIManager : CharacterManager
             }
         }
 
-        if (Random.Range(0f,1f) < GameManager.instance.DesignBible.chanceOfUsingRandomItem && HasCompletedFirstTask)
+        if (GetOdds() < AIClass.balanceHavingFun && HasCompletedFirstTask)
         {
-            AITask possibleTask = GetRandomObjectTask();
+            AITask possibleTask = GetStatObjectTask(AIStatTypes.Fun);
 
             if (possibleTask != null)
                 return possibleTask;
@@ -143,6 +155,11 @@ public class AIManager : CharacterManager
         }
 
         return GetCentrePointTask();
+    }
+
+    private static float GetOdds()
+    {
+        return Random.Range(0f, 1f);
     }
 
     private AITask FindGroup()
@@ -178,6 +195,23 @@ public class AIManager : CharacterManager
         }
     }
 
+    private AITask GetStatObjectTask(AIStatTypes type)
+    {
+        try
+        {
+            ItemController possibleObject = HouseManager.HouseInventory.FindItem(type);
+
+            if (possibleObject != null)
+                return new AITask(possibleObject);
+
+            return null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     private AITask GetRandomPositionTask ()
     {
         return new AITask(CurrentGrid.GetRandomPosition());
@@ -195,7 +229,7 @@ public class AIManager : CharacterManager
 
         if(debugTaskText != null)
         {
-            debugTaskText.text = $"CurrentTask: {task.interactable?.Name}";
+            debugTaskText.text = $"{task.interactable?.Name}";
         }
     }
 }

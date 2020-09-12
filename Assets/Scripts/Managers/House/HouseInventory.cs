@@ -34,8 +34,6 @@ public class HouseInventory : MonoBehaviour
 		{
 			if(catagory == categorys[i].catagory)
 			{
-				Debug.Log("ADDING TO HOUSEI NVENT");
-
 				if (!categorys[i].items.Contains(controller))
 				{
 					categorys[i].items.Add(controller);
