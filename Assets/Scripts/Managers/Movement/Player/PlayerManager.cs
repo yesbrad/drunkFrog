@@ -28,7 +28,7 @@ public class PlayerManager : CharacterManager
         Detection = GetComponent<PlayerDetection>();
         transform.GetComponentInChildren<PlayerController>().Spawn(initialHouse.SpawnPosition);
         GetComponent<PlayerInput>().ActivateInput();
-        AddCash(HouseManager.baseCash);
+        AddCash(HouseManager.BaseCash);
     }
 
     public override void Interact(Vector3 position)

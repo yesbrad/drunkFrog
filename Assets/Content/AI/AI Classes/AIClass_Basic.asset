@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05289715078d7649a70bfdf183d9b7f, type: 3}
   m_Name: AIClass_Basic
   m_EditorClassIdentifier: 
-  baseBoardness: 0
-  baseHunger: 0
-  baseSoberness: 90
-  baseThirst: 0
+  baseBoardness: 36
+  baseHunger: 33
+  baseSoberness: 82
+  baseThirst: 25
   obtainingFunThreshold: 50
   obtainingSocializingThreshold: 50
   obtainingWaterThreshold: 50
-  obtainingFoodThreshold: 50
-  obtainingAlcoholThreshold: 51
-  boardomIncreaseRate: 60
-  thirstIncreaseRate: 60
-  hungerIncreaseRate: 60
+  obtainingFoodThreshold: 46
+  obtainingAlcoholThreshold: 31
+  boardomIncreaseRate: 6.8
+  thirstIncreaseRate: 7.2
+  hungerIncreaseRate: 8.9
   sobernessIncreaseRate: 5.9

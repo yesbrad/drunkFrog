@@ -12,31 +12,46 @@ public class HouseManager : MonoBehaviour
         public LayerMask cameraLayer;
     }
 
-    public GridController[] gridControllers;
-    public FloorSettings[] floorSettings;
-    public Transform houseCenter;
+    [SerializeField]
+    internal FloorSettings[] floorSettings;
+    
+    [SerializeField]
+    private Transform houseCenter;
 
     [SerializeField]
     private Transform spawnPosition;
 
-    public int baseCash = 10000;
+    [SerializeField]
+    private int baseCash = 10000;
+
+    [Header("Debug")]
 
     public List<CharacterManager> guests = new List<CharacterManager>();
 
     public PlayerManager houseOwner;
+
+    public int BaseCash { get { return baseCash; } }
+
     public PencilSpawner Spawner { get; private set; }
     public HouseInventory HouseInventory { get; private set; }
     public Vector3 SpawnPosition { get { return spawnPosition.position; } }
 
-    public int PP;
+    private int PP;
+    
+    private GridController[] gridControllers;
+
+    private void Awake()
+    {
+        gridControllers = GetComponentsInChildren<GridController>();
+        Spawner = GetComponent<PencilSpawner>();
+        HouseInventory = GetComponent<HouseInventory>();
+    }
 
     public void Init (PlayerManager owner)
     {
         houseOwner = owner;
         PP = 1;
         RefreshUI();
-        Spawner = GetComponent<PencilSpawner>();
-        HouseInventory = GetComponent<HouseInventory>();
     }
 
     public void AddPP (int amount, Vector3 position)
@@ -47,6 +62,9 @@ public class HouseManager : MonoBehaviour
 
     public void AddPP(int amount)
     {
+        if (amount == 0)
+            return;
+
         PP += Mathf.Abs(amount);
         RefreshUI();
     }
@@ -59,6 +77,9 @@ public class HouseManager : MonoBehaviour
 
     public void RemovePP(int amount)
     {
+        if (amount == 0)
+            return;
+
         PP -= Mathf.Abs(amount);
         RefreshUI();
     }

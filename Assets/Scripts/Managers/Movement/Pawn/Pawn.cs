@@ -15,6 +15,9 @@ public class Pawn : MonoBehaviour
     protected float speed;
 
     [SerializeField]
+    protected Transform pawnTimelineContainer;
+
+    [SerializeField]
     private Animator animator;
 
     [SerializeField]
@@ -24,6 +27,8 @@ public class Pawn : MonoBehaviour
     
     public Vector3 Position { get { return transform.position; } }
     public Animator PawnAnimator { get { return animator; } }
+
+    private Transform originalParent;
 
     public bool Occupied { get; private set; }
     
@@ -56,6 +61,25 @@ public class Pawn : MonoBehaviour
     public void SetPosition (Vector3 position)
     {
         transform.position = position;
+    }
+
+    public void StartTimline(Transform parent)
+    {
+        originalParent = pawnTimelineContainer.parent;
+        pawnTimelineContainer.parent = parent;
+        ResetLocalTransform();
+    }
+
+    public void EndTimeline()
+    {
+        pawnTimelineContainer.parent = originalParent;
+        ResetLocalTransform();
+    }
+
+    private void ResetLocalTransform()
+    {
+        pawnTimelineContainer.localPosition = Vector3.zero;
+        pawnTimelineContainer.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
     public virtual void SetRotation(Vector3 rotation)

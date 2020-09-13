@@ -34,7 +34,7 @@ public class ItemSceneSpawner : MonoBehaviour
 
 		if (grid == null)
 		{
-			Debug.Log("No Grid Found");
+			Debug.Log("No Grid Found", gameObject);
 			return;
 		}
 
@@ -49,6 +49,7 @@ public class ItemSceneSpawner : MonoBehaviour
 		{
 			Gizmos.color = itemData.debugColor;
 			Gizmos.DrawSphere(transform.position + GetPlacePosition(), 0.3f);
+			Gizmos.DrawLine(transform.position + GetPlacePosition(), (transform.position + GetPlacePosition()) - transform.forward);
 			Gizmos.matrix = transform.localToWorldMatrix;
 			Gizmos.DrawLine(Vector3.zero, Vector3.right * (itemData.size.x * constants.GridCellSize));
 			Gizmos.DrawLine(Vector3.zero, Vector3.forward * (itemData.size.y * constants.GridCellSize));

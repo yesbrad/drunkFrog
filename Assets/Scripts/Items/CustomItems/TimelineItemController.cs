@@ -24,8 +24,7 @@ public class TimelineItemController : StaticItemController
 		base.StartInteract(manager, onFinishInteraction);
 
 		manager.Pawn.LockPawn(true);
-		manager.Pawn.SetPosition(characterPosition.position);
-		manager.Pawn.SetRotation(characterPosition.eulerAngles);
+		manager.Pawn.StartTimline(characterPosition);
 
 		IEnumerable<PlayableBinding> bindings = director.playableAsset.outputs;
 
@@ -55,6 +54,7 @@ public class TimelineItemController : StaticItemController
 		{
 			if(director.time >= director.playableAsset.duration - 0.2f)
 			{
+				LastUsedCharacter.Pawn.EndTimeline();
 				LastUsedCharacter.Pawn.LockPawn(false);
 				EndInteract();
 			}

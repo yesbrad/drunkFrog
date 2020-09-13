@@ -37,15 +37,15 @@ public class AIClass : ScriptableObject
 
 	[Header("Stat Increase Rate (Seconds)")]
 
-	[Range(0, 200)]
+	[Range(0, 100)]
 	public float boardomIncreaseRate = 60;
 
-	[Range(0, 200)]
+	[Range(0, 100)]
 	public float thirstIncreaseRate = 60;
 
-	[Range(0, 200)]
+	[Range(0, 100)]
 	public float hungerIncreaseRate = 60;
 
-	[Range(0, 200)]
+	[Range(0, 100)]
 	public float sobernessIncreaseRate = 60;
 }
