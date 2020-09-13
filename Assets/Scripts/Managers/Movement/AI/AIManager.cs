@@ -101,12 +101,20 @@ public class AIManager : CharacterManager
     {
         base.Update();
 
+        if (Stats != null)
+            Stats.TickStats();
+
         if (currentTask.time + GameManager.instance.designBible.maxAITaskTime < Time.time)
         {
             if(currentTask.interactable != null)
                 currentTask.interactable.occupied = false;
             
             StartAndGenerateTask();
+        }
+
+        if (debugTaskText != null)
+        {
+            debugTaskText.text = $"{Stats.GetStat(AIStatTypes.Soberness).amount}";
         }
     }
 
@@ -121,29 +129,60 @@ public class AIManager : CharacterManager
         return currentTask;
     }
 
+    private int lastSelection = -1;
+
+    private bool WasLastSelected(int current) => lastSelection != current;
+
     public AITask SelectTask ()
     {
-        if (GetOdds() < AIClass.balanceSocializing && HasCompletedFirstTask)
+        if (Stats.GetStatAmount(AIStatTypes.Soberness) > AIClass.obtainingAlcoholThreshold && WasLastSelected(0) && HasCompletedFirstTask)
+        {
+            AITask possibleTask = GetStatObjectTask(AIStatTypes.Soberness);
+
+            if (possibleTask != null)
+            {
+                lastSelection = 0;
+                return possibleTask;
+            }
+        }
+
+        if (Stats.GetStatAmount(AIStatTypes.Thirst) > AIClass.obtainingWaterThreshold && WasLastSelected(1) && HasCompletedFirstTask)
+        {
+            AITask possibleTask = GetStatObjectTask(AIStatTypes.Thirst);
+
+            if (possibleTask != null)
+            {
+                lastSelection = 1;
+                return possibleTask;
+            }
+        }
+
+        if (Stats.GetStatAmount(AIStatTypes.Hunger) > AIClass.obtainingFoodThreshold && WasLastSelected(2) && HasCompletedFirstTask)
         {
             AITask possibleTask = GetStatObjectTask(AIStatTypes.Hunger);
 
             if (possibleTask != null)
+            {
+                lastSelection = 2;
                 return possibleTask;
+            }
         }
 
-        if (GetOdds() < AIClass.balanceSocializing && HasCompletedFirstTask)
+        if (GetOdds() < AIClass.obtainingSocializingThreshold && WasLastSelected(3) && HasCompletedFirstTask)
         {
             AITask possibleTask = FindGroup();
 
             if (possibleTask != null)
             {
+                lastSelection = 3;
                 return possibleTask;
             }
         }
 
-        if (GetOdds() < AIClass.balanceHavingFun && HasCompletedFirstTask)
+        // Do somthing fun if theres anyhting remotyly fun in the house
+        if (HasCompletedFirstTask)
         {
-            AITask possibleTask = GetStatObjectTask(AIStatTypes.Fun);
+            AITask possibleTask = GetStatObjectTask(AIStatTypes.Boardness);
 
             if (possibleTask != null)
                 return possibleTask;
@@ -226,10 +265,5 @@ public class AIManager : CharacterManager
     {
         tasksCompleted++;
         task.OnStart(this, controller, () => StartTask(GenerateNewTask()));
-
-        if(debugTaskText != null)
-        {
-            debugTaskText.text = $"{task.interactable?.Name}";
-        }
     }
 }

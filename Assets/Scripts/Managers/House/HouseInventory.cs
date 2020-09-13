@@ -24,7 +24,7 @@ public class HouseInventory : MonoBehaviour
 	{
 		categorys.Add(new Category(AIStatTypes.Soberness));
 		categorys.Add(new Category(AIStatTypes.Hunger));
-		categorys.Add(new Category(AIStatTypes.Fun));
+		categorys.Add(new Category(AIStatTypes.Boardness));
 		categorys.Add(new Category(AIStatTypes.Thirst));
 	}
 

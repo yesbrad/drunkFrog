@@ -41,6 +41,14 @@ public class TimelineItemController : StaticItemController
 		director.Play();
 	}
 
+	[ContextMenu("Create Character Start Position")]
+	private void CreateCharacterStartPosition()
+	{
+		characterPosition = new GameObject().transform;
+		characterPosition.gameObject.name = "CharacterStartPosition";
+		characterPosition.parent = transform;
+	}
+
 	private void Update()
 	{
 		if (occupied)

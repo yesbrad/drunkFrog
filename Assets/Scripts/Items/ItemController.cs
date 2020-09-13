@@ -90,6 +90,14 @@ public class ItemController : MonoBehaviour, IInteractable
         }
     }
 
+    [ContextMenu("Create Interact Position")]
+    private void CreateInteractPosition()
+    {
+        interactPosition = new GameObject().transform;
+        interactPosition.gameObject.name = "InteractPosition";
+        interactPosition.parent = transform;
+    }
+
     private void OnDrawGizmos()
     {
         if(showPrefabGizmos)
@@ -97,6 +105,9 @@ public class ItemController : MonoBehaviour, IInteractable
             Gizmos.color = Color.red;
             Gizmos.DrawLine(Vector3.zero, Vector3.back * 8);
             Gizmos.DrawWireSphere(Vector3.back * 8, 1);
+
+            if(interactPosition != null)
+                Gizmos.DrawSphere(interactPosition.position, 0.2f);
 
             Gizmos.color = Color.cyan;
 

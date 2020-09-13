@@ -31,7 +31,9 @@ public class HospitalityItemController : TimelineItemController
 	{
 		base.Init(newItem, manager);
 		quantity = startQuantity;
-		outOfStockContainer?.SetActive(false);
+
+		if(outOfStockContainer != null)
+			outOfStockContainer?.SetActive(false);
 	}
 
 	public override void AddToInventory()

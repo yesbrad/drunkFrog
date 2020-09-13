@@ -7,7 +7,7 @@ public enum AIStatTypes
 	Hunger,
 	Soberness,
 	Thirst,
-	Fun,
+	Boardness,
 }
 
 public class AIStats
@@ -17,10 +17,35 @@ public class AIStats
 		public AIStatTypes type;
 		public int amount;
 
-		public Stat (AIStatTypes type, int amount)
+		public float currentTime;
+		public float increaseRate;
+
+		public Stat (AIStatTypes type, int amount, float increaseRate)
 		{
 			this.type = type;
 			this.amount = amount;
+			this.increaseRate = increaseRate;
+			SetTime();
+		}
+
+		public void SetTime()
+		{
+			currentTime = Time.time;
+		}
+
+		public bool CheckTime()
+		{
+			return currentTime + increaseRate < Time.time;
+		}
+
+		public void IncreaseStat()
+		{
+			amount = Mathf.Clamp(amount + 1, 0, 100);
+		}
+
+		public void DecreaseStat()
+		{
+			amount = Mathf.Clamp(amount - 1, 0, 100);
 		}
 	}
 
@@ -28,10 +53,10 @@ public class AIStats
 
 	public AIStats(AIClass aiClass)
 	{
-		stats.Add(new Stat(AIStatTypes.Fun, aiClass.baseFun));
-		stats.Add(new Stat(AIStatTypes.Hunger, aiClass.baseHunger));
-		stats.Add(new Stat(AIStatTypes.Soberness, aiClass.baseSober));
-		stats.Add(new Stat(AIStatTypes.Thirst, aiClass.baseThirst));
+		stats.Add(new Stat(AIStatTypes.Boardness, aiClass.baseBoardness, aiClass.boardomIncreaseRate));
+		stats.Add(new Stat(AIStatTypes.Hunger, aiClass.baseHunger, aiClass.hungerIncreaseRate));
+		stats.Add(new Stat(AIStatTypes.Soberness, aiClass.baseSoberness, aiClass.sobernessIncreaseRate));
+		stats.Add(new Stat(AIStatTypes.Thirst, aiClass.baseThirst, aiClass.thirstIncreaseRate));
 	}
 
 	public void Add (AIStatTypes type, int amount)
@@ -40,7 +65,7 @@ public class AIStats
 		{
 			if(stats[i].type == type)
 			{
-				stats[i].amount = Mathf.Clamp(stats[i].amount + Mathf.Abs(amount), 0 , 100);
+				stats[i].amount = Mathf.Clamp(stats[i].amount - Mathf.Abs(amount), 0 , 100);
 			}
 		}
 	}
@@ -51,14 +76,26 @@ public class AIStats
 		{
 			if (stats[i].type == type)
 			{
-				stats[i].amount = Mathf.Clamp(stats[i].amount - Mathf.Abs(amount), 0, 100);
+				stats[i].amount = Mathf.Clamp(stats[i].amount + Mathf.Abs(amount), 0, 100);
 			}
 		}
 	}
 
-	public float GetStatOdds (AIStatTypes type)
+	public void TickStats()
 	{
-		return GetStat(type).amount / 100;
+		for (int i = 0; i < stats.Count; i++)
+		{
+			if (stats[i].CheckTime())
+			{
+				stats[i].IncreaseStat();
+				stats[i].SetTime();
+			}
+		}
+	}
+
+	public float GetStatAmount (AIStatTypes type)
+	{
+		return GetStat(type).amount;
 	}
 
 	public Stat GetStat(AIStatTypes type)
