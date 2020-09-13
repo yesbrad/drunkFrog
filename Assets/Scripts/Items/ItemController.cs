@@ -57,12 +57,8 @@ public class ItemController : MonoBehaviour, IInteractable
 
     public virtual void OnPickup()
     {
-        Debug.Log("Pickup");
-
-
         if (occupied)
         {
-            Debug.Log("Ending Ineract Early");
             EndInteract();
         }
 

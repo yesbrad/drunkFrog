@@ -10,14 +10,14 @@ public class StaticItemController : ItemController
     public override void OnPlace(Vector3 position, Quaternion rot)
     {
         base.OnPlace(position, rot);
-        HouseOwner.AddPP(placePoints);
+        HouseOwner.AddPP(placePoints, position);
         AddToInventory();
     }
 
     public override void OnPickup()
     {
         base.OnPickup();
-        HouseOwner?.RemovePP(placePoints);
+        HouseOwner?.RemovePP(placePoints, transform.position);
         RemoveFromInventory();
     }
 

@@ -57,6 +57,8 @@ public class HospitalityItemController : TimelineItemController
 
 			LastUsedCharacter.GetComponent<AIManager>()?.Stats.Add(statType, statInteractionBoost);
 
+			HouseOwner.AddPP(placePoints, transform.position);
+
 			if (hasQuantity && quantity <= 0)
 			{
 				outOfStockContainer.SetActive(true);

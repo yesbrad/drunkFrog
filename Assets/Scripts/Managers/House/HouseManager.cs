@@ -39,10 +39,22 @@ public class HouseManager : MonoBehaviour
         HouseInventory = GetComponent<HouseInventory>();
     }
 
-    public void AddPP (int amount)
+    public void AddPP (int amount, Vector3 position)
+    {
+        PPFXController.instance.Play(PPFXController.PPState.Plus, position);
+        AddPP(amount);
+    }
+
+    public void AddPP(int amount)
     {
         PP += Mathf.Abs(amount);
         RefreshUI();
+    }
+
+    public void RemovePP(int amount, Vector3 position)
+    {
+        PPFXController.instance.Play(PPFXController.PPState.Minus, position);
+        RemovePP(amount);
     }
 
     public void RemovePP(int amount)
