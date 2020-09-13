@@ -15,9 +15,9 @@ MonoBehaviour:
   name: Couch
   id: Couch
   size:
-    x: 1
-    y: 2
-  itemPrefab: {fileID: 1718937532128273951, guid: 3513d1ff9dd43724a9268dd7201284c3,
+    x: 2
+    y: 1
+  itemPrefab: {fileID: 1718937532128273951, guid: fb3e5ffbf42a91f4c8f40bc9307a7d68,
     type: 3}
   gridSlot: 1
-  debugColor: {r: 0.91665447, g: 1, b: 0, a: 1}
+  debugColor: {r: 1, g: 0, b: 0.3232522, a: 1}

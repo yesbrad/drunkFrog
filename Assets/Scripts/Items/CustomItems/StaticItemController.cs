@@ -17,18 +17,18 @@ public class StaticItemController : ItemController
     public override void OnPickup()
     {
         base.OnPickup();
-        HouseOwner?.RemovePP(placePoints, transform.position);
+        HouseOwner.RemovePP(placePoints, transform.position);
         RemoveFromInventory();
     }
 
     public virtual void AddToInventory()
     {
-        HouseOwner.HouseInventory?.Add(AIStatTypes.Boardness, this, 1);
+        ///HouseOwner.HouseInventory?.Add(AIStatTypes.Boardness, this, 1);
     }
 
     public virtual void RemoveFromInventory()
     {
-        HouseOwner.HouseInventory?.Remove(AIStatTypes.Boardness, this, 1);
+        //.HouseInventory?.Remove(AIStatTypes.Boardness, this, 1);
     }
 }
     

@@ -56,30 +56,30 @@ public class HouseManager : MonoBehaviour
 
     public void AddPP (int amount, Vector3 position)
     {
+        if (amount == 0)
+            return;
+
         PPFXController.instance.Play(PPFXController.PPState.Plus, position);
         AddPP(amount);
     }
 
     public void AddPP(int amount)
     {
-        if (amount == 0)
-            return;
-
         PP += Mathf.Abs(amount);
         RefreshUI();
     }
 
     public void RemovePP(int amount, Vector3 position)
     {
+        if (amount == 0)
+            return;
+
         PPFXController.instance.Play(PPFXController.PPState.Minus, position);
         RemovePP(amount);
     }
 
     public void RemovePP(int amount)
     {
-        if (amount == 0)
-            return;
-
         PP -= Mathf.Abs(amount);
         RefreshUI();
     }
