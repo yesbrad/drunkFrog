@@ -50,12 +50,16 @@ public class TimelineItemController : StaticItemController
 
 	private void Update()
 	{
-		if (occupied)
+		if (HasOccupant())
 		{
 			if(director.time >= director.playableAsset.duration - 0.2f)
 			{
-				LastUsedCharacter.Pawn.EndTimeline();
-				LastUsedCharacter.Pawn.LockPawn(false);
+				foreach (ItemOccupant itemOccupant in Characters)
+				{
+					itemOccupant.manager.Pawn.EndTimeline();
+					itemOccupant.manager.Pawn.LockPawn(false);
+				}
+				
 				EndInteract();
 			}
 		}

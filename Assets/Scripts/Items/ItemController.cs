@@ -14,54 +14,52 @@ public class ItemController : MonoBehaviour, IInteractable
     [SerializeField]
     private Transform interactPosition;
 
+    [Space()]
+    [SerializeField]
+    private int maxOccupants = 1;
+
     public Transform InteractPosition { get { return interactPosition; } }
     public HouseManager HouseOwner { get; private set; }
     public CharacterManager CharacterOwner { get; private set; }
-    public CharacterManager LastUsedCharacter { get; private set; }
+    public Queue<ItemOccupant> Characters { get; private set; }
 
+    public ItemData ItemData { get; private set; }
 
-    public bool occupied { get; set; }
-    public ItemData item { get; private set; }
-    public Action onTaskFinished { get; set; }
-
-    public string Name { get { return item.name; } }
+    public string Name { get { return ItemData.name; } }
 
     public virtual void Init (ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
     {
-        item = newItem;
+        ItemData = newItem;
         HouseOwner = manager;
         CharacterOwner = characterManager;
-
+        Characters = new Queue<ItemOccupant>();
         gameObject.SetActive(false);    
     }
 
     public virtual void StartInteract(CharacterManager manager, System.Action onFinishInteraction)
     {
-        if (occupied)
+        if (IsFull())
         {
             onFinishInteraction.Invoke();
             return;
         }
 
-        onTaskFinished = onFinishInteraction;
-        occupied = true;
-        LastUsedCharacter = manager;
+        Characters.Enqueue(new ItemOccupant(manager, onFinishInteraction));
     }
 
     public virtual void EndInteract()
     {
-        onTaskFinished.Invoke();
-        onTaskFinished = null;
-        occupied = false;
+        foreach (ItemOccupant character in Characters)
+        {
+            character.onFinished.Invoke();
+        }
+
+        Characters.Clear();
     }
 
     public virtual void OnPickup()
     {
-        if (occupied)
-        {
-            EndInteract();
-        }
-
+        EndInteract();
         gameObject.SetActive(false);
     }
 
@@ -71,6 +69,9 @@ public class ItemController : MonoBehaviour, IInteractable
         transform.rotation = rot;
         gameObject.SetActive(true);
     }
+
+    public bool IsFull() => Characters.Count >= maxOccupants;
+    public bool HasOccupant() => Characters.Count > 0;
 
     [ContextMenu("Validate Controller")]
     public virtual void Validate()

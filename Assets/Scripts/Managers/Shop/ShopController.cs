@@ -18,16 +18,19 @@ public class ShopController : MonoBehaviour, IInteractable
 
     public Action onTaskFinished { get; set; }
 
-    public bool occupied { get; set; }
-
+    public bool IsFull() => Characters.Count > 1;
+    public bool HasOccupant() => Characters.Count > 0;
     public Transform InteractPosition { get { return interactPosition; } }
 
     private Shop shop;
 
     public string Name { get { return shopData.item.name; } }
 
+    public Queue<ItemOccupant> Characters { get; private set; }
+
     private void Awake()
     {
+        Characters = new Queue<ItemOccupant>();
         shop = new Shop(shopData);
     }
 

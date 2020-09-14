@@ -4,56 +4,44 @@ using UnityEngine;
 
 public class Group : MonoBehaviour, IInteractable
 {
-    [System.Serializable]
-    public class GroupCharacter
-    {
-        public AIManager aiManager;
-        public System.Action onGroupLeave;
+    [SerializeField]
+    private float shrinkageTime = 5;
 
-        public GroupCharacter (AIManager manager, System.Action onLeaveGroup)
-        {
-            aiManager = manager;
-            onGroupLeave = onLeaveGroup;
-            aiManager.Pawn.SetState(Pawn.PawnState.Talking);
-        }
-    }
-
-    public List<GroupCharacter> characters = new List<GroupCharacter>();
-
-    public float shrinkageTime = 5;
+    [SerializeField]
     [Range(2, 20)]
-    public int groupLimit = 5;
+    private int groupLimit = 5;
 
+    [SerializeField]
     [Range(10, 100)]
     [Tooltip("Seconds")]
-    public int maxTime = 60;
+    private int maxTime = 60;
 
     [SerializeField]
     private Transform interactPosition;
 
-    public Transform InteractPosition { get { return interactPosition; } }
-
     private float currentBootTime;
 
-    public bool occupied { get; set; }
-
-    public System.Action onTaskFinished { get; set; }
-
+    public Queue<ItemOccupant> Characters { get; private set; }
+    public Transform InteractPosition { get { return interactPosition; } }
     public string Name { get { return "Group"; } }
+    public bool IsFull() => Characters.Count > groupLimit;
+    public bool HasOccupant() => Characters.Count > 0;
 
     private void Awake()
     {
+        Characters = new Queue<ItemOccupant>();
         currentBootTime = shrinkageTime;
     }
 
     public void StartInteract(CharacterManager manager, System.Action onFinishInteraction)
     { 
-        if(characters.Count > groupLimit)
+        if(Characters.Count > groupLimit)
         {
             onFinishInteraction();
             return;
         }
-        characters.Add(new GroupCharacter(manager.GetComponentInParent<AIManager>(), onFinishInteraction));
+
+        Characters.Enqueue(new ItemOccupant(manager, onFinishInteraction));
     }
 
     private void Update()
@@ -62,27 +50,20 @@ public class Group : MonoBehaviour, IInteractable
 
         if(currentBootTime < 0)
         {
-            if(characters.Count > 0)
-                BootAI(characters[0].aiManager);
+            if(Characters.Count > 0)
+            {
+                BootAI(Characters.Dequeue());
+            }
 
             currentBootTime = shrinkageTime;
         }
 
     }
 
-    public void BootAllAI()
+    public void BootAI (ItemOccupant occupant, int index = 0)
     {
-        for (int i = 0; i < characters.Count; i++)
-        {
-            BootAI(characters[i].aiManager, 0);
-        }
-    }
-
-    public void BootAI (AIManager manager, int index = 0)
-    {
-        manager.StartAndGenerateTask();
-        manager.Pawn.SetState(Pawn.PawnState.Free);
-        characters.RemoveAt(index);
+        occupant.onFinished.Invoke();
+        occupant.manager.Pawn.SetState(Pawn.PawnState.Free);
     }
 
     private void OnDrawGizmos()

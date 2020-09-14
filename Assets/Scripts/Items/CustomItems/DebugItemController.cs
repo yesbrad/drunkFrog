@@ -27,7 +27,7 @@ public class DebugItemController : StaticItemController
 
     private void Update()
     {
-        if (occupied)
+        if (Characters.Count > 0)
         {
             currentTime -= Time.deltaTime;
 

@@ -55,7 +55,10 @@ public class HospitalityItemController : TimelineItemController
 			quantity--;
 			HouseOwner.HouseInventory.Remove(statType, this, 1);
 
-			LastUsedCharacter.GetComponent<AIManager>()?.Stats.Add(statType, statInteractionBoost);
+			foreach (ItemOccupant man in Characters)
+			{
+				(man.manager as AIManager).Stats.Add(statType, statInteractionBoost);
+			}
 
 			HouseOwner.AddPP(placePoints, transform.position);
 

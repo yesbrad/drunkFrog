@@ -72,7 +72,7 @@ public class GridController : MonoBehaviour
 
         if (HasItem(position))
         {
-            if(!grid.GetValue(gridPosition.x, gridPosition.y).item.controller.occupied)
+            if(grid.GetValue(gridPosition.x, gridPosition.y).item.controller.IsFull() == false)
             {
                 grid.GetValue(gridPosition.x, gridPosition.y).item.Interact(player, () => { });
             }

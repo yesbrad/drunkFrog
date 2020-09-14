@@ -52,7 +52,7 @@ public class AITask
 
     public void OnDestinationReached ()
     {
-        if (interactable != null && !interactable.occupied)
+        if (interactable != null && interactable.IsFull() == false)
         {
             interactable.StartInteract(currentCharacter, () => OnFinish());
         } 
@@ -104,13 +104,15 @@ public class AIManager : CharacterManager
         if (Stats != null)
             Stats.TickStats();
 
+        /* Shouldnt be doinbg this time to fix dat AI
         if (currentTask.time + GameManager.instance.designBible.maxAITaskTime < Time.time)
         {
             if(currentTask.interactable != null)
-                currentTask.interactable.occupied = false;
+                currentTask.interactable.occupants = false;
             
             StartAndGenerateTask();
         }
+        */
 
         if (debugTaskText != null)
         {

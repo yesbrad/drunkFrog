@@ -1,11 +1,25 @@
-﻿
+﻿using System.Collections.Generic;
 using UnityEngine;
+
+public struct ItemOccupant
+{
+    public CharacterManager manager;
+    public System.Action onFinished;
+
+    public ItemOccupant(CharacterManager manager, System.Action onFinished)
+    {
+        this.manager = manager;
+        this.onFinished = onFinished;
+    }
+}
 
 public interface IInteractable
 {
     string Name { get; }
-    bool occupied { get; set; }
-    System.Action onTaskFinished { get; set; }
+    Queue<ItemOccupant> Characters { get; }
+
+    bool IsFull();
+    bool HasOccupant();
 
     Transform InteractPosition { get; }
 
