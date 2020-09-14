@@ -24,6 +24,8 @@ public class Pawn : MonoBehaviour
     private SkinnedMeshRenderer pencilRenderer;
   
     private Vector3 currentDirecrtion;
+
+    private ItemCharacterSlot currentSlot;
     
     public Vector3 Position { get { return transform.position; } }
     public Animator PawnAnimator { get { return animator; } }
@@ -63,10 +65,13 @@ public class Pawn : MonoBehaviour
         transform.position = position;
     }
 
-    public void StartTimline(Transform parent)
+    public void StartTimline(ItemCharacterSlot slot)
     {
+        currentSlot = slot;
+        slot.Take();
+
         originalParent = pawnTimelineContainer.parent;
-        pawnTimelineContainer.parent = parent;
+        pawnTimelineContainer.parent = slot.transform;
         ResetLocalTransform();
     }
 
@@ -75,6 +80,11 @@ public class Pawn : MonoBehaviour
         pawnTimelineContainer.parent = originalParent;
         originalParent = null;
         ResetLocalTransform();
+
+        if(currentSlot != null)
+        {
+            currentSlot.Release();
+        }
     }
 
     private void ResetLocalTransform()

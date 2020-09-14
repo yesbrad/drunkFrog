@@ -175,8 +175,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showPrefabGizmos: 0
   interactPosition: {fileID: 2032169754350298864}
+  maxOccupants: 1
   placePoints: 1
-  characterPosition: {fileID: 7911095298582739452}
+  characterPositions:
+  - {fileID: 1837071167041133474}
+  isOneShot: 0
   statType: 0
   statInteractionBoost: 10
   hasQuantity: 0
@@ -461,6 +464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7911095298582739452}
+  - component: {fileID: 1837071167041133474}
   m_Layer: 0
   m_Name: CharacterPosition
   m_TagString: Untagged
@@ -482,3 +486,16 @@ Transform:
   m_Father: {fileID: 4988009334960589730}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1837071167041133474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8277547440843455813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e974691464b230243a150b145d32ef79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotID: 0

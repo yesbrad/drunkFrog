@@ -55,7 +55,7 @@ public class ItemController : MonoBehaviour, IInteractable
         ClearPlayers();
     }
 
-    private void ClearPlayers()
+    public virtual void ClearPlayers()
     {
         foreach (ItemOccupant character in Characters)
         {
@@ -92,7 +92,7 @@ public class ItemController : MonoBehaviour, IInteractable
         }
     }
 
-    [ContextMenu("Validate Controller")]
+    [EasyButtons.Button("Validate Controller")]
     public virtual void Validate()
     {
         if (GetComponents<ItemController>().Length > 1)

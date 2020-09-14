@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8262701686114582792}
+  - component: {fileID: 2531377897728807523}
   m_Layer: 0
   m_Name: CharacterStartPosition
   m_TagString: Untagged
@@ -30,6 +31,19 @@ Transform:
   m_Father: {fileID: 4988009334960589730}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2531377897728807523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640363558948018946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e974691464b230243a150b145d32ef79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotID: 0
 --- !u!65 &572637120629117009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -97,7 +111,9 @@ MonoBehaviour:
   interactPosition: {fileID: 4407541174241466875}
   maxOccupants: 1
   placePoints: 1
-  characterPosition: {fileID: 8262701686114582792}
+  characterPositions:
+  - {fileID: 2531377897728807523}
+  isOneShot: 0
   statType: 1
   statInteractionBoost: 30
   hasQuantity: 0

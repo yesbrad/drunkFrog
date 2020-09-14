@@ -133,11 +133,11 @@ public class AIManager : CharacterManager
 
     private int lastSelection = -1;
 
-    private bool WasLastSelected(int current) => lastSelection != current;
+    private bool WasNotLastSelected(int current) => lastSelection != current;
 
     public AITask SelectTask ()
     {
-        if (Stats.GetStatAmount(AIStatTypes.Soberness) > AIClass.obtainingAlcoholThreshold && WasLastSelected(0) && HasCompletedFirstTask)
+        if (Stats.GetStatAmount(AIStatTypes.Soberness) > AIClass.obtainingAlcoholThreshold && WasNotLastSelected(0) && HasCompletedFirstTask)
         {
             AITask possibleTask = GetStatObjectTask(AIStatTypes.Soberness);
 
@@ -148,7 +148,7 @@ public class AIManager : CharacterManager
             }
         }
 
-        if (Stats.GetStatAmount(AIStatTypes.Thirst) > AIClass.obtainingWaterThreshold && WasLastSelected(1) && HasCompletedFirstTask)
+        if (Stats.GetStatAmount(AIStatTypes.Thirst) > AIClass.obtainingWaterThreshold && WasNotLastSelected(1) && HasCompletedFirstTask)
         {
             AITask possibleTask = GetStatObjectTask(AIStatTypes.Thirst);
 
@@ -159,7 +159,7 @@ public class AIManager : CharacterManager
             }
         }
 
-        if (Stats.GetStatAmount(AIStatTypes.Hunger) > AIClass.obtainingFoodThreshold && WasLastSelected(2) && HasCompletedFirstTask)
+        if (Stats.GetStatAmount(AIStatTypes.Hunger) > AIClass.obtainingFoodThreshold && WasNotLastSelected(2) && HasCompletedFirstTask)
         {
             AITask possibleTask = GetStatObjectTask(AIStatTypes.Hunger);
 
@@ -170,7 +170,7 @@ public class AIManager : CharacterManager
             }
         }
 
-        if (GetOdds() < AIClass.obtainingSocializingThreshold && WasLastSelected(3) && HasCompletedFirstTask)
+        if (GetOdds() < AIClass.obtainingSocializingThreshold && WasNotLastSelected(3) && HasCompletedFirstTask)
         {
             AITask possibleTask = FindGroup();
 
@@ -200,7 +200,7 @@ public class AIManager : CharacterManager
 
     private static float GetOdds()
     {
-        return Random.Range(0f, 1f);
+        return Random.Range(0f, 1f) * 100;
     }
 
     private AITask FindGroup()

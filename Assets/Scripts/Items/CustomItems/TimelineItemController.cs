@@ -9,7 +9,11 @@ public class TimelineItemController : StaticItemController
 {
 	[Header("Timeline Item")]
 	[SerializeField]
-	private Transform characterPosition;
+	[Tooltip("The length of this needs to be the same MaxPlayers")]
+	private List<ItemCharacterSlot> characterPositions = new List<ItemCharacterSlot>();
+
+	[SerializeField]
+	private bool isLooping;
 
 	private PlayableDirector director;
 
@@ -19,41 +23,78 @@ public class TimelineItemController : StaticItemController
 	{
 		base.Init(newItem, manager);
 		director = GetComponent<PlayableDirector>();
+
+		if (isLooping)
+		{
+			director.Play();
+		}
 	}
 
 	public override void StartInteract(CharacterManager manager, Action onFinishInteraction = null)
 	{
 		base.StartInteract(manager, onFinishInteraction);
 
+		ItemCharacterSlot slot = GetFreeSlot();
+
+		if(slot == null)
+		{
+			Debug.LogError("Timeline controller is missing a slot", gameObject);
+		}
+
 		manager.Pawn.LockPawn(true);
-		manager.Pawn.StartTimline(characterPosition);
+		manager.Pawn.StartTimline(slot);
 
 		IEnumerable<PlayableBinding> bindings = director.playableAsset.outputs;
 
 		foreach (PlayableBinding play in bindings)
-		{
-			if(play.streamName == constants.timelinePlayerName)
+		{   
+			if(play.streamName == constants.timelinePlayerName + slot.ID)
 			{
 				director.SetGenericBinding(play.sourceObject, manager.Pawn.PawnAnimator);
 			}
 		}
 
-		director.time = 0;
-		director.Play();
-		start = true;
+		if (!isLooping && !start)
+		{
+			director.time = 0;
+			director.Play();
+			start = true;
+		}
 	}
 
-	[ContextMenu("Create Character Start Position")]
+	public ItemCharacterSlot GetFreeSlot ()
+	{
+		foreach (ItemCharacterSlot slot in characterPositions)
+		{
+			if (slot.Taken == false)
+				return slot;
+		}
+
+		return null;
+	}
+
+	public override void ClearPlayers()
+	{
+		foreach (ItemCharacterSlot slot in characterPositions)
+		{
+			slot.Release();
+		}
+
+		base.ClearPlayers();
+	}
+
+	[ContextMenu("Create Character Slot")]
 	private void CreateCharacterStartPosition()
 	{
-		characterPosition = new GameObject().transform;
-		characterPosition.gameObject.name = "CharacterStartPosition";
-		characterPosition.parent = transform;
+		Transform newCharacterSlot = new GameObject().transform;
+		newCharacterSlot.gameObject.name = "CharacterSlot";
+		newCharacterSlot.transform.parent = transform;
+		characterPositions.Add(newCharacterSlot.gameObject.AddComponent<ItemCharacterSlot>());
 	}
 
 	private void Update()
 	{
-		if (HasOccupant() && start)
+		if (HasOccupant() && start && !isLooping)
 		{
 			if(director.time >= director.playableAsset.duration - 0.2f)
 			{
@@ -67,21 +108,29 @@ public class TimelineItemController : StaticItemController
 	public override void OnPickup()
 	{
 		ResetPawns();
+		start = false;
 		base.OnPickup();
 	}
 
 	public override void Validate()
 	{
 		base.Validate();
-		
-		if (director == null || director.playableAsset == null)
+
+		PlayableDirector dir = GetComponent<PlayableDirector>();
+
+		if (dir == null || dir.playableAsset == null)
 		{
 			Debug.LogError("Timeline Item Controller is missing it Timeline!", gameObject);
 		}
-
-		if(characterPosition == null)
+		else
 		{
-			Debug.Log("Missing Character Position from Timeline COntroller", gameObject);
+			if (dir.playOnAwake)
+				dir.playOnAwake = false;
+		}
+
+		if(characterPositions.Count <= 0)
+		{
+			Debug.Log("Missing Character Positions from Timeline COntroller", gameObject);
 		}
 	}
 }

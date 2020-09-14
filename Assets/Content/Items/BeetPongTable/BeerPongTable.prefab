@@ -44,11 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d998475d5a3844d88c979306844f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  artContainer: {fileID: 0}
+  showPrefabGizmos: 0
   interactPosition: {fileID: 4988009334960589730}
-  placePoints: 2
-  waitTime: 1
-  renderer: {fileID: 3212495023592820079}
+  maxOccupants: 1
+  placePoints: 20
 --- !u!64 &5810254661370787267
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -172,12 +171,6 @@ GameObject:
 --- !u!4 &4386013355990201856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 94714f022b93d1c4c85f5b7a0c60aa3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4275189924033417707}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &3212495023592820079 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 94714f022b93d1c4c85f5b7a0c60aa3c,
     type: 3}
   m_PrefabInstance: {fileID: 4275189924033417707}
   m_PrefabAsset: {fileID: 0}
