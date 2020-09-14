@@ -6,6 +6,7 @@ using UnityEngine.ProBuilder;
 [RequireComponent(typeof(HouseManager))]
 public class HouseInventory : MonoBehaviour
 {
+	[System.Serializable]
 	public class Category
 	{
 		public AIStatTypes catagory;
@@ -50,19 +51,35 @@ public class HouseInventory : MonoBehaviour
 		{
 			if (catagory == categorys[i].catagory)
 			{
-				categorys[i].items.Add(controller);
-				categorys[i].amount += amount;
+				categorys[i].amount -= amount;
+
+				if(categorys[i].amount < 0)
+					categorys[i].items.Remove(controller);
 			}
 		}
 	}
 
+	/// <summary>
+	/// Find Active Item Controller in Inventory
+	/// </summary>
 	public ItemController FindItem (AIStatTypes catagory)
 	{
 		foreach (Category i in categorys)
 		{
 			if(i.catagory == catagory)
 			{
-				return i.items[Random.Range(0, i.items.Count - 1)];
+				// Handle edgecase of only having one item
+				if (i.items.Count < 2)
+					return i.items[0];
+
+				ItemController controller = i.items[Random.Range(0, i.items.Count - 1)];
+
+				while (controller.InHand)
+				{
+					controller = i.items[Random.Range(0, i.items.Count - 1)];
+				}
+
+				return controller;
 			}
 		}
 
@@ -71,12 +88,6 @@ public class HouseInventory : MonoBehaviour
 
 	public ItemController FindRandomFunItem()
 	{
-		if (categorys[2].items.Count <= 0)
-		{
-			Debug.Log("WEARE NUL");
-			return null;
-		}
-
-		return categorys[2].items[Random.Range(0, categorys[2].items.Count - 1)];
+		return FindItem(AIStatTypes.Boardness);
 	}
 }

@@ -43,7 +43,7 @@ public class HospitalityItemController : TimelineItemController
 
 	public override void RemoveFromInventory()
 	{
-		HouseOwner.HouseInventory.Add(statType, this, quantity);
+		HouseOwner.HouseInventory.Remove(statType, this, quantity);
 	}
 
 	public override void EndInteract()

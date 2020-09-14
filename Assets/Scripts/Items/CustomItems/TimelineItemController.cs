@@ -13,6 +13,8 @@ public class TimelineItemController : StaticItemController
 
 	private PlayableDirector director;
 
+	private bool start;
+
 	public override void Init(ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
 	{
 		base.Init(newItem, manager);
@@ -38,6 +40,7 @@ public class TimelineItemController : StaticItemController
 
 		director.time = 0;
 		director.Play();
+		start = true;
 	}
 
 	[ContextMenu("Create Character Start Position")]
@@ -50,19 +53,21 @@ public class TimelineItemController : StaticItemController
 
 	private void Update()
 	{
-		if (HasOccupant())
+		if (HasOccupant() && start)
 		{
 			if(director.time >= director.playableAsset.duration - 0.2f)
 			{
-				foreach (ItemOccupant itemOccupant in Characters)
-				{
-					itemOccupant.manager.Pawn.EndTimeline();
-					itemOccupant.manager.Pawn.LockPawn(false);
-				}
-				
+				ResetPawns();
+				start = false;
 				EndInteract();
 			}
 		}
+	}
+
+	public override void OnPickup()
+	{
+		ResetPawns();
+		base.OnPickup();
 	}
 
 	public override void Validate()

@@ -73,6 +73,7 @@ public class Pawn : MonoBehaviour
     public void EndTimeline()
     {
         pawnTimelineContainer.parent = originalParent;
+        originalParent = null;
         ResetLocalTransform();
     }
 

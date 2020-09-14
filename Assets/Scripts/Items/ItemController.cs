@@ -25,6 +25,8 @@ public class ItemController : MonoBehaviour, IInteractable
 
     public ItemData ItemData { get; private set; }
 
+    public bool InHand { get; private set; }
+
     public string Name { get { return ItemData.name; } }
 
     public virtual void Init (ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
@@ -33,7 +35,8 @@ public class ItemController : MonoBehaviour, IInteractable
         HouseOwner = manager;
         CharacterOwner = characterManager;
         Characters = new Queue<ItemOccupant>();
-        gameObject.SetActive(false);    
+        gameObject.SetActive(false);
+        InHand = false;
     }
 
     public virtual void StartInteract(CharacterManager manager, System.Action onFinishInteraction)
@@ -49,6 +52,11 @@ public class ItemController : MonoBehaviour, IInteractable
 
     public virtual void EndInteract()
     {
+        ClearPlayers();
+    }
+
+    private void ClearPlayers()
+    {
         foreach (ItemOccupant character in Characters)
         {
             character.onFinished.Invoke();
@@ -59,8 +67,9 @@ public class ItemController : MonoBehaviour, IInteractable
 
     public virtual void OnPickup()
     {
-        EndInteract();
+        ClearPlayers();
         gameObject.SetActive(false);
+        InHand = true;
     }
 
     public virtual void OnPlace(Vector3 position, Quaternion rot)
@@ -68,10 +77,20 @@ public class ItemController : MonoBehaviour, IInteractable
         transform.position = position;
         transform.rotation = rot;
         gameObject.SetActive(true);
+        InHand = false;
     }
 
     public bool IsFull() => Characters.Count >= maxOccupants;
     public bool HasOccupant() => Characters.Count > 0;
+
+    public void ResetPawns()
+    {
+        foreach (ItemOccupant itemOccupant in Characters)
+        {
+            itemOccupant.manager.Pawn.EndTimeline();
+            itemOccupant.manager.Pawn.LockPawn(false);
+        }
+    }
 
     [ContextMenu("Validate Controller")]
     public virtual void Validate()

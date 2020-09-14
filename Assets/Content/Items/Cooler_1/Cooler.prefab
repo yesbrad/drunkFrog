@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 3012926118300069840}
   - component: {fileID: 4956030573133627069}
   - component: {fileID: 7937526739862750959}
-  - component: {fileID: 3000385564540189301}
   m_Layer: 0
   m_Name: Cooler
   m_TagString: Untagged
@@ -96,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showPrefabGizmos: 0
   interactPosition: {fileID: 4407541174241466875}
+  maxOccupants: 1
   placePoints: 1
   characterPosition: {fileID: 8262701686114582792}
   statType: 1
@@ -142,7 +142,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 6c6f17bbb94575746a1e2918feb9451a, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -155,25 +155,6 @@ PlayableDirector:
     value: {fileID: 7666285308418987639}
   m_ExposedReferences:
     m_References: []
---- !u!95 &3000385564540189301
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718937532128273951}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &7152654470839512993
 Animator:
   serializedVersion: 3
