@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -16,8 +17,6 @@ public class TimelineItemController : StaticItemController
 	private bool isLooping;
 
 	private PlayableDirector director;
-
-	private bool start;
 
 	public override void Init(ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
 	{
@@ -54,11 +53,11 @@ public class TimelineItemController : StaticItemController
 			}
 		}
 
-		if (!isLooping && !start)
+		if (!isLooping)
 		{
 			director.time = 0;
 			director.Play();
-			start = true;
+			StartCoroutine(TimeEnd());
 		}
 	}
 
@@ -92,6 +91,7 @@ public class TimelineItemController : StaticItemController
 		characterPositions.Add(newCharacterSlot.gameObject.AddComponent<ItemCharacterSlot>());
 	}
 
+	/*
 	private void Update()
 	{
 		if (HasOccupant() && start && !isLooping)
@@ -104,11 +104,19 @@ public class TimelineItemController : StaticItemController
 			}
 		}
 	}
+	*/
+
+	IEnumerator TimeEnd()
+	{
+		yield return new WaitForSeconds((float)director.playableAsset.duration);
+		ResetPawns();
+		EndInteract();
+		yield return null;
+	}
 
 	public override void OnPickup()
 	{
 		ResetPawns();
-		start = false;
 		base.OnPickup();
 	}
 

@@ -26,6 +26,7 @@ public class Group : MonoBehaviour, IInteractable
     public string Name { get { return "Group"; } }
     public bool IsFull() => Characters.Count > groupLimit;
     public bool HasOccupant() => Characters.Count > 0;
+    public bool InHand { get { return false; } }
 
     private void Awake()
     {
@@ -41,7 +42,9 @@ public class Group : MonoBehaviour, IInteractable
             return;
         }
 
-        Characters.Enqueue(new ItemOccupant(manager, onFinishInteraction));
+        ItemOccupant item = new ItemOccupant(manager, onFinishInteraction);
+       // item.manager.Pawn.SetState(Pawn.PawnState.Talking);
+        Characters.Enqueue(item);
     }
 
     private void Update()

@@ -20,6 +20,7 @@ public interface IInteractable
 
     bool IsFull();
     bool HasOccupant();
+    bool InHand { get; }
 
     Transform InteractPosition { get; }
 

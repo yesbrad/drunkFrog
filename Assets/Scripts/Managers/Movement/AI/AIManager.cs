@@ -52,7 +52,7 @@ public class AITask
 
     public void OnDestinationReached ()
     {
-        if (interactable != null && interactable.IsFull() == false)
+        if (interactable != null && interactable.IsFull() == false && interactable.InHand == false)
         {
             interactable.StartInteract(currentCharacter, () => OnFinish());
         } 

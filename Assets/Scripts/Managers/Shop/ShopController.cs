@@ -27,7 +27,7 @@ public class ShopController : MonoBehaviour, IInteractable
     public string Name { get { return shopData.item.name; } }
 
     public Queue<ItemOccupant> Characters { get; private set; }
-
+    public bool InHand { get { return false; } }
     private void Awake()
     {
         Characters = new Queue<ItemOccupant>();

@@ -77,14 +77,12 @@ public class Pawn : MonoBehaviour
 
     public void EndTimeline()
     {
-        pawnTimelineContainer.parent = originalParent;
+        if(originalParent != null)
+            pawnTimelineContainer.parent = originalParent;
+        
         originalParent = null;
         ResetLocalTransform();
-
-        if(currentSlot != null)
-        {
-            currentSlot.Release();
-        }
+        currentSlot.Release();
     }
 
     private void ResetLocalTransform()
