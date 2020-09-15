@@ -108,12 +108,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showPrefabGizmos: 0
-  interactPosition: {fileID: 4407541174241466875}
+  interactPosition: {fileID: 8262701686114582792}
   maxOccupants: 1
   placePoints: 1
   characterPositions:
   - {fileID: 2531377897728807523}
-  isOneShot: 0
+  isLooping: 0
   statType: 1
   statInteractionBoost: 30
   hasQuantity: 0

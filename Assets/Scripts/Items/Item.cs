@@ -28,7 +28,7 @@ public class Item
         this.controller = newController;
         
         if(!cloned)
-            this.controller.Init(itemData, houseManager);
+            this.controller.Init(houseManager);
         
         this.owner = houseManager;
         this.UUID = $"{newController.transform.position}:{itemData.id}:{Random.Range(0f, 1f)}";

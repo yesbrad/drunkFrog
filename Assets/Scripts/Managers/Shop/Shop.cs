@@ -14,6 +14,12 @@ public class Shop
 	
 	public ItemData GetItem(PlayerManager customer)
 	{
+		if(customer == null)
+		{
+			Debug.LogError("Cutomer Is Null!");
+			return null;
+		}
+
 		if(shopData.cost > customer.Cash)
 		{
 			Debug.Log("NoMoneyToBuy");

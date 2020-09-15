@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseBoardness: 36
   baseHunger: 33
-  baseSoberness: 82
+  baseSoberness: 69
   baseThirst: 25
-  obtainingFunThreshold: 50
+  obtainingFunThreshold: 18
   obtainingSocializingThreshold: 50
   obtainingWaterThreshold: 50
   obtainingFoodThreshold: 46
   obtainingAlcoholThreshold: 31
-  boardomIncreaseRate: 6.8
-  thirstIncreaseRate: 7.2
-  hungerIncreaseRate: 8.9
-  sobernessIncreaseRate: 5.9
+  boardomIncreaseRate: 31.8
+  thirstIncreaseRate: 31.2
+  hungerIncreaseRate: 43.5
+  sobernessIncreaseRate: 47.4

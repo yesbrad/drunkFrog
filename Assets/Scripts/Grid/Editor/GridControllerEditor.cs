@@ -25,7 +25,7 @@ public class GridControllerEditor : Editor
         {
             if (GUILayout.Button("Create Grid"))
             {
-                cont.InitGrid();
+                cont.RepaintGrid();
             }
         }
         else
@@ -41,7 +41,7 @@ public class GridControllerEditor : Editor
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button("Do the dam Repaint (DESTRUCTIVE)"))
                 {
-                    cont.InitGrid();
+                    cont.RepaintGrid();
                     isConfirm = false;
                 }
                 if (GUILayout.Button("Go Back"))

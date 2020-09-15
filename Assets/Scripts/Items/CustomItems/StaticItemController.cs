@@ -11,24 +11,12 @@ public class StaticItemController : ItemController
     {
         base.OnPlace(position, rot);
         HouseOwner.AddPP(placePoints, position);
-        AddToInventory();
     }
 
     public override void OnPickup()
     {
         base.OnPickup();
         HouseOwner.RemovePP(placePoints, transform.position);
-        RemoveFromInventory();
-    }
-
-    public virtual void AddToInventory()
-    {
-        ///HouseOwner.HouseInventory?.Add(AIStatTypes.Boardness, this, 1);
-    }
-
-    public virtual void RemoveFromInventory()
-    {
-        //.HouseInventory?.Remove(AIStatTypes.Boardness, this, 1);
     }
 }
     

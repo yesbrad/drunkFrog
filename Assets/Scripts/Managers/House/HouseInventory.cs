@@ -10,8 +10,22 @@ public class HouseInventory : MonoBehaviour
 	public class Category
 	{
 		public AIStatTypes catagory;
-		public int amount = 0;
-		public List<ItemController> items = new List<ItemController>();
+		public int Amount
+		{
+			get
+			{
+				int amt = 0;
+
+				foreach (HouseItemController item in items)
+				{
+					amt += item.quantity;
+				}
+
+				return amt;
+			}
+		}
+
+		public List<HouseItemController> items = new List<HouseItemController>();
 
 		public Category (AIStatTypes catagory)
 		{
@@ -29,7 +43,7 @@ public class HouseInventory : MonoBehaviour
 		categorys.Add(new Category(AIStatTypes.Thirst));
 	}
 
-	public void Add(AIStatTypes catagory, ItemController controller, int amount)
+	public void Add(AIStatTypes catagory, HouseItemController controller, int amount)
 	{
 		for (int i = 0; i < categorys.Count; i++)
 		{
@@ -39,22 +53,17 @@ public class HouseInventory : MonoBehaviour
 				{
 					categorys[i].items.Add(controller);
 				}
-
-				categorys[i].amount += amount;
 			}
 		}
 	}
 
-	public void Remove(AIStatTypes catagory, ItemController controller, int amount)
+	public void Remove(AIStatTypes catagory, HouseItemController controller, int amount)
 	{
 		for (int i = 0; i < categorys.Count; i++)
 		{
 			if (catagory == categorys[i].catagory)
 			{
-				categorys[i].amount -= amount;
-
-				if(categorys[i].amount < 0)
-					categorys[i].items.Remove(controller);
+				categorys[i].items.Remove(controller);
 			}
 		}
 	}
@@ -62,21 +71,44 @@ public class HouseInventory : MonoBehaviour
 	/// <summary>
 	/// Find Active Item Controller in Inventory
 	/// </summary>
-	public ItemController FindItem (AIStatTypes catagory)
+	public HouseItemController FindItem (AIStatTypes catagory)
 	{
 		foreach (Category i in categorys)
 		{
 			if(i.catagory == catagory)
 			{
+				if(i.items == null || i.items.Count == 0)
+				{
+					return null;
+				}
+
 				// Handle edgecase of only having one item
 				if (i.items.Count < 2)
 					return i.items[0];
 
-				ItemController controller = i.items[Random.Range(0, i.items.Count - 1)];
+				HouseItemController controller = i.items[Random.Range(0, i.items.Count)];
 
-				while (controller.InHand)
+				bool noAvailableItems = true;
+
+				foreach (HouseItemController item in i.items)
 				{
-					controller = i.items[Random.Range(0, i.items.Count - 1)];
+					if (!item.MaxCharactersOnRoute() && !item.InHand)
+						noAvailableItems = false;
+				}
+
+				if (noAvailableItems)
+				{
+					return null;
+				}
+
+				while (controller.InHand || controller.MaxCharactersOnRoute())
+				{
+					controller = i.items[Random.Range(0, i.items.Count)];
+				}
+
+				if (controller.MaxCharactersOnRoute())
+				{
+					print("Shess sofucking coookedddd plz help");
 				}
 
 				return controller;
@@ -86,7 +118,7 @@ public class HouseInventory : MonoBehaviour
 		return null;
 	}
 
-	public ItemController FindRandomFunItem()
+	public HouseItemController FindRandomFunItem()
 	{
 		return FindItem(AIStatTypes.Boardness);
 	}

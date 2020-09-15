@@ -15,7 +15,6 @@ public struct ItemOccupant
 
 public interface IInteractable
 {
-    string Name { get; }
     Queue<ItemOccupant> Characters { get; }
 
     bool IsFull();
@@ -28,4 +27,8 @@ public interface IInteractable
     /// Entry point for Interactions
     /// </summary>
     void StartInteract(CharacterManager manager, System.Action onFinishInteraction = null);
+
+    int onRouteAI { get; }
+    bool MaxCharactersOnRoute();
+    void SetOnRouteAI(int amt);
 }

@@ -7,9 +7,9 @@ public class TruckItemController : ItemController
 {
 	private TruckInventroy truckInventroy;
 
-	public override void Init(ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
+	public override void Init(HouseManager manager, CharacterManager characterManager = null)
 	{
-		base.Init(newItem, manager);
+		base.Init(manager);
 	}
 
 	public override void StartInteract(CharacterManager manager, Action onFinishInteraction = null)

@@ -17,24 +17,31 @@ public class ItemController : MonoBehaviour, IInteractable
     [Space()]
     [SerializeField]
     private int maxOccupants = 1;
+    private int maxOnRoute = 1;
 
     public Transform InteractPosition { get { return interactPosition; } }
     public HouseManager HouseOwner { get; private set; }
     public CharacterManager CharacterOwner { get; private set; }
-    public Queue<ItemOccupant> Characters { get; private set; }
 
-    public ItemData ItemData { get; private set; }
+    public Queue<ItemOccupant> Characters { get; private set; }
+    public bool IsFull() => Characters.Count >= maxOccupants;
+    public bool HasOccupant() => Characters.Count > 0;
+
+    public int onRouteAI { get; private set; }
+    public bool MaxCharactersOnRoute() => onRouteAI > maxOnRoute;
+    public void SetOnRouteAI (int amt) => onRouteAI += amt;
 
     public bool InHand { get; private set; }
 
-    public string Name { get { return ItemData.name; } }
-
-    public virtual void Init (ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
+    private void Awake()
     {
-        ItemData = newItem;
+        Characters = new Queue<ItemOccupant>();
+    }
+
+    public virtual void Init ( HouseManager manager, CharacterManager characterManager = null)
+    {
         HouseOwner = manager;
         CharacterOwner = characterManager;
-        Characters = new Queue<ItemOccupant>();
         gameObject.SetActive(false);
         InHand = false;
     }
@@ -79,9 +86,6 @@ public class ItemController : MonoBehaviour, IInteractable
         gameObject.SetActive(true);
         InHand = false;
     }
-
-    public bool IsFull() => Characters.Count >= maxOccupants;
-    public bool HasOccupant() => Characters.Count > 0;
 
     public void ResetPawns()
     {

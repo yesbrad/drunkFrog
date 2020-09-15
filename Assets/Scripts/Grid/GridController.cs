@@ -9,14 +9,14 @@ public class GridController : MonoBehaviour
     
     [SerializeField] public Grid grid;
 
-    public void InitGrid()
+    public void RepaintGrid()
     {
         grid = new Grid(gridSizeX, gridSizeY, transform);
     }
 
     public bool HasItem(Vector3 position)
     {
-        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+        GridPosition gridPosition = grid.GetGridPositionFromWorld(position);
 
         if (grid.IsInBounds(gridPosition.x, gridPosition.y))
         {
@@ -32,7 +32,7 @@ public class GridController : MonoBehaviour
     /// </summary>
     public bool PlaceItem(Vector3 position, Item item, Transform rotationTransform)
     {
-        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+        GridPosition gridPosition = grid.GetGridPositionFromWorld(position);
 
 		if(grid.CanPlaceItemWithSize(gridPosition.x, gridPosition.y, item.Data.size, rotationTransform))
 		{
@@ -53,7 +53,7 @@ public class GridController : MonoBehaviour
     /// </summary>
     public Item DeleteItem(Vector3 position, HouseManager manager, bool hardDelete = false)
     {
-        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+        GridPosition gridPosition = grid.GetGridPositionFromWorld(position);
 
         if (HasItem(position))
         {      
@@ -68,7 +68,7 @@ public class GridController : MonoBehaviour
     /// </summary>
     public void InteractItem(Vector3 position, CharacterManager player)
     {
-        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+        GridPosition gridPosition = grid.GetGridPositionFromWorld(position);
 
         if (HasItem(position))
         {
@@ -81,7 +81,7 @@ public class GridController : MonoBehaviour
 
     public Item GetItem(Vector3 position)
     {
-        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+        GridPosition gridPosition = grid.GetGridPositionFromWorld(position);
 
         if (grid.IsInBounds(gridPosition.x, gridPosition.y))
         {
@@ -94,24 +94,20 @@ public class GridController : MonoBehaviour
 
     public bool IsInBounds(Vector3 position)
     {
-        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+        GridPosition gridPosition = grid.GetGridPositionFromWorld(position);
         return grid.IsInBounds(gridPosition.x, gridPosition.y);
     }
 
     public bool IsInBorderBounds(Vector3 position)
     {
-        Vector2Int gridPosition = grid.GetGridPositionFromWorld(position);
+        GridPosition gridPosition = grid.GetGridPositionFromWorld(position);
         return grid.IsInBorderBounds(gridPosition.x, gridPosition.y);
     }
 
-    public Item GetRandomItem ()
+    public Vector3 GetOpenRandomPosition ()
     {
-        return grid.GetRandomItem();
-    }
-
-    public Vector3 GetRandomPosition ()
-    {
-        return grid.GetRandomPosition();
+        Vector3 pos = grid.GetOpenRandomPosition();
+        return pos;
     }
 
     private void OnDrawGizmos()

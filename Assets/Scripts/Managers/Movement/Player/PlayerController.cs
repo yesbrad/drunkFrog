@@ -132,7 +132,7 @@ public class PlayerController : Pawn
         {
             gridSelectorSingle.gameObject.SetActive(true);
 
-            Vector2Int pos = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
+            GridPosition pos = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
 
             if(Manager.InventoryManager.CurrentItem != null)
             {

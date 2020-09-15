@@ -41,10 +41,15 @@ public class AITask
         onFinished = onFinish;
         controller = iController;
 
-        if(isPosition)
-            controller.StartJob(destination, OnDestinationReached);
-        else
+        if (interactable != null)
+        {
+            interactable.SetOnRouteAI(1);
             controller.StartJob(interactable, OnDestinationReached);
+        }
+        else
+        {
+            controller.StartJob(destination, OnDestinationReached);
+        }
 
         isComplete = false;
         time = Time.time;
@@ -64,9 +69,14 @@ public class AITask
 
     public void OnFinish ()
     {
+        if(interactable != null)
+        {
+            interactable.SetOnRouteAI(-1);
+        }
+
         isComplete = true;
 
-        if(onFinished != null)
+        if (onFinished != null)
             onFinished.Invoke();
 
         onFinished = null;
@@ -137,7 +147,7 @@ public class AIManager : CharacterManager
 
     public AITask SelectTask ()
     {
-        if (Stats.GetStatAmount(AIStatTypes.Soberness) > AIClass.obtainingAlcoholThreshold && WasNotLastSelected(0) && HasCompletedFirstTask)
+        if (Stats.GetStatAmount(AIStatTypes.Soberness) > AIClass.obtainingAlcoholThreshold && WasNotLastSelected(0) && HasCompletedFirstTask && RandomizeOdds())
         {
             AITask possibleTask = GetStatObjectTask(AIStatTypes.Soberness);
 
@@ -148,7 +158,7 @@ public class AIManager : CharacterManager
             }
         }
 
-        if (Stats.GetStatAmount(AIStatTypes.Thirst) > AIClass.obtainingWaterThreshold && WasNotLastSelected(1) && HasCompletedFirstTask)
+        if (Stats.GetStatAmount(AIStatTypes.Thirst) > AIClass.obtainingWaterThreshold && WasNotLastSelected(1) && HasCompletedFirstTask && RandomizeOdds())
         {
             AITask possibleTask = GetStatObjectTask(AIStatTypes.Thirst);
 
@@ -159,7 +169,7 @@ public class AIManager : CharacterManager
             }
         }
 
-        if (Stats.GetStatAmount(AIStatTypes.Hunger) > AIClass.obtainingFoodThreshold && WasNotLastSelected(2) && HasCompletedFirstTask)
+        if (Stats.GetStatAmount(AIStatTypes.Hunger) > AIClass.obtainingFoodThreshold && WasNotLastSelected(2) && HasCompletedFirstTask && RandomizeOdds())
         {
             AITask possibleTask = GetStatObjectTask(AIStatTypes.Hunger);
 
@@ -170,7 +180,8 @@ public class AIManager : CharacterManager
             }
         }
 
-        if (GetOdds() < AIClass.obtainingSocializingThreshold && WasNotLastSelected(3) && HasCompletedFirstTask)
+        /*
+        if (GetOdds() > AIClass.obtainingSocializingThreshold && WasNotLastSelected(3) && HasCompletedFirstTask)
         {
             AITask possibleTask = FindGroup();
 
@@ -180,9 +191,10 @@ public class AIManager : CharacterManager
                 return possibleTask;
             }
         }
+        */
 
         // Do somthing fun if theres anyhting remotyly fun in the house
-        if (HasCompletedFirstTask)
+        if (GetOdds() > AIClass.obtainingFunThreshold && HasCompletedFirstTask)
         {
             AITask possibleTask = GetStatObjectTask(AIStatTypes.Boardness);
 
@@ -198,9 +210,14 @@ public class AIManager : CharacterManager
         return GetCentrePointTask();
     }
 
-    private static float GetOdds()
+    private float GetOdds()
     {
         return Random.Range(0f, 1f) * 100;
+    }
+
+    private bool RandomizeOdds()
+    {
+        return Random.Range(0f, 1f) > 0.1f;
     }
 
     private AITask FindGroup()
@@ -219,43 +236,19 @@ public class AIManager : CharacterManager
         return null;
     }
 
-    private AITask GetRandomObjectTask ()
-    {
-        try
-        {
-            ItemController possibleObject = HouseManager.HouseInventory.FindRandomFunItem();
-
-            if (possibleObject != null)
-                return new AITask(possibleObject);
-
-            return null;
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
     private AITask GetStatObjectTask(AIStatTypes type)
     {
-        try
-        {
-            ItemController possibleObject = HouseManager.HouseInventory.FindItem(type);
+        ItemController possibleObject = HouseManager.HouseInventory.FindItem(type);
 
-            if (possibleObject != null)
-                return new AITask(possibleObject);
+        if (possibleObject != null)
+            return new AITask(possibleObject);
 
-            return null;
-        }
-        catch
-        {
-            return null;
-        }
+        return null;
     }
 
     private AITask GetRandomPositionTask ()
     {
-        return new AITask(CurrentGrid.GetRandomPosition());
+        return new AITask(CurrentGrid.GetOpenRandomPosition());
     }
 
     private AITask GetCentrePointTask()

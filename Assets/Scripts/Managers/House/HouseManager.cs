@@ -94,7 +94,7 @@ public class HouseManager : MonoBehaviour
     {
         if(houseCenter != null)
         {
-            return houseCenter.position;
+            return new Vector3(Random.insideUnitCircle.x * 2, 0 , Random.insideUnitCircle.y * 2) + houseCenter.position;
         }
 
         Debug.LogError("House is missing center point varible!", gameObject);

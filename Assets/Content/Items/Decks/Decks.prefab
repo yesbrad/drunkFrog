@@ -86,7 +86,7 @@ MonoBehaviour:
   placePoints: 1
   characterPositions:
   - {fileID: 5616908591730416700}
-  isOneShot: 0
+  isLooping: 0
 --- !u!320 &826988002750784522
 PlayableDirector:
   m_ObjectHideFlags: 0

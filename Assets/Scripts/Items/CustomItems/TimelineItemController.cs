@@ -18,9 +18,9 @@ public class TimelineItemController : StaticItemController
 
 	private PlayableDirector director;
 
-	public override void Init(ItemData newItem, HouseManager manager, CharacterManager characterManager = null)
+	public override void Init(HouseManager manager, CharacterManager characterManager = null)
 	{
-		base.Init(newItem, manager);
+		base.Init(manager);
 		director = GetComponent<PlayableDirector>();
 
 		if (isLooping)

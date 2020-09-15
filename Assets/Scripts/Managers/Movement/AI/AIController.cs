@@ -38,6 +38,11 @@ public class AIController : Pawn
         {
             inTransit = true;
             navAgent.destination = useTransform ? jobInteractable.InteractPosition.position : jobDestination;
+
+            if (useTransform)
+            {
+                navAgent.avoidancePriority = 10;
+            }
         }
 
         public void CheckDestination ()
@@ -54,13 +59,13 @@ public class AIController : Pawn
                 }
             }
 
-            /*
+            
             // If the current interactable is currenly being used Finish the job
-            if(inTransit && jobInteractable != null && jobInteractable.occupied)
-            {
-                FinishJob();
-            }
-            */
+            //if(inTransit && (jobInteractable != null) && (jobInteractable.IsFull() || !jobInteractable.InHand))
+            //{
+             //   FinishJob();
+            //}
+            
 
             if (useTransform)
             {
@@ -76,6 +81,7 @@ public class AIController : Pawn
             inTransit = false;
             OnReachDestination.Invoke();
             OnReachDestination = null;
+            navAgent.avoidancePriority = 60;
         }
     }
 

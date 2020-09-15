@@ -10,15 +10,30 @@ public enum GridSlotState
 }
 
 [System.Serializable]
+public struct GridPosition
+{
+    public int x;
+    public int y;
+
+    public GridPosition (int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+[System.Serializable]
 public class GridSlot
 {
     public Item item;
     public GridSlotState gridState;
+    public GridPosition position;
 
-    public GridSlot (Item newItem, GridSlotState occ)
+    public GridSlot (Item newItem, GridSlotState occ, GridPosition position)
     {
         item = newItem;
         gridState = occ;
+        this.position = position;
     }
 
     public void ResetSlot ()
@@ -55,9 +70,14 @@ public class Grid
         {
             for (int y = 0; y < height; y++)
             {
-                gridArray[y*width+x] = new GridSlot(null, GridSlotState.Open);
+                gridArray[y*width+x] = new GridSlot(null, GridSlotState.Open, new GridPosition(x,y));
             }
         }
+    }
+
+    public Vector3 GetWorldPositionFromGrid(GridPosition position)
+    {
+        return GetWorldPositionFromGrid(position.x, position.y);
     }
 
     public Vector3 GetWorldPositionFromGrid (int x, int y)
@@ -67,43 +87,51 @@ public class Grid
 
     public Vector3 GetWorldGridCenterPositionFromWorld(Vector3 position)
     {
-        Vector2Int gr = GetGridPositionFromWorld(position);
+        GridPosition gr = GetGridPositionFromWorld(position);
         Vector3 worldPos = GetWorldPositionFromGrid(gr.x, gr.y);
         return new Vector3(worldPos.x + (constants.GridCellSize / 2), origin.position.y , worldPos.z + (constants.GridCellSize / 2));
     }
 
     public Vector3 GetWorldPositionFromWorld (Vector3 position)
     {
-        Vector2Int gr = GetGridPositionFromWorld(position);
+        GridPosition gr = GetGridPositionFromWorld(position);
         return GetWorldPositionFromGrid(gr.x, gr.y);
     }
 
-    public Vector2Int GetGridPositionFromWorld (Vector3 _worldPosition)
+    private GridPosition tempPos = new GridPosition(0, 0);
+
+    public GridPosition GetGridPositionFromWorld (Vector3 position)
     {
-        return new Vector2Int(Mathf.FloorToInt((_worldPosition - origin.position ).x / cellSize), Mathf.FloorToInt((_worldPosition - origin.position).z / cellSize));
+        tempPos.x = GetPosX(position);
+        tempPos.y = GetPosY(position);
+        return tempPos;
     }
 
-    public Item GetRandomItem ()
+    private int GetPosX(Vector3 pos) => Mathf.FloorToInt((pos - origin.position).x / cellSize);
+    private int GetPosY(Vector3 pos) => Mathf.FloorToInt((pos - origin.position).z / cellSize);
+
+    public Vector3 GetOpenRandomPosition ()
     {
-        for (int x = 0; x < gridArray.GetLength(0); x++)
+        GridSlot pos = GetRandomSlot();
+
+        Debug.Log("" + pos.position.x + " : " + pos.position.y);
+        Debug.Log("" + gridArray[34].position.x + " : " + gridArray[34].position.y);
+
+        while (pos.gridState != GridSlotState.Open)
         {
-            for (int y = 0; y < gridArray.GetLength(1); y++)
-            {
-                if(GetValue(x,y) != null)
-                {
-                    return GetValue(x, y).item;
-                }
-            }
+            pos = GetRandomSlot();
         }
 
-        return null;
+
+        return GetWorldGridCenterPositionFromWorld(GetWorldPositionFromGrid(pos.position));
     }
 
-    public Vector3 GetRandomPosition ()
+    public GridSlot GetRandomSlot()
     {
-        return GetWorldPositionFromGrid(UnityEngine.Random.Range(2, width - 3), UnityEngine.Random.Range(2, height - 3));
+        int x = UnityEngine.Random.Range(1, width - 1);
+        int y = UnityEngine.Random.Range(1, height - 1);
+        return GetValue(x,y);
     }
-
 
     public int GetGridOneDIndex(int x, int y)
     {
@@ -120,7 +148,7 @@ public class Grid
 
 		if (CanPlaceItemWithSize(x, y, size, rotateTransform))
 		{
-			Vector2Int[] gridSpace = GetGridSpace(x, y, size, rotateTransform);
+            GridPosition[] gridSpace = GetGridSpace(x, y, size, rotateTransform);
 
 			for (int i = 0; i < gridSpace.Length; i++)
 			{
@@ -190,7 +218,7 @@ public class Grid
         if (IsInBounds(x, y) == false)
             return false;
 
-        Vector2Int[] gridSpace = GetGridSpace(x, y, size, direction);
+        GridPosition[] gridSpace = GetGridSpace(x, y, size, direction);
 
         for (int i = 0; i < gridSpace.Length; i++)
         {
@@ -207,15 +235,15 @@ public class Grid
         return true;
     }
 
-    public Vector2Int[] GetGridSpace(int x, int y, ItemSize size, Transform direction)
+    public GridPosition[] GetGridSpace(int x, int y, ItemSize size, Transform direction)
     {
         // No need to check for larger objects
         if(size.IsSingle())
         {
-            return new Vector2Int[] { new Vector2Int(x, y) };
+            return new GridPosition[] { new GridPosition(x, y) };
         }
 
-        List<Vector2Int> newSpace = new List<Vector2Int>();
+        List<GridPosition> newSpace = new List<GridPosition>();
 
 		if(direction == null || PencilPartyUtils.RoundAnglesToNearest90(direction).y == 0)
 		{
@@ -223,7 +251,7 @@ public class Grid
 			{
 				for (int yy = 0; yy < size.y; yy++)
 				{
-					newSpace.Add(new Vector2Int(x + xx, y + yy));
+					newSpace.Add(new GridPosition(x + xx, y + yy));
 				}
 			}
 		}
@@ -233,7 +261,7 @@ public class Grid
 			{
 				for (int yy = 0; yy < size.x; yy++)
 				{
-					newSpace.Add(new Vector2Int(x + xx, y - yy));
+					newSpace.Add(new GridPosition(x + xx, y - yy));
 				}
 			}
 		}
@@ -243,7 +271,7 @@ public class Grid
 			{
 				for (int yy = 0; yy < size.y; yy++)
 				{
-					newSpace.Add(new Vector2Int(x + -xx, y + -yy));
+					newSpace.Add(new GridPosition(x + -xx, y + -yy));
 				}
 			}
 		}
@@ -253,7 +281,7 @@ public class Grid
 			{
 				for (int yy = 0; yy < size.x; yy++)
 				{
-					newSpace.Add(new Vector2Int(x + -xx, y + yy));
+					newSpace.Add(new GridPosition(x + -xx, y + yy));
 				}
 			}
 		}
@@ -269,12 +297,12 @@ public class Grid
             return null;
         }
 
-        if (IsInBounds(x, y))
+        if (IsInBorderBounds(x, y))
         {
             return gridArray[GetGridOneDIndex(x, y)];
         }
 
-        Debug.LogWarning("Value out of bounds");
+        Debug.LogError("Value out of bounds");
         return null;
     }
 }

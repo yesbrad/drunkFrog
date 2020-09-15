@@ -141,4 +141,17 @@ public class PencilPartyUtils
             collider.size = bounds.size;
         }
     }
+
+    [MenuItem("Pencil Party Utils/Repaint/Destructive!/Repaint All Grids")]
+    static void RepaintGrids()
+    {
+        GridController[] grids = GameObject.FindObjectsOfType<GridController>();
+
+        foreach (GridController grid in grids)
+        {
+            grid.RepaintGrid();
+        }
+
+        Debug.Log("Grids Repainted!! Enjoy painting them colissions");
+    }
 }

@@ -111,13 +111,13 @@ public class BuildBlock : MonoBehaviour
 
         if (stairSlot.CheckForUpdate(stairs))
         {
-            stairSlot.Update(stairs, buildKit.stairs[ClampIndex(stairs - 1)], GetCenterPosition(), currentRotation + 0, transform);
+            stairSlot.Update(stairs, buildKit.stairs[ClampIndex(stairs - 1)], GetCenterPosition(), currentRotation, transform);
         }
 
         // Clamp Floors
         if (floorSlot.CheckForUpdate(floors))
         {
-            floorSlot.Update(floors, buildKit.floors[ClampIndex(floors - 1)], GetCenterPosition(), currentRotation + 0, transform);
+            floorSlot.Update(floors, buildKit.floors[ClampIndex(floors - 1)], GetCenterPosition(), currentRotation, transform);
         }
 
         CheckWalls();
@@ -126,8 +126,8 @@ public class BuildBlock : MonoBehaviour
 
     public void Repaint()
     {
-        stairSlot.Update(stairs, buildKit.stairs[ClampIndex(stairs - 1)], GetCenterPosition(), currentRotation + 0, transform);
-        floorSlot.Update(floors, buildKit.floors[ClampIndex(floors - 1)], GetCenterPosition(), currentRotation + 0, transform);
+        stairSlot.Update(stairs, buildKit.stairs[ClampIndex(stairs - 1)], GetCenterPosition(), currentRotation, transform);
+        floorSlot.Update(floors, buildKit.floors[ClampIndex(floors - 1)], GetCenterPosition(), currentRotation, transform);
         foundation1Slot.Update(foundation1, buildKit.foundations[ClampIndex(foundation1 - 1)], GetCenterPosition(), currentRotation + 0, transform);
         foundation2Slot.Update(foundation2, buildKit.foundations[ClampIndex(foundation2 - 1)], GetCenterPosition(), currentRotation + 90, transform);
         foundation3Slot.Update(foundation3, buildKit.foundations[ClampIndex(foundation3 - 1)], GetCenterPosition(), currentRotation + 180, transform);
@@ -142,7 +142,7 @@ public class BuildBlock : MonoBehaviour
     {
         currentRotation += 90;
 
-        if(currentRotation == 360)
+        if(currentRotation >= 360)
         {
             currentRotation = 0;
         }

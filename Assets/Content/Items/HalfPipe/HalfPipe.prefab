@@ -55,7 +55,7 @@ MonoBehaviour:
   placePoints: 1
   characterPositions:
   - {fileID: 7150305828044492747}
-  isOneShot: 0
+  isLooping: 0
   statType: 3
   statInteractionBoost: 19
   hasQuantity: 0
@@ -86,7 +86,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 3.4785135, y: 1.2762115, z: 9.325059}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 2.9279997, y: 1.2762114, z: 8.953309}
   m_TimeToStationary: 0.5
