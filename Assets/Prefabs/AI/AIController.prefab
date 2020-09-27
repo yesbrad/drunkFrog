@@ -265,7 +265,7 @@ MonoBehaviour:
     inTransit: 0
     hasInteractable: 0
     jobDestination: {x: 0, y: 0, z: 0}
-    useTransform: 0
+    useInteractable: 0
 --- !u!195 &-4812462848551818687
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -281,9 +281,9 @@ NavMeshAgent:
   avoidancePriority: 60
   m_AngularSpeed: 222.63
   m_StoppingDistance: 0.6
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 0
+  m_AutoRepath: 0
   m_Height: 2.14
   m_BaseOffset: 0
   m_WalkableMask: 4294967295

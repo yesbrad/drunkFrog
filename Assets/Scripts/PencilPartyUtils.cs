@@ -74,6 +74,17 @@ public class PencilPartyUtils
         }
     }
 
+    [MenuItem("Pencil Party Utils/Update GridBlocker Names")]
+    public static void UpdateGridBlockerNames()
+    {
+        GridBlocker[] spawners = GameObject.FindObjectsOfType<GridBlocker>();
+
+        foreach (GridBlocker item in spawners)
+        {
+            item.name = $"BLOCKER: {item.size.x} : {item.size.y}";
+        }
+    }
+
     [MenuItem("Pencil Party Utils/Fit Selected Collider")]
     static void FitToChildren()
     {
@@ -153,5 +164,27 @@ public class PencilPartyUtils
         }
 
         Debug.Log("Grids Repainted!! Enjoy painting them colissions");
+    }
+
+    [MenuItem("Pencil Party Utils/Toggle Items")]
+    static void ToggleItems()
+    {
+        ItemSceneSpawner[] spawners = GameObject.FindObjectsOfType<ItemSceneSpawner>();
+
+        foreach (ItemSceneSpawner spawner in spawners)
+        {
+            spawner.showGizmos = !spawner.showGizmos;
+        }
+    }
+
+    [MenuItem("Pencil Party Utils/Toggle GridBlocker")]
+    static void ToggleGridBlocker()
+    {
+        GridBlocker[] spawners = GameObject.FindObjectsOfType<GridBlocker>();
+
+        foreach (GridBlocker spawner in spawners)
+        {
+            spawner.showGizmos = !spawner.showGizmos;
+        }
     }
 }

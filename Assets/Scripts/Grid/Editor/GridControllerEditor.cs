@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 [CustomEditor(typeof(GridController))]
 public class GridControllerEditor : Editor
@@ -75,9 +76,9 @@ public class GridControllerEditor : Editor
         SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
     }
 
-    public void OnSceneGUI(SceneView sceneView)
+    public void OnSceneGUI(SceneView yurt)
     {
-        Handles.color = Color.red;
+        //Handles.color = Color.red;
         
         for (int x = 0; x < cont.gridSizeY; x++)
         {
@@ -88,19 +89,22 @@ public class GridControllerEditor : Editor
 
                 if (isEditing)
                 {
-                    Vector3 pos = cont.grid.GetWorldGridCenterPositionFromWorld(cont.grid.GetWorldPositionFromGrid(x, y));
-                    GridSlot gridSlot = cont.grid.GridArray[cont.grid.GetGridOneDIndex(x, y)];
+                    Vector3 pos = cont.grid.GetWorldGridCenterPositionFromGrid(x, y);
+                    GridSlot newSlot = cont.grid.GridArray[cont.grid.GetGridOneDIndex(x, y)];
 
-                    if (Handles.Button(pos, Quaternion.identity, gridSlot.gridState == GridSlotState.Blocked ? 1F : 0.2f, 1, Handles.CubeHandleCap))
+                    //Handles.color = newSlot.gridState == GridSlotState.Blocked ? Color.red : Color.green;
+
+                    if (Handles.Button(pos, Quaternion.identity, 1.3f, 1.5f, Handles.CubeHandleCap))
                     {
-                        gridSlot.gridState = gridSlot.gridState == GridSlotState.Blocked ? GridSlotState.Open : GridSlotState.Blocked;
-                        EditorUtility.SetDirty(cont);
+                        newSlot.gridState = newSlot.gridState == GridSlotState.Blocked ? GridSlotState.Open : GridSlotState.Blocked;
                     }
+
+                    Handles.color = Color.red;
                 }
             }
         }
 
-        Handles.color = Color.red;
+        //Handles.color = Color.red;
         Debug.DrawLine(cont.grid.GetWorldPositionFromGrid(cont.grid.width, cont.grid.height), cont.grid.GetWorldPositionFromGrid(cont.grid.width, 0));
         Debug.DrawLine(cont.grid.GetWorldPositionFromGrid(cont.grid.width, cont.grid.height), cont.grid.GetWorldPositionFromGrid(0, cont.grid.height));
     }

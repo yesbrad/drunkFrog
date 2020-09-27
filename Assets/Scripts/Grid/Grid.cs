@@ -20,6 +20,11 @@ public struct GridPosition
         this.x = x;
         this.y = y;
     }
+
+    public Vector2Int ToVector2Int()
+    {
+        return new Vector2Int(x, y);
+    }
 }
 
 [System.Serializable]
@@ -92,6 +97,17 @@ public class Grid
         return new Vector3(worldPos.x + (constants.GridCellSize / 2), origin.position.y , worldPos.z + (constants.GridCellSize / 2));
     }
 
+    public Vector3 GetWorldGridCenterPositionFromGrid(GridPosition position)
+    {
+        return GetWorldGridCenterPositionFromGrid(position.x, position.y);
+    }
+
+    public Vector3 GetWorldGridCenterPositionFromGrid(int x, int y)
+    {
+        Vector3 worldPos = GetWorldPositionFromGrid(x, y);
+        return new Vector3(worldPos.x + (constants.GridCellSize / 2), origin.position.y, worldPos.z + (constants.GridCellSize / 2));
+    }
+
     public Vector3 GetWorldPositionFromWorld (Vector3 position)
     {
         GridPosition gr = GetGridPositionFromWorld(position);
@@ -114,8 +130,8 @@ public class Grid
     {
         GridSlot pos = GetRandomSlot();
 
-        Debug.Log("" + pos.position.x + " : " + pos.position.y);
-        Debug.Log("" + gridArray[34].position.x + " : " + gridArray[34].position.y);
+        //Debug.Log("" + pos.position.x + " : " + pos.position.y);
+        //Debug.Log("" + gridArray[34].position.x + " : " + gridArray[34].position.y);
 
         while (pos.gridState != GridSlotState.Open)
         {
@@ -161,6 +177,29 @@ public class Grid
 		{
 			Debug.LogWarning("Value out of bounds");
 		}       
+    }
+
+    public void SetBlocked(int x, int y, ItemSize size, Transform rotateTransform)
+    {
+        if (gridArray == null)
+        {
+            Debug.Log("WE REALLT BROKEN");
+            return;
+        }
+
+        if (CanPlaceItemWithSize(x, y, size, rotateTransform))
+        {
+            GridPosition[] gridSpace = GetGridSpace(x, y, size, rotateTransform);
+
+            for (int i = 0; i < gridSpace.Length; i++)
+            {
+                gridArray[GetGridOneDIndex(gridSpace[i].x, gridSpace[i].y)].gridState = GridSlotState.Blocked;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Value out of bounds");
+        }
     }
 
     /// <summary>

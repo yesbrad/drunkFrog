@@ -7,10 +7,10 @@ using UnityEngine;
 [System.Serializable]
 public class ItemSize
 {
-    [Range(1, 10)]
+    [Range(1, 20)]
     public int x;
 
-    [Range(1, 10)]
+    [Range(1, 20)]
     public int y;
 
     public ItemSize ()

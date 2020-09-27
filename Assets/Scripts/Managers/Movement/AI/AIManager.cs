@@ -44,11 +44,11 @@ public class AITask
         if (interactable != null)
         {
             interactable.SetOnRouteAI(1);
-            controller.StartJob(interactable, OnDestinationReached);
+            controller.StartJob(interactable, OnDestinationReached, OnFinish);
         }
         else
         {
-            controller.StartJob(destination, OnDestinationReached);
+            controller.StartJob(destination, OnDestinationReached, OnFinish);
         }
 
         isComplete = false;

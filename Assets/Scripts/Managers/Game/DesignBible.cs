@@ -8,5 +8,7 @@ public class DesignBible : ScriptableObject
     public int ppScale = 200;
     public Color[] pencilColors;
 
-    public float maxAITaskTime = 90;
+    [Header("Seconds")]
+    [Tooltip("How much time will a pencil be stuck before it decides to find a new task")]
+    public float aiStuckBuffer = 5;
 }

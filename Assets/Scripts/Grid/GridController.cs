@@ -48,6 +48,13 @@ public class GridController : MonoBehaviour
         return false;
     }
 
+    public void OccupieSpace(Vector3 position, ItemSize size, Transform rotationTransform)
+    {
+        GridPosition gridPosition = grid.GetGridPositionFromWorld(position);
+        grid.SetBlocked(gridPosition.x, gridPosition.y, size, rotationTransform);
+
+    }
+
     /// <summary>
     /// Removes Item off the grid, Returns the Removed item
     /// </summary>
