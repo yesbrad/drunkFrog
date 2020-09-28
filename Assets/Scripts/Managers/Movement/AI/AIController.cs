@@ -78,7 +78,10 @@ public class AIController : Pawn
 
         }
 
-        public bool IsGoodPath() => navAgent.pathStatus == NavMeshPathStatus.PathComplete;
+        public bool IsGoodPath()
+        {
+            return navAgent.pathStatus == NavMeshPathStatus.PathComplete && navAgent.pathPending == false;
+        }
 
         public void CheckDestination ()
         {

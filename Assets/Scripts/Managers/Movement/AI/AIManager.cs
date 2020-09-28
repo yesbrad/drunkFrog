@@ -180,7 +180,7 @@ public class AIManager : CharacterManager
             }
         }
 
-        /*
+        
         if (GetOdds() > AIClass.obtainingSocializingThreshold && WasNotLastSelected(3) && HasCompletedFirstTask)
         {
             AITask possibleTask = FindGroup();
@@ -191,7 +191,6 @@ public class AIManager : CharacterManager
                 return possibleTask;
             }
         }
-        */
 
         // Do somthing fun if theres anyhting remotyly fun in the house
         if (GetOdds() > AIClass.obtainingFunThreshold && HasCompletedFirstTask)
@@ -201,8 +200,9 @@ public class AIManager : CharacterManager
             if (possibleTask != null)
                 return possibleTask;
         }
+        
 
-        if (CurrentGrid != null)
+        if (CurrentGrid != null && HasCompletedFirstTask)
         {
             return GetRandomPositionTask();
         }

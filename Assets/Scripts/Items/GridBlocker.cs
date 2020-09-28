@@ -56,8 +56,18 @@ public class GridBlocker : MonoBehaviour
 			Gizmos.DrawLine(Vector3.forward * (size.y * constants.GridCellSize), (Vector3.right * (size.x * constants.GridCellSize)) +
 				(Vector3.forward * (size.y * constants.GridCellSize)));
 
+			Color color = Color.red;
+			color.a = 0.5f;
+			Gizmos.color = color;
 
-
+			for (int i = 0; i < size.x; i++)
+			{
+				for (int y = 0; y < size.y; y++)
+				{
+					Gizmos.DrawCube((Vector3.one) + new Vector3(i * constants.GridCellSize, -1, y * constants.GridCellSize), new Vector3(1,0,1) * constants.GridCellSize);
+				}
+			}
+			
 		}
 	}
 

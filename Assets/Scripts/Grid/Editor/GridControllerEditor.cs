@@ -94,7 +94,7 @@ public class GridControllerEditor : Editor
 
                     //Handles.color = newSlot.gridState == GridSlotState.Blocked ? Color.red : Color.green;
 
-                    if (Handles.Button(pos, Quaternion.identity, 1.3f, 1.5f, Handles.CubeHandleCap))
+                    if (Handles.Button(pos, Quaternion.identity, newSlot.gridState == GridSlotState.Blocked ? 2f : 1.3f, 1.5f, Handles.CubeHandleCap))
                     {
                         newSlot.gridState = newSlot.gridState == GridSlotState.Blocked ? GridSlotState.Open : GridSlotState.Blocked;
                     }
