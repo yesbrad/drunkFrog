@@ -75,7 +75,7 @@ public class HouseItemController : TimelineItemController
 			if (hasQuantity)
 			{
 				quantity--;
-				HouseOwner.HouseInventory.Remove(statType, this, 1);
+				HouseOwner.HouseInventory.RefreshUI();
 
 				if (quantity <= 0)
 				{

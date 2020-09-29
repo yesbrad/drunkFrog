@@ -35,12 +35,16 @@ public class HouseInventory : MonoBehaviour
 
 	public List<Category> categorys = new List<Category>();
 
+	private HouseManager manager;
+
 	private void Awake()
 	{
 		categorys.Add(new Category(AIStatTypes.Soberness));
 		categorys.Add(new Category(AIStatTypes.Hunger));
 		categorys.Add(new Category(AIStatTypes.Boardness));
 		categorys.Add(new Category(AIStatTypes.Thirst));
+		manager = GetComponent<HouseManager>();
+		RefreshUI();
 	}
 
 	public void Add(AIStatTypes catagory, HouseItemController controller, int amount)
@@ -55,6 +59,8 @@ public class HouseInventory : MonoBehaviour
 				}
 			}
 		}
+
+		RefreshUI();
 	}
 
 	public void Remove(AIStatTypes catagory, HouseItemController controller, int amount)
@@ -66,6 +72,13 @@ public class HouseInventory : MonoBehaviour
 				categorys[i].items.Remove(controller);
 			}
 		}
+
+		RefreshUI();
+	}
+
+	public void RefreshUI ()
+	{
+		manager.houseOwner?.PlayerUI.SetHouseInventoryStats(categorys);
 	}
 
 	/// <summary>
@@ -108,7 +121,7 @@ public class HouseInventory : MonoBehaviour
 
 				if (controller.MaxCharactersOnRoute())
 				{
-					print("Shess sofucking coookedddd plz help");
+					print("plz help");
 				}
 
 				return controller;

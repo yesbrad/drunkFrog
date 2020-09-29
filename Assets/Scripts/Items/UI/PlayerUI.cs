@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
-    [Header("Player UI")]
+    [Header("Player Stats")]
     [SerializeField] TMPro.TextMeshProUGUI ppText;
     [SerializeField] TMPro.TextMeshProUGUI currentItemText;
     [SerializeField] TMPro.TextMeshProUGUI currentCashText;
+
+    [Header("House Inventory")]
+    [SerializeField] TMPro.TextMeshProUGUI funText;
+    [SerializeField] TMPro.TextMeshProUGUI alcoholText;
+    [SerializeField] TMPro.TextMeshProUGUI waterText;
+    [SerializeField] TMPro.TextMeshProUGUI foodText;
 
     [Header("Settings UI TODO")]
     [SerializeField] TMPro.TextMeshPro settingsText;
@@ -24,6 +30,24 @@ public class PlayerUI : MonoBehaviour
 
     public void SetCash (int cash)
     {
-        currentCashText.SetText($"Cash: ${cash}");
+        currentCashText.SetText($"${cash}");
+    }
+
+    public void SetHouseInventoryStats(List<HouseInventory.Category> categories)
+    {
+        for (int i = 0; i < categories.Count; i++)
+        {
+            if (categories[i].catagory == AIStatTypes.Boardness)
+                funText.SetText(categories[i].Amount.ToString());
+
+            if (categories[i].catagory == AIStatTypes.Hunger)
+                foodText.SetText(categories[i].Amount.ToString());
+
+            if (categories[i].catagory == AIStatTypes.Thirst)
+                waterText.SetText(categories[i].Amount.ToString());
+
+            if (categories[i].catagory == AIStatTypes.Soberness)
+                alcoholText.SetText(categories[i].Amount.ToString());
+        }
     }
 }

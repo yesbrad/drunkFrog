@@ -179,10 +179,10 @@ MonoBehaviour:
   placePoints: 1
   characterPositions:
   - {fileID: 1837071167041133474}
-  isOneShot: 0
+  isLooping: 0
   statType: 0
   statInteractionBoost: 10
-  hasQuantity: 0
+  hasQuantity: 1
   startQuantity: 50
   outOfStockContainer: {fileID: 472315166712359113}
 --- !u!320 &826988002750784522
