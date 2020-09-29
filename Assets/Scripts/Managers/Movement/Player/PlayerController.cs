@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour, IController
     [SerializeField]
     protected float speed;
 
+    [SerializeField]
+    [Range(10, 30)]
+    private float gravity = 22;
+
     public PlayerManager Manager { get; private set; }
     public Pawn Pawn { get => pawn; }
     public Vector3 Position { get => pawn.Position; }
@@ -50,6 +54,11 @@ public class PlayerController : MonoBehaviour, IController
         MoveDirection(inputDirection);
         UpdateSelectorPosition();
         UpdateSelectorColors();
+    }
+
+    private void FixedUpdate()
+    {
+       
     }
 
     private void UpdateSelectorPosition()
@@ -124,8 +133,14 @@ public class PlayerController : MonoBehaviour, IController
         if (pawn.Occupied)
             return;
 
-        movePosition = _direction * speed * Time.deltaTime;
-        controller.SimpleMove(movePosition);
+        if (controller.isGrounded)
+        {
+            movePosition = _direction;
+            movePosition *= speed;
+        }
+
+        movePosition.y -= gravity * Time.deltaTime;
+        controller.Move(movePosition * Time.deltaTime);
     }
 
     public void SetRotation(Vector3 rotation)

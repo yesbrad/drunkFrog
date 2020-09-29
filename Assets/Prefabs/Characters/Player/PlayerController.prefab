@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 4704811398553670565}
-  speed: 400
+  speed: 5
   playerDetectionDistance: 2
   selectorController: {fileID: 2925598640732002751}
   gridSelector: {fileID: 1695505579842937418}
