@@ -33,7 +33,7 @@ public class ItemController : MonoBehaviour, IInteractable
 
     public bool InHand { get; private set; }
 
-    private void Awake()
+    private void OnEnable()
     {
         Characters = new Queue<ItemOccupant>();
     }

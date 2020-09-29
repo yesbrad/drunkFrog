@@ -42,7 +42,7 @@ public class GridController : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("She does not fit on the grid");
+			Debug.Log("She does not fit on the grid", item.controller);
 		}
 
         return false;

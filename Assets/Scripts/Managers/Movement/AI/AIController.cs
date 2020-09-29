@@ -169,7 +169,9 @@ public class AIController : MonoBehaviour, IController
             currentJob.CheckDestination();
         }
 
-        rotateContainer.rotation = Quaternion.Lerp(rotateContainer.rotation, Quaternion.LookRotation(agent.velocity, Vector3.up), 10 * Time.deltaTime);
+        if(agent.velocity != Vector3.zero)
+            rotateContainer.rotation = Quaternion.Lerp(rotateContainer.rotation, Quaternion.LookRotation(agent.velocity, Vector3.up), 10 * Time.deltaTime);
+        
         pawn.SetVelocity(agent.velocity.normalized.magnitude - 0.5f);
     }
 

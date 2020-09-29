@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item Data", menuName = "Item Data")]
 
 [System.Serializable]
 public class ItemSize
@@ -24,6 +23,8 @@ public class ItemSize
         return x == 1 && y == 1;
     }
 }
+
+[CreateAssetMenu(fileName = "New Item Data", menuName = "Item Data")]
 public class ItemData : ScriptableObject
 {
     public string name;
