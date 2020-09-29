@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SDHalfPipe
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 46497effbb3a4624dba07b043cf39f1a, type: 2}
-  cost: 3000
+  cost: 5000
   amount: 5

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class HoldItem : MonoBehaviour
 {
-	private void Awake()
+	internal bool showOnAwake;
+
+	private void Start()
 	{
-		HideItem();
+		if(!showOnAwake)
+			HideItem();
 	}
 
 	public void ShowItem()
@@ -22,6 +25,6 @@ public class HoldItem : MonoBehaviour
 	private void OnDrawGizmos()
 	{
 		Gizmos.matrix = transform.localToWorldMatrix;
-		Gizmos.DrawWireCube(new Vector3(0.5f, 0.5f, 0.5f), Vector3.one);
+		Gizmos.DrawWireCube(Vector3.up / 2, Vector3.one);
 	}
 }

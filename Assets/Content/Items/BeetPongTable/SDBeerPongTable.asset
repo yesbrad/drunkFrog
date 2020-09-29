@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SDBeerPongTable
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 76d1cdcce14ecad4997e6de23dbeb5ed, type: 2}
-  cost: 2040
+  cost: 500
   amount: 10

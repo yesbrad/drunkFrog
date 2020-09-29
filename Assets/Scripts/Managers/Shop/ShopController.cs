@@ -26,7 +26,9 @@ public class ShopController : MonoBehaviour
 
         if (holdItemSpawn)
         {
-            Instantiate(shopData.item.itemPrefab.GetComponent<ItemController>().holdItem, holdItemSpawn.position, Quaternion.identity).GetComponent<ItemController>().holdItem.ShowItem();
+            HoldItem item = Instantiate(shopData.item.itemPrefab.GetComponent<ItemController>().holdItem, holdItemSpawn.position, Quaternion.identity).GetComponent<HoldItem>();
+            item.showOnAwake = true;
+            item.ShowItem();
         }
 
         nameText.SetText(shopData.item.name);

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb81878ff3813dd4fb158b1f6861588b, type: 3}
   m_Name: DesignBible
   m_EditorClassIdentifier: 
-  ppScale: 500
-  ppInventoryScale: 10
+  ppScale: 6000
+  ppInventoryScale: 6
   pencilColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.9011407, a: 1}
