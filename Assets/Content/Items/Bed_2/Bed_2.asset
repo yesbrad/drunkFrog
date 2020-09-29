@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c29428ab1683b419d7aa26bc6f25c3, type: 3}
   m_Name: Bed_2
   m_EditorClassIdentifier: 
-  name: Bed_2
+  name: Bed
   id: Bed_2
   size:
     x: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c29428ab1683b419d7aa26bc6f25c3, type: 3}
   m_Name: HalfPipe
   m_EditorClassIdentifier: 
-  name: HalfPipe
+  name: Half Pipe
   id: HalfPipe
   size:
     x: 4

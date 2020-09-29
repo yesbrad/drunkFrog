@@ -10,6 +10,9 @@ public class ItemController : MonoBehaviour, IInteractable
     [SerializeField]
     private bool showPrefabGizmos;
 
+    [Header("Hold Item")]
+    public HoldItem holdItem;
+
     [Header("Base Item")]
     [SerializeField]
     private Transform interactPosition;
@@ -116,6 +119,14 @@ public class ItemController : MonoBehaviour, IInteractable
         interactPosition = new GameObject().transform;
         interactPosition.gameObject.name = "InteractPosition";
         interactPosition.parent = transform;
+    }
+
+    [ContextMenu("Create Hold Item")]
+    private void CreateHolditem()
+    {
+        holdItem = new GameObject().AddComponent<HoldItem>();
+        holdItem.gameObject.name = "HoldItem";
+        holdItem.transform.parent = transform;
     }
 
     private void OnDrawGizmos()

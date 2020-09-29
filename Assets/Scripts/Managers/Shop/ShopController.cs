@@ -17,6 +17,7 @@ public class ShopController : MonoBehaviour
     private void Awake()
     {
         shop = new Shop(shopData);
+        Instantiate(shopData.item.itemPrefab.GetComponent<ItemController>().holdItem, transform.position + (Vector3.up * 3), Quaternion.identity);
     }
 
     public void StartInteract(CharacterManager manager)
