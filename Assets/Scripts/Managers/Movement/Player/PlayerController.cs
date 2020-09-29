@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviour, IController
         {
             for (int i = 0; i < 10; i++)
             {
-                GameManager.instance.SpawnAI(Manager.HouseManager);
+                GameManager.instance.SpawnAI(Manager.CurrentHouse);
             }
         }
     }

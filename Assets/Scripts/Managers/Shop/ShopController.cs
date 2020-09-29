@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopController : ItemController
+public class ShopController : MonoBehaviour
 {
     [Header("Shop")]
     [SerializeField]
@@ -19,11 +19,9 @@ public class ShopController : ItemController
         shop = new Shop(shopData);
     }
 
-    public override void StartInteract(CharacterManager manager, Action onFinishInteraction = null)
+    public void StartInteract(CharacterManager manager)
     {
-        base.StartInteract(manager, onFinishInteraction);
-
-        TruckInventroy inventroy = manager.GetComponent<TruckInventroy>();
+        TruckInventroy inventroy = manager.InitialHouse.TruckInventroy;
         PlayerManager playerManager = manager.GetComponent<PlayerManager>();
 
         if (inventroy)

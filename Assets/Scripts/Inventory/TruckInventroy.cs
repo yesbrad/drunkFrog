@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerManager))]
+[RequireComponent(typeof(HouseManager))]
 public class TruckInventroy : MonoBehaviour
 {
 	public Queue<ItemData> inventory = new Queue<ItemData>();

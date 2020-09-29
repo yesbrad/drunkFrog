@@ -28,7 +28,7 @@ public class PlayerManager : CharacterManager
         Detection = GetComponent<PlayerDetection>();
         transform.GetComponentInChildren<PlayerController>().Spawn(initialHouse.SpawnPosition);
         GetComponent<PlayerInput>().ActivateInput();
-        AddCash(HouseManager.BaseCash);
+        AddCash(CurrentHouse.BaseCash);
     }
 
     public override void Interact(Vector3 position)
@@ -46,23 +46,23 @@ public class PlayerManager : CharacterManager
     public override void Update()
     {
         base.Update();
-        if (!HouseManager) return;
+        if (!CurrentHouse) return;
         UpdateCameraLayer();
     }
 
     private void UpdateCameraLayer()
     {
-        for (int i = 0; i < HouseManager.floorSettings.Length; i++)
+        for (int i = 0; i < CurrentHouse.floorSettings.Length; i++)
         {
-            if (HouseManager.floorSettings[i].floorDetectionSocket.position.y > Pawn.Position.y)
+            if (CurrentHouse.floorSettings[i].floorDetectionSocket.position.y > Pawn.Position.y)
             {
                 // OFF
-                LayerCullingHide(playerCamera, HouseManager.floorSettings[i].cameraLayer.value);
+                LayerCullingHide(playerCamera, CurrentHouse.floorSettings[i].cameraLayer.value);
             }
             else
             {
                 // ON
-                LayerCullingShow(playerCamera, HouseManager.floorSettings[i].cameraLayer.value);
+                LayerCullingShow(playerCamera, CurrentHouse.floorSettings[i].cameraLayer.value);
             }
         }
     }

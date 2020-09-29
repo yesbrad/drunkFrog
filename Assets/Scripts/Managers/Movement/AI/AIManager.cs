@@ -238,7 +238,7 @@ public class AIManager : CharacterManager
 
     private AITask GetStatObjectTask(AIStatTypes type)
     {
-        ItemController possibleObject = HouseManager.HouseInventory.FindItem(type);
+        ItemController possibleObject = CurrentHouse.HouseInventory.FindItem(type);
 
         if (possibleObject != null)
             return new AITask(possibleObject);
@@ -253,7 +253,7 @@ public class AIManager : CharacterManager
 
     private AITask GetCentrePointTask()
     {
-        return new AITask(HouseManager.GetCenterPoint());
+        return new AITask(CurrentHouse.GetCenterPoint());
     }
 
     public void StartTask(AITask task)

@@ -34,6 +34,8 @@ public class HouseManager : MonoBehaviour
 
     public PencilSpawner Spawner { get; private set; }
     public HouseInventory HouseInventory { get; private set; }
+    public TruckInventroy TruckInventroy { get; private set; }
+
     public Vector3 SpawnPosition { get { return spawnPosition.position; } }
 
     private int PP;
@@ -45,6 +47,7 @@ public class HouseManager : MonoBehaviour
         gridControllers = GetComponentsInChildren<GridController>();
         Spawner = GetComponent<PencilSpawner>();
         HouseInventory = GetComponent<HouseInventory>();
+        TruckInventroy = GetComponent<TruckInventroy>();
     }
 
     public void Init (PlayerManager owner)
@@ -101,12 +104,8 @@ public class HouseManager : MonoBehaviour
 
         foreach (HouseInventory.Category category in HouseInventory.categorys)
         {
-            Debug.Log($"NEWPP: {category.Amount}");
             ppWithInventory += category.Amount / GameManager.instance.designBible.ppInventoryScale;
         }
-
-        //Debug.Log($"HousePP: {PP}");
-       // Debug.Log($"NEWPP: {ppWithInventory}");
 
         return $"{Mathf.Floor((ppWithInventory / GameManager.instance.designBible.ppScale) * 100)}%";
     }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    public HouseManager HouseManager { get; private set; }
+    public HouseManager CurrentHouse { get; private set; }
+    public HouseManager InitialHouse { get; private set; }
+
     public GridController CurrentGrid { get; private set; }
     public InventoryManager InventoryManager { get; private set; }
 
@@ -26,18 +28,19 @@ public class CharacterManager : MonoBehaviour
     public virtual void Init(HouseManager initialHouse)
     {
         Initialized = true;
+        InitialHouse = initialHouse;
         SetHouse(initialHouse);
     }
 
     public void SetHouse(HouseManager house)
     {
-        if(HouseManager && HouseManager.guests.Contains(this))
+        if(CurrentHouse && CurrentHouse.guests.Contains(this))
         {
-            HouseManager.guests.Remove(this);
+            CurrentHouse.guests.Remove(this);
         }
         
-        HouseManager = house;
-        HouseManager.guests.Add(this);
+        CurrentHouse = house;
+        CurrentHouse.guests.Add(this);
     }
 
     public void SetGrid(GridController grid)
@@ -51,14 +54,14 @@ public class CharacterManager : MonoBehaviour
 
     public virtual void Update()
     {
-        if (!HouseManager) return;
+        if (!CurrentHouse) return;
 
         CheckForNewGrid();
     }
 
     private void CheckForNewGrid()
     {
-        CurrentGrid = HouseManager.GetGrid(Pawn.Position);
+        CurrentGrid = CurrentHouse.GetGrid(Pawn.Position);
     }
 
     public void PlaceOrPickupCurrentItem(Vector3 position)
@@ -75,7 +78,7 @@ public class CharacterManager : MonoBehaviour
             }
             else
             {
-                Item possiblePickup = CurrentGrid.DeleteItem(position, HouseManager);
+                Item possiblePickup = CurrentGrid.DeleteItem(position, CurrentHouse);
             
                 if(possiblePickup != null)
                 {
