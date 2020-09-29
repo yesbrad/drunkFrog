@@ -2,9 +2,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : Pawn
+public class PlayerController : MonoBehaviour, IController
 {
+    [SerializeField]
+    private Pawn pawn;
+
+    [SerializeField]
+    protected float speed;
+
     public PlayerManager Manager { get; private set; }
+    public Pawn Pawn { get => pawn; }
+    public Vector3 Position { get => pawn.Position; }
+
+
     public float playerDetectionDistance = 2;
 
     [SerializeField]
@@ -13,7 +23,6 @@ public class PlayerController : Pawn
     public Transform gridSelector;
     public Transform gridSelectorSingle;
 
-    public Transform playerRotateContainer;
     private Vector3 inputDirection;
 
     private bool debugTime;
@@ -27,14 +36,13 @@ public class PlayerController : Pawn
     private Vector3 movePosition;
     private CharacterController controller;
 
-    public override void Init()
+    public void Awake()
     {
-        base.Init();
         controller = GetComponent<CharacterController>();
         Manager = GetComponentInParent<PlayerManager>();
         gridSelector.parent = Manager.transform;
         gridSelectorSingle.parent = Manager.transform;
-        Manager.SetRotationContainer(playerRotateContainer);
+        Manager.SetRotationContainer(pawn.rotateContainer);
 	}
 
 	private void Update ()
@@ -52,7 +60,7 @@ public class PlayerController : Pawn
         {
             gridSelector.gameObject.SetActive(true);
 
-            curAngle = Manager.InventoryManager.CurrentItem.Data.size.IsSingle() ? Vector3.zero : PencilPartyUtils.RoundAnglesToNearest90(playerRotateContainer);
+            curAngle = Manager.InventoryManager.CurrentItem.Data.size.IsSingle() ? Vector3.zero : PencilPartyUtils.RoundAnglesToNearest90(pawn.rotateContainer);
 
             gridSelector.position = Vector3.Lerp(gridSelector.position, GetSelectionCenterLocation(), Time.deltaTime * 20);
             gridSelector.eulerAngles = curAngle;
@@ -97,33 +105,32 @@ public class PlayerController : Pawn
 
     public void OnMove (InputAction.CallbackContext context)
     {
-        if (Occupied)
+        if (pawn.Occupied)
             return;
 
 		Vector2 input = context.ReadValue<Vector2>();
         inputDirection.x = input.x;
         inputDirection.z = input.y;
 
-        SetVelocity(input.sqrMagnitude);
+        pawn.SetVelocity(input.sqrMagnitude);
 
         if(input != Vector2.zero)
-            playerRotateContainer.localRotation = Quaternion.LookRotation(new Vector3(input.x, 0, input.y), Vector3.up);
+            pawn.SetRotation(Quaternion.LookRotation(new Vector3(input.x, 0, input.y), Vector3.up));
 
     }
 
-    public override void MoveDirection(Vector3 _direction)
+    public void MoveDirection(Vector3 _direction)
     {
-        if (Occupied)
+        if (pawn.Occupied)
             return;
 
         movePosition = _direction * speed * Time.deltaTime;
         controller.SimpleMove(movePosition);
     }
 
-    public override void SetRotation(Vector3 rotation)
+    public void SetRotation(Vector3 rotation)
     {
-        base.SetRotation(rotation);
-        playerRotateContainer.rotation = Quaternion.Euler(rotation);
+        pawn.SetRotation(rotation);
     }
 
     private void UpdateSelectorColors()
@@ -136,7 +143,7 @@ public class PlayerController : Pawn
 
             if(Manager.InventoryManager.CurrentItem != null)
             {
-                gridSelector.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.grid.CanPlaceItemWithSize(pos.x, pos.y, Manager.InventoryManager.CurrentItem.Data.size, playerRotateContainer)
+                gridSelector.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.grid.CanPlaceItemWithSize(pos.x, pos.y, Manager.InventoryManager.CurrentItem.Data.size, pawn.rotateContainer)
                     ? Color.blue
                     : Color.red);
             }
@@ -165,7 +172,7 @@ public class PlayerController : Pawn
         if (Manager == null || Manager.CurrentGrid == null)
             return Vector3.zero;
 
-        return Manager.CurrentGrid.grid.GetWorldPositionFromWorld(transform.position + (playerRotateContainer.forward * playerDetectionDistance));
+        return Manager.CurrentGrid.grid.GetWorldPositionFromWorld(transform.position + (pawn.rotateContainer.forward * playerDetectionDistance));
     }
 
     /*
@@ -195,7 +202,7 @@ public class PlayerController : Pawn
 
     public void OnPlaceItem (InputAction.CallbackContext context)
     {
-        if (Occupied)
+        if (pawn.Occupied)
             return;
 
         if (!Locked && context.performed)
@@ -206,7 +213,7 @@ public class PlayerController : Pawn
 
     public void OnSwapItem(InputAction.CallbackContext context)
     {
-        if (Occupied)
+        if (pawn.Occupied)
             return;
 
         if (!Locked && context.performed)
@@ -217,7 +224,7 @@ public class PlayerController : Pawn
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (Occupied)
+        if (pawn.Occupied)
             return;
 
         if (!Locked && context.performed)

@@ -12,10 +12,9 @@ public class Pawn : MonoBehaviour
     }
 
     [SerializeField]
-    protected float speed;
-
-    [SerializeField]
     protected Transform pawnTimelineContainer;
+
+    public Transform rotateContainer;
 
     [SerializeField]
     private Animator animator;
@@ -93,7 +92,12 @@ public class Pawn : MonoBehaviour
 
     public virtual void SetRotation(Vector3 rotation)
     {
-        //transform.rotation = Quaternion.Euler(rotation);
+        SetRotation(Quaternion.Euler(rotation));
+    }
+
+    public virtual void SetRotation(Quaternion rotation)
+    {
+        rotateContainer.rotation = rotation;
     }
 
     public void SetState(PawnState state)

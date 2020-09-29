@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerDetection : MonoBehaviour
 {
 	[SerializeField]
-	private Transform rotationContainer;
+	private Pawn pawn;
 
 	[SerializeField]
 	private float detectDistance = 2;
@@ -15,13 +15,13 @@ public class PlayerDetection : MonoBehaviour
 
 	public void Detect(CharacterManager manager)
 	{
-		if(rotationContainer == null)
+		if(pawn.rotateContainer == null)
 		{
 			Debug.LogError("Missing RotationContariner on Player Detection");
 			return;
 		}
 
-		Ray detectRay = new Ray(rotationContainer.position, rotationContainer.forward);
+		Ray detectRay = new Ray(pawn.rotateContainer.position, pawn.rotateContainer.forward);
 		
 		if(Physics.Raycast(detectRay, out detectHit, detectDistance))
 		{

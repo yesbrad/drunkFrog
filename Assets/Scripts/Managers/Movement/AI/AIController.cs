@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class AIController : Pawn
+public class AIController : MonoBehaviour, IController
 {
     [System.Serializable]
     public class Job
@@ -63,9 +63,7 @@ public class AIController : Pawn
 
             completeTime = totalPathDistance / navAgent.speed + GameManager.instance.DesignBible.aiStuckBuffer;
 
-
             //Debug.LogError("Complete Time: " + completeTime);
-
 
             if (!IsGoodPath())
             {
@@ -92,7 +90,7 @@ public class AIController : Pawn
                     
                 if (navAgent.remainingDistance <= navAgent.stoppingDistance)
                 {
-                    Debug.Log("Reached Destination", navAgent.gameObject);
+                    //Debug.Log("Reached Destination", navAgent.gameObject);
                     CompleteJob();
                     return;                  
                 }
@@ -100,7 +98,7 @@ public class AIController : Pawn
                 // This is here to see if we can not reach out next target;
                 if(currentTime > completeTime)
                 {
-                    Debug.Log("Failed to reach next Point", navAgent.gameObject);
+                    //Debug.Log("Failed to reach next Point", navAgent.gameObject);
                     FailJob();
                     return;
                 }
@@ -132,17 +130,24 @@ public class AIController : Pawn
         }
     }
 
+    [SerializeField]
+    private Pawn pawn;
+    public Pawn Pawn { get => pawn; }
+    public Vector3 Position { get => pawn.Position; }
+
     private NavMeshAgent agent;
     public AIManager Manager { get; private set; }
 
+    public Transform rotateContainer;
+
     public Job currentJob;
 
-    public override void Init()
+    public void Awake()
     {
-        base.Init();
         Manager = GetComponentInParent<AIManager>();
         agent = GetComponent<NavMeshAgent>();
         agent.autoRepath = false;
+        agent.updateRotation = false;
     }
 
     private void OnDrawGizmos()
@@ -164,12 +169,13 @@ public class AIController : Pawn
             currentJob.CheckDestination();
         }
 
-        SetVelocity(agent.velocity.sqrMagnitude);
+        rotateContainer.rotation = Quaternion.Lerp(rotateContainer.rotation, Quaternion.LookRotation(agent.velocity, Vector3.up), 10 * Time.deltaTime);
+        pawn.SetVelocity(agent.velocity.normalized.magnitude - 0.5f);
     }
 
-    public override void SetRotation(Vector3 rotation)
+    public void SetRotation(Vector3 rotation)
     {
-        base.SetRotation(rotation);
+        pawn.SetRotation(rotation);
         transform.rotation = Quaternion.Euler(rotation);
     }
 
