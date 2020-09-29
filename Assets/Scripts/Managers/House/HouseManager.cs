@@ -87,7 +87,28 @@ public class HouseManager : MonoBehaviour
     public void RefreshUI ()
     {   
         if(houseOwner != null)
-            houseOwner.PlayerUI.SetPP(GameManager.instance.CalculatePP(PP));
+            houseOwner.PlayerUI.SetPP(CalculatePP());
+
+        HouseInventory.RefreshUI();
+    }
+
+    /// <summary>
+    /// Calculate a modified percentage based off raw pp
+    /// </summary>
+    public string CalculatePP()
+    {
+        float ppWithInventory = PP;
+
+        foreach (HouseInventory.Category category in HouseInventory.categorys)
+        {
+            Debug.Log($"NEWPP: {category.Amount}");
+            ppWithInventory += category.Amount / GameManager.instance.designBible.ppInventoryScale;
+        }
+
+        //Debug.Log($"HousePP: {PP}");
+       // Debug.Log($"NEWPP: {ppWithInventory}");
+
+        return $"{Mathf.Floor((ppWithInventory / GameManager.instance.designBible.ppScale) * 100)}%";
     }
 
     public Vector3 GetCenterPoint()

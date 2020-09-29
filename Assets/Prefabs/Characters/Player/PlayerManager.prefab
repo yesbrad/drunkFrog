@@ -488,8 +488,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -172.70996, y: 24.570007}
-  m_SizeDelta: {x: 395.44873, y: 35.817596}
+  m_AnchoredPosition: {x: -170.4, y: 21.100006}
+  m_SizeDelta: {x: 390.83698, y: 28.873703}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2372969480976382356
 GameObject:
@@ -1153,7 +1153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 70.83996, y: -26.7201}
+  m_AnchoredPosition: {x: 70.83996, y: -23.1}
   m_SizeDelta: {x: 110.85028, y: 23.487247}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4259607269853726467
@@ -1541,7 +1541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 71.70996, y: -71.1901}
+  m_AnchoredPosition: {x: 72.17192, y: -71.1901}
   m_SizeDelta: {x: 71.729416, y: 16.266178}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5757628405588590346
@@ -1600,8 +1600,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 13.3
-  m_fontSizeBase: 13.3
+  m_fontSize: 9.2
+  m_fontSizeBase: 9.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1905,8 +1905,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 14.73
-  m_fontSizeBase: 14.73
+  m_fontSize: 12.37
+  m_fontSizeBase: 12.37
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1922,7 +1922,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2155,8 +2155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 64.29004, y: -51.76999}
-  m_SizeDelta: {x: 117.319336, y: 92.87012}
+  m_AnchoredPosition: {x: 65.07999, y: -50.11}
+  m_SizeDelta: {x: 118.90906, y: 89.545944}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &4054641067855787826
 PrefabInstance:

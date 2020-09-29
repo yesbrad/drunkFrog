@@ -120,12 +120,5 @@ public class GameManager : MonoBehaviour
         if (designBible == null) Debug.LogError("Game Manager Missing DESIGN BIBLE");
     }
 
-    /// <summary>
-    /// Calculate a modified percentage based off raw pp
-    /// </summary>
-    /// <param name="rawPP">Raw PP</param>
-    public string CalculatePP (int rawPP)
-    {
-        return $"{Mathf.Floor(((float)rawPP / (float)designBible.ppScale) * 100)}%";
-    }
+
 }

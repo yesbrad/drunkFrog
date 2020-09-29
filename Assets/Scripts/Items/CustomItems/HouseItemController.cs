@@ -40,21 +40,25 @@ public class HouseItemController : TimelineItemController
 	public virtual void AddToInventory()
 	{
 		HouseOwner.HouseInventory.Add(statType, this, quantity);
+		HouseOwner.RefreshUI();
 	}
 
 	public virtual void RemoveFromInventory()
 	{
 		HouseOwner.HouseInventory.Remove(statType, this, quantity);
+		HouseOwner.RefreshUI();
 	}
 	public override void OnPickup()
 	{
 		base.OnPickup();
+		HouseOwner.RemovePP(placePoints, transform.position);
 		RemoveFromInventory();
 	}
 
 	public override void OnPlace(Vector3 position, Quaternion rot)
 	{
 		base.OnPlace(position, rot);
+		HouseOwner.AddPP(placePoints, position);
 		AddToInventory();
 	}
 
@@ -75,7 +79,7 @@ public class HouseItemController : TimelineItemController
 			if (hasQuantity)
 			{
 				quantity--;
-				HouseOwner.HouseInventory.RefreshUI();
+				HouseOwner.RefreshUI();
 
 				if (quantity <= 0)
 				{
