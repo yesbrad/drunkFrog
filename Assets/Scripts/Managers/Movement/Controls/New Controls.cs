@@ -203,7 +203,7 @@ public class @NewControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e0e1c501-594b-422a-a6fe-b8dffb3d3f9a"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyBoard"",

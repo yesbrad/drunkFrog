@@ -9,15 +9,28 @@ public class ShopController : MonoBehaviour
     [SerializeField]
     private ShopData shopData;
 
+    [SerializeField] TMPro.TextMeshProUGUI nameText;
+    [SerializeField] TMPro.TextMeshProUGUI costText;
+
     [SerializeField]
     private ParticleSystem cashParticle;
+
+    [SerializeField]
+    private Transform holdItemSpawn;
 
     private Shop shop;
 
     private void Awake()
     {
         shop = new Shop(shopData);
-        Instantiate(shopData.item.itemPrefab.GetComponent<ItemController>().holdItem, transform.position + (Vector3.up * 3), Quaternion.identity);
+
+        if (holdItemSpawn)
+        {
+            Instantiate(shopData.item.itemPrefab.GetComponent<ItemController>().holdItem, holdItemSpawn.position, Quaternion.identity).GetComponent<ItemController>().holdItem.ShowItem();
+        }
+
+        nameText.SetText(shopData.item.name);
+        costText.SetText($"${shopData.cost}");
     }
 
     public void StartInteract(CharacterManager manager)

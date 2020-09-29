@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     [Range(1,4)]
     [SerializeField] int debugPlayerAmount;
 
+    [SerializeField]
+    public Transform storeSpawn;
+
     [Header("Static Prefabs")]
     public GameObject gridLine;
     public GameObject AIManagerPrefab;

@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour, IController
     private Vector3 movePosition;
     private CharacterController controller;
 
+    private bool isAtStore = false;
+
     public void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -234,6 +236,14 @@ public class PlayerController : MonoBehaviour, IController
         if (!Locked && context.performed)
         {
             //Manager.InventoryManager.ShiftItems();
+            isAtStore = !isAtStore;
+
+            controller.enabled = false;
+
+            transform.position = isAtStore ? GameManager.instance.storeSpawn.position : Manager.InitialHouse.GetCenterPoint();
+            movePosition = Vector3.zero;
+
+            controller.enabled = true;
         }
     }
 

@@ -17,6 +17,9 @@ MonoBehaviour:
   - {fileID: 5154446017228961503, guid: 744cd48bbb8632b43aaba54b3162bdaa, type: 3}
   - {fileID: 8438811027700915177, guid: 46301408f883c0a4485644030a4f1ea6, type: 3}
   - {fileID: 8246874574180654178, guid: 3bddc67e787fb6841bfb53ff3c232520, type: 3}
+  - {fileID: 8246874574180654178, guid: efa4c33d08b42d54e83b58b6be339c8b, type: 3}
+  - {fileID: 8246874574180654178, guid: 0721a5f8af428914cab3c2c71c68f8d4, type: 3}
+  - {fileID: 8246874574180654178, guid: 1bdcc7c33949f2648a226173b6935212, type: 3}
   foundations:
   - {fileID: 9156002629449601321, guid: 62070af6321849042bd2b56ef5fed30f, type: 3}
   floors:

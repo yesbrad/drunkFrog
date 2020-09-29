@@ -187,4 +187,15 @@ public class PencilPartyUtils
             spawner.showGizmos = !spawner.showGizmos;
         }
     }
+
+    [MenuItem("Pencil Party Utils/ReLayer Floors")]
+    static void RelayerFloors()
+    {
+        BuildLevelUtility[] spawners = GameObject.FindObjectsOfType<BuildLevelUtility>();
+
+        foreach (BuildLevelUtility spawner in spawners)
+        {
+            spawner.UpdateBlockLayer();
+        }
+    }
 }
