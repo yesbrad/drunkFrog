@@ -11,6 +11,13 @@ public class TimeManager : MonoBehaviour
 	[SerializeField]
 	private float duriation = 1;
 
+	[Header("Sun Rotation")]
+	[SerializeField]
+	private Vector3 startSunRotation = new Vector3(60, 20, 0);
+
+	[SerializeField]
+	private Vector3 endSunRotation = new Vector3(180, 30, 0);
+
 	public float duriationInSeconds { get => duriation * 60; }
 
 	private float time;
@@ -39,7 +46,7 @@ public class TimeManager : MonoBehaviour
 
 		dirlight.intensity = GetTime() > 0.5f ? 0 : 1;
 
-		directinalLight.transform.rotation = Quaternion.Lerp(Quaternion.Euler(60, 0 , 0),Quaternion.Euler(180, 0, 0), GetTime() * 2);
+		directinalLight.transform.rotation = Quaternion.Lerp(Quaternion.Euler(startSunRotation),Quaternion.Euler(endSunRotation), GetTime() * 2);
 	}
 
 	public float GetTime() => time / duriationInSeconds;
