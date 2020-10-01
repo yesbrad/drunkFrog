@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public enum Houses
 {
@@ -28,6 +29,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [Header("End Game")]
+    [SerializeField]
+    private Camera endCamera;
+
+    [SerializeField]
+    private Transform winningPosition;
+
     [Header("DEBUG")]
     [SerializeField] bool isDebug;
     [Range(1,4)]
@@ -41,9 +49,7 @@ public class GameManager : MonoBehaviour
     public GameObject AIManagerPrefab;
     public GameObject basicGroup;
 
-    public ItemData[] items;
-
-    public List<PlayerInput> players = new List<PlayerInput>();
+    internal List<PlayerInput> players = new List<PlayerInput>();
 
     public GameState State { get; private set; }
 
@@ -75,6 +81,8 @@ public class GameManager : MonoBehaviour
             houseManagers[i].Init(players[i].GetComponent<PlayerManager>());
         }
 
+        TimeManager.instance.StartDay();
+
         SetGameState(GameState.Game);
     }
 
@@ -87,7 +95,47 @@ public class GameManager : MonoBehaviour
             SpawnPlayer(i);
         }
 
+        TimeManager.instance.StartDay();
+
         SetGameState(GameState.Game);
+    }
+
+    public void ResetGame ()
+    {
+        SceneManager.LoadScene(0);
+        //endCamera.gameObject.SetActive(false);
+        //Destroy(winningPosition.GetChild(0).gameObject);
+        //GameUI.instance.RefreshUI(PanelIDs.SOR);
+    }
+
+    public void EndGame ()
+    {
+        PlayerManager winningPlayer = players[0].GetComponent<PlayerManager>();
+
+        for (int x = 0; x < players.Count; x++)
+        {
+            if (players[x].GetComponent<PlayerManager>().InitialHouse.CalculatePPFloat() > winningPlayer.InitialHouse.CalculatePPFloat())
+            {
+                winningPlayer = players[x].GetComponent<PlayerManager>();
+            }
+        }
+
+        winningPlayer.Pawn.transform.parent = winningPosition;
+        winningPlayer.Pawn.transform.localPosition = Vector3.zero;
+        winningPlayer.Pawn.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            Destroy(players[i].gameObject);
+        }
+
+        players.Clear();
+
+        GameUI.instance.RefreshUI(PanelIDs.EOR);
+
+        endCamera.gameObject.SetActive(true);
+
+        SetGameState(GameState.Menu);
     }
 
     public void SetGameState (GameState state)

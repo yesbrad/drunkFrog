@@ -5,6 +5,8 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class TimeManager : MonoBehaviour
 {
+	public static TimeManager instance;
+
 	[SerializeField]
 	private Transform directinalLight;
 
@@ -22,31 +24,50 @@ public class TimeManager : MonoBehaviour
 
 	private float time;
 	private float startTime;
+	private float finishTime;
 
 	public static event Action<float> onTimeChange;
 	private Light dirlight;
 
+	private bool CurrentRound;
+
 	private void Awake()
 	{
-		StartDay();
+		instance = this;
 		dirlight = directinalLight.GetComponent<Light>();
+
+		// Clear
+		onTimeChange = null;
 	}
 
 	public void StartDay()
 	{
+		time = 0;
 		startTime = Time.time;
+		finishTime = Time.time + duriationInSeconds;
+		CurrentRound = true;
 	}
 
 	private void Update()
 	{
-		time = Time.time + startTime;
+		if (CurrentRound)
+		{
+			time += Time.deltaTime;
 
-		if(onTimeChange != null)
-			onTimeChange(GetTime());
+			if(onTimeChange != null)
+				onTimeChange(GetTime());
 
-		dirlight.intensity = GetTime() > 0.5f ? 0 : 1;
+			dirlight.intensity = GetTime() > 0.5f ? 0 : 1;
 
-		directinalLight.transform.rotation = Quaternion.Lerp(Quaternion.Euler(startSunRotation),Quaternion.Euler(endSunRotation), GetTime() * 2);
+			directinalLight.transform.rotation = Quaternion.Lerp(Quaternion.Euler(startSunRotation),Quaternion.Euler(endSunRotation), GetTime() * 2);
+		
+			if(GetTime() >= 1)
+			{
+				Debug.Log("Finish Round");
+				GameManager.instance.EndGame();
+				CurrentRound = false;
+			}
+		}
 	}
 
 	public float GetTime() => time / duriationInSeconds;

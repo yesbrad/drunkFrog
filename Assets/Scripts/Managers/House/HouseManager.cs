@@ -100,6 +100,14 @@ public class HouseManager : MonoBehaviour
     /// </summary>
     public string CalculatePP()
     {
+        return $"{Mathf.FloorToInt(CalculatePPFloat())}%";
+    }
+
+    /// <summary>
+    /// Calculate a modified percentage based off raw pp
+    /// </summary>
+    public float CalculatePPFloat()
+    {
         float ppWithInventory = PP;
 
         foreach (HouseInventory.Category category in HouseInventory.categorys)
@@ -107,7 +115,7 @@ public class HouseManager : MonoBehaviour
             ppWithInventory += category.Amount / GameManager.instance.designBible.ppInventoryScale;
         }
 
-        return $"{Mathf.Floor((ppWithInventory / GameManager.instance.designBible.ppScale) * 100)}%";
+        return (ppWithInventory / GameManager.instance.designBible.ppScale) * 100;
     }
 
     public Vector3 GetCenterPoint()
