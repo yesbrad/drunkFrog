@@ -13,9 +13,6 @@ public class ShopController : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI costText;
 
     [SerializeField]
-    private ParticleSystem cashParticle;
-
-    [SerializeField]
     private Transform holdItemSpawn;
 
     private Shop shop;
@@ -47,7 +44,7 @@ public class ShopController : MonoBehaviour
             if(possibleData != null)
             {
                 inventroy.AddItem(possibleData);
-                cashParticle?.Play();
+                PPFXController.instance.Play(PPFXController.PPState.MoneyMinus, transform.position);
             }
         }
     }

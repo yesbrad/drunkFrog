@@ -8,9 +8,18 @@ public class PPFXController : MonoBehaviour
 	{
 		Plus,
 		Minus,
+		MoneyPlus,
+		MoneyMinus,
 	}
 
 	public static PPFXController instance;
+
+	[Header("Money FX")]
+	[SerializeField]
+	private GameObject moneyPlusFXPrefab;
+
+	[SerializeField]
+	private GameObject moneyMinusFXPrefab;
 
 	[Header("Party Point FX")]
 	[SerializeField]
@@ -26,21 +35,43 @@ public class PPFXController : MonoBehaviour
 	private Pool plusPool;
 	private Pool minusPool;
 
+	private Pool moneyMinusPool;
+	private Pool moneyPlusPool;
+
 	private void Awake()
 	{
 		instance = this;
 		plusPool = new Pool(poolAmount, plusFXPrefab, transform);
 		minusPool = new Pool(poolAmount, minusFXPrefab, transform);
+		moneyPlusPool = new Pool(poolAmount, moneyPlusFXPrefab, transform);
+		moneyMinusPool = new Pool(poolAmount, moneyMinusFXPrefab, transform);
 	}
 
 	public void Play (PPState state, Vector3 position)
 	{
-		Pool currentPool = state == PPState.Minus ? minusPool : plusPool;
+		Pool currentPool = GetPool(state);
 
 		if (currentPool.HasPool())
 		{
 			GameObject spawn = currentPool.GetFromPool(position, Quaternion.identity);
 			spawn.GetComponent<PPFXParticle>()?.Play(currentPool);
 		}
+	}
+
+	private Pool GetPool(PPState state)
+	{
+		switch (state)
+		{
+			case PPState.Minus:
+				return minusPool;
+			case PPState.Plus:
+				return plusPool;
+			case PPState.MoneyMinus:
+				return moneyMinusPool;
+			case PPState.MoneyPlus:
+				return moneyPlusPool;
+		}
+
+		return moneyPlusPool;
 	}
 }

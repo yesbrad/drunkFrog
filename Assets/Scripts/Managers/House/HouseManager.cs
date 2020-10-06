@@ -7,7 +7,6 @@ public class HouseManager : MonoBehaviour
     [System.Serializable]
     public struct FloorSettings
     {
-        public GameObject floorPrefab;
         public Transform floorDetectionSocket;
         public LayerMask cameraLayer;
     }
@@ -24,11 +23,8 @@ public class HouseManager : MonoBehaviour
     [SerializeField]
     private int baseCash = 10000;
 
-    [Header("Debug")]
-
-    public List<CharacterManager> guests = new List<CharacterManager>();
-
-    public PlayerManager houseOwner;
+    internal List<CharacterManager> guests = new List<CharacterManager>();
+    internal PlayerManager houseOwner;
 
     public int BaseCash { get { return baseCash; } }
 

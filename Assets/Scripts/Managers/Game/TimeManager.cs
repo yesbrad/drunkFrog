@@ -57,7 +57,7 @@ public class TimeManager : MonoBehaviour
 			if(onTimeChange != null)
 				onTimeChange(GetTime());
 
-			dirlight.intensity = GetTime() > 0.5f ? 0 : 1;
+			dirlight.intensity = GetTime() > 0.5f ? 0 : 5;
 
 			directinalLight.transform.rotation = Quaternion.Lerp(Quaternion.Euler(startSunRotation),Quaternion.Euler(endSunRotation), GetTime() * 2);
 		

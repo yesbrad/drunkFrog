@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public HouseManager[] houseManagers;
+    internal HouseManager[] houseManagers;
 
     [Header("BIBLE")]
     public DesignBible designBible;
@@ -55,10 +55,15 @@ public class GameManager : MonoBehaviour
 
     public static event Action<GameState> OnUpdateState;
 
+    private void Awake()
+    {
+        instance = this;
+        houseManagers = GameObject.FindObjectsOfType<HouseManager>();
+    }
+
     void Start()
     {
         Application.targetFrameRate = 40;
-        instance = this;
         Validate();
 
         GameUI.instance.RefreshUI(PanelIDs.Join);
