@@ -10,6 +10,7 @@ public class PPFXController : MonoBehaviour
 		Minus,
 		MoneyPlus,
 		MoneyMinus,
+		outOfOrder,
 	}
 
 	public static PPFXController instance;
@@ -28,6 +29,11 @@ public class PPFXController : MonoBehaviour
 	[SerializeField]
 	private GameObject minusFXPrefab;
 
+	[Header("Store FX")]
+
+	[SerializeField]
+	private GameObject outOfOrderPrefab;
+
 	[SerializeField]
 	[Range(0, 150)]
 	private int poolAmount = 30;
@@ -37,6 +43,7 @@ public class PPFXController : MonoBehaviour
 
 	private Pool moneyMinusPool;
 	private Pool moneyPlusPool;
+	private Pool outOfOrderPool;
 
 	private void Awake()
 	{
@@ -45,6 +52,7 @@ public class PPFXController : MonoBehaviour
 		minusPool = new Pool(poolAmount, minusFXPrefab, transform);
 		moneyPlusPool = new Pool(poolAmount, moneyPlusFXPrefab, transform);
 		moneyMinusPool = new Pool(poolAmount, moneyMinusFXPrefab, transform);
+		outOfOrderPool = new Pool(poolAmount, outOfOrderPrefab, transform);
 	}
 
 	public void Play (PPState state, Vector3 position)
@@ -70,6 +78,8 @@ public class PPFXController : MonoBehaviour
 				return moneyMinusPool;
 			case PPState.MoneyPlus:
 				return moneyPlusPool;
+			case PPState.outOfOrder:
+			return outOfOrderPool;
 		}
 
 		return moneyPlusPool;

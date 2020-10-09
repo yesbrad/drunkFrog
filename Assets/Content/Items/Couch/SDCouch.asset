@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SDCouch
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 50ceb59c814a71c4b977b9f09cef49ac, type: 2}
-  cost: 50
-  amount: 100
+  cost: 100
+  amount: 30

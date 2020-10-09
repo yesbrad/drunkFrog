@@ -15,19 +15,27 @@ public class PlayerDetection : MonoBehaviour
 
 	public void Detect(CharacterManager manager)
 	{
+		Debug.Log("Begining of thing");
+
 		if(pawn.rotateContainer == null)
 		{
+			Debug.Log("early out");
 			Debug.LogError("Missing RotationContariner on Player Detection");
 			return;
 		}
 
 		Ray detectRay = new Ray(pawn.rotateContainer.position, pawn.rotateContainer.forward);
-		
-		if(Physics.Raycast(detectRay, out detectHit, detectDistance))
+
+		Debug.Log("Begining of Rayvasty");
+
+		if (Physics.Raycast(detectRay, out detectHit, detectDistance))
 		{
 			ShopController shopController = detectHit.collider.GetComponent<ShopController>();
 
-			if(shopController != null)
+			Debug.Log(shopController);
+			Debug.Log("Middle of thing");
+
+			if (shopController != null)
 			{
 				shopController.StartInteract(manager);
 			}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c29428ab1683b419d7aa26bc6f25c3, type: 3}
+  m_Name: PunchData
+  m_EditorClassIdentifier: 
+  name: Punch
+  id: Punch_01
+  size:
+    x: 1
+    y: 1
+  itemPrefab: {fileID: 1718937532128273951, guid: 572ee0572833f5246b1e4465abe8e4da,
+    type: 3}
+  gridSlot: 1
+  debugColor: {r: 1, g: 0.11596079, b: 0, a: 1}

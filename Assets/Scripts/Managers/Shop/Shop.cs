@@ -2,9 +2,15 @@
 
 public class Shop
 {
-	private ShopData shopData;
+	public enum ShopResponse
+	{
+		Success,
+		OutOfOrder,
+		NoFunds
+	}
 
-	private int quantity;
+	public ShopData shopData;
+	public int quantity;
 
 	public Shop (ShopData shopData)
 	{
@@ -12,29 +18,29 @@ public class Shop
 		quantity = shopData.amount;
 	}
 	
-	public ItemData GetItem(PlayerManager customer)
+	public ShopResponse GetItem(PlayerManager customer)
 	{
 		if(customer == null)
 		{
 			Debug.LogError("Cutomer Is Null!");
-			return null;
+			return ShopResponse.NoFunds;
 		}
 
 		if(shopData.cost > customer.Cash)
 		{
 			Debug.Log("NoMoneyToBuy");
-			return null;
+			return ShopResponse.NoFunds;
 		}
 
 		if(quantity <= 0)
 		{
 			Debug.Log("None of this item left!");
-			return null;
+			return ShopResponse.OutOfOrder;
 		}
 
 		customer.AddCash(-shopData.cost);
 		quantity--;
 
-		return shopData.item;
+		return ShopResponse.Success;
 	}
 }

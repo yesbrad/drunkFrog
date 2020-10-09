@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SDCooler
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 14c0741b39608ff4b9779aff969b7b27, type: 2}
-  cost: 100
-  amount: 50
+  cost: 50
+  amount: 20

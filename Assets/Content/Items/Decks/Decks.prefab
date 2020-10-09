@@ -85,7 +85,7 @@ MonoBehaviour:
   holdItem: {fileID: 2035564937421093454}
   interactPosition: {fileID: 2032169754350298864}
   maxOccupants: 1
-  placePoints: 1
+  placePoints: 70
   characterPositions:
   - {fileID: 5616908591730416700}
   isLooping: 0

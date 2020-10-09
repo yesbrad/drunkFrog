@@ -205,7 +205,7 @@ MonoBehaviour:
   holdItem: {fileID: 1038591107205498385}
   interactPosition: {fileID: 8262701686114582792}
   maxOccupants: 1
-  placePoints: 1
+  placePoints: 5
   characterPositions:
   - {fileID: 2531377897728807523}
   isLooping: 0
