@@ -15,7 +15,6 @@ public class TruckItemController : ItemController
 
 			if(newItem != null)
 			{
-				Debug.Log(newItem.Data.id);
 				manager.InventoryManager.GiveItem(newItem);
 			}
 		}
