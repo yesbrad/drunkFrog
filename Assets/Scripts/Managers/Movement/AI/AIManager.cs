@@ -81,6 +81,18 @@ public class AITask
 
         onFinished = null;
     }
+
+    public void Cancel()
+    {
+        if (interactable != null)
+        {
+            interactable.SetOnRouteAI(-1);
+        }
+
+        controller.currentJob.CancelJob();
+        isComplete = true;
+        onFinished = null;
+    }
 }
 
 public class AIManager : CharacterManager
@@ -92,7 +104,8 @@ public class AIManager : CharacterManager
 
     private AIController controller;
     private int tasksCompleted;
-
+    private Pawn.PawnState pawnState = Pawn.PawnState.Free;
+    
     public bool HasCompletedFirstTask { get { return tasksCompleted > 1; } }
 
     public AIStats Stats { get; private set; }
@@ -102,9 +115,31 @@ public class AIManager : CharacterManager
     {
         base.Init(initialHouse);
         controller = GetComponentInChildren<AIController>();
+        controller.Pawn.OnUpdatePawnState += state => OnUpdatePawnState(state);
         Stats = new AIStats(aIClass);
         AIClass = aIClass;
         StartAndGenerateTask();
+    }
+
+    private void OnUpdatePawnState (Pawn.PawnState state)
+    {
+        if (pawnState == state)
+            return;
+
+        pawnState = state;
+
+        switch (state)
+        {
+            case Pawn.PawnState.KnockedOut:
+                CancelCurrentTask();
+            break;
+            case Pawn.PawnState.Free:
+                StartAndGenerateTask();
+            break;
+            default:
+                StartAndGenerateTask();
+            break;
+        }
     }
 
     public override void Update()
@@ -144,6 +179,12 @@ public class AIManager : CharacterManager
     private int lastSelection = -1;
 
     private bool WasNotLastSelected(int current) => lastSelection != current;
+
+    public void CancelCurrentTask()
+    {
+        currentTask.Cancel();
+        currentTask = null;
+    }
 
     public AITask SelectTask ()
     {

@@ -34,7 +34,7 @@ public class ItemSceneSpawner : MonoBehaviour
 
 		if (grid == null)
 		{
-			Debug.Log("No Grid Found", gameObject);
+			Debug.LogWarning("No Grid Found", gameObject);
 			return;
 		}
 

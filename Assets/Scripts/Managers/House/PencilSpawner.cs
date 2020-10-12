@@ -7,19 +7,24 @@ public class PencilSpawner : MonoBehaviour, IStateListener
 	[SerializeField]
 	private AISpawnerSettings spawnerSettings;
 
+	[SerializeField]
+	private Transform AISpawnPosition;
+
 	private float currentRate;
-	public int amountSpawned;
+	private int amountSpawned;
 
 	private HouseManager houseManager;
 
 	public bool Initilized { get; private set; }
 
-	private void Awake()
+	public bool Init ()
 	{
 		houseManager = GetComponent<HouseManager>();
 		currentRate = CalculateRefreshTime();
 		GameManager.OnUpdateState += (state) => OnGameStateUpdate(state);
 		TimeManager.onTimeChange += (time) => UpdateSpawn(time);
+		Initilized = true;
+		return Initilized;
 	}
 
 	private void UpdateSpawn(float time)
@@ -28,7 +33,7 @@ public class PencilSpawner : MonoBehaviour, IStateListener
 	
 		if(currentRate < 0)
 		{
-			if (Random.Range(0, 1) < time && time > 0.5f)
+			if (time > 0.3f)
 			{
 				for (int i = 0; i < CalculateGroupAmount(); i++)
 				{
@@ -56,7 +61,7 @@ public class PencilSpawner : MonoBehaviour, IStateListener
 		if (!Initilized || amountSpawned > spawnerSettings.partyLimit)
 			return;
 
-		AIManager newAI = Instantiate(GameManager.instance.AIManagerPrefab, transform.position, Quaternion.identity).GetComponent<AIManager>();
+		AIManager newAI = Instantiate(GameManager.instance.AIManagerPrefab, AISpawnPosition.position, Quaternion.identity).GetComponent<AIManager>();
 		newAI.transform.parent = transform.transform;
 		newAI.Init(houseManager, GetNewClass());
 		amountSpawned++;

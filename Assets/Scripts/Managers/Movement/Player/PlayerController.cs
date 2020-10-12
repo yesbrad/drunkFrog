@@ -237,7 +237,6 @@ public class PlayerController : MonoBehaviour, IController
         if (!Locked && context.performed)
         {
             Manager.Interact(GetSelectionLocation());
-            Debug.Log("LAUCH");
         }
     }
 

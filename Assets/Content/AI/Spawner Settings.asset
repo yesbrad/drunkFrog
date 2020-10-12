@@ -16,7 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53d9407f2a3e4b84ab8a0cf8c69aacea, type: 2}
   groupSizeMin: 1
   groupSizeMax: 5
-  groupRateMin: 1
-  groupRateMax: 10
+  groupRateMin: 3
+  groupRateMax: 5
   partyLimit: 200
-  partyTime: 0.8

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopController : ItemController
+public class ShopController : MonoBehaviour, IDetection
 {
     [Header("Shop")]
     [SerializeField]
@@ -18,17 +18,11 @@ public class ShopController : ItemController
     private Transform holdItemSpawn;
 
     private Shop shop;
+    private ItemArt itemArt;
 
     private void Awake()
     {
         shop = new Shop(shopData);
-
-        //if (holdItemSpawn)
-        //{
-        //    HoldItem item = Instantiate(shopData.item.itemPrefab.GetComponent<ItemController>().itemArt, holdItemSpawn.position, Quaternion.identity).GetComponent<HoldItem>();
-        //    item.showOnAwake = true;
-        //    item.ShowItem();
-        //}
 
         if(shopData.item.itemPrefab.GetComponent<ItemArt>() != null)
         {
@@ -41,9 +35,18 @@ public class ShopController : ItemController
         itemArt = GetComponentInChildren<ItemArt>();
     }
 
-    public override void StartInteract(CharacterManager manager, System.Action onFinishInteraction)
+    public void Select()
     {
-        base.StartInteract(manager, onFinishInteraction);
+        itemArt?.SetSelection(true);
+    }
+
+    public void Deselect()
+    {
+        itemArt?.SetSelection(false);
+    }
+
+    public void StartInteract(CharacterManager manager, System.Action onFinishInteraction)
+    {
         TruckInventroy inventroy = manager.InitialHouse.TruckInventroy;
         PlayerManager playerManager = manager.GetComponent<PlayerManager>();
         

@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2669935542442090071}
   - component: {fileID: 798718017511817104}
+  - component: {fileID: 7812717348951731261}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -143,6 +144,20 @@ MonoBehaviour:
   rotateContainer: {fileID: 5087204217996866764}
   animator: {fileID: 812004215016463820}
   pencilRenderer: {fileID: 7641875228364093890}
+--- !u!136 &7812717348951731261
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716625424864029005}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.42
+  m_Height: 2.38
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.27, z: 0}
 --- !u!1 &1869387608948067605
 GameObject:
   m_ObjectHideFlags: 0

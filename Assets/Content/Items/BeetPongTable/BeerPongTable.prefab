@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4988009334960589730}
   - component: {fileID: 9130250245718712355}
+  - component: {fileID: 2188833799142898659}
+  - component: {fileID: 6389929924981700655}
   m_Layer: 0
   m_Name: BeerPongTable
   m_TagString: Untagged
@@ -45,39 +47,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showPrefabGizmos: 1
-  itemArt: {fileID: 256006961342875649}
   interactPosition: {fileID: 4988009334960589730}
   maxOccupants: 1
   placePoints: 20
---- !u!64 &8012267840045195735
-MeshCollider:
+--- !u!65 &2188833799142898659
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2746931187523580306}
+  m_GameObject: {fileID: 1718937532128273951}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8211373983816664087, guid: 94714f022b93d1c4c85f5b7a0c60aa3c, type: 3}
---- !u!208 &502737134630751353
+  serializedVersion: 2
+  m_Size: {x: 1.4682177, y: 0.98741436, z: 4.618344}
+  m_Center: {x: 0.00017984939, y: 0.5154466, z: 2}
+--- !u!208 &6389929924981700655
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2746931187523580306}
+  m_GameObject: {fileID: 1718937532128273951}
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.029000001, y: 0.010000001, z: 0.007}
+  m_Extents: {x: 0.73410887, y: 0.49370718, z: 2.309172}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0.0050000004}
+  m_Center: {x: 0.00017984939, y: 0.5154466, z: 2}
   m_TimeToStationary: 0.5
 --- !u!1 &8820734152389481027
 GameObject:
@@ -123,8 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ac5bb1eb6ea3a469338777cadf2790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  artPieces:
-  - {fileID: 4404506331976257607}
 --- !u!1001 &3089019152661597379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -195,12 +193,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 94714f022b93d1c4c85f5b7a0c60aa3c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 73.393684
+      value: 73.39367
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94714f022b93d1c4c85f5b7a0c60aa3c,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 75.22555
+      value: 75.22553
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 94714f022b93d1c4c85f5b7a0c60aa3c,
         type: 3}
@@ -209,21 +207,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94714f022b93d1c4c85f5b7a0c60aa3c, type: 3}
---- !u!1 &2746931187523580306 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 94714f022b93d1c4c85f5b7a0c60aa3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 3089019152661597379}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3266481855602928424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 94714f022b93d1c4c85f5b7a0c60aa3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 3089019152661597379}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &4404506331976257607 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 94714f022b93d1c4c85f5b7a0c60aa3c,
     type: 3}
   m_PrefabInstance: {fileID: 3089019152661597379}
   m_PrefabAsset: {fileID: 0}

@@ -11,7 +11,7 @@ public class PlayerDetection : MonoBehaviour
 	[SerializeField]
 	private float detectDistance = 2;
 
-	private ItemController currentSelection;
+	private IDetection currentSelection;
 
 	private RaycastHit detectHit = new RaycastHit();
 
@@ -29,19 +29,19 @@ public class PlayerDetection : MonoBehaviour
 			return;
 		}
 
-		detectRay = new Ray(pawn.rotateContainer.position + Vector3.up, pawn.rotateContainer.forward);
+		detectRay = new Ray(pawn.rotateContainer.position - (Vector3.down * 0.8f), pawn.rotateContainer.forward);
 	}
 
 	private void Update()
 	{
-		detectRay.origin = pawn.rotateContainer.position + Vector3.up;
+		detectRay.origin = pawn.rotateContainer.position - (Vector3.down * 0.8f);
 		detectRay.direction = pawn.rotateContainer.forward;
 
 		if (Physics.Raycast(detectRay, out detectHit, detectDistance))
 		{
-			ItemController shopController = detectHit.collider.GetComponent<ItemController>();
+			IDetection shopController = detectHit.collider.GetComponent<IDetection>();
 
-			if (currentSelection)
+			if (currentSelection != null)
 			{
 				currentSelection.Deselect();
 				currentSelection = null;
@@ -56,7 +56,7 @@ public class PlayerDetection : MonoBehaviour
 		}
 		else
 		{
-			if (currentSelection)
+			if (currentSelection != null)
 			{
 				currentSelection.Deselect();
 				currentSelection = null;
@@ -66,8 +66,10 @@ public class PlayerDetection : MonoBehaviour
 
 	public void Detect()
 	{
-		if(currentSelection != null)
+		Debug.Log("Detecy Inside");
+		if (currentSelection != null)
 		{
+			Debug.Log("Detecy Inside");
 			currentSelection.StartInteract(characterManager, () => { });
 		}
 	}

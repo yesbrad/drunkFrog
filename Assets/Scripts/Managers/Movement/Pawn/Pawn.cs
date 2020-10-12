@@ -1,14 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pawn : MonoBehaviour
+public class Pawn : MonoBehaviour, IDetection
 {
     public enum PawnState
     {
         Free,
         Talking,
-        Dancing
+        Dancing,
+        KnockedOut
     }
 
     [SerializeField]
@@ -32,7 +34,10 @@ public class Pawn : MonoBehaviour
     private Transform originalParent;
 
     public bool Occupied { get; private set; }
-    
+
+    public event Action<PawnState> OnUpdatePawnState;
+    private PawnState state;
+
     public void Awake()
     {
         Init(); 
@@ -42,7 +47,7 @@ public class Pawn : MonoBehaviour
     {
         if (pencilRenderer != null)
         {
-            pencilRenderer.materials[0].SetColor("_Color", GameManager.instance.DesignBible.pencilColors[Random.Range(0, GameManager.instance.DesignBible.pencilColors.Length)]);
+            pencilRenderer.materials[0].SetColor("_Color", GameManager.instance.DesignBible.pencilColors[UnityEngine.Random.Range(0, GameManager.instance.DesignBible.pencilColors.Length)]);
         }
     }
 
@@ -102,6 +107,9 @@ public class Pawn : MonoBehaviour
 
     public void SetState(PawnState state)
     {
+        this.state = state;
+        OnUpdatePawnState.Invoke(state);
+
         animator.SetBool("isFree", state == PawnState.Free);
         animator.SetBool("isTalking", state == PawnState.Talking);
         animator.SetBool("isDancing", state == PawnState.Dancing);
@@ -110,5 +118,30 @@ public class Pawn : MonoBehaviour
     public void LockPawn (bool locked)
     {
         Occupied = locked;
+    }
+
+    public void Select()
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void Deselect()
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void StartInteract(CharacterManager manager, Action onFinishInteraction)
+    {
+        SetState(PawnState.KnockedOut);
+        LockPawn(true);
+        Debug.Log("LOCK ME@");
+        StartCoroutine(UnlockPawnAfterSeconds(5));
+    }
+
+    IEnumerator UnlockPawnAfterSeconds (float time = 1)
+    {
+        yield return new WaitForSeconds(time);
+        LockPawn(false);
+        SetState(PawnState.Free);
     }
 }

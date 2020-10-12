@@ -13,8 +13,6 @@ public class ItemArt : MonoBehaviour
 	{
 		artPieces = gameObject.GetComponentsInChildren<MeshRenderer>();
 
-		Debug.Log($"{artPieces.Length}");
-
 		for (int i = 0; i < artPieces.Length; i++)
 		{
 			selections.Add(0);

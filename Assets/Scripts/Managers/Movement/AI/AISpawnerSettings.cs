@@ -22,8 +22,4 @@ public class AISpawnerSettings : ScriptableObject
 
 	[Range(1, 300)]
 	public int partyLimit = 200;
-
-	[Range(0, 1)]
-	public float partyTime = 0.8f;
-
 }

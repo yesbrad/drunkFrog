@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    internal HouseManager[] houseManagers;
+    public HouseManager[] houseManagers;
 
     [Header("BIBLE")]
     public DesignBible designBible;
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        houseManagers = GameObject.FindObjectsOfType<HouseManager>();
+        //houseManagers = GameObject.FindObjectsOfType<HouseManager>();
     }
 
     void Start()

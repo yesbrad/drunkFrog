@@ -33,8 +33,7 @@ public class HouseInventory : MonoBehaviour
 		}
 	}
 
-	public List<Category> categorys = new List<Category>();
-
+	internal List<Category> categorys = new List<Category>();
 	private HouseManager manager;
 
 	private void Awake()

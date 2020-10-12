@@ -128,6 +128,14 @@ public class AIController : MonoBehaviour, IController
             onFailed = null;
             navAgent.avoidancePriority = 60;
         }
+
+        public void CancelJob()
+        {
+            navAgent.SetDestination(navAgent.transform.position);
+            inTransit = false;
+            onFailed = null;
+            navAgent.avoidancePriority = 60;
+        }
     }
 
     [SerializeField]

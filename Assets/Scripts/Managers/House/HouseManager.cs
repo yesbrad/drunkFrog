@@ -51,6 +51,7 @@ public class HouseManager : MonoBehaviour
         houseOwner = owner;
         PP = 1;
         RefreshUI();
+        Spawner.Init();
     }
 
     public void AddPP (int amount, Vector3 position)

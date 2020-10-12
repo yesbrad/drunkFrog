@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Item Controller/Base Item")]
-public class ItemController : MonoBehaviour, IInteractable
+public class ItemController : MonoBehaviour, IInteractable, IDetection
 {
     [Header("Gizmos")]
     [SerializeField]
