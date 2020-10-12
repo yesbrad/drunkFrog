@@ -10,7 +10,8 @@ public class Pawn : MonoBehaviour, IDetection
         Free,
         Talking,
         Dancing,
-        KnockedOut
+        KnockedOut,
+        Attacking
     }
 
     [SerializeField]
@@ -38,13 +39,12 @@ public class Pawn : MonoBehaviour, IDetection
     public event Action<PawnState> OnUpdatePawnState;
     private PawnState state;
 
-    public void Awake()
-    {
-        Init(); 
-    }
+    public CharacterManager CharacterManager { get; private set; }
 
-    public virtual void Init()
+    public virtual void Init(CharacterManager manager)
     {
+        CharacterManager = manager;
+
         if (pencilRenderer != null)
         {
             pencilRenderer.materials[0].SetColor("_Color", GameManager.instance.DesignBible.pencilColors[UnityEngine.Random.Range(0, GameManager.instance.DesignBible.pencilColors.Length)]);
@@ -108,9 +108,9 @@ public class Pawn : MonoBehaviour, IDetection
     public void SetState(PawnState state)
     {
         this.state = state;
-        OnUpdatePawnState.Invoke(state);
+        OnUpdatePawnState?.Invoke(state);
 
-        animator.SetBool("isFree", state == PawnState.Free);
+        animator.SetBool("isFree", state == PawnState.Free || state == PawnState.KnockedOut);
         animator.SetBool("isTalking", state == PawnState.Talking);
         animator.SetBool("isDancing", state == PawnState.Dancing);
     }
@@ -130,18 +130,44 @@ public class Pawn : MonoBehaviour, IDetection
         //throw new NotImplementedException();
     }
 
-    public void StartInteract(CharacterManager manager, Action onFinishInteraction)
+    public void Attack()
     {
-        SetState(PawnState.KnockedOut);
+        SetState(PawnState.Attacking);
+        animator.SetTrigger("Attack");
         LockPawn(true);
-        Debug.Log("LOCK ME@");
-        StartCoroutine(UnlockPawnAfterSeconds(5));
+        StartCoroutine(UnlockAttack());
     }
 
-    IEnumerator UnlockPawnAfterSeconds (float time = 1)
+    IEnumerator UnlockAttack()
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(1);
         LockPawn(false);
         SetState(PawnState.Free);
     }
+
+    public void KnockOut()
+    {
+        SetState(PawnState.KnockedOut);
+        animator.SetTrigger("KnockOut");
+        LockPawn(true);
+        StartCoroutine(UnlockKnockout());
+    }
+
+    IEnumerator UnlockKnockout()
+    {
+        yield return new WaitForSeconds(12);
+        LockPawn(false);
+        SetState(PawnState.Free);
+    }
+
+    public void StartInteract(CharacterManager manager, Action onFinishInteraction)
+    {
+        if (!Occupied)
+        {
+            manager.Pawn.Attack();
+            KnockOut();
+        }
+    }
+
+
 }

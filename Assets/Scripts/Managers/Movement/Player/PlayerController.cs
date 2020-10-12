@@ -58,11 +58,6 @@ public class PlayerController : MonoBehaviour, IController
         UpdateSelectorColors();
     }
 
-    private void FixedUpdate()
-    {
-       
-    }
-
     private void UpdateSelectorPosition()
     {
         Vector3 curAngle;
@@ -129,19 +124,28 @@ public class PlayerController : MonoBehaviour, IController
             pawn.SetRotation(Quaternion.LookRotation(new Vector3(input.x, 0, input.y), Vector3.up));
     }
 
+    private Vector3 dir;
+
     public void MoveDirection(Vector3 _direction)
     {
-        if (pawn.Occupied)
-            return;
+        dir = _direction;
 
-        if (controller.isGrounded)
+        if (!pawn.Occupied && dir != Vector3.zero)
         {
-            movePosition = _direction;
-            movePosition *= speed;
-        }
+            if (controller.isGrounded)
+            {
+                movePosition = dir;
+                movePosition *= speed;
+            }
 
-        movePosition.y -= gravity * Time.deltaTime;
-        controller.Move(movePosition * Time.deltaTime);
+            movePosition.y -= gravity * Time.deltaTime;
+            controller.Move(movePosition * Time.deltaTime);
+        }
+        else
+        {
+            movePosition = Vector3.zero;
+            dir = Vector3.zero;
+        }
     }
 
     public void SetRotation(Vector3 rotation)
@@ -236,7 +240,7 @@ public class PlayerController : MonoBehaviour, IController
 
         if (!Locked && context.performed)
         {
-            Manager.Interact(GetSelectionLocation());
+            Manager.Interact();
         }
     }
 

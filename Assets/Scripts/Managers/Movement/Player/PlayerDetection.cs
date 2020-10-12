@@ -66,10 +66,8 @@ public class PlayerDetection : MonoBehaviour
 
 	public void Detect()
 	{
-		Debug.Log("Detecy Inside");
 		if (currentSelection != null)
 		{
-			Debug.Log("Detecy Inside");
 			currentSelection.StartInteract(characterManager, () => { });
 		}
 	}

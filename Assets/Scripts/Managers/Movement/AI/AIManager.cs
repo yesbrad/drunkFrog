@@ -123,15 +123,13 @@ public class AIManager : CharacterManager
 
     private void OnUpdatePawnState (Pawn.PawnState state)
     {
-        if (pawnState == state)
-            return;
-
         pawnState = state;
 
         switch (state)
         {
             case Pawn.PawnState.KnockedOut:
                 CancelCurrentTask();
+                PPFXController.instance.Play(PPFXController.PPState.Minus, Pawn.Position);
             break;
             case Pawn.PawnState.Free:
                 StartAndGenerateTask();
@@ -182,8 +180,11 @@ public class AIManager : CharacterManager
 
     public void CancelCurrentTask()
     {
-        currentTask.Cancel();
-        currentTask = null;
+        if (currentTask != null)
+        {
+            currentTask.Cancel();
+            currentTask = null;
+        }
     }
 
     public AITask SelectTask ()

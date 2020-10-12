@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ public class CharacterManager : MonoBehaviour
     public virtual void Awake()
     {
         Pawn = GetComponentInChildren<Pawn>();
+        Pawn.Init(this);
         InventoryManager = GetComponent<InventoryManager>();
     }
 
@@ -86,14 +88,6 @@ public class CharacterManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    public virtual void Interact(Vector3 position)
-    {
-        //if (HasActiveGrid())
-        //{
-            //CurrentGrid.InteractItem(position, this);
-        //}
     }
 
     public Vector3 GetGridCenterPosition(Vector3 lookPosition)

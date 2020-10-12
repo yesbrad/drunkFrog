@@ -32,9 +32,8 @@ public class PlayerManager : CharacterManager
         Detection.Init(this);
     }
 
-    public override void Interact(Vector3 position)
+    public void Interact()
     {
-        base.Interact(position);
         Detection.Detect();
     }
 
