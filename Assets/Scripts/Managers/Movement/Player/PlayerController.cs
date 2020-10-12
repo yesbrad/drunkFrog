@@ -127,7 +127,6 @@ public class PlayerController : MonoBehaviour, IController
 
         if(input != Vector2.zero)
             pawn.SetRotation(Quaternion.LookRotation(new Vector3(input.x, 0, input.y), Vector3.up));
-
     }
 
     public void MoveDirection(Vector3 _direction)
@@ -152,27 +151,10 @@ public class PlayerController : MonoBehaviour, IController
 
     private void UpdateSelectorColors()
     {
-        if(Manager.CurrentGrid != null)
+        if(Manager.CurrentGrid != null && Manager.InventoryManager.CurrentItem != null)
         {
-            gridSelectorSingle.gameObject.SetActive(true);
-
             GridPosition pos = Manager.CurrentGrid.grid.GetGridPositionFromWorld(GetSelectionLocation());
-
-            if(Manager.InventoryManager.CurrentItem != null)
-            {
-                gridSelector.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.grid.CanPlaceItemWithSize(pos.x, pos.y, Manager.InventoryManager.CurrentItem.Data.size, pawn.rotateContainer)
-                    ? Color.blue
-                    : Color.red);
-            }
-
-
-            gridSelectorSingle.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.HasItem(GetSelectionLocation())
-                ? Color.green
-                : Color.white);
-        }
-        else
-        {
-            gridSelectorSingle.gameObject.SetActive(false);
+            gridSelector.GetComponentInChildren<LineRenderer>().material.SetColor("_EmissionColor", Manager.CurrentGrid.grid.CanPlaceItemWithSize(pos.x, pos.y, Manager.InventoryManager.CurrentItem.Data.size, pawn.rotateContainer) ? Color.blue: Color.red);
         }
     }
 

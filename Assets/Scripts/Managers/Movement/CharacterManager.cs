@@ -90,10 +90,10 @@ public class CharacterManager : MonoBehaviour
 
     public virtual void Interact(Vector3 position)
     {
-        if (HasActiveGrid())
-        {
-            CurrentGrid.InteractItem(position, this);
-        }
+        //if (HasActiveGrid())
+        //{
+            //CurrentGrid.InteractItem(position, this);
+        //}
     }
 
     public Vector3 GetGridCenterPosition(Vector3 lookPosition)

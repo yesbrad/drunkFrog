@@ -317,7 +317,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 539404553c2a3b44f82c424167d0595d, type: 2}
+  - {fileID: 2100000, guid: 8a508b02d1633c74184f608b723dfba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -738,7 +738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3670183310405840068
 Transform:
   m_ObjectHideFlags: 0

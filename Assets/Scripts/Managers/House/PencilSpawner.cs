@@ -4,33 +4,8 @@ using UnityEngine;
 
 public class PencilSpawner : MonoBehaviour, IStateListener
 {
-	[Header("Pencil Spawner")]
 	[SerializeField]
-	private AIClass[] aiClasses;
-
-	[SerializeField]
-	private Transform pencilSpawn;
-
-	[SerializeField]
-	[Range(1, 10)]
-	private int groupSizeMin = 1;
-
-	[SerializeField]
-	[Range(1, 10)]
-	private int groupSizeMax = 5;
-
-	[SerializeField]
-	[Range(1, 10)]
-	private int groupRateMin = 1;
-
-	[SerializeField]
-	[Range(1, 10)]
-	private int groupRateMax = 10;
-
-	[SerializeField]
-	[Range(1, 300)]
-	private int partyLimit = 200;
-
+	private AISpawnerSettings spawnerSettings;
 
 	private float currentRate;
 	public int amountSpawned;
@@ -44,17 +19,21 @@ public class PencilSpawner : MonoBehaviour, IStateListener
 		houseManager = GetComponent<HouseManager>();
 		currentRate = CalculateRefreshTime();
 		GameManager.OnUpdateState += (state) => OnGameStateUpdate(state);
+		TimeManager.onTimeChange += (time) => UpdateSpawn(time);
 	}
 
-	private void Update()
+	private void UpdateSpawn(float time)
 	{
 		currentRate -= Time.deltaTime;
 	
 		if(currentRate < 0)
 		{
-			for (int i = 0; i < CalculateGroupAmount(); i++)
+			if (Random.Range(0, 1) < time && time > 0.5f)
 			{
-				SpawnPencil();
+				for (int i = 0; i < CalculateGroupAmount(); i++)
+				{
+					SpawnPencil();
+				}
 			}
 
 			currentRate = CalculateRefreshTime();
@@ -63,21 +42,21 @@ public class PencilSpawner : MonoBehaviour, IStateListener
 
 	private float CalculateRefreshTime ()
 	{
-		return Random.Range(groupRateMin, groupRateMax);
+		return Random.Range(spawnerSettings.groupRateMin, spawnerSettings.groupRateMax);
 
 	}
 
 	private int CalculateGroupAmount()
 	{
-		return Random.Range(groupSizeMin, groupSizeMax);
+		return Random.Range(spawnerSettings.groupSizeMin, spawnerSettings.groupSizeMax);
 	}
 
 	public void SpawnPencil()
 	{
-		if (!Initilized || amountSpawned > partyLimit)
+		if (!Initilized || amountSpawned > spawnerSettings.partyLimit)
 			return;
 
-		AIManager newAI = Instantiate(GameManager.instance.AIManagerPrefab, pencilSpawn.position, Quaternion.identity).GetComponent<AIManager>();
+		AIManager newAI = Instantiate(GameManager.instance.AIManagerPrefab, transform.position, Quaternion.identity).GetComponent<AIManager>();
 		newAI.transform.parent = transform.transform;
 		newAI.Init(houseManager, GetNewClass());
 		amountSpawned++;
@@ -85,7 +64,7 @@ public class PencilSpawner : MonoBehaviour, IStateListener
 
 	public AIClass GetNewClass ()
 	{
-		return aiClasses[0];
+		return spawnerSettings.aiClasses[0];
 	}
 
 	public void OnGameStateUpdate(GameState gameState)

@@ -3,7 +3,37 @@ guid: 6bfeaa14da61e4241b736f11da24a853
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 1bba397ac11f08543bcfc402572cfa05, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 6799cb424ef59ad4c9d6d14da0c523b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Punch
+    second: {fileID: 2100000, guid: 8f53bd925d952b744bc082b170b3fc3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Punch Table
+    second: {fileID: 2100000, guid: cde20ca1f0452b74795546022a6600cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PunchFruit
+    second: {fileID: 2100000, guid: 38cc846117a3e0045b7adcd14a200f8b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PunchJuice
+    second: {fileID: 2100000, guid: abe0a6119d1745249adb07ae1f75736a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

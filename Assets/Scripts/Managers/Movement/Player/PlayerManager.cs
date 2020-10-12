@@ -29,12 +29,13 @@ public class PlayerManager : CharacterManager
         transform.GetComponentInChildren<PlayerController>().Spawn(initialHouse.SpawnPosition);
         GetComponent<PlayerInput>().ActivateInput();
         AddCash(CurrentHouse.BaseCash);
+        Detection.Init(this);
     }
 
     public override void Interact(Vector3 position)
     {
         base.Interact(position);
-        Detection.Detect(this);
+        Detection.Detect();
     }
 
     public void AddCash(int cash)

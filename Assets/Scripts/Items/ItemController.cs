@@ -10,8 +10,8 @@ public class ItemController : MonoBehaviour, IInteractable
     [SerializeField]
     private bool showPrefabGizmos;
 
-    [Header("Hold Item")]
-    public HoldItem holdItem;
+    //[Header("Art")]
+    protected ItemArt itemArt;
 
     [Header("Base Item")]
     [SerializeField]
@@ -47,6 +47,7 @@ public class ItemController : MonoBehaviour, IInteractable
         CharacterOwner = characterManager;
         gameObject.SetActive(false);
         InHand = false;
+        itemArt = GetComponentInChildren<ItemArt>();
     }
 
     public virtual void StartInteract(CharacterManager manager, System.Action onFinishInteraction)
@@ -90,6 +91,16 @@ public class ItemController : MonoBehaviour, IInteractable
         InHand = false;
     }
 
+    public void Select ()
+    {
+        itemArt?.SetSelection(true);
+    }
+
+    public void Deselect()
+    {
+        itemArt?.SetSelection(false);
+    }
+
     public void ResetPawns()
     {
         foreach (ItemOccupant itemOccupant in Characters)
@@ -119,14 +130,6 @@ public class ItemController : MonoBehaviour, IInteractable
         interactPosition = new GameObject().transform;
         interactPosition.gameObject.name = "InteractPosition";
         interactPosition.parent = transform;
-    }
-
-    [ContextMenu("Create Hold Item")]
-    private void CreateHolditem()
-    {
-        holdItem = new GameObject().AddComponent<HoldItem>();
-        holdItem.gameObject.name = "HoldItem";
-        holdItem.transform.parent = transform;
     }
 
     private void OnDrawGizmos()

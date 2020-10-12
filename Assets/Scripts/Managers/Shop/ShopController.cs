@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopController : MonoBehaviour
+public class ShopController : ItemController
 {
     [Header("Shop")]
     [SerializeField]
@@ -23,20 +23,27 @@ public class ShopController : MonoBehaviour
     {
         shop = new Shop(shopData);
 
-        if (holdItemSpawn)
+        //if (holdItemSpawn)
+        //{
+        //    HoldItem item = Instantiate(shopData.item.itemPrefab.GetComponent<ItemController>().itemArt, holdItemSpawn.position, Quaternion.identity).GetComponent<HoldItem>();
+        //    item.showOnAwake = true;
+        //    item.ShowItem();
+        //}
+
+        if(shopData.item.itemPrefab.GetComponent<ItemArt>() != null)
         {
-            HoldItem item = Instantiate(shopData.item.itemPrefab.GetComponent<ItemController>().holdItem, holdItemSpawn.position, Quaternion.identity).GetComponent<HoldItem>();
-            item.showOnAwake = true;
-            item.ShowItem();
+            Instantiate(shopData.item.itemPrefab.GetComponent<ItemArt>().gameObject, holdItemSpawn.position, Quaternion.identity);  
         }
 
         nameText.SetText(shopData.item.name);
         costText.SetText($"${shopData.cost}");
         stockText.SetText($"{shopData.amount}/{shopData.amount}");
+        itemArt = GetComponentInChildren<ItemArt>();
     }
 
-    public void StartInteract(CharacterManager manager)
+    public override void StartInteract(CharacterManager manager, System.Action onFinishInteraction)
     {
+        base.StartInteract(manager, onFinishInteraction);
         TruckInventroy inventroy = manager.InitialHouse.TruckInventroy;
         PlayerManager playerManager = manager.GetComponent<PlayerManager>();
         
@@ -53,7 +60,7 @@ public class ShopController : MonoBehaviour
                     break;
                 case Shop.ShopResponse.OutOfOrder:
                     PPFXController.instance.Play(PPFXController.PPState.outOfOrder, transform.position);
-                    break;
+                        break;
             }
         }
     }

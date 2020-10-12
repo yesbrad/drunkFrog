@@ -11,34 +11,64 @@ public class PlayerDetection : MonoBehaviour
 	[SerializeField]
 	private float detectDistance = 2;
 
+	private ItemController currentSelection;
+
 	private RaycastHit detectHit = new RaycastHit();
 
-	public void Detect(CharacterManager manager)
-	{
-		Debug.Log("Begining of thing");
+	private CharacterManager characterManager;
 
-		if(pawn.rotateContainer == null)
+	private Ray detectRay;
+
+	public void Init (CharacterManager manager)
+	{
+		characterManager = manager;
+
+		if (pawn.rotateContainer == null)
 		{
-			Debug.Log("early out");
 			Debug.LogError("Missing RotationContariner on Player Detection");
 			return;
 		}
 
-		Ray detectRay = new Ray(pawn.rotateContainer.position, pawn.rotateContainer.forward);
+		detectRay = new Ray(pawn.rotateContainer.position + Vector3.up, pawn.rotateContainer.forward);
+	}
 
-		Debug.Log("Begining of Rayvasty");
+	private void Update()
+	{
+		detectRay.origin = pawn.rotateContainer.position + Vector3.up;
+		detectRay.direction = pawn.rotateContainer.forward;
 
 		if (Physics.Raycast(detectRay, out detectHit, detectDistance))
 		{
-			ShopController shopController = detectHit.collider.GetComponent<ShopController>();
+			ItemController shopController = detectHit.collider.GetComponent<ItemController>();
 
-			Debug.Log(shopController);
-			Debug.Log("Middle of thing");
+			if (currentSelection)
+			{
+				currentSelection.Deselect();
+				currentSelection = null;
+			}
 
 			if (shopController != null)
 			{
-				shopController.StartInteract(manager);
+
+				currentSelection = shopController;
+				currentSelection.Select();
 			}
+		}
+		else
+		{
+			if (currentSelection)
+			{
+				currentSelection.Deselect();
+				currentSelection = null;
+			}
+		}
+	}
+
+	public void Detect()
+	{
+		if(currentSelection != null)
+		{
+			currentSelection.StartInteract(characterManager, () => { });
 		}
 	}
 }

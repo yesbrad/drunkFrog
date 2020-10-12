@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af554f91a8dbe0243844b0840f80a2ac, type: 3}
+  m_Name: Spawner Settings
+  m_EditorClassIdentifier: 
+  aiClasses:
+  - {fileID: 11400000, guid: 53d9407f2a3e4b84ab8a0cf8c69aacea, type: 2}
+  groupSizeMin: 1
+  groupSizeMax: 5
+  groupRateMin: 1
+  groupRateMax: 10
+  partyLimit: 200
+  partyTime: 0.8
